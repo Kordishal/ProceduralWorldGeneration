@@ -14,6 +14,8 @@ namespace ProceduralWorldGeneration.Generator
     {
         ElementGroups elementgroups = new ElementGroups();
 
+        private static Random rnd;
+
         private World _generated_world;
         public World GeneratedWorld
         {
@@ -32,41 +34,33 @@ namespace ProceduralWorldGeneration.Generator
         }
 
         private string _random_seed;
-        public string RandomSeed
-        {
-            get
-            {
-                return _random_seed;
-            }
-            set
-            {
-                if (value != _random_seed)
-                {
-                    _random_seed = value;
-                    NotifyPropertyChanged("RandomSeed");
-                }
-            }
-        }
-        static private Random rnd;
+
         private Queue<Element> generation_queue;
 
         public WorldGenerator()
         {
-            RandomSeed = "HelloWorld";
+
+        }
+
+
+        public void InitializeWorldGenerator(WorldGenerationConfig config)
+        {
+            _random_seed = config.RandomSeed;
+            rnd = new Random(_random_seed.GetHashCode());
             generation_queue = new Queue<Element>();
             _generated_world = new World();
             MainInputReader reader = new MainInputReader(elementgroups);
         }
-
 
         public void generateWorld()
         {
             rnd = new Random(_random_seed.GetHashCode());
             Element current_element;
             // Add the first element to seed the world. Currently an area.
-            GeneratedWorld.WorldElements = new Element(elementgroups.Elements[0][rnd.Next(elementgroups.Elements[0].Count)]);
-            generation_queue.Enqueue(GeneratedWorld.WorldElements);
-            OnNewElementCreated(GeneratedWorld.WorldElements);
+            GeneratedWorld.BaseElement = new Element(elementgroups.Elements[0][rnd.Next(elementgroups.Elements[0].Count)]);
+            GeneratedWorld.ElementCollection.Add(GeneratedWorld.BaseElement);
+            generation_queue.Enqueue(GeneratedWorld.BaseElement);
+            OnNewElementCreated(GeneratedWorld.BaseElement);
 
             while (!(generation_queue.Count == 0))
             {
@@ -86,6 +80,8 @@ namespace ProceduralWorldGeneration.Generator
                     }
                 }
             }
+
+            OnEndedGeneration("All Elements have been generated.");
         }
 
         private int generateElement(Element current_element)
@@ -106,6 +102,10 @@ namespace ProceduralWorldGeneration.Generator
             // Add new element to queue
             generation_queue.Enqueue(current_child_element);
 
+            // Add to global list
+            GeneratedWorld.ElementCollection.Add(current_child_element);
+
+            // Update log
             OnNewElementCreated(current_child_element);
 
             // determines how much this element fills the parent
@@ -129,7 +129,9 @@ namespace ProceduralWorldGeneration.Generator
 
 
         public delegate void CreatedNewElement(string status);
+        public delegate void EndedGeneration(string status);
 
+        public event EndedGeneration endedGeneration;
         public event CreatedNewElement createdNewElement;
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -140,6 +142,13 @@ namespace ProceduralWorldGeneration.Generator
                 createdNewElement("An " + element.Name + " was generated!\n");
             }
 
+        }
+        public void OnEndedGeneration(string status)
+        {
+            if (endedGeneration != null)
+            {
+                endedGeneration(status);
+            }
         }
         public void NotifyPropertyChanged(string propName)
         {

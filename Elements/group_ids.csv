@@ -1,3 +1,4 @@
 GROUP_ID;GROUP_NAME;FILE_NAME;SUBGROUP_1;SUBGROUP_2;SUBGROUP_3;SUBGROUP_4;SUBGROUP_5;SUBGROUP_6;SUBGROUP_7;SUBGROUP_8;SUBGROUP_9;SUBGROUP_10
 1;AREAS;areas.csv;2;-;-;-;-;-;-;-;-;-
-2;PLACES;places.csv;-;-;-;-;-;-;-;-;-;-
+2;PLACES;places.csv;3;-;-;-;-;-;-;-;-;-
+3;PLANTS;plants.csv;-;-;-;-;-;-;-;-;-;-

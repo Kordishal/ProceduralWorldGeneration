@@ -1,4 +1,5 @@
-﻿using ProceduralWorldGeneration.Generator;
+﻿using ProceduralWorldGeneration.Elements;
+using ProceduralWorldGeneration.Generator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,20 +23,34 @@ namespace ProceduralWorldGeneration
     public partial class MainWindow : Window
     {
         WorldGenerator world_generator;
+        WorldGenerationConfig config;
+
 
         public MainWindow()
         {
             InitializeComponent();
             world_generator = new WorldGenerator();
-            world_generator.createdNewElement += new WorldGenerator.CreatedNewElement(UpdateGenerationLog);
+            config = new WorldGenerationConfig();
+            SeedTextBox.DataContext = config;
 
-            SeedTextBox.DataContext = world_generator;
+
+            world_generator.createdNewElement += new WorldGenerator.CreatedNewElement(UpdateGenerationLog);
+            world_generator.endedGeneration += new WorldGenerator.EndedGeneration(UpdateGenerationLog);
+            world_generator.endedGeneration += new WorldGenerator.EndedGeneration(WorldGenerationButton_Enable);
         }
 
         private void WorldGenerationButton_Click(object sender, RoutedEventArgs e)
         {
-            world_generator.generateWorld();
             this.WorldGenerationButton.IsEnabled = false;
+            world_generator.InitializeWorldGenerator(config);
+            ElementListView.DataContext = world_generator;
+            ElementListView.ItemsSource = world_generator.GeneratedWorld.ElementCollection;
+            world_generator.generateWorld();
+        }
+
+        private void WorldGenerationButton_Enable(string status)
+        {
+            this.WorldGenerationButton.IsEnabled = true;
         }
 
         private void UpdateGenerationLog(string status)
@@ -43,5 +58,19 @@ namespace ProceduralWorldGeneration
             GenerationLog.AppendText(status);
         }
 
+        private void ElementListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Element element = (Element)e.AddedItems[0];
+
+            NameDisplayTextBlock.Text = element.Name;
+            SizeDisplayTextBlock.Text = element.Size.ToString();
+            if (element.ParentElement != null)
+                ParentNameDisplayTextBlock.Text = element.ParentElement.Name;
+            else
+                ParentNameDisplayTextBlock.Text = "NONE";
+
+            ChildrenElementListBox.DataContext = element;
+            ChildrenElementListBox.ItemsSource = element.ChildElements;
+        }
     }
 }
