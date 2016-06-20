@@ -37,14 +37,15 @@ namespace ProceduralWorldGeneration
             world_generator.createdNewElement += new WorldGenerator.CreatedNewElement(UpdateGenerationLog);
             world_generator.endedGeneration += new WorldGenerator.EndedGeneration(UpdateGenerationLog);
             world_generator.endedGeneration += new WorldGenerator.EndedGeneration(WorldGenerationButton_Enable);
+
+            world_generator.InitializeWorldGenerator(config);
+            ElementListView.DataContext = world_generator;
+            ElementListView.ItemsSource = world_generator.GeneratedWorld.ElementCollection;
         }
 
         private void WorldGenerationButton_Click(object sender, RoutedEventArgs e)
         {
-            this.WorldGenerationButton.IsEnabled = false;
-            world_generator.InitializeWorldGenerator(config);
-            ElementListView.DataContext = world_generator;
-            ElementListView.ItemsSource = world_generator.GeneratedWorld.ElementCollection;
+            WorldGenerationButton.IsEnabled = false;
             world_generator.generateWorld();
         }
 

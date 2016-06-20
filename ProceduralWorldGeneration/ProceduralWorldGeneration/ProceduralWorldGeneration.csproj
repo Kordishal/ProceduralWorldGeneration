@@ -66,9 +66,7 @@
     <Compile Include="DataStructure\ElementGroups.cs" />
     <Compile Include="DataStructure\Group.cs" />
     <Compile Include="DataStructure\World.cs" />
-    <Compile Include="Elements\Area.cs" />
     <Compile Include="Elements\Element.cs" />
-    <Compile Include="Elements\Place.cs" />
     <Compile Include="Generator\WorldGenerationConfig.cs" />
     <Compile Include="Generator\WorldGenerator.cs" />
     <Compile Include="Input\MainInputReader.cs" />

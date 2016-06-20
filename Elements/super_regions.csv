@@ -1,0 +1,4 @@
+NAME;PLURAL;MIN_SIZE;MAX_SIZE
+continent;continents;5;10
+island;islands;1;6
+oceans;oceans;5;10

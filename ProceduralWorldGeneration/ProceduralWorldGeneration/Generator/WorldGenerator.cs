@@ -56,11 +56,11 @@ namespace ProceduralWorldGeneration.Generator
         {
             rnd = new Random(_random_seed.GetHashCode());
             Element current_element;
-            // Add the first element to seed the world. Currently an area.
+            // Add the first element to seed the world. Currently a super region.
             GeneratedWorld.BaseElement = new Element(elementgroups.Elements[0][rnd.Next(elementgroups.Elements[0].Count)]);
             GeneratedWorld.ElementCollection.Add(GeneratedWorld.BaseElement);
             generation_queue.Enqueue(GeneratedWorld.BaseElement);
-            OnNewElementCreated(GeneratedWorld.BaseElement);
+            //OnNewElementCreated(GeneratedWorld.BaseElement);
 
             while (!(generation_queue.Count == 0))
             {
@@ -106,7 +106,7 @@ namespace ProceduralWorldGeneration.Generator
             GeneratedWorld.ElementCollection.Add(current_child_element);
 
             // Update log
-            OnNewElementCreated(current_child_element);
+            //OnNewElementCreated(current_child_element);
 
             // determines how much this element fills the parent
             return current_child_element.Size;
