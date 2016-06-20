@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProceduralWorldGeneration.Generator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,27 @@ namespace ProceduralWorldGeneration
     /// </summary>
     public partial class MainWindow : Window
     {
+        WorldGenerator world_generator;
+
         public MainWindow()
         {
             InitializeComponent();
+            world_generator = new WorldGenerator();
+            world_generator.createdNewElement += new WorldGenerator.CreatedNewElement(UpdateGenerationLog);
+
+            SeedTextBox.DataContext = world_generator;
         }
+
+        private void WorldGenerationButton_Click(object sender, RoutedEventArgs e)
+        {
+            world_generator.generateWorld();
+            this.WorldGenerationButton.IsEnabled = false;
+        }
+
+        private void UpdateGenerationLog(string status)
+        {
+            GenerationLog.AppendText(status);
+        }
+
     }
 }

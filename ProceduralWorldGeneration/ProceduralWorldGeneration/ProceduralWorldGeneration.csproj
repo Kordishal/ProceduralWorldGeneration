@@ -63,6 +63,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataStructure\ElementGroups.cs" />
+    <Compile Include="DataStructure\Group.cs" />
+    <Compile Include="DataStructure\World.cs" />
+    <Compile Include="Elements\Area.cs" />
+    <Compile Include="Elements\Element.cs" />
+    <Compile Include="Elements\Place.cs" />
+    <Compile Include="Generator\WorldGenerator.cs" />
+    <Compile Include="Input\MainInputReader.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -95,6 +103,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
