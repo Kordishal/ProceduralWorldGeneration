@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProceduralWorldGeneration"
-        xmlns:Generator="clr-namespace:ProceduralWorldGeneration.Generator" xmlns:DataStructure="clr-namespace:ProceduralWorldGeneration.DataStructure" x:Class="ProceduralWorldGeneration.MainWindow"
+        xmlns:Generator="clr-namespace:ProceduralWorldGeneration.Generator" xmlns:DataStructure="clr-namespace:ProceduralWorldGeneration.DataStructure" xmlns:Input="clr-namespace:ProceduralWorldGeneration.Input" x:Class="ProceduralWorldGeneration.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="800">
     <Grid Margin="0,0,2,0">
@@ -47,7 +47,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-            <TextBlock x:Name="textBlock1" Grid.Column="1" HorizontalAlignment="Left" Margin="10,251,0,0" TextWrapping="Wrap" Text="Children Element" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1" Grid.Column="1" HorizontalAlignment="Left" Margin="10,251,0,0" TextWrapping="Wrap" Text="Children Element" VerticalAlignment="Top"/>
         <StackPanel Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="10,30,0,0" VerticalAlignment="Top" Width="100">
             <TextBlock x:Name="NameTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Name: " VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Size:" VerticalAlignment="Top"/>

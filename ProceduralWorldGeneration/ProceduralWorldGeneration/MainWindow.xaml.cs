@@ -1,5 +1,7 @@
 ﻿using ProceduralWorldGeneration.Elements;
 using ProceduralWorldGeneration.Generator;
+using ProceduralWorldGeneration.Input;
+using ProceduralWorldGeneration.Input.LexerDefinition;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,15 +26,23 @@ namespace ProceduralWorldGeneration
     {
         WorldGenerator world_generator;
         WorldGenerationConfig config;
-
+        MythCreator myth_creator;
+        MythObjectReader myth_object_reader;
 
         public MainWindow()
         {
             InitializeComponent();
             world_generator = new WorldGenerator();
             config = new WorldGenerationConfig();
+            myth_creator = new MythCreator();
             SeedTextBox.DataContext = config;
 
+            myth_object_reader = new MythObjectReader();
+
+            foreach(Token t in myth_object_reader.Tokens)
+            {
+                UpdateGenerationLog("Token: " + t.Value + " Type: " +  t.Type + "\n");
+            }
 
             world_generator.createdNewElement += new WorldGenerator.CreatedNewElement(UpdateGenerationLog);
             world_generator.endedGeneration += new WorldGenerator.EndedGeneration(UpdateGenerationLog);

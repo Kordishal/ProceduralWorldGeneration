@@ -67,15 +67,29 @@
     <Compile Include="DataStructure\Group.cs" />
     <Compile Include="DataStructure\World.cs" />
     <Compile Include="Elements\Element.cs" />
+    <Compile Include="Generator\MythCreator.cs" />
     <Compile Include="Generator\WorldGenerationConfig.cs" />
     <Compile Include="Generator\WorldGenerator.cs" />
+    <Compile Include="Input\FileNames.cs" />
+    <Compile Include="Input\LexerDefinition\ILexer.cs" />
+    <Compile Include="Input\LexerDefinition\Lexer.cs" />
+    <Compile Include="Input\LexerDefinition\Token.cs" />
+    <Compile Include="Input\LexerDefinition\TokenDefinition.cs" />
+    <Compile Include="Input\LexerDefinition\TokenPosition.cs" />
     <Compile Include="Input\MainInputReader.cs" />
+    <Compile Include="Input\MythCreationLexer.cs" />
+    <Compile Include="Input\MythObjectReader.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MythObjects\BaseMythObject.cs" />
+    <Compile Include="MythObjects\Deity.cs" />
+    <Compile Include="MythObjects\IAction.cs" />
+    <Compile Include="MythObjects\Plane.cs" />
+    <Compile Include="MythObjects\PrimordialForce.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

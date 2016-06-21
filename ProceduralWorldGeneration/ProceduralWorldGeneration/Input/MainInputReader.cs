@@ -11,8 +11,7 @@ namespace ProceduralWorldGeneration.Input
 {
     class MainInputReader
     {
-        const string DIRECTORY_PATH = @"C:\Users\Jonas\Documents\Projekte\ProceduralWorldGeneration\Elements\";
-        const string GROUP_ID_FILE = @"group_ids.csv";
+
 
         public MainInputReader(ElementGroups elements)
         {
@@ -23,7 +22,7 @@ namespace ProceduralWorldGeneration.Input
         private void createGroups(ElementGroups elements)
         {
             List<string> files;
-            files = ReadFile(DIRECTORY_PATH + GROUP_ID_FILE);
+            files = ReadFile(FileNames.DIRECTORY_PATH_WORLD_ELEMENTS + FileNames.GROUP_ID_FILE);
 
             // create all groups
             foreach (string s in files)
@@ -52,11 +51,11 @@ namespace ProceduralWorldGeneration.Input
             List<string> lines;
             List<Element> element_list;
 
-            files = ReadFile(DIRECTORY_PATH + GROUP_ID_FILE);
+            files = ReadFile(FileNames.DIRECTORY_PATH_WORLD_ELEMENTS + FileNames.GROUP_ID_FILE);
 
             foreach (string s in files)
             {
-                lines = ReadFile(DIRECTORY_PATH + s.Split(';')[2]);
+                lines = ReadFile(FileNames.DIRECTORY_PATH_WORLD_ELEMENTS + s.Split(';')[2]);
                 element_list = new List<Element>();
                 string[] temp;
                 for (int i = 0; i < lines.Count; i++)

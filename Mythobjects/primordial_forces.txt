@@ -1,0 +1,25 @@
+primordial_forces = {
+	void = {
+		name = "The Void"
+	}
+
+	light = {
+		name = "The Light"
+		opposing = darkness
+	}
+
+	darkness = {
+		name = "The Darkness"
+		opposing = light
+	}
+
+	chaos = {
+		name = "The Chaos"
+		opposing = order
+	}
+
+	order = {
+		name = "The Order"
+		opposing = chaos
+	}
+}
