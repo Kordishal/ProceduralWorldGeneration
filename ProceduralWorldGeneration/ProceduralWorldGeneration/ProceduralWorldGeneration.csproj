@@ -79,6 +79,9 @@
     <Compile Include="Input\MainInputReader.cs" />
     <Compile Include="Input\MythCreationLexer.cs" />
     <Compile Include="Input\MythObjectReader.cs" />
+    <Compile Include="Input\ParserDefinition\Parser.cs" />
+    <Compile Include="Input\ParserDefinition\Tree.cs" />
+    <Compile Include="Input\ParserDefinition\TreeNode.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

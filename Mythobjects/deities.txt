@@ -1,0 +1,6 @@
+deities = {
+	domains = {
+		"Health" "Life" "War" "Peace" "Death" "Destruction" "Nature" "Creation" "Magic" "Blood"
+	}
+}
+

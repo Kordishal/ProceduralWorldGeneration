@@ -18,5 +18,10 @@ namespace ProceduralWorldGeneration.Input.LexerDefinition
             Type = type;
             Value = value;
         }
+
+        public override string ToString()
+        {
+            return Type + ":" + Value;
+        }
     }
 }

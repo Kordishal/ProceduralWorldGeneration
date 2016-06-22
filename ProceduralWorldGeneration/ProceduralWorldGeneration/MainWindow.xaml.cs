@@ -2,6 +2,7 @@
 using ProceduralWorldGeneration.Generator;
 using ProceduralWorldGeneration.Input;
 using ProceduralWorldGeneration.Input.LexerDefinition;
+using ProceduralWorldGeneration.Input.ParserDefinition;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,7 @@ namespace ProceduralWorldGeneration
         WorldGenerationConfig config;
         MythCreator myth_creator;
         MythObjectReader myth_object_reader;
+        Parser myth_object_parser;
 
         public MainWindow()
         {
@@ -38,11 +40,14 @@ namespace ProceduralWorldGeneration
             SeedTextBox.DataContext = config;
 
             myth_object_reader = new MythObjectReader();
+            myth_object_reader.readMythObjects();
 
             foreach(Token t in myth_object_reader.Tokens)
             {
                 UpdateGenerationLog("Token: " + t.Value + " Type: " +  t.Type + "\n");
             }
+            myth_object_parser = new Parser();
+            myth_object_parser.generateExpressionTree(myth_object_reader.Tokens);
 
             world_generator.createdNewElement += new WorldGenerator.CreatedNewElement(UpdateGenerationLog);
             world_generator.endedGeneration += new WorldGenerator.EndedGeneration(UpdateGenerationLog);

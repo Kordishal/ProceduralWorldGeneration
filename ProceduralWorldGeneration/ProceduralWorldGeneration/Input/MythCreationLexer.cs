@@ -39,18 +39,21 @@ namespace ProceduralWorldGeneration.Input
             definitions.Add(new TokenDefinition(new Regex(@"#t"), "TRUE"));
             definitions.Add(new TokenDefinition(new Regex(@"#f"), "FALSE"));
 
-            definitions.Add(new TokenDefinition(new Regex(@"\{"), "OPENING_BRACES"));
-            definitions.Add(new TokenDefinition(new Regex(@"\}"), "CLOSING_BRACES"));
+            definitions.Add(new TokenDefinition(new Regex(@"\{"), "OPENING_CURLY_BRACES"));
+            definitions.Add(new TokenDefinition(new Regex(@"\}"), "CLOSING_CURLY_BRACES"));
+
+            definitions.Add(new TokenDefinition(new Regex(@"\["), "OPENING_SQUARE_BRACES"));
+            definitions.Add(new TokenDefinition(new Regex(@"\]"), "CLOSING_SQUARE_BRACES"));
 
             definitions.Add(new TokenDefinition(new Regex(@"\="), "ASSIGNMENT"));
 
             definitions.Add(new TokenDefinition(new Regex(@"([""'])(?:\\\1|.)*?\1"), "STRING"));
-            definitions.Add(new TokenDefinition(new Regex(@"[-+]?\d+"), "INT"));
+            definitions.Add(new TokenDefinition(new Regex(@"[-+]?\d+"), "INTEGER"));
 
             definitions.Add(new TokenDefinition(new Regex(@"[*<>\?\-+/A-Za-z->!_]+"), "VARIABLE"));
 
             definitions.Add(new TokenDefinition(new Regex(@"\s+"), "WHITE_SPACE", true));
-            definitions.Add(new TokenDefinition(new Regex(@"[\t]"), "TABE", true));
+            definitions.Add(new TokenDefinition(new Regex(@"[\t]"), "TAB", true));
 
             return definitions;
         }

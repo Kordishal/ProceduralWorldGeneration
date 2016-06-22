@@ -1,25 +1,26 @@
 primordial_forces = {
-	void = {
-		name = "The Void"
+	primordial_force = {
+		name = "Void"
 	}
 
-	light = {
-		name = "The Light"
-		opposing = darkness
+	primordial_force = {
+		name = "Light"
+		opposing = "Darkness"
 	}
 
-	darkness = {
-		name = "The Darkness"
-		opposing = light
+	primordial_force = {
+		name = "Darkness"
+		opposing = "Light"
 	}
 
-	chaos = {
-		name = "The Chaos"
-		opposing = order
+	primordial_force = {
+		name = "Chaos"
+		opposing = "Order"
 	}
 
-	order = {
-		name = "The Order"
-		opposing = chaos
+	primordial_force = {
+		name = "Order"
+		opposing = "Chaos"
 	}
 }
+
