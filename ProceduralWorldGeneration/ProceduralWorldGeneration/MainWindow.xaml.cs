@@ -3,6 +3,7 @@ using ProceduralWorldGeneration.Generator;
 using ProceduralWorldGeneration.Input;
 using ProceduralWorldGeneration.Input.LexerDefinition;
 using ProceduralWorldGeneration.Input.ParserDefinition;
+using ProceduralWorldGeneration.MythObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,8 @@ namespace ProceduralWorldGeneration
         WorldGenerator world_generator;
         WorldGenerationConfig config;
 
+        private int _generator;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -42,18 +45,29 @@ namespace ProceduralWorldGeneration
             world_generator.createdNewElement += new WorldGenerator.CreatedNewElement(UpdateGenerationLog);
             world_generator.endedGeneration += new WorldGenerator.EndedGeneration(UpdateGenerationLog);
             world_generator.endedGeneration += new WorldGenerator.EndedGeneration(WorldGenerationButton_Enable);
-            myth_creator.InitializeMythCreation(config);
+
 
 
         }
 
         private void WorldGenerationButton_Click(object sender, RoutedEventArgs e)
         {
+            _generator = 1;
             world_generator.InitializeWorldGenerator(config);
             ElementListView.DataContext = world_generator;
             ElementListView.ItemsSource = world_generator.GeneratedWorld.ElementCollection;
             WorldGenerationButton.IsEnabled = false;
             world_generator.generateWorld();
+        }
+
+        private void MythCreationButton_Click(object sender, RoutedEventArgs e)
+        {
+            _generator = 2;
+            myth_creator.InitializeMythCreation(config);
+            ElementListView.DataContext = myth_creator;
+            ElementListView.ItemsSource = myth_creator.MythObjects;
+
+            myth_creator.creationLoop();
         }
 
         private void WorldGenerationButton_Enable(string status)
@@ -68,17 +82,28 @@ namespace ProceduralWorldGeneration
 
         private void ElementListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Element element = (Element)e.AddedItems[0];
+            if (_generator == 1)
+            {
+                Element element = (Element)e.AddedItems[0];
 
-            NameDisplayTextBlock.Text = element.Name;
-            SizeDisplayTextBlock.Text = element.Size.ToString();
-            if (element.ParentElement != null)
-                ParentNameDisplayTextBlock.Text = element.ParentElement.Name;
-            else
-                ParentNameDisplayTextBlock.Text = "NONE";
+                NameDisplayTextBlock.Text = element.Name;
+                SizeDisplayTextBlock.Text = element.Size.ToString();
+                if (element.ParentElement != null)
+                    ParentNameDisplayTextBlock.Text = element.ParentElement.Name;
+                else
+                    ParentNameDisplayTextBlock.Text = "NONE";
 
-            ChildrenElementListBox.DataContext = element;
-            ChildrenElementListBox.ItemsSource = element.ChildElements;
+                ChildrenElementListBox.DataContext = element;
+                ChildrenElementListBox.ItemsSource = element.ChildElements;
+            }
+            else if (_generator == 2)
+            {
+                BaseMythObject myth_object = (BaseMythObject)e.AddedItems[0];
+                NameDisplayTextBlock.Text = myth_object.Name;
+            }
+
         }
+
+
     }
 }

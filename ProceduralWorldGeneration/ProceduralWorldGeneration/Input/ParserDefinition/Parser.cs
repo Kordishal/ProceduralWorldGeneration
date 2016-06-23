@@ -80,7 +80,6 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                                 }
 
                                 current_tree_node.Value.ExpressionType = ExpressionTypes.List;
-                                current_token = current_token.Next;
                             }
                         }
                         else if (current_token.Next.Value.Type == "STRING")
@@ -91,6 +90,19 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                             temp_expression.ExpressionValue = current_token.Next.Value.Value;
                             current_tree_node.GetLastChild().AddChild(temp_expression);
                             // the parent of a string literal is a variable
+                            current_tree_node.GetLastChild().Value.ExpressionType = ExpressionTypes.Variable;
+                            // the parent of variables is always a class and not a list
+                            current_tree_node.Value.ExpressionType = ExpressionTypes.Class;
+                            current_token = current_token.Next.Next;
+                        }
+                        else if (current_token.Next.Value.Type == "INTEGER")
+                        {
+                            // A direct variable is named variable and assigned its value as an only child.
+                            temp_expression = new Expression();
+                            temp_expression.ExpressionType = ExpressionTypes.Integer;
+                            temp_expression.ExpressionValue = current_token.Next.Value.Value;
+                            current_tree_node.GetLastChild().AddChild(temp_expression);
+                            // the parent of an integer literal is a variable
                             current_tree_node.GetLastChild().Value.ExpressionType = ExpressionTypes.Variable;
                             // the parent of variables is always a class and not a list
                             current_tree_node.Value.ExpressionType = ExpressionTypes.Class;
@@ -141,6 +153,10 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                         if (current_node.Value.ExpressionValue == "opposing")
                         {
                             MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].Opposing = cutStringSigns(current_node.GetLastChild().Value.ExpressionValue);
+                        }
+                        if (current_node.Value.ExpressionValue == "spawn_weight")
+                        {
+                            MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].SpawnWeight = int.Parse(current_node.GetLastChild().Value.ExpressionValue);
                         }
                     }
                 }
