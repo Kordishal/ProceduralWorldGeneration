@@ -63,12 +63,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataStructure\CreationMyth.cs" />
     <Compile Include="DataStructure\ElementGroups.cs" />
     <Compile Include="DataStructure\Group.cs" />
     <Compile Include="DataStructure\World.cs" />
     <Compile Include="Elements\Element.cs" />
     <Compile Include="Generator\MythCreator.cs" />
-    <Compile Include="Generator\WorldGenerationConfig.cs" />
+    <Compile Include="Generator\ConfigValues.cs" />
     <Compile Include="Generator\WorldGenerator.cs" />
     <Compile Include="Input\FileNames.cs" />
     <Compile Include="Input\LexerDefinition\ILexer.cs" />
@@ -96,6 +97,9 @@
     <Compile Include="MythObjects\IAction.cs" />
     <Compile Include="MythObjects\Plane.cs" />
     <Compile Include="MythObjects\PrimordialForce.cs" />
+    <Compile Include="Output\CreationMythLogger.cs" />
+    <Compile Include="Output\LexerLog.cs" />
+    <Compile Include="Output\ParserLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

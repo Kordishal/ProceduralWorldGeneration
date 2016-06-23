@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ProceduralWorldGeneration.Input;
 using System.Collections.ObjectModel;
 using ProceduralWorldGeneration.DataStructure;
+using ProceduralWorldGeneration.Generator;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
@@ -87,14 +88,14 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        public void regenerateActionPoints(Random rnd)
+        public void regenerateActionPoints()
         {
-            if (rnd.Next(100) < _action_regeneration_chance)
+            if (ConfigValues.RandomGenerator.Next(100) < _action_regeneration_chance)
             {
-                ActionPoints += rnd.Next(_min_action_regeneration, _max_action_regeneration);
+                ActionPoints += ConfigValues.RandomGenerator.Next(_min_action_regeneration, _max_action_regeneration);
             }
         }
 
-        public abstract void takeAction(CreationMyth creation_myth, int current_year, Random rnd);
+        public abstract void takeAction(CreationMyth creation_myth, int current_year);
     }
 }

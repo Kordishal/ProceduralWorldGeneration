@@ -20,7 +20,7 @@ namespace ProceduralWorldGeneration.MythObjects
             base.Type = TYPE;
         }
 
-        public override void takeAction(CreationMyth creation_myth, int current_year, Random rnd)
+        public override void takeAction(CreationMyth creation_myth, int current_year)
         {
             throw new NotImplementedException();
         }

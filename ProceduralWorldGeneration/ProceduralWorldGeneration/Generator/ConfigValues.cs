@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Generator
 {
-    class WorldGenerationConfig : INotifyPropertyChanged
+    class ConfigValues : INotifyPropertyChanged
     {
 
         private string _random_seed;
@@ -22,14 +22,19 @@ namespace ProceduralWorldGeneration.Generator
                 if (value != _random_seed)
                 {
                     _random_seed = value;
+                    RandomGenerator = new Random(_random_seed.GetHashCode());
                     NotifyPropertyChanged("RandomSeed");
                 }
             }
         }
 
-        public WorldGenerationConfig()
+        static public Random RandomGenerator;
+        
+
+        public ConfigValues()
         {
             _random_seed = "Hello World";
+            RandomGenerator = new Random(_random_seed.GetHashCode());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

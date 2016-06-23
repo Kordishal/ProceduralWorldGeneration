@@ -9,13 +9,16 @@ namespace ProceduralWorldGeneration.Input
 {
     class MythObjectData
     {
-
+        // PRIMORDIAL FORCES
         public List<PrimordialForce> PrimordialForces = new List<PrimordialForce>();
 
         public List<string> Domains = new List<string>();
 
-        public List<string> PlaneTypes = new List<string>();
+        // PLANES
+        public List<Plane> DefinedPlanes = new List<Plane>();
 
+        public List<string> PlaneTypes = new List<string>();
+        public List<string> PlaneSizes = new List<string>();
         public List<string> PlaneElements = new List<string>();
 
 

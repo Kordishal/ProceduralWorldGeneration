@@ -256,6 +256,10 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                 {
                     MythObjects.PrimordialForces.Add(new PrimordialForce());
                 }
+                if (current_node.Value.ExpressionValue == "plane")
+                {
+                    MythObjects.DefinedPlanes.Add(new Plane());
+                }
             }
 
             if (current_node.Value.ExpressionType == ExpressionTypes.Variable)
@@ -285,6 +289,25 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                             MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].ActionRegenrationChance = int.Parse(current_node.GetLastChild().Value.ExpressionValue);
                         }
                     }
+                    else if (parent_node.Value.ExpressionValue == "plane")
+                    {
+                        if (current_node.Value.ExpressionValue == "name")
+                        {
+                            MythObjects.DefinedPlanes[MythObjects.DefinedPlanes.Count - 1].Name = cutStringSigns(current_node.GetLastChild().Value.ExpressionValue);
+                        }
+                        if (current_node.Value.ExpressionValue == "type")
+                        {
+                            MythObjects.DefinedPlanes[MythObjects.DefinedPlanes.Count - 1].PlaneType = cutStringSigns(current_node.GetLastChild().Value.ExpressionValue);
+                        }
+                        if (current_node.Value.ExpressionValue == "size")
+                        {
+                            MythObjects.DefinedPlanes[MythObjects.DefinedPlanes.Count - 1].PlaneSize = cutStringSigns(current_node.GetLastChild().Value.ExpressionValue);
+                        }
+                        if (current_node.Value.ExpressionValue == "element")
+                        {
+                            MythObjects.DefinedPlanes[MythObjects.DefinedPlanes.Count - 1].PlaneElement = cutStringSigns(current_node.GetLastChild().Value.ExpressionValue);
+                        }
+                    }
                 }
             }
 
@@ -295,7 +318,7 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                     if (current_node.Value.ExpressionValue == "action_point_regeneration")
                     {
                         MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].MinActionRegeneration = int.Parse(current_node.GetFirstChild().Value.ExpressionValue);
-                        MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].MaxActionRegeneration = int.Parse(current_node.GetLastChild().Value.ExpressionValue);
+                        MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].MaxActionRegeneration = int.Parse(current_node.GetLastChild().Value.ExpressionValue) + 1;
                     }
                 }
             }
@@ -316,6 +339,10 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                     else if (parent_node.Value.ExpressionValue == "plane_elements")
                     {
                         MythObjects.PlaneElements.Add(cutStringSigns(current_node.Value.ExpressionValue));
+                    }
+                    else if (parent_node.Value.ExpressionValue == "plane_sizes")
+                    {
+                        MythObjects.PlaneSizes.Add(cutStringSigns(current_node.Value.ExpressionValue));
                     }
                 }
             }

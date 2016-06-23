@@ -37,11 +37,11 @@ namespace ProceduralWorldGeneration.MythObjects
         /// <summary>
         /// The actions which can be taken by the entity.
         /// </summary>
-        void takeAction(CreationMyth creation_myth, int current_year, Random rnd);
+        void takeAction(CreationMyth creation_myth, int current_year);
 
         /// <summary>
         /// In each tick the regeneration rate is messured.
         /// </summary>
-        void regenerateActionPoints(Random rnd);
+        void regenerateActionPoints();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ProceduralWorldGeneration.Input;
 using ProceduralWorldGeneration.MythObjects;
+using ProceduralWorldGeneration.Output;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +12,9 @@ namespace ProceduralWorldGeneration.DataStructure
 {
     class CreationMyth : INotifyPropertyChanged
     {
+
+        public CreationMythLogger Logger { get; set; }
+
         private MythObjectData _myth_object_data;
         public MythObjectData MythObjectData
         {
@@ -62,6 +66,23 @@ namespace ProceduralWorldGeneration.DataStructure
             }
         }
 
+        private List<Plane> _planes;
+        public List<Plane> Planes
+        {
+            get
+            {
+                return _planes;
+            }
+            set
+            {
+                if (_planes != value)
+                {
+                    _planes = value;
+                    this.NotifyPropertyChanged("Planes");
+                }
+            }
+        }
+
         private Queue<IAction> _actionable_myth_objects;
         public Queue<IAction> ActionableMythObjects
         {
@@ -79,7 +100,14 @@ namespace ProceduralWorldGeneration.DataStructure
             }
         }
 
-
+        public CreationMyth()
+        {
+            Logger = new CreationMythLogger();
+            MythObjects = new List<BaseMythObject>();
+            PrimordialForces = new List<PrimordialForce>();
+            Planes = new List<Plane>();
+            ActionableMythObjects = new Queue<IAction>();
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)

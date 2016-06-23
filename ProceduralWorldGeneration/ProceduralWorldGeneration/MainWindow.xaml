@@ -9,8 +9,7 @@
         Title="MainWindow" Height="700" Width="800">
     <Grid Margin="0,0,2,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="154*"/>
-            <RowDefinition Height="69*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="294*"/>
@@ -20,13 +19,6 @@
         <Button x:Name="WorldGenerationButton" Content="Generate World" Margin="0,10,24,0" Grid.Column="2" Click="WorldGenerationButton_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="116"/>
         <TextBox x:Name="SeedTextBox" Margin="0,90,10,0" TextWrapping="Wrap" Text="{Binding RandomSeed}" SpellCheck.IsEnabled="True" Grid.Column="2" Height="22" VerticalAlignment="Top" HorizontalAlignment="Right" Width="130"/>
         <Label x:Name="SeedLabel" Content="Seed:" Margin="0,86,147,0" Grid.Column="2" HorizontalAlignment="Right" Width="47" Height="26" VerticalAlignment="Top"/>
-        <RichTextBox x:Name="GenerationLog" Height="207" VerticalAlignment="Top" Grid.ColumnSpan="3" Grid.Row="1">
-            <FlowDocument>
-                <Paragraph>
-                    <Run/>
-                </Paragraph>
-            </FlowDocument>
-        </RichTextBox>
         <ListBox x:Name="ElementListView" Margin="10" ItemsSource="{Binding GeneratedWorld.ElementCollection}" SelectionChanged="ElementListView_SelectionChanged">
             <ListBox.DataContext>
                 <Generator:WorldGenerator/>

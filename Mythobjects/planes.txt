@@ -1,11 +1,72 @@
-
-
-
-plane_types = {
-	"material" "elemental" "astral"
+# Planes can be any type of physical realm in which beings recide in. Only primordial forces and deities can exist outside of an plane.
+# Planes have a number of traits that define how they work. This in turn determines who lives there and who can exert what power.
+# Plane:
+# 		Creator: The creator is either a primordial force or a deity. 
+#		Neighbours: Determines what planes are connected to each other. It is not possible to travel between two unconnected planes.
+#     	
+# Defined planes are pre-scripted planes that appear under specific conditions.
+defined_planes = {
+	plane = {
+		name = "The Core World"
+		type = "material"
+		size = "large"
+	}
+	
+	plane = {
+		name = "Shadow Plane"
+		type = "ethereal"
+		size = "pocket"
+		element = "shadow"
+	}
+	
+	plane = {
+		name = "Plane of Light"
+		type = "ethereal"
+		size = "pocket"
+		element = "light"
+	}
+	
+	plane = {
+		name = "Plane of Entropy"
+		type = "ethereal"
+		size = "pocket"
+		element = "entropy"
+	}
+	plane = {
+		name = "Plane of Harmony"
+		type = "ethereal"
+		size = "pocket"
+		element = "harmony"
+	}
+	
+	plane = {
+		name = "Astral Plane"
+		type = "elemental"
+		size = "infinite"
+		element = "neutral"
+	}
 }
 
+# The type of the plane determines its most basic attributes and traits.
+# Material: the standard plane type. It can have many different forms.
+# Elemental: A plane where a single element dominates everything.
+# Ethereal: An ethereal plane is overlayed over a material world, but is dominated by an element. It copies most traits and attributes of the material plane, but can have a number of element specific differences.
+plane_types = { 
+	"material" "elemental" "ethereal"
+}
+
+## The size of a plane determines with how many other planes it can connect and how much space there is inside of it.
+# inifinte: Can connect to any number of planes.
+# large: can connect with up to 16 planes
+# medium: can connect with up to 8 planes
+# small: can connect with up to 4 planes
+# pocket: can only connect to a single plane.
+plane_sizes = {
+	"pocket" "small" "medium" "large" "infinite"
+}
+
+# The plane element is only set for elemental planes. It determines what element is domaninat in this world. 
 plane_elements = {
-	"fire" "earth" "water" "air" "life" "death"
+	"fire" "earth" "water" "air" "life" "death" "shadow" "light" "entropy" "harmony" "arcane" "neutral"
 }
 

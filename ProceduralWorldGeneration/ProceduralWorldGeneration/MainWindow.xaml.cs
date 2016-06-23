@@ -28,7 +28,7 @@ namespace ProceduralWorldGeneration
     {
         MythCreator myth_creator;
         WorldGenerator world_generator;
-        WorldGenerationConfig config;
+        ConfigValues config;
 
         private int _generator;
 
@@ -36,14 +36,10 @@ namespace ProceduralWorldGeneration
         {
             InitializeComponent();
             world_generator = new WorldGenerator();
-            config = new WorldGenerationConfig();
+            config = new ConfigValues();
             myth_creator = new MythCreator();
             SeedTextBox.DataContext = config;
 
-
-
-            world_generator.createdNewElement += new WorldGenerator.CreatedNewElement(UpdateGenerationLog);
-            world_generator.endedGeneration += new WorldGenerator.EndedGeneration(UpdateGenerationLog);
             world_generator.endedGeneration += new WorldGenerator.EndedGeneration(WorldGenerationButton_Enable);
 
 
@@ -53,7 +49,7 @@ namespace ProceduralWorldGeneration
         private void WorldGenerationButton_Click(object sender, RoutedEventArgs e)
         {
             _generator = 1;
-            world_generator.InitializeWorldGenerator(config);
+            world_generator.InitializeWorldGenerator();
             ElementListView.DataContext = world_generator;
             ElementListView.ItemsSource = world_generator.GeneratedWorld.ElementCollection;
             WorldGenerationButton.IsEnabled = false;
@@ -63,24 +59,15 @@ namespace ProceduralWorldGeneration
         private void MythCreationButton_Click(object sender, RoutedEventArgs e)
         {
             _generator = 2;
-
-            myth_creator.InitializeMythCreation(config);
+            myth_creator.InitializeMythCreation();
             ElementListView.DataContext = myth_creator.CreationMyths;
             ElementListView.ItemsSource = myth_creator.CreationMyths.MythObjects;
-
-            myth_creator.ClearMythCreation();
-
             myth_creator.creationLoop();
         }
 
         private void WorldGenerationButton_Enable(string status)
         {
             this.WorldGenerationButton.IsEnabled = true;
-        }
-
-        private void UpdateGenerationLog(string status)
-        {
-            GenerationLog.AppendText(status);
         }
 
         private void ElementListView_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -14,8 +14,6 @@ namespace ProceduralWorldGeneration.Generator
     {
         ElementGroups elementgroups = new ElementGroups();
 
-        private static Random rnd;
-
         private World _generated_world;
         public World GeneratedWorld
         {
@@ -33,20 +31,10 @@ namespace ProceduralWorldGeneration.Generator
             }
         }
 
-        private string _random_seed;
-
         private Queue<Element> generation_queue;
 
-        public WorldGenerator()
+        public void InitializeWorldGenerator()
         {
-
-        }
-
-
-        public void InitializeWorldGenerator(WorldGenerationConfig config)
-        {
-            _random_seed = config.RandomSeed;
-            rnd = new Random(_random_seed.GetHashCode());
             generation_queue = new Queue<Element>();
             _generated_world = new World();
             MainInputReader reader = new MainInputReader(elementgroups);
@@ -54,10 +42,9 @@ namespace ProceduralWorldGeneration.Generator
 
         public void generateWorld()
         {
-            rnd = new Random(_random_seed.GetHashCode());
             Element current_element;
             // Add the first element to seed the world. Currently a super region.
-            GeneratedWorld.BaseElement = new Element(elementgroups.Elements[0][rnd.Next(elementgroups.Elements[0].Count)]);
+            GeneratedWorld.BaseElement = new Element(elementgroups.Elements[0][ConfigValues.RandomGenerator.Next(elementgroups.Elements[0].Count)]);
             GeneratedWorld.ElementCollection.Add(GeneratedWorld.BaseElement);
             generation_queue.Enqueue(GeneratedWorld.BaseElement);
             //OnNewElementCreated(GeneratedWorld.BaseElement);
@@ -66,7 +53,7 @@ namespace ProceduralWorldGeneration.Generator
             {
                 int fill = 0;
                 current_element = generation_queue.Dequeue();
-                current_element.Size = rnd.Next(current_element.MinSize, current_element.MaxSize) * 10;
+                current_element.Size = ConfigValues.RandomGenerator.Next(current_element.MinSize, current_element.MaxSize) * 10;
                 while (fill < current_element.Size)
                 {
                     int temp = generateElement(current_element);
@@ -91,10 +78,10 @@ namespace ProceduralWorldGeneration.Generator
             {
                 return -1;
             }
-            Element current_child_element = new Element(source_elements[rnd.Next(source_elements.Count)]);
+            Element current_child_element = new Element(source_elements[ConfigValues.RandomGenerator.Next(source_elements.Count)]);
             // Add parent and size to object.
             current_child_element.ParentElement = current_element;
-            current_child_element.Size = rnd.Next(current_child_element.MinSize, current_child_element.MaxSize);
+            current_child_element.Size = ConfigValues.RandomGenerator.Next(current_child_element.MinSize, current_child_element.MaxSize);
 
             // adds the element to the list
             current_element.ChildElements.Add(current_child_element);

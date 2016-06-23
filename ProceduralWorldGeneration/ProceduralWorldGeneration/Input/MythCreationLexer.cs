@@ -53,6 +53,7 @@ namespace ProceduralWorldGeneration.Input
 
             definitions.Add(new TokenDefinition(new Regex(@"[a-z_]+"), "VARIABLE"));
 
+            definitions.Add(new TokenDefinition(new Regex(@"[#].+[\n]"), "COMMENT", true));
             definitions.Add(new TokenDefinition(new Regex(@"\%"), "PERCENTAGE_SIGN", true));
             definitions.Add(new TokenDefinition(new Regex(@"\s+"), "WHITE_SPACE", true));
             definitions.Add(new TokenDefinition(new Regex(@"[\t]"), "TAB", true));
@@ -70,7 +71,7 @@ namespace ProceduralWorldGeneration.Input
 
             while (!reader.EndOfStream)
             {
-                result += reader.ReadLine();
+                result += reader.ReadLine() + "\n";
             }
 
             reader.Close();
