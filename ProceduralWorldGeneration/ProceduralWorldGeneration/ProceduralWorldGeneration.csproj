@@ -81,6 +81,7 @@
     <Compile Include="Input\MythObjectData.cs" />
     <Compile Include="Input\MythObjectReader.cs" />
     <Compile Include="Input\ParserDefinition\Parser.cs" />
+    <Compile Include="Input\ParserDefinition\ParserException.cs" />
     <Compile Include="Input\ParserDefinition\Tree.cs" />
     <Compile Include="Input\ParserDefinition\TreeNode.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -89,6 +90,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MythObjects\ActionableBaseMythObject.cs" />
     <Compile Include="MythObjects\BaseMythObject.cs" />
     <Compile Include="MythObjects\Deity.cs" />
     <Compile Include="MythObjects\IAction.cs" />

@@ -42,6 +42,11 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
             return _children.Last.Value;
         }
 
+        public TreeNode<T> GetFirstChild()
+        {
+            return _children.First.Value;
+        }
+
         public LinkedList<TreeNode<T>> GetChildren()
         {
             return _children;

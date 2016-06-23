@@ -28,6 +28,7 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
         {
             TreeNode<Expression> current_tree_node = ExpressionTreeRoot;
             LinkedListNode<Token> current_token = tokens.First;
+            Expression temp_expression_1, temp_expression_2;
 
             while (current_token != tokens.Last)
             {
@@ -37,6 +38,7 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                     current_tree_node = ExpressionTreeRoot;
                     if (current_token.Next != null)
                     {
+                        // Go to next token after the "(end)".
                         current_token = current_token.Next;
                     }
                     else
@@ -49,65 +51,177 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                 else if (current_token.Value.Type == "VARIABLE")
                 {
                     // when a variable is encountered it creates a new expression and adds it as a child to the current tree node.
-                    Expression temp_expression = new Expression();
-                    temp_expression.ExpressionType = ExpressionTypes.List; // most top level variables are lists.
-                    temp_expression.ExpressionValue = current_token.Value.Value; // the value is the name of the variable.
-                    current_tree_node.AddChild(temp_expression);
+                    temp_expression_1 = new Expression();
+                    temp_expression_1.ExpressionType = ExpressionTypes.List; // most top level variables are lists. (may be overwritten by classes and string/integer/range variables)
+                    temp_expression_1.ExpressionValue = current_token.Value.Value; // the value is the name of the variable.
 
-                    if (current_token.Next.Value.Type == "ASSIGNMENT")
+                    // Add a child to current tree node
+                    current_tree_node.AddChild(temp_expression_1);
+
+                    // Go to next token after "VARIABLE".
+                    current_token = current_token.Next;
+
+                    // After a variable comes an assignment to assign the values after it.
+                    if (current_token.Value.Type == "ASSIGNMENT")
                     {
-                        // selects the next token when an assignment is encountered after the variable. (this should always be the case)
+                        // Goes to last added child: "VARIABLE"
+                        current_tree_node = current_tree_node.GetLastChild();
+
+                        // Go to next token after "ASSIGNMENT"
                         current_token = current_token.Next;
 
-                        if (current_token.Next.Value.Type == "OPENING_CURLY_BRACES")
+                        if (current_token.Value.Type == "OPENING_CURLY_BRACES")
                         {
-                            // The opening braces indicate that there is several elements to be added. So the last created child is made current_tree_node.
-                            current_tree_node = current_tree_node.GetLastChild();
-                            current_token = current_token.Next.Next;
+                            // Go to next token after "OPENING_CURLY_BRACES"
+                            current_token = current_token.Next;
 
                             if (current_token.Next.Value.Type == "STRING")
                             {
                                 // Add strings until there are no more. This means there is a list of strings.
                                 while (current_token.Value.Type == "STRING")
                                 {
-                                    temp_expression = new Expression();
-                                    temp_expression.ExpressionType = ExpressionTypes.String;
-                                    temp_expression.ExpressionValue = current_token.Value.Value;
+                                    // Create a new String Expression
+                                    temp_expression_1 = new Expression();
+                                    temp_expression_1.ExpressionType = ExpressionTypes.String;
+                                    temp_expression_1.ExpressionValue = current_token.Value.Value;
 
-                                    current_tree_node.AddChild(temp_expression);
-
+                                    // Add String expression as a child.
+                                    current_tree_node.AddChild(temp_expression_1);
+                                    // goes to next token 
                                     current_token = current_token.Next;
                                 }
-
+                                // makes sure that the tree node is a list.
                                 current_tree_node.Value.ExpressionType = ExpressionTypes.List;
                             }
+                            else if (current_token.Value.Type == "VARIABLE")
+                            {
+                                // DO NOTHING AS THIS CASE WILL BE CAUTGH IN THE NEXT ITERATION
+                            }
+                            else
+                            {
+                                throw new ParserException(current_token.Value);
+                            }
                         }
-                        else if (current_token.Next.Value.Type == "STRING")
+                        // A string after "ASSIGNMENT"
+                        else if (current_token.Value.Type == "STRING")
                         {
                             // A direct variable is named variable and assigned its value as an only child.
-                            temp_expression = new Expression();
-                            temp_expression.ExpressionType = ExpressionTypes.String;
-                            temp_expression.ExpressionValue = current_token.Next.Value.Value;
-                            current_tree_node.GetLastChild().AddChild(temp_expression);
-                            // the parent of a string literal is a variable
-                            current_tree_node.GetLastChild().Value.ExpressionType = ExpressionTypes.Variable;
-                            // the parent of variables is always a class and not a list
-                            current_tree_node.Value.ExpressionType = ExpressionTypes.Class;
-                            current_token = current_token.Next.Next;
+                            temp_expression_1 = new Expression();
+                            temp_expression_1.ExpressionType = ExpressionTypes.String;
+                            temp_expression_1.ExpressionValue = current_token.Value.Value;
+
+                            // Add string to variable.
+                            current_tree_node.AddChild(temp_expression_1);
+
+                            // This is a variable as it only has a a single string attached to it.
+                            current_tree_node.Value.ExpressionType = ExpressionTypes.Variable;
+
+                            // The parent of variables is always a class and not a list.
+                            current_tree_node.GetParent().Value.ExpressionType = ExpressionTypes.Class;
+
+                            // Return current tree node to parent as there is nothing to add
+                            current_tree_node = current_tree_node.GetParent();
+
+                            // Go to next token after "STRING"
+                            current_token = current_token.Next;
                         }
-                        else if (current_token.Next.Value.Type == "INTEGER")
+                        // An integer after "ASSIGNMENT"
+                        else if (current_token.Value.Type == "INTEGER")
                         {
                             // A direct variable is named variable and assigned its value as an only child.
-                            temp_expression = new Expression();
-                            temp_expression.ExpressionType = ExpressionTypes.Integer;
-                            temp_expression.ExpressionValue = current_token.Next.Value.Value;
-                            current_tree_node.GetLastChild().AddChild(temp_expression);
-                            // the parent of an integer literal is a variable
-                            current_tree_node.GetLastChild().Value.ExpressionType = ExpressionTypes.Variable;
+                            temp_expression_1 = new Expression();
+                            temp_expression_1.ExpressionType = ExpressionTypes.Integer;
+                            temp_expression_1.ExpressionValue = current_token.Value.Value;
+
+                            // Add integer to variable.
+                            current_tree_node.AddChild(temp_expression_1);
+
+                            // This is a variable as it only has a single value attached to it.
+                            current_tree_node.Value.ExpressionType = ExpressionTypes.Variable;
+
                             // the parent of variables is always a class and not a list
-                            current_tree_node.Value.ExpressionType = ExpressionTypes.Class;
-                            current_token = current_token.Next.Next;
+                            current_tree_node.GetParent().Value.ExpressionType = ExpressionTypes.Class;
+
+                            // Return current tree node to parent as there is nothing to add.
+                            current_tree_node = current_tree_node.GetParent();
+
+                            // Go to next token after "INTEGER"
+                            current_token = current_token.Next;
                         }
+                        // An [ after "ASSIGNMENT"
+                        else if (current_token.Value.Type == "OPENING_SQUARE_BRACES")
+                        {
+                            // Go to next token after "OPENING_SQUARE_BRACES"
+                            current_token = current_token.Next;
+
+                            if (current_token.Value.Type == "INTEGER")
+                            {
+                                // Create the minimum value expression.
+                                temp_expression_1 = new Expression();
+                                temp_expression_1.ExpressionType = ExpressionTypes.Integer;
+                                temp_expression_1.ExpressionValue = current_token.Value.Value;
+
+                                // Go to next token after "INTEGER"
+                                current_token = current_token.Next;
+
+                                if (current_token.Value.Type == "COMMA_SEPARATOR")
+                                {
+                                    // Go to next token after "COMMA_SEPARATOR"
+                                    current_token = current_token.Next;
+
+                                    if (current_token.Value.Type == "INTEGER")
+                                    {
+                                        // Create the maximum value expression
+                                        temp_expression_2 = new Expression();
+                                        temp_expression_2.ExpressionType = ExpressionTypes.Integer;
+                                        temp_expression_2.ExpressionValue = current_token.Value.Value;
+
+                                        // Go to next token after "INTEGER"
+                                        current_token = current_token.Next;
+                                        if (current_token.Value.Type == "CLOSING_SQUARE_BRACES")
+                                        {
+                                            // Creates the range expression
+                                            current_tree_node.Value.ExpressionType = ExpressionTypes.Range;
+                                            current_tree_node.AddChild(temp_expression_1);
+                                            current_tree_node.AddChild(temp_expression_2);
+
+                                            // Return to parent tree node.
+                                            current_tree_node = current_tree_node.GetParent();
+
+                                            // parent tree node is always a class
+                                            current_tree_node.Value.ExpressionType = ExpressionTypes.Class;
+
+                                            // Go to next token after "CLOSING_SQUARE_BRACES"
+                                            current_token = current_token.Next;
+                                        }
+                                        else
+                                        {
+                                            throw new ParserException(current_token.Value);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        throw new ParserException(current_token.Value);
+                                    }
+                                }
+                                else
+                                {
+                                    throw new ParserException(current_token.Value);
+                                }
+                            }
+                            else
+                            {
+                                throw new ParserException(current_token.Value);
+                            }
+                        }
+                        else
+                        {
+                            throw new ParserException(current_token.Value);
+                        }
+                    }
+                    else
+                    {
+                        throw new ParserException(current_token.Value);
                     }
                 }
                 else if (current_token.Value.Type == "CLOSING_CURLY_BRACES")
@@ -115,6 +229,10 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                     // Close current expression and return to the parent.
                     current_tree_node = current_tree_node.GetParent();
                     current_token = current_token.Next;
+                }
+                else
+                {
+                    throw new ParserException(current_token.Value);
                 }
             }
         }
@@ -158,6 +276,26 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                         {
                             MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].SpawnWeight = int.Parse(current_node.GetLastChild().Value.ExpressionValue);
                         }
+                        if (current_node.Value.ExpressionValue == "base_action_points")
+                        {
+                            MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].ActionPoints = int.Parse(current_node.GetLastChild().Value.ExpressionValue);
+                        }
+                        if (current_node.Value.ExpressionValue == "action_point_regeneration_chance")
+                        {
+                            MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].ActionRegenrationChance = int.Parse(current_node.GetLastChild().Value.ExpressionValue);
+                        }
+                    }
+                }
+            }
+
+            if (current_node.Value.ExpressionType == ExpressionTypes.Range)
+            {
+                if (parent_node.Value.ExpressionValue == "primordial_force")
+                {
+                    if (current_node.Value.ExpressionValue == "action_point_regeneration")
+                    {
+                        MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].MinActionRegeneration = int.Parse(current_node.GetFirstChild().Value.ExpressionValue);
+                        MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].MaxActionRegeneration = int.Parse(current_node.GetLastChild().Value.ExpressionValue);
                     }
                 }
             }
@@ -215,6 +353,7 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
         List,
         Variable,
         String,
-        Integer
+        Integer,
+        Range,
     }
 }

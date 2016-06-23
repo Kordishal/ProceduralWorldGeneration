@@ -63,9 +63,12 @@ namespace ProceduralWorldGeneration
         private void MythCreationButton_Click(object sender, RoutedEventArgs e)
         {
             _generator = 2;
+
             myth_creator.InitializeMythCreation(config);
-            ElementListView.DataContext = myth_creator;
-            ElementListView.ItemsSource = myth_creator.MythObjects;
+            ElementListView.DataContext = myth_creator.CreationMyths;
+            ElementListView.ItemsSource = myth_creator.CreationMyths.MythObjects;
+
+            myth_creator.ClearMythCreation();
 
             myth_creator.creationLoop();
         }

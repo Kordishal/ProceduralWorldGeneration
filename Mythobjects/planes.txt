@@ -1,3 +1,6 @@
+
+
+
 plane_types = {
 	"material" "elemental" "astral"
 }

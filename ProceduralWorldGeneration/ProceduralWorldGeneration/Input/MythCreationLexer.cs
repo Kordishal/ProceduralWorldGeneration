@@ -45,13 +45,15 @@ namespace ProceduralWorldGeneration.Input
             definitions.Add(new TokenDefinition(new Regex(@"\["), "OPENING_SQUARE_BRACES"));
             definitions.Add(new TokenDefinition(new Regex(@"\]"), "CLOSING_SQUARE_BRACES"));
 
+            definitions.Add(new TokenDefinition(new Regex(@"\,"), "COMMA_SEPARATOR"));
             definitions.Add(new TokenDefinition(new Regex(@"\="), "ASSIGNMENT"));
 
             definitions.Add(new TokenDefinition(new Regex(@"([""'])(?:\\\1|.)*?\1"), "STRING"));
             definitions.Add(new TokenDefinition(new Regex(@"[-+]?\d+"), "INTEGER"));
 
-            definitions.Add(new TokenDefinition(new Regex(@"[*<>\?\-+/A-Za-z->!_]+"), "VARIABLE"));
+            definitions.Add(new TokenDefinition(new Regex(@"[a-z_]+"), "VARIABLE"));
 
+            definitions.Add(new TokenDefinition(new Regex(@"\%"), "PERCENTAGE_SIGN", true));
             definitions.Add(new TokenDefinition(new Regex(@"\s+"), "WHITE_SPACE", true));
             definitions.Add(new TokenDefinition(new Regex(@"[\t]"), "TAB", true));
 

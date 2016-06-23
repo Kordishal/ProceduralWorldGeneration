@@ -18,5 +18,10 @@ namespace ProceduralWorldGeneration.Input.LexerDefinition
             Index = i;
             Line = l;
         }
+
+        public override string ToString()
+        {
+            return "Line: " + Line.ToString() + " ; Column: " + Column.ToString() + " ; Index: " + Index.ToString();
+        }
     }
 }
