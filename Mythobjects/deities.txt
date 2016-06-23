@@ -1,6 +1,5 @@
-deities = {
-	domains = {
-		"Health" "Life" "War" "Peace" "Death" "Destruction" "Nature" "Creation" "Magic" "Blood"
-	}
+domains = {
+	"health" "life" "war" "peace" "death" "destruction" "nature" "creation" "magic" "blood"
 }
+
 

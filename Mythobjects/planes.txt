@@ -1,0 +1,8 @@
+plane_types = {
+	"material" "elemental" "astral"
+}
+
+plane_elements = {
+	"fire" "earth" "water" "air" "life" "death"
+}
+
