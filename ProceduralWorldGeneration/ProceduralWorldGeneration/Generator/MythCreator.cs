@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProceduralWorldGeneration.Input;
+using ProceduralWorldGeneration.Input.ParserDefinition;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -9,6 +11,9 @@ namespace ProceduralWorldGeneration.Generator
 {
     class MythCreator : INotifyPropertyChanged
     {
+
+        MythObjectReader myth_object_reader;
+        Parser myth_object_parser;
 
         private Random rnd;
 
@@ -24,6 +29,11 @@ namespace ProceduralWorldGeneration.Generator
         public void InitializeMythCreation(WorldGenerationConfig config)
         {
             rnd = new Random(config.RandomSeed.GetHashCode());
+            myth_object_reader = new MythObjectReader();
+            myth_object_reader.readMythObjects();
+            myth_object_parser = new Parser();
+            myth_object_parser.generateExpressionTree(myth_object_reader.Tokens);
+            myth_object_parser.generateMythObjects();
         }
 
 

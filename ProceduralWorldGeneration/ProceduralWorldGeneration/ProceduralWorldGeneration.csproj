@@ -78,6 +78,7 @@
     <Compile Include="Input\LexerDefinition\TokenPosition.cs" />
     <Compile Include="Input\MainInputReader.cs" />
     <Compile Include="Input\MythCreationLexer.cs" />
+    <Compile Include="Input\MythObjectData.cs" />
     <Compile Include="Input\MythObjectReader.cs" />
     <Compile Include="Input\ParserDefinition\Parser.cs" />
     <Compile Include="Input\ParserDefinition\Tree.cs" />

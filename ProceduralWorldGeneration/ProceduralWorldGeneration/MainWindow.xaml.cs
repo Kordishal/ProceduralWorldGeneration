@@ -25,11 +25,9 @@ namespace ProceduralWorldGeneration
     /// </summary>
     public partial class MainWindow : Window
     {
+        MythCreator myth_creator;
         WorldGenerator world_generator;
         WorldGenerationConfig config;
-        MythCreator myth_creator;
-        MythObjectReader myth_object_reader;
-        Parser myth_object_parser;
 
         public MainWindow()
         {
@@ -39,27 +37,21 @@ namespace ProceduralWorldGeneration
             myth_creator = new MythCreator();
             SeedTextBox.DataContext = config;
 
-            myth_object_reader = new MythObjectReader();
-            myth_object_reader.readMythObjects();
 
-            foreach(Token t in myth_object_reader.Tokens)
-            {
-                UpdateGenerationLog("Token: " + t.Value + " Type: " +  t.Type + "\n");
-            }
-            myth_object_parser = new Parser();
-            myth_object_parser.generateExpressionTree(myth_object_reader.Tokens);
 
             world_generator.createdNewElement += new WorldGenerator.CreatedNewElement(UpdateGenerationLog);
             world_generator.endedGeneration += new WorldGenerator.EndedGeneration(UpdateGenerationLog);
             world_generator.endedGeneration += new WorldGenerator.EndedGeneration(WorldGenerationButton_Enable);
+            myth_creator.InitializeMythCreation(config);
 
-            world_generator.InitializeWorldGenerator(config);
-            ElementListView.DataContext = world_generator;
-            ElementListView.ItemsSource = world_generator.GeneratedWorld.ElementCollection;
+
         }
 
         private void WorldGenerationButton_Click(object sender, RoutedEventArgs e)
         {
+            world_generator.InitializeWorldGenerator(config);
+            ElementListView.DataContext = world_generator;
+            ElementListView.ItemsSource = world_generator.GeneratedWorld.ElementCollection;
             WorldGenerationButton.IsEnabled = false;
             world_generator.generateWorld();
         }
