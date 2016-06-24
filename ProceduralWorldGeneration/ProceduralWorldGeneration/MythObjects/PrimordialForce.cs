@@ -80,6 +80,10 @@ namespace ProceduralWorldGeneration.MythObjects
             {
                 createPlane(creation_myth, current_year, plane_action_point_cost);
             }
+            else if (_action_points >= deity_action_point_cost)
+            {
+                createDeity(creation_myth, current_year, deity_action_point_cost);
+            }
 
         }
 
@@ -155,40 +159,7 @@ namespace ProceduralWorldGeneration.MythObjects
 
         private void createRandomPlane(CreationMyth creation_myth, int current_year, int plane_action_point_cost)
         {
-            Plane plane = new Plane();
-
-            plane.PlaneType = creation_myth.MythObjectData.PlaneTypes[ConfigValues.RandomGenerator.Next(creation_myth.MythObjectData.PlaneTypes.Count)];
-            plane.Creator = this;
-
-            if (plane.PlaneType == "material")
-            {
-                plane.PlaneSize = creation_myth.MythObjectData.PlaneSizes[ConfigValues.RandomGenerator.Next(creation_myth.MythObjectData.PlaneSizes.Count)];
-                plane.Name = plane.PlaneSize + " world";
-            }
-            else if (plane.PlaneType == "ethereal")
-            {
-                plane.PlaneSize = "pocket";
-                plane.PlaneElement = creation_myth.MythObjectData.PlaneElements[ConfigValues.RandomGenerator.Next(creation_myth.MythObjectData.PlaneElements.Count)];
-                
-            }
-            else if (plane.PlaneType == "elemental")
-            {
-                plane.PlaneSize = creation_myth.MythObjectData.PlaneSizes[ConfigValues.RandomGenerator.Next(creation_myth.MythObjectData.PlaneSizes.Count)];
-                plane.PlaneElement = creation_myth.MythObjectData.PlaneElements[ConfigValues.RandomGenerator.Next(creation_myth.MythObjectData.PlaneElements.Count)];
-                plane.Name = plane.PlaneSize + " world of " + plane.PlaneElement;
-            }
-
-            plane.connectPlane(creation_myth.Planes);
-
-            if (plane.PlaneType == "ethereal")
-            {
-                plane.Name = "ethereal " + plane.PlaneElement + " plane of \"" + plane.NeighbourPlanes[0].Name + "\"";
-            }
-
-            // add new plane to the creation myth and the log
-            creation_myth.Planes.Add(plane);
-            creation_myth.MythObjects.Add(plane);
-            creation_myth.Logger.updateLog(plane, "CREATED");
+            creation_myth.MythObjectGenerator.PlaneGenerator.generatePlane(creation_myth, this);
             this.ActionPoints = ActionPoints - plane_action_point_cost;
         }
 
@@ -206,6 +177,11 @@ namespace ProceduralWorldGeneration.MythObjects
         private int calculatePlaneActionPointCost(int current_year)
         {
             return _base_plane_action_point_cost + (current_year / 2);
+        }
+
+        private void createDeity(CreationMyth creation_myth, int current_year, int deity_action_point_cost)
+        {
+            creation_myth.MythObjectGenerator.DeityGenerator.generateDeity(creation_myth, this);
         }
 
         private int calculateDeityCreationChance()

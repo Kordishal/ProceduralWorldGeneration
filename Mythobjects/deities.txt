@@ -1,5 +1,8 @@
 domains = {
-	"health" "life" "war" "peace" "death" "destruction" "nature" "creation" "magic" "blood"
+	"air" "animal" "artifice" "chaos" "charm" "community" "creation" "darkness" "death" "destruction" "earth"
+	"fire" "glory" "healing" "knowledge" "order" "luck" "madness" "magic" "plant" "protection" "strenght" "sun" "time"
+	"travel" "trickery" "war" "water" "weather" "peace" "nature" "life" "trade" "undeath" "winter" "summer" "spring" "fall"
+	"decay" "fate" "destiny" "oracle" "moon" "pestilence" "summoner"
 }
 
 

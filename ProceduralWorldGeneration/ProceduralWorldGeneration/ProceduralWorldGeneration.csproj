@@ -68,8 +68,11 @@
     <Compile Include="DataStructure\Group.cs" />
     <Compile Include="DataStructure\World.cs" />
     <Compile Include="Elements\Element.cs" />
+    <Compile Include="Generator\DeityGenerator.cs" />
     <Compile Include="Generator\MythCreator.cs" />
     <Compile Include="Generator\ConfigValues.cs" />
+    <Compile Include="Generator\MythObjectGenerators.cs" />
+    <Compile Include="Generator\PlaneGenerator.cs" />
     <Compile Include="Generator\WorldGenerator.cs" />
     <Compile Include="Input\FileNames.cs" />
     <Compile Include="Input\LexerDefinition\ILexer.cs" />

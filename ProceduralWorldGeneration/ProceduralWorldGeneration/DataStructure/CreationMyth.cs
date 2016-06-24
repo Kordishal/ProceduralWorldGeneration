@@ -1,4 +1,5 @@
-﻿using ProceduralWorldGeneration.Input;
+﻿using ProceduralWorldGeneration.Generator;
+using ProceduralWorldGeneration.Input;
 using ProceduralWorldGeneration.MythObjects;
 using ProceduralWorldGeneration.Output;
 using System;
@@ -100,6 +101,23 @@ namespace ProceduralWorldGeneration.DataStructure
             }
         }
 
+        private MythObjectGenerators _myth_object_generator;
+        public MythObjectGenerators MythObjectGenerator
+        {
+            get
+            {
+                return _myth_object_generator;
+            }
+            set
+            {
+                if (_myth_object_generator != value)
+                {
+                    _myth_object_generator = value;
+                    this.NotifyPropertyChanged("MythObjectGenerator");
+                }
+            }
+        }
+
         public CreationMyth()
         {
             Logger = new CreationMythLogger();
@@ -107,6 +125,7 @@ namespace ProceduralWorldGeneration.DataStructure
             PrimordialForces = new List<PrimordialForce>();
             Planes = new List<Plane>();
             ActionableMythObjects = new Queue<IAction>();
+            MythObjectGenerator = new MythObjectGenerators();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

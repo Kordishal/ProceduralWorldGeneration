@@ -2,8 +2,8 @@ primordial_forces = {
 	primordial_force = {
 		name = "Void"
 		spawn_weight = 10
-		base_action_points = 0
-		action_point_regeneration = [0, 1]
+		base_action_points = 100
+		#action_point_regeneration = [0, 1]
 		action_point_regeneration_chance = 100
 	}
 
@@ -11,8 +11,8 @@ primordial_forces = {
 		name = "Light"
 		opposing = "Darkness"
 		spawn_weight = 20
-		base_action_points = 20
-		action_point_regeneration = [0, 5]
+		base_action_points = 400
+		#action_point_regeneration = [0, 5]
 		action_point_regeneration_chance = 50
 	}
 
@@ -20,8 +20,8 @@ primordial_forces = {
 		name = "Darkness"
 		opposing = "Light"
 		spawn_weight = 20
-		base_action_points = 20
-		action_point_regeneration = [0, 5]
+		base_action_points = 400
+		#action_point_regeneration = [0, 5]
 		action_point_regeneration_chance = 50
 	}
 
@@ -29,8 +29,8 @@ primordial_forces = {
 		name = "Chaos"
 		opposing = "Order"
 		spawn_weight = 20
-		base_action_points = 50
-		action_point_regeneration = [0, 5]
+		base_action_points = 1000
+		#action_point_regeneration = [0, 5]
 		action_point_regeneration_chance = 10
 	}
 
@@ -38,8 +38,8 @@ primordial_forces = {
 		name = "Order"
 		opposing = "Chaos"
 		spawn_weight = 20
-		base_action_points = 10
-		action_point_regeneration = [1, 1]
+		base_action_points = 100
+		#action_point_regeneration = [1, 1]
 		action_point_regeneration_chance = 100
 	}
 }
