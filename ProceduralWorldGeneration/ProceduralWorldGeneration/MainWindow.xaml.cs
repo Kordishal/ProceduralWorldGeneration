@@ -30,8 +30,6 @@ namespace ProceduralWorldGeneration
         WorldGenerator world_generator;
         ConfigValues config;
 
-        private int _generator;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -48,7 +46,6 @@ namespace ProceduralWorldGeneration
 
         private void WorldGenerationButton_Click(object sender, RoutedEventArgs e)
         {
-            _generator = 1;
             world_generator.InitializeWorldGenerator();
             ElementListView.DataContext = world_generator;
             ElementListView.ItemsSource = world_generator.GeneratedWorld.ElementCollection;
@@ -58,7 +55,6 @@ namespace ProceduralWorldGeneration
 
         private void MythCreationButton_Click(object sender, RoutedEventArgs e)
         {
-            _generator = 2;
             myth_creator.InitializeMythCreation();
             ElementListView.DataContext = myth_creator.CreationMyths;
             ElementListView.ItemsSource = myth_creator.CreationMyths.MythObjects;
@@ -72,28 +68,35 @@ namespace ProceduralWorldGeneration
 
         private void ElementListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (_generator == 1)
+            if (e.AddedItems.Count <= 0)
+            {
+                return;
+            }
+
+            if (e.AddedItems[0].GetType() == typeof(Element))
             {
                 Element element = (Element)e.AddedItems[0];
 
                 NameDisplayTextBlock.Text = element.Name;
                 SizeDisplayTextBlock.Text = element.Size.ToString();
                 if (element.ParentElement != null)
+                {
                     ParentNameDisplayTextBlock.Text = element.ParentElement.Name;
+                }
                 else
+                {
                     ParentNameDisplayTextBlock.Text = "NONE";
-
+                }
+            
                 ChildrenElementListBox.DataContext = element;
                 ChildrenElementListBox.ItemsSource = element.ChildElements;
             }
-            else if (_generator == 2)
+            else if (e.AddedItems[0].GetType() == typeof(BaseMythObject))
             {
                 BaseMythObject myth_object = (BaseMythObject)e.AddedItems[0];
                 NameDisplayTextBlock.Text = myth_object.Name;
             }
-
+             
         }
-
-
     }
 }

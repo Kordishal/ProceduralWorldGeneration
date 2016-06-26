@@ -9,7 +9,7 @@ using ProceduralWorldGeneration.DataStructure;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
-    class Deity : ActionableBaseMythObject
+    class Deity : ActionTakerMythObject
     {
 
         public static string TYPE = "DEITY";
@@ -39,7 +39,7 @@ namespace ProceduralWorldGeneration.MythObjects
             base.Type = TYPE;
         }
 
-        public override void takeAction(CreationMyth creation_myth, int current_year)
+        public override void takeAction(CreationMythState creation_myth, int current_year)
         {
         }
     }

@@ -21,7 +21,7 @@ namespace ProceduralWorldGeneration.Generator
 
 
 
-        public void generatePlane(CreationMyth creation_myth, BaseMythObject creator)
+        public void generatePlane(CreationMythState creation_myth, BaseMythObject creator)
         {
             GeneratedPlane = new Plane();
 

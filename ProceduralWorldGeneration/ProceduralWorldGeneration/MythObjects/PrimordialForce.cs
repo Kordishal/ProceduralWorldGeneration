@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 using ProceduralWorldGeneration.Input;
 using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.Generator;
+using ProceduralWorldGeneration.MythActions;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
-    class PrimordialForce : ActionableBaseMythObject
+    class PrimordialForce : ActionTakerMythObject
     {
         public static string TYPE = "PrimordialForce";
+
+        public bool HasGatheredPower { get; set; }
 
         private int _spawn_weight;
         public int SpawnWeight
@@ -48,161 +51,70 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        public PrimordialForce() : base()
+        public override void addPossibleActions()
         {
-            base.Type = TYPE;
+            _possible_actions.Add(new Wait());
         }
 
 
-        private int _base_deity_action_point_cost = 5;
-        private int _base_plane_action_point_cost = 20;
+        public PrimordialForce() : base()
+        {
+            base.Type = TYPE;
+            HasGatheredPower = false;
+        }
 
-        private int _base_deity_creation_chance = 50;
-        private int _base_plane_creation_chance = 100;
 
         private bool _has_created_defined_ethereal_plane = false;
         private bool _has_created_astral_plane = false;
 
-        private int _deities_created = 0;
-        private int _planes_created = 0;
-
-        public override void takeAction(CreationMyth creation_myth, int current_year)
+        public override void takeAction(CreationMythState creation_myth, int current_year)
         {
-            // Plane Creation Preparation
-            int plane_creation_chance = calculatePlaneCreationChance();
-            int plane_action_point_cost = calculatePlaneActionPointCost(current_year);
-
-            // Deity Creation Preparation
-            int deity_creation_chance = calculateDeityCreationChance();
-            int deity_action_point_cost = calculateDeityActionPointCost(current_year);
-
-            if (_action_points >= plane_action_point_cost)
+            if (CurrentAction != null)
             {
-                createPlane(creation_myth, current_year, plane_action_point_cost);
-            }
-            else if (_action_points >= deity_action_point_cost)
-            {
-                createDeity(creation_myth, current_year, deity_action_point_cost);
-            }
-
-        }
-
-
-        private void createPlane(CreationMyth creation_myth, int current_year, int plane_action_point_cost)
-        {
-            // Always first add the core world
-            if (creation_myth.Planes.Count == 0)
-            {
-                addDefinedPlane("The Core World", creation_myth);
-                _action_points = _action_points - plane_action_point_cost;
-                return;
-            }
-            // Once the core world is added, the primordial powers add their respective ethereal planes to the core world.
-            if (Name == "Light" && !_has_created_defined_ethereal_plane)
-            {
-                addDefinedPlane("Plane of Light", creation_myth);
-                _action_points = _action_points - plane_action_point_cost;
-                _has_created_defined_ethereal_plane = true;
-                return;
-            }
-            if (Name == "Darkness" && !_has_created_defined_ethereal_plane)
-            {
-                addDefinedPlane("Shadow Plane", creation_myth);
-                _action_points = _action_points - plane_action_point_cost;
-                _has_created_defined_ethereal_plane = true;
-                return;
-            }
-            if (Name == "Chaos" && !_has_created_defined_ethereal_plane)
-            {
-                addDefinedPlane("Plane of Entropy", creation_myth);
-                _action_points = _action_points - plane_action_point_cost;
-                _has_created_defined_ethereal_plane = true;
-                return;
-            }
-            if (Name == "Order" && !_has_created_defined_ethereal_plane)
-            {
-                addDefinedPlane("Plane of Harmony", creation_myth);
-                _action_points = _action_points - plane_action_point_cost;
-                _has_created_defined_ethereal_plane = true;
-                return;
-            }
-            // After there is a 40% chance to add the astral plane.
-            if (ConfigValues.RandomGenerator.Next(100) < 40 && !_has_created_astral_plane)
-            {
-                addDefinedPlane("Astral Plane", creation_myth);
-                _action_points = _action_points - plane_action_point_cost;
-                _has_created_astral_plane = true;
-                return;
-            }
-
-            // Once these are created random planes are added.
-            createRandomPlane(creation_myth, current_year, plane_action_point_cost);
-
-        }
-
-        private void addDefinedPlane(string name, CreationMyth creation_myth)
-        {
-            foreach (Plane p in creation_myth.MythObjectData.DefinedPlanes)
-            {
-                if (p.Name == name)
+                if (CurrentAction.getCurrentCooldown(creation_myth, this) <= 0)
                 {
-                    p.Creator = this;
-                    p.connectPlane(creation_myth.Planes);
-                    creation_myth.Planes.Add(p);
-                    creation_myth.MythObjects.Add(p);
-                    creation_myth.MythObjectData.DefinedPlanes.Remove(p);
-                    creation_myth.Logger.updateLog(p, "CREATED");
-                    break;
+                    CurrentAction.Effect(creation_myth, this);
+                    CurrentAction = null;
                 }
-            }
-        }
-
-        private void createRandomPlane(CreationMyth creation_myth, int current_year, int plane_action_point_cost)
-        {
-            creation_myth.MythObjectGenerator.PlaneGenerator.generatePlane(creation_myth, this);
-            this.ActionPoints = ActionPoints - plane_action_point_cost;
-        }
-
-        private int calculatePlaneCreationChance()
-        {
-            if (_planes_created == 0)
-            {
-                return _base_plane_creation_chance;
+                else
+                {
+                    CurrentAction.reduceCooldown(creation_myth, this);
+                }
             }
             else
             {
-                return _base_plane_creation_chance / _planes_created;
+                determineNextAction(creation_myth, this);
             }
-        }
-        private int calculatePlaneActionPointCost(int current_year)
-        {
-            return _base_plane_action_point_cost + (current_year / 2);
+
         }
 
-        private void createDeity(CreationMyth creation_myth, int current_year, int deity_action_point_cost)
+
+        private void createPlane(CreationMythState creation_myth, int current_year)
+        {
+
+
+            // Once these are created random planes are added.
+            //createRandomPlane(creation_myth, current_year);
+
+        }
+
+
+
+        private void createRandomPlane(CreationMythState creation_myth, int current_year, int plane_action_point_cost)
+        {
+            creation_myth.MythObjectGenerator.PlaneGenerator.generatePlane(creation_myth, this);
+        }
+
+
+        private void createDeity(CreationMythState creation_myth, int current_year, int deity_action_point_cost)
         {
             creation_myth.MythObjectGenerator.DeityGenerator.generateDeity(creation_myth, this);
         }
 
-        private int calculateDeityCreationChance()
-        {
-            if (_deities_created == 0)
-            {
-                return _base_deity_creation_chance;
-            }
-            else
-            {
-                return _base_deity_creation_chance / (_deities_created < 10 ? 0 : _deities_created - 10);
-            }
-        }
-        private int calculateDeityActionPointCost(int current_year)
-        {
-            return _base_deity_action_point_cost + ((current_year * 2) / 10);
-        }
 
         public override string ToString()
         {
-            return Name + "          { Opposing : " + (Opposing == null ? "NONE" : Opposing) + " ; ActionPoints: " + ActionPoints + " }";
+            return Name + "          { Opposing : " + (Opposing == null ? "NONE" : Opposing) + " }";
         }
     }
 }

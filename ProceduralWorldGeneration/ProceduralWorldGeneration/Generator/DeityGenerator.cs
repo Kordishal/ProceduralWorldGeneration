@@ -21,16 +21,11 @@ namespace ProceduralWorldGeneration.Generator
         }
 
 
-        public void generateDeity(CreationMyth creation_myth, BaseMythObject creator)
+        public void generateDeity(CreationMythState creation_myth, BaseMythObject creator)
         {
             GeneratedDeity = new Deity();
 
             GeneratedDeity.PrimaryDomain = creation_myth.MythObjectData.Domains[ConfigValues.RandomGenerator.Next(creation_myth.MythObjectData.Domains.Count)];
-
-            GeneratedDeity.ActionPoints = 100;
-            GeneratedDeity.ActionRegenrationChance = 0;
-            GeneratedDeity.MinActionRegeneration = 0;
-            GeneratedDeity.MaxActionRegeneration = 0;
 
             GeneratedDeity.Name = "deity of " + GeneratedDeity.PrimaryDomain;
 

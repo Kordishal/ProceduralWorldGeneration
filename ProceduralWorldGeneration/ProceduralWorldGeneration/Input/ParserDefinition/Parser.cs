@@ -280,14 +280,6 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                         {
                             MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].SpawnWeight = int.Parse(current_node.GetLastChild().Value.ExpressionValue);
                         }
-                        if (current_node.Value.ExpressionValue == "base_action_points")
-                        {
-                            MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].ActionPoints = int.Parse(current_node.GetLastChild().Value.ExpressionValue);
-                        }
-                        if (current_node.Value.ExpressionValue == "action_point_regeneration_chance")
-                        {
-                            MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].ActionRegenrationChance = int.Parse(current_node.GetLastChild().Value.ExpressionValue);
-                        }
                     }
                     else if (parent_node.Value.ExpressionValue == "plane")
                     {
@@ -307,18 +299,6 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                         {
                             MythObjects.DefinedPlanes[MythObjects.DefinedPlanes.Count - 1].PlaneElement = cutStringSigns(current_node.GetLastChild().Value.ExpressionValue);
                         }
-                    }
-                }
-            }
-
-            if (current_node.Value.ExpressionType == ExpressionTypes.Range)
-            {
-                if (parent_node.Value.ExpressionValue == "primordial_force")
-                {
-                    if (current_node.Value.ExpressionValue == "action_point_regeneration")
-                    {
-                        MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].MinActionRegeneration = int.Parse(current_node.GetFirstChild().Value.ExpressionValue);
-                        MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].MaxActionRegeneration = int.Parse(current_node.GetLastChild().Value.ExpressionValue) + 1;
                     }
                 }
             }

@@ -63,7 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DataStructure\CreationMyth.cs" />
+    <Compile Include="DataStructure\CreationMythState.cs" />
     <Compile Include="DataStructure\ElementGroups.cs" />
     <Compile Include="DataStructure\Group.cs" />
     <Compile Include="DataStructure\World.cs" />
@@ -94,12 +94,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MythObjects\ActionableBaseMythObject.cs" />
+    <Compile Include="MythActions\CreatePlane.cs" />
+    <Compile Include="MythActions\GatherPower.cs" />
+    <Compile Include="MythActions\MythAction.cs" />
+    <Compile Include="MythActions\Wait.cs" />
+    <Compile Include="MythObjects\ActionTakerMythObject.cs" />
     <Compile Include="MythObjects\BaseMythObject.cs" />
     <Compile Include="MythObjects\Deity.cs" />
-    <Compile Include="MythObjects\IAction.cs" />
+    <Compile Include="MythObjects\IActionTaker.cs" />
     <Compile Include="MythObjects\Plane.cs" />
     <Compile Include="MythObjects\PrimordialForce.cs" />
+    <Compile Include="MythObjects\Species.cs" />
     <Compile Include="Output\CreationMythLogger.cs" />
     <Compile Include="Output\LexerLog.cs" />
     <Compile Include="Output\ParserLog.cs" />

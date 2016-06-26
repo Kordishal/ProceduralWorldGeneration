@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.DataStructure
 {
-    class CreationMyth : INotifyPropertyChanged
+    class CreationMythState : INotifyPropertyChanged
     {
 
         public CreationMythLogger Logger { get; set; }
@@ -84,8 +84,8 @@ namespace ProceduralWorldGeneration.DataStructure
             }
         }
 
-        private Queue<IAction> _actionable_myth_objects;
-        public Queue<IAction> ActionableMythObjects
+        private Queue<IActionTaker> _actionable_myth_objects;
+        public Queue<IActionTaker> ActionableMythObjects
         {
             get
             {
@@ -118,13 +118,13 @@ namespace ProceduralWorldGeneration.DataStructure
             }
         }
 
-        public CreationMyth()
+        public CreationMythState()
         {
             Logger = new CreationMythLogger();
             MythObjects = new List<BaseMythObject>();
             PrimordialForces = new List<PrimordialForce>();
             Planes = new List<Plane>();
-            ActionableMythObjects = new Queue<IAction>();
+            ActionableMythObjects = new Queue<IActionTaker>();
             MythObjectGenerator = new MythObjectGenerators();
         }
 

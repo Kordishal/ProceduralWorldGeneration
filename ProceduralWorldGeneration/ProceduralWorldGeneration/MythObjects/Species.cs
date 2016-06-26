@@ -7,7 +7,7 @@ using ProceduralWorldGeneration.DataStructure;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
-    class Species : ActionableBaseMythObject
+    class Species : ActionTakerMythObject
     {
 
         static public string TYPE = "SPECIES";
@@ -25,7 +25,7 @@ namespace ProceduralWorldGeneration.MythObjects
         }
 
 
-        public override void takeAction(CreationMyth creation_myth, int current_year)
+        public override void takeAction(CreationMythState creation_myth, int current_year)
         {
 
         }

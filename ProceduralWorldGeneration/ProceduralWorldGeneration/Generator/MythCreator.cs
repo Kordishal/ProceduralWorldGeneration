@@ -19,8 +19,8 @@ namespace ProceduralWorldGeneration.Generator
         private MythObjectReader myth_object_reader;
         private Parser myth_object_parser;
 
-        private CreationMyth _creation_myth;
-        public CreationMyth CreationMyths
+        private CreationMythState _creation_myth;
+        public CreationMythState CreationMyths
         {
             get
             {
@@ -54,12 +54,12 @@ namespace ProceduralWorldGeneration.Generator
             myth_object_parser.generateMythObjects();
 
             _creation_myth = null;
-            _creation_myth = new CreationMyth();
+            _creation_myth = new CreationMythState();
 
             _creation_myth.MythObjectData = myth_object_parser.MythObjects;
 
             _creation_myth.MythObjects = new List<BaseMythObject>();
-            _creation_myth.ActionableMythObjects = new Queue<IAction>();
+            _creation_myth.ActionableMythObjects = new Queue<IActionTaker>();
 
             _creation_myth.PrimordialForces = new List<PrimordialForce>();
             _creation_myth.Planes = new List<Plane>();
@@ -72,7 +72,7 @@ namespace ProceduralWorldGeneration.Generator
             int _current_year = 0;
             int _end_year = 10000;
             int action_queue_count, counter;
-            IAction current_myth_object;
+            IActionTaker current_myth_object;
             // first the primordial powers are created. This strongly shapes what type of universe will spawn.
             createPrimordialForces();
             
@@ -88,15 +88,8 @@ namespace ProceduralWorldGeneration.Generator
                 {
                     current_myth_object = _creation_myth.ActionableMythObjects.Dequeue();
 
-                    // Restore some points for the next round.
-                    current_myth_object.regenerateActionPoints();
-
-                    // only take action if the myth object has at least 1 action point.
-                    if (current_myth_object.ActionPoints > 0)
-                    {
-                        current_myth_object.takeAction(_creation_myth, _current_year);
-                    }
-
+                    current_myth_object.takeAction(_creation_myth, _current_year);
+        
                     _creation_myth.Logger.updateLog((BaseMythObject)current_myth_object, "UPDATE");
 
                     _creation_myth.ActionableMythObjects.Enqueue(current_myth_object);
