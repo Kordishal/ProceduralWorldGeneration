@@ -24,7 +24,7 @@ namespace ProceduralWorldGeneration.MythObjects
 
         void addPossibleActions();
 
-        void determineNextAction(CreationMythState creation_myth, ActionTakerMythObject action_taker);
+        void determineNextAction(CreationMythState creation_myth);
 
     }
 }

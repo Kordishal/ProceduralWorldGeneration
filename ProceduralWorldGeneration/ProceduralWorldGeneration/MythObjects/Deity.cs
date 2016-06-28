@@ -42,5 +42,10 @@ namespace ProceduralWorldGeneration.MythObjects
         public override void takeAction(CreationMythState creation_myth, int current_year)
         {
         }
+
+        public override void addPossibleActions()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

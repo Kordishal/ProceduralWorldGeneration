@@ -10,6 +10,8 @@ namespace ProceduralWorldGeneration.MythActions
 {
     class GatherPower : MythAction
     {
+
+
         public override bool checkPrecondition(CreationMythState state, BaseMythObject taker)
         {
             if (taker.GetType() == typeof(PrimordialForce))
@@ -25,6 +27,14 @@ namespace ProceduralWorldGeneration.MythActions
         public override void Effect(CreationMythState state, BaseMythObject taker)
         {
             (taker as PrimordialForce).HasGatheredPower = true;
+        }
+
+
+
+        public GatherPower()
+        {
+            Cooldown = 10;
+            Duration = 5;
         }
     }
 }

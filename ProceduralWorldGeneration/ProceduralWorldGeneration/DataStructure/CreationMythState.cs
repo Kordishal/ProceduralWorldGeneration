@@ -4,6 +4,7 @@ using ProceduralWorldGeneration.MythObjects;
 using ProceduralWorldGeneration.Output;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -33,8 +34,8 @@ namespace ProceduralWorldGeneration.DataStructure
             }
         }
 
-        private List<BaseMythObject> _myth_objects;
-        public List<BaseMythObject> MythObjects
+        private ObservableCollection<BaseMythObject> _myth_objects;
+        public ObservableCollection<BaseMythObject> MythObjects
         {
             get
             {
@@ -121,7 +122,7 @@ namespace ProceduralWorldGeneration.DataStructure
         public CreationMythState()
         {
             Logger = new CreationMythLogger();
-            MythObjects = new List<BaseMythObject>();
+            MythObjects = new ObservableCollection<BaseMythObject>();
             PrimordialForces = new List<PrimordialForce>();
             Planes = new List<Plane>();
             ActionableMythObjects = new Queue<IActionTaker>();

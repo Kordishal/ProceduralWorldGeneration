@@ -26,44 +26,36 @@ namespace ProceduralWorldGeneration
     /// </summary>
     public partial class MainWindow : Window
     {
-        MythCreator myth_creator;
-        WorldGenerator world_generator;
-        ConfigValues config;
+
+        /// <summary>
+        /// Stores certain top level values to invluence generation, which can be changed in the GUI.
+        /// </summary>
+        private ConfigValues GenerationConfigurations;
+
+        /// <summary>
+        /// The central class which holds the main creation loop, references to all the data classes and creates the primordial forces.
+        /// </summary>
+        private MythCreator MainMythCreationClass;
+        
 
         public MainWindow()
         {
             InitializeComponent();
-            world_generator = new WorldGenerator();
-            config = new ConfigValues();
-            myth_creator = new MythCreator();
-            SeedTextBox.DataContext = config;
-
-            world_generator.endedGeneration += new WorldGenerator.EndedGeneration(WorldGenerationButton_Enable);
-
-
-
+            GenerationConfigurations = new ConfigValues();
+            MainMythCreationClass = new MythCreator();
+            RandomSeedTextBox.DataContext = GenerationConfigurations;
         }
 
         private void WorldGenerationButton_Click(object sender, RoutedEventArgs e)
         {
-            world_generator.InitializeWorldGenerator();
-            ElementListView.DataContext = world_generator;
-            ElementListView.ItemsSource = world_generator.GeneratedWorld.ElementCollection;
-            WorldGenerationButton.IsEnabled = false;
-            world_generator.generateWorld();
         }
 
         private void MythCreationButton_Click(object sender, RoutedEventArgs e)
         {
-            myth_creator.InitializeMythCreation();
-            ElementListView.DataContext = myth_creator.CreationMyths;
-            ElementListView.ItemsSource = myth_creator.CreationMyths.MythObjects;
-            myth_creator.creationLoop();
-        }
-
-        private void WorldGenerationButton_Enable(string status)
-        {
-            this.WorldGenerationButton.IsEnabled = true;
+            MainMythCreationClass.InitializeMythCreation();
+            ElementListView.DataContext = MainMythCreationClass.CreationMyths;
+            ElementListView.ItemsSource = MainMythCreationClass.CreationMyths.MythObjects;
+            MainMythCreationClass.creationLoop();
         }
 
         private void ElementListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -73,25 +65,7 @@ namespace ProceduralWorldGeneration
                 return;
             }
 
-            if (e.AddedItems[0].GetType() == typeof(Element))
-            {
-                Element element = (Element)e.AddedItems[0];
-
-                NameDisplayTextBlock.Text = element.Name;
-                SizeDisplayTextBlock.Text = element.Size.ToString();
-                if (element.ParentElement != null)
-                {
-                    ParentNameDisplayTextBlock.Text = element.ParentElement.Name;
-                }
-                else
-                {
-                    ParentNameDisplayTextBlock.Text = "NONE";
-                }
-            
-                ChildrenElementListBox.DataContext = element;
-                ChildrenElementListBox.ItemsSource = element.ChildElements;
-            }
-            else if (e.AddedItems[0].GetType() == typeof(BaseMythObject))
+            if (e.AddedItems[0].GetType() == typeof(BaseMythObject))
             {
                 BaseMythObject myth_object = (BaseMythObject)e.AddedItems[0];
                 NameDisplayTextBlock.Text = myth_object.Name;

@@ -53,7 +53,9 @@ namespace ProceduralWorldGeneration.MythObjects
 
         public override void addPossibleActions()
         {
-            _possible_actions.Add(new Wait());
+            _possible_actions.Add(new GatherPower());
+            _possible_actions.Add(new CreatePlane());
+            _possible_actions.Add(new CreateCorePlane());
         }
 
 
@@ -63,54 +65,28 @@ namespace ProceduralWorldGeneration.MythObjects
             HasGatheredPower = false;
         }
 
-
-        private bool _has_created_defined_ethereal_plane = false;
-        private bool _has_created_astral_plane = false;
-
-        public override void takeAction(CreationMythState creation_myth, int current_year)
+        public override void takeAction(CreationMythState state, int current_year)
         {
             if (CurrentAction != null)
             {
-                if (CurrentAction.getCurrentCooldown(creation_myth, this) <= 0)
+                if (CurrentAction.getDuration() <= 0)
                 {
-                    CurrentAction.Effect(creation_myth, this);
+                    CurrentAction.Effect(state, this);
+                    CurrentAction.resetCooldown();
+                    CurrentAction.resetDuration();
                     CurrentAction = null;
                 }
                 else
                 {
-                    CurrentAction.reduceCooldown(creation_myth, this);
+                    CurrentAction.reduceDuration();
                 }
             }
             else
             {
-                determineNextAction(creation_myth, this);
+                determineNextAction(state);
             }
 
         }
-
-
-        private void createPlane(CreationMythState creation_myth, int current_year)
-        {
-
-
-            // Once these are created random planes are added.
-            //createRandomPlane(creation_myth, current_year);
-
-        }
-
-
-
-        private void createRandomPlane(CreationMythState creation_myth, int current_year, int plane_action_point_cost)
-        {
-            creation_myth.MythObjectGenerator.PlaneGenerator.generatePlane(creation_myth, this);
-        }
-
-
-        private void createDeity(CreationMythState creation_myth, int current_year, int deity_action_point_cost)
-        {
-            creation_myth.MythObjectGenerator.DeityGenerator.generateDeity(creation_myth, this);
-        }
-
 
         public override string ToString()
         {

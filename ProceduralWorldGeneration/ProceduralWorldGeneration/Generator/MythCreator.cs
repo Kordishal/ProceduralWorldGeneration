@@ -58,7 +58,7 @@ namespace ProceduralWorldGeneration.Generator
 
             _creation_myth.MythObjectData = myth_object_parser.MythObjects;
 
-            _creation_myth.MythObjects = new List<BaseMythObject>();
+            _creation_myth.MythObjects = new ObservableCollection<BaseMythObject>();
             _creation_myth.ActionableMythObjects = new Queue<IActionTaker>();
 
             _creation_myth.PrimordialForces = new List<PrimordialForce>();

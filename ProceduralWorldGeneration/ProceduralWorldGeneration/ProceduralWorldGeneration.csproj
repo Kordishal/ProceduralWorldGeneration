@@ -94,6 +94,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MythActions\CreateCorePlane.cs" />
     <Compile Include="MythActions\CreatePlane.cs" />
     <Compile Include="MythActions\GatherPower.cs" />
     <Compile Include="MythActions\MythAction.cs" />

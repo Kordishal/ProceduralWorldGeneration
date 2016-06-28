@@ -8,27 +8,44 @@ using ProceduralWorldGeneration.MythObjects;
 
 namespace ProceduralWorldGeneration.MythActions
 {
-    class Wait : MythAction
+    class CreateCorePlane : CreatePlane
     {
+
+        public CreateCorePlane() : base()
+        {
+
+        }
+
         public override int getWeight(CreationMythState state, BaseMythObject taker)
         {
-            return 0;
+            if (state.Planes.Count == 0)
+            {
+                return 1000;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
 
         public override bool checkPrecondition(CreationMythState state, BaseMythObject taker)
         {
-            return true;
+            if (state.Planes.Count == 0)
+            {
+                return true;
+            }
+
+
+            return false;
         }
+
+
 
         public override void Effect(CreationMythState state, BaseMythObject taker)
         {
-            // WAIT
-        }
-
-        public Wait() {
-            Cooldown = 0;
-            Duration = 0;
+            determinePlaneType(100, 0, 0);
+            addCreatedPlaneToState(state);
         }
     }
 }
