@@ -34,7 +34,7 @@ namespace ProceduralWorldGeneration.MythObjects
         }
 
 
-        public Deity() : base()
+        public Deity(string tag = "default_tag") : base(tag)
         {
             base.Type = TYPE;
         }

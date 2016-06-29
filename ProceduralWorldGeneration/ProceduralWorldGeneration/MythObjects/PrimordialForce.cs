@@ -34,8 +34,8 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        private string _opposing;
-        public string Opposing
+        private PrimordialForce _opposing;
+        public PrimordialForce Opposing
         {
             get
             {
@@ -59,7 +59,7 @@ namespace ProceduralWorldGeneration.MythObjects
         }
 
 
-        public PrimordialForce() : base()
+        public PrimordialForce(string tag = "default_tag") : base(tag)
         {
             base.Type = TYPE;
             HasGatheredPower = false;
@@ -90,7 +90,7 @@ namespace ProceduralWorldGeneration.MythObjects
 
         public override string ToString()
         {
-            return Name + "          { Opposing : " + (Opposing == null ? "NONE" : Opposing) + " }";
+            return Name + "          { Opposing : " + (Opposing == null ? "NONE" : Opposing.ToString()) + " }";
         }
     }
 }

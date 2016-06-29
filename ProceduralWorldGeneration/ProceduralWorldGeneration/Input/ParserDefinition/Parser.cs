@@ -102,6 +102,23 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                                 throw new ParserException(current_token.Value);
                             }
                         }
+                        // A variable after ASSIGNMENT
+                        else if (current_token.Value.Type == "VARIABLE")
+                        {
+                            temp_expression_1 = new Expression();
+                            temp_expression_1.ExpressionType = ExpressionTypes.Variable;
+                            temp_expression_1.ExpressionValue = current_token.Value.Value;
+
+                            current_tree_node.AddChild(temp_expression_1);
+
+                            current_tree_node.Value.ExpressionType = ExpressionTypes.Variable;
+
+                            current_tree_node.GetParent().Value.ExpressionType = ExpressionTypes.Class;
+
+                            current_tree_node = current_tree_node.GetParent();
+
+                            current_token = current_token.Next;
+                        }
                         // A string after "ASSIGNMENT"
                         else if (current_token.Value.Type == "STRING")
                         {
@@ -252,9 +269,10 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
 
             if (current_node.Value.ExpressionType == ExpressionTypes.Class)
             {
-                if (current_node.Value.ExpressionValue == "primordial_force")
+                if (parent_node.Value.ExpressionValue == "primordial_forces")
                 {
-                    MythObjects.PrimordialForces.Add(new PrimordialForce());
+                    MythObjects.DefinedMythObjects.Add(new PrimordialForce(current_node.Value.ExpressionValue));
+                    MythObjects.PrimordialForces.Add(new PrimordialForce(current_node.Value.ExpressionValue));
                 }
             }
 
@@ -262,7 +280,7 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
             {
                 if (parent_node.Value.ExpressionType == ExpressionTypes.Class)
                 {
-                    if (parent_node.Value.ExpressionValue == "primordial_force")
+                    if (parent_node.GetParent().Value.ExpressionValue == "primordial_forces")
                     {
                         if (current_node.Value.ExpressionValue == "name")
                         {
@@ -270,13 +288,13 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                         }
                         if (current_node.Value.ExpressionValue == "opposing")
                         {
-                            MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].Opposing = cutStringSigns(current_node.GetLastChild().Value.ExpressionValue);
+                            MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].Opposing = (PrimordialForce)searchTag(current_node.GetLastChild().Value.ExpressionValue);
                         }
                         if (current_node.Value.ExpressionValue == "spawn_weight")
                         {
                             MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].SpawnWeight = int.Parse(current_node.GetLastChild().Value.ExpressionValue);
                         }
-                    }
+                    }                       
                 }
             }
 
@@ -314,6 +332,19 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
         private string cutStringSigns(string s)
         {
             return s.Substring(1, s.Length - 2);
+        }
+
+        private BaseMythObject searchTag(string tag)
+        {
+            foreach (BaseMythObject mythobj in MythObjects.DefinedMythObjects)
+            {
+                if (mythobj.Tag == tag)
+                {
+                    return mythobj;
+                }
+            }
+
+            return null;
         }
     }
 

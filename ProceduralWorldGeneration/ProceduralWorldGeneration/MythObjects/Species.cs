@@ -49,7 +49,7 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        public Species()
+        public Species(string tag = "default_tag") : base(tag)
         {
 
 

@@ -83,7 +83,7 @@ namespace ProceduralWorldGeneration.MythObjects
 
         public abstract void addPossibleActions();
 
-        public ActionTakerMythObject()
+        public ActionTakerMythObject(string tag = "default_tag") : base(tag)
         {
             _possible_actions = new List<MythAction>();
             addPossibleActions();

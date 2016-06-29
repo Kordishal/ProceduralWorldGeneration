@@ -1,30 +1,30 @@
 primordial_forces = {
-	primordial_force = {
+	void = {
 		name = "Void"
 		spawn_weight = 10
 	}
 
-	primordial_force = {
+	light = {
 		name = "Light"
-		opposing = "Darkness"
+		opposing = darkness
 		spawn_weight = 20
 	}
 
-	primordial_force = {
+	darkness = {
 		name = "Darkness"
-		opposing = "Light"
+		opposing = void
 		spawn_weight = 20
 	}
 
-	primordial_force = {
+	chaos = {
 		name = "Chaos"
-		opposing = "Order"
+		opposing = order
 		spawn_weight = 20
 	}
 
-	primordial_force = {
+	order = {
 		name = "Order"
-		opposing = "Chaos"
+		opposing = chaos
 		spawn_weight = 20
 	}
 }

@@ -74,6 +74,19 @@ namespace ProceduralWorldGeneration.MythActions
             }
         }
 
+        protected void determinePlaneElement(CreationMythState state)
+        {
+            if (_plane.PlaneType == "material")
+            {
+                return;
+            }
+        }
+
+        protected void addName()
+        {
+            _plane.Name = _name;
+        }
+
         protected void addCreatedPlaneToState(CreationMythState state)
         {
             state.MythObjects.Add(_plane);

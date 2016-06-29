@@ -170,7 +170,7 @@ namespace ProceduralWorldGeneration.Generator
         {
             foreach (PrimordialForce current_primordial_force in _creation_myth.MythObjectData.PrimordialForces)
             {
-                if (current_primordial_force.Opposing == primordial_force.Name)
+                if (current_primordial_force.Opposing == primordial_force)
                 {
                     return current_primordial_force;
                 }

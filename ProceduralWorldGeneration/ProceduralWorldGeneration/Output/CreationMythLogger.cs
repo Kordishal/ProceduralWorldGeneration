@@ -23,7 +23,7 @@ namespace ProceduralWorldGeneration.Output
 
         public void Write()
         {
-            writer = new StreamWriter(@"C:\Users\Jonas\Documents\Projekte\ProceduralWorldGeneration\logs\myth_creation.log");
+            writer = new StreamWriter(@"C:\Users\Jonas\Documents\ProceduralWorldGeneration\logs\myth_creation.log");
             foreach (string s in _temp_log)
             {
                 writer.WriteLine(s);

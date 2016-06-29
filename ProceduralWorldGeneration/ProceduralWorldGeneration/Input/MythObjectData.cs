@@ -9,9 +9,13 @@ namespace ProceduralWorldGeneration.Input
 {
     class MythObjectData
     {
+
+        public List<BaseMythObject> DefinedMythObjects = new List<BaseMythObject>();
+
         // PRIMORDIAL FORCES
         public List<PrimordialForce> PrimordialForces = new List<PrimordialForce>();
 
+        // DEITIES
         public List<string> Domains = new List<string>();
 
         // PLANES

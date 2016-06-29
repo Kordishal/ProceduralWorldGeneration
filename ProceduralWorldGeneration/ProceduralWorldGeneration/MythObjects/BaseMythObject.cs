@@ -11,6 +11,15 @@ namespace ProceduralWorldGeneration.MythObjects
     {
         static int _identifier_seed = 0;
 
+        private string _tag;
+        public string Tag
+        {
+            get
+            {
+                return _tag;
+            }
+        }
+
         private int _identifier;
         public int Identifier
         {
@@ -54,10 +63,11 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        public BaseMythObject()
+        public BaseMythObject(string tag = "default_tag")
         {
             _identifier = _identifier_seed;
             _identifier_seed += 1;
+            _tag = tag;
 
         }
 

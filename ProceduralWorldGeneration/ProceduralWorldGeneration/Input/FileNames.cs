@@ -8,7 +8,7 @@ namespace ProceduralWorldGeneration.Input
 {
     static class FileNames
     {
-        public const string DIRECTORY_PATH_MYTH_OBJECTS = @"C:\Users\Jonas\Documents\Projekte\ProceduralWorldGeneration\Mythobjects\";
+        public const string DIRECTORY_PATH_MYTH_OBJECTS = @"C:\Users\Jonas\Documents\ProceduralWorldGeneration\Mythobjects\";
         public const string FILE_LIST = @"a_file_list.txt";
 
         public const string DIRECTORY_PATH_WORLD_ELEMENTS = @"C:\Users\Jonas\Documents\Projekte\ProceduralWorldGeneration\Elements\";
