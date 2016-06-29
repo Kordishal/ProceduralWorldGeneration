@@ -11,11 +11,6 @@ namespace ProceduralWorldGeneration.MythObjects
 {
     class Deity : ActionTakerMythObject
     {
-
-        public static string TYPE = "DEITY";
-
-
-
         private string _primary_domain;
         public string PrimaryDomain
         {
@@ -36,7 +31,6 @@ namespace ProceduralWorldGeneration.MythObjects
 
         public Deity(string tag = "default_tag") : base(tag)
         {
-            base.Type = TYPE;
         }
 
         public override void takeAction(CreationMythState creation_myth, int current_year)

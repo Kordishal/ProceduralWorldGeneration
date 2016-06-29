@@ -36,8 +36,8 @@ namespace ProceduralWorldGeneration.Input
         {
             List<TokenDefinition> definitions = new List<TokenDefinition>();
 
-            definitions.Add(new TokenDefinition(new Regex(@"#t"), "TRUE"));
-            definitions.Add(new TokenDefinition(new Regex(@"#f"), "FALSE"));
+            definitions.Add(new TokenDefinition(new Regex(@"#t"), "BOOLEAN"));
+            definitions.Add(new TokenDefinition(new Regex(@"#f"), "BOOLEAN"));
 
             definitions.Add(new TokenDefinition(new Regex(@"\{"), "OPENING_CURLY_BRACES"));
             definitions.Add(new TokenDefinition(new Regex(@"\}"), "CLOSING_CURLY_BRACES"));

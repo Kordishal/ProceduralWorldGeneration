@@ -44,7 +44,7 @@ namespace ProceduralWorldGeneration.MythActions
 
         public override void Effect(CreationMythState state, BaseMythObject taker)
         {
-            determinePlaneType(100, 0, 0);
+            determinePlaneType(100, 0, 0, state);
 
             addName();
             addCreatedPlaneToState(state);

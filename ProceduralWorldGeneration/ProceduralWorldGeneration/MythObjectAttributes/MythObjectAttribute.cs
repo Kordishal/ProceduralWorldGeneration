@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProceduralWorldGeneration.MythObjects
+namespace ProceduralWorldGeneration.MythObjectAttributes
 {
-    class BaseMythObject : INotifyPropertyChanged
+    class MythObjectAttribute : INotifyPropertyChanged
     {
-        static int _identifier_seed = 0;
 
         private string _tag;
         public string Tag
@@ -17,15 +16,6 @@ namespace ProceduralWorldGeneration.MythObjects
             get
             {
                 return _tag;
-            }
-        }
-
-        private int _identifier;
-        public int Identifier
-        {
-            get
-            {
-                return _identifier;
             }
         }
 
@@ -46,12 +36,9 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        public BaseMythObject(string tag = "default_tag")
+        public MythObjectAttribute(string tag = "default")
         {
-            _identifier = _identifier_seed;
-            _identifier_seed += 1;
             _tag = tag;
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

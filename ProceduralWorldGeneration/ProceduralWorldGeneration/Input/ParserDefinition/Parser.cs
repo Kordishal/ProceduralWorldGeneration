@@ -1,4 +1,5 @@
 ﻿using ProceduralWorldGeneration.Input.LexerDefinition;
+using ProceduralWorldGeneration.MythObjectAttributes;
 using ProceduralWorldGeneration.MythObjects;
 using System;
 using System.Collections.Generic;
@@ -165,6 +166,29 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                             // Go to next token after "INTEGER"
                             current_token = current_token.Next;
                         }
+                        // An boolean after Assignemnt
+                        else if (current_token.Value.Type == "BOOLEAN")
+                        {
+                            // A direct variable is named variable and assigned its value as an only child.
+                            temp_expression_1 = new Expression();
+                            temp_expression_1.ExpressionType = ExpressionTypes.Boolean;
+                            temp_expression_1.ExpressionValue = current_token.Value.Value;
+
+                            // Add boolean to variable.
+                            current_tree_node.AddChild(temp_expression_1);
+
+                            // This is a variable as it only has a single value attached to it.
+                            current_tree_node.Value.ExpressionType = ExpressionTypes.Variable;
+
+                            // the parent of variables is always a class and not a list
+                            current_tree_node.GetParent().Value.ExpressionType = ExpressionTypes.Class;
+
+                            // Return current tree node to parent as there is nothing to add.
+                            current_tree_node = current_tree_node.GetParent();
+
+                            // Go to next token after "INTEGER"
+                            current_token = current_token.Next;
+                        }
                         // An [ after "ASSIGNMENT"
                         else if (current_token.Value.Type == "OPENING_SQUARE_BRACES")
                         {
@@ -271,9 +295,23 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
             {
                 if (parent_node.Value.ExpressionValue == "primordial_forces")
                 {
-                    MythObjects.DefinedMythObjects.Add(new PrimordialForce(current_node.Value.ExpressionValue));
-                    MythObjects.PrimordialForces.Add(new PrimordialForce(current_node.Value.ExpressionValue));
+                    PrimordialForce temp = new PrimordialForce(current_node.Value.ExpressionValue);
+                    MythObjects.DefinedMythObjects.Add(temp);
+                    MythObjects.PrimordialForces.Add(temp);
                 }
+                else if (parent_node.Value.ExpressionValue == "plane_sizes")
+                {
+                    PlaneSize temp = new PlaneSize(current_node.Value.ExpressionValue);
+                    MythObjects.MythObjectAttributes.Add(temp);
+                    MythObjects.PlaneSizes.Add(temp);
+                }
+                else if (parent_node.Value.ExpressionValue == "plane_types")
+                {
+                    PlaneType temp = new PlaneType(current_node.Value.ExpressionValue);
+                    MythObjects.MythObjectAttributes.Add(temp);
+                    MythObjects.PlaneTypes.Add(temp);
+                }
+
             }
 
             if (current_node.Value.ExpressionType == ExpressionTypes.Variable)
@@ -294,7 +332,33 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                         {
                             MythObjects.PrimordialForces[MythObjects.PrimordialForces.Count - 1].SpawnWeight = int.Parse(current_node.GetLastChild().Value.ExpressionValue);
                         }
-                    }                       
+                    }
+                    else if (parent_node.GetParent().Value.ExpressionValue == "plane_sizes")
+                    {
+                        if (current_node.Value.ExpressionValue == "name")
+                        {
+                            MythObjects.PlaneSizes[MythObjects.PlaneSizes.Count - 1].Name = cutStringSigns(current_node.GetLastChild().Value.ExpressionValue);
+                        }
+                        else if (current_node.Value.ExpressionValue == "max_neighbours")
+                        {
+                            MythObjects.PlaneSizes[MythObjects.PlaneSizes.Count - 1].MaxNeighbourPlanes = int.Parse(current_node.GetLastChild().Value.ExpressionValue);
+                        }
+                    }  
+                    else if (parent_node.GetParent().Value.ExpressionValue == "plane_types")
+                    {
+                        if (current_node.Value.ExpressionValue == "name")
+                        {
+                            MythObjects.PlaneTypes[MythObjects.PlaneTypes.Count - 1].Name = cutStringSigns(current_node.GetLastChild().Value.ExpressionValue);
+                        }
+                        else if (current_node.Value.ExpressionValue == "has_dominant_element")
+                        {
+                            MythObjects.PlaneTypes[MythObjects.PlaneTypes.Count - 1].hasDominantElement = bool.Parse(current_node.GetLastChild().Value.ExpressionValue);
+                        }
+                        else if (current_node.Value.ExpressionValue == "is_attached_to")
+                        {
+                            MythObjects.PlaneTypes[MythObjects.PlaneTypes.Count - 1].isAttachedTo = (PlaneType)searchAttributeTag(current_node.GetLastChild().Value.ExpressionValue);
+                        }
+                    }              
                 }
             }
 
@@ -307,17 +371,9 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                     {
                         MythObjects.Domains.Add(cutStringSigns(current_node.Value.ExpressionValue));
                     }
-                    else if (parent_node.Value.ExpressionValue == "plane_types")
-                    {
-                        MythObjects.PlaneTypes.Add(cutStringSigns(current_node.Value.ExpressionValue));
-                    }
                     else if (parent_node.Value.ExpressionValue == "plane_elements")
                     {
                         MythObjects.PlaneElements.Add(cutStringSigns(current_node.Value.ExpressionValue));
-                    }
-                    else if (parent_node.Value.ExpressionValue == "plane_sizes")
-                    {
-                        MythObjects.PlaneSizes.Add(cutStringSigns(current_node.Value.ExpressionValue));
                     }
                 }
             }
@@ -337,6 +393,19 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
         private BaseMythObject searchTag(string tag)
         {
             foreach (BaseMythObject mythobj in MythObjects.DefinedMythObjects)
+            {
+                if (mythobj.Tag == tag)
+                {
+                    return mythobj;
+                }
+            }
+
+            return null;
+        }
+
+        private MythObjectAttribute searchAttributeTag(string tag)
+        {
+            foreach (MythObjectAttribute mythobj in MythObjects.MythObjectAttributes)
             {
                 if (mythobj.Tag == tag)
                 {
@@ -370,5 +439,6 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
         String,
         Integer,
         Range,
+        Boolean,
     }
 }

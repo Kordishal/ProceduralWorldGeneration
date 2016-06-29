@@ -1,4 +1,5 @@
 ﻿using ProceduralWorldGeneration.Generator;
+using ProceduralWorldGeneration.MythObjectAttributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,8 @@ namespace ProceduralWorldGeneration.MythObjects
 {
     class Plane : BaseMythObject
     {
-
-        public static string TYPE = "PLANE";
-
-
-        private string _plane_type;
-        public string PlaneType
+        private PlaneType _plane_type;
+        public PlaneType PlaneType
         {
             get
             {
@@ -30,8 +27,8 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        private string _plane_size;
-        public string PlaneSize
+        private PlaneSize _plane_size;
+        public PlaneSize PlaneSize
         {
             get
             {
@@ -44,33 +41,6 @@ namespace ProceduralWorldGeneration.MythObjects
                     _plane_size = value;
                     base.NotifyPropertyChanged("PlaneSize");
                 }
-                switch (_plane_size)
-                {
-                    case "infinite":
-                        _max_neighbour_planes = 10000;
-                        break;
-                    case "large":
-                        _max_neighbour_planes = 16;
-                        break;
-                    case "medium":
-                        _max_neighbour_planes = 8;
-                        break;
-                    case "small":
-                        _max_neighbour_planes = 4;
-                        break;
-                    case "pocket":
-                        _max_neighbour_planes = 1;
-                        break;
-                }
-            }
-        }
-
-        private bool _has_dominant_element = false;
-        public bool hasDominantElement
-        {
-            get
-            {
-                return _has_dominant_element;
             }
         }
 
@@ -85,7 +55,6 @@ namespace ProceduralWorldGeneration.MythObjects
             {
                 if (_plane_element != value)
                 {
-                    _has_dominant_element = true;
                     _plane_element = value;
                     base.NotifyPropertyChanged("PlaneElement");
                 }
@@ -106,15 +75,6 @@ namespace ProceduralWorldGeneration.MythObjects
                     _creator = value;
                     base.NotifyPropertyChanged("Creator");
                 }
-            }
-        }
-
-        private int _max_neighbour_planes;
-        public int MaxNeighbourPlanes
-        {
-            get
-            {
-                return _max_neighbour_planes;
             }
         }
 
@@ -144,14 +104,14 @@ namespace ProceduralWorldGeneration.MythObjects
 
             foreach (Plane p in existing_planes)
             {
-                if (_neighbour_planes.Count >= _max_neighbour_planes)
+                if (_neighbour_planes.Count >= _plane_size.MaxNeighbourPlanes)
                 {
                     return;
                 }
                 // ethereal planes are only connected to a single material world.
-                else if (this.PlaneType == "ethereal")
+                else if (this.PlaneType.isAttachedTo != null)
                 {
-                    if (p.PlaneType == "material" && p._max_neighbour_planes > p._neighbour_planes.Count)
+                    if (p.PlaneType == PlaneType.isAttachedTo && p.PlaneSize.MaxNeighbourPlanes > p._neighbour_planes.Count)
                     {
                         NeighbourPlanes.Add(p);
                         p.NeighbourPlanes.Add(this);
@@ -159,7 +119,7 @@ namespace ProceduralWorldGeneration.MythObjects
                     }
                 }
                 // the chance to add an additional plane && whether the current plane can actually accept a new neighbour
-                else if (current_connection_chance >= ConfigValues.RandomGenerator.Next(_base_connection_chance) && p._max_neighbour_planes < p._neighbour_planes.Count)
+                else if (current_connection_chance >= ConfigValues.RandomGenerator.Next(_base_connection_chance) && p.PlaneSize.MaxNeighbourPlanes < p._neighbour_planes.Count)
                 {
                     NeighbourPlanes.Add(p);
                     p.NeighbourPlanes.Add(this);
@@ -170,7 +130,6 @@ namespace ProceduralWorldGeneration.MythObjects
 
         public Plane() : base()
         {
-            base.Type = TYPE;
             _neighbour_planes = new List<Plane>();
         }
 

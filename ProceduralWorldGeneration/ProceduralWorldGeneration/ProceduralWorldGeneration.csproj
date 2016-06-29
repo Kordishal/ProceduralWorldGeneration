@@ -71,8 +71,6 @@
     <Compile Include="Generator\DeityGenerator.cs" />
     <Compile Include="Generator\MythCreator.cs" />
     <Compile Include="Generator\ConfigValues.cs" />
-    <Compile Include="Generator\MythObjectGenerators.cs" />
-    <Compile Include="Generator\PlaneGenerator.cs" />
     <Compile Include="Generator\WorldGenerator.cs" />
     <Compile Include="Input\FileNames.cs" />
     <Compile Include="Input\LexerDefinition\ILexer.cs" />
@@ -99,6 +97,9 @@
     <Compile Include="MythActions\GatherPower.cs" />
     <Compile Include="MythActions\MythAction.cs" />
     <Compile Include="MythActions\Wait.cs" />
+    <Compile Include="MythObjectAttributes\MythObjectAttribute.cs" />
+    <Compile Include="MythObjectAttributes\PlaneSize.cs" />
+    <Compile Include="MythObjectAttributes\PlaneType.cs" />
     <Compile Include="MythObjects\ActionTakerMythObject.cs" />
     <Compile Include="MythObjects\BaseMythObject.cs" />
     <Compile Include="MythObjects\Deity.cs" />
@@ -135,9 +136,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MythObjectAttributes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

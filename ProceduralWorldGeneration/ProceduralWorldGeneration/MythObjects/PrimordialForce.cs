@@ -13,8 +13,6 @@ namespace ProceduralWorldGeneration.MythObjects
 {
     class PrimordialForce : ActionTakerMythObject
     {
-        public static string TYPE = "PrimordialForce";
-
         public bool HasGatheredPower { get; set; }
 
         private int _spawn_weight;
@@ -61,7 +59,6 @@ namespace ProceduralWorldGeneration.MythObjects
 
         public PrimordialForce(string tag = "default_tag") : base(tag)
         {
-            base.Type = TYPE;
             HasGatheredPower = false;
         }
 

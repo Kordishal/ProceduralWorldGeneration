@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
 using ProceduralWorldGeneration.Generator;
+using ProceduralWorldGeneration.MythObjectAttributes;
 
 namespace ProceduralWorldGeneration.MythActions
 {
@@ -52,31 +53,31 @@ namespace ProceduralWorldGeneration.MythActions
         }
 
 
-        protected void determinePlaneType(int material_weight, int ethereal_weight, int elemental_weight)
+        protected void determinePlaneType(int material_weight, int ethereal_weight, int elemental_weight, CreationMythState state)
         {
             int total_weight = material_weight + ethereal_weight + elemental_weight;
             int chance = ConfigValues.RandomGenerator.Next(total_weight);
 
             if (chance < material_weight)
             {
-                _plane.PlaneType = "material";
+                _plane.PlaneType = (PlaneType)state.MythObjectData.searchAttribute("material");
                 _name += "Material Plane of ";
             }
             else if (chance > material_weight && chance < material_weight + ethereal_weight)
             {
-                _plane.PlaneType = "ethereal";
+                _plane.PlaneType = (PlaneType)state.MythObjectData.searchAttribute("ethereal");
                 _name += "Ethereal Plane of ";
             }
             else if (chance > material_weight + ethereal_weight && chance < total_weight)
             {
-                _plane.PlaneType = "elemental";
+                _plane.PlaneType = (PlaneType)state.MythObjectData.searchAttribute("elemental");
                 _name += "Elemental Plane of ";
             }
         }
 
         protected void determinePlaneElement(CreationMythState state)
         {
-            if (_plane.PlaneType == "material")
+            if (_plane.PlaneType.Tag == "material")
             {
                 return;
             }

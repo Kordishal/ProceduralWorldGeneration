@@ -11,8 +11,43 @@
 # medium: can connect with up to 8 planes
 # small: can connect with up to 4 planes
 # pocket: can only connect to a single plane.
-plane_sizes = {
-	"pocket" "small" "medium" "large" "infinite"
+planes_sizes = {
+	pocket = {
+		name = "pocket"
+		max_neighbours = 1
+	}
+	small = {
+		name = "small"
+		max_neighbours = 4
+	}
+	medium = {
+		name = "medium"
+		max_neighbours = 8
+	}
+	large = {
+		name = "large"
+		max_neighbours = 16
+	}
+	infinite = {
+		name = "infinite"
+		max_neighbours = -1
+	}
+}
+
+plane_types = {
+	material = {
+		name = "material"
+		has_dominant_element = false
+	}
+	ethereal = {
+		name = "ethereal"
+		has_dominant_element = true
+		is_attached_to = material
+	}
+	elemental = {
+		name = "elemental"
+		has_dominant_element = true
+	}
 }
 
 # The plane element is only set for elemental and ethereal planes. It determines what element is domaninat in this world. 
