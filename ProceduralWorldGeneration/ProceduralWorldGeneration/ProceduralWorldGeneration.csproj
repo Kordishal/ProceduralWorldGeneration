@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="StateMachine\FiniteStateMachine.cs" />
+    <Compile Include="StateMachine\FiniteStateMachineException.cs" />
+    <Compile Include="StateMachine\StateTransition.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
