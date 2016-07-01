@@ -76,19 +76,19 @@
     <Compile Include="Generator\ConfigValues.cs" />
     <Compile Include="Generator\WorldGenerator.cs" />
     <Compile Include="Input\FileNames.cs" />
-    <Compile Include="Input\LexerDefinition\ILexer.cs" />
-    <Compile Include="Input\LexerDefinition\Lexer.cs" />
-    <Compile Include="Input\LexerDefinition\Token.cs" />
-    <Compile Include="Input\LexerDefinition\TokenDefinition.cs" />
-    <Compile Include="Input\LexerDefinition\TokenPosition.cs" />
+    <Compile Include="Parser\LexerDefinition\ILexer.cs" />
+    <Compile Include="Parser\LexerDefinition\Lexer.cs" />
+    <Compile Include="Parser\Tokens\Token.cs" />
+    <Compile Include="Parser\Tokens\TokenDefinition.cs" />
+    <Compile Include="Parser\Tokens\TokenPosition.cs" />
     <Compile Include="Input\MainInputReader.cs" />
-    <Compile Include="Input\MythCreationLexer.cs" />
+    <Compile Include="Parser\MythCreationLexer.cs" />
     <Compile Include="Input\MythObjectData.cs" />
     <Compile Include="Input\MythObjectReader.cs" />
     <Compile Include="Input\ParserDefinition\Parser.cs" />
     <Compile Include="Input\ParserDefinition\ParserException.cs" />
-    <Compile Include="Input\ParserDefinition\Tree.cs" />
-    <Compile Include="Input\ParserDefinition\TreeNode.cs" />
+    <Compile Include="Parser\SyntaxTree\Tree.cs" />
+    <Compile Include="Parser\SyntaxTree\TreeNode.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

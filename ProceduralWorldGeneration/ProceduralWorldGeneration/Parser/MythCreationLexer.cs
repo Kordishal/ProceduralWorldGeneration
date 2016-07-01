@@ -1,4 +1,5 @@
-﻿using ProceduralWorldGeneration.Input.LexerDefinition;
+﻿using ProceduralWorldGeneration.Parser.LexerDefinition;
+using ProceduralWorldGeneration.Parser.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace ProceduralWorldGeneration.Input
+namespace ProceduralWorldGeneration.Parser
 {
     class MythCreationLexer
     {

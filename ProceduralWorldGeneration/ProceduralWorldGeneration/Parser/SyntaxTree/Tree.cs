@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProceduralWorldGeneration.Input.ParserDefinition
+namespace ProceduralWorldGeneration.Parser.SyntaxTree
 {
     class Tree<T> : TreeNode<T>
     {

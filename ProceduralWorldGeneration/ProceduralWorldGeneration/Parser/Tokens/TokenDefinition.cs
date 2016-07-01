@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace ProceduralWorldGeneration.Input.LexerDefinition
+namespace ProceduralWorldGeneration.Parser.Tokens
 {
     public class TokenDefinition
     {

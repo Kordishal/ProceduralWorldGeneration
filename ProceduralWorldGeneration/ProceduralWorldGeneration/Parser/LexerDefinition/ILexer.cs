@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ProceduralWorldGeneration.Parser.Tokens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProceduralWorldGeneration.Input.LexerDefinition
+namespace ProceduralWorldGeneration.Parser.LexerDefinition
 {
     public interface ILexer
     {
