@@ -8,6 +8,8 @@ namespace ProceduralWorldGeneration.Parser.SyntaxTree
 {
     class TreeNode<T>
     {
+        public delegate void TreeVisitor(TreeNode<T> node);
+
         public T Value { get; set; }
         public int Depth { get; set; }
 
@@ -50,6 +52,16 @@ namespace ProceduralWorldGeneration.Parser.SyntaxTree
         public LinkedList<TreeNode<T>> GetChildren()
         {
             return _children;
+        }
+
+        public void traverseTree(TreeVisitor visitor)
+        {
+            visitor(this);
+
+            foreach (TreeNode<T> node in _children)
+            {
+                node.traverseTree(visitor);
+            }
         }
 
 

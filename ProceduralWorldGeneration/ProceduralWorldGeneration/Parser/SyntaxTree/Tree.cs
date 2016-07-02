@@ -19,6 +19,5 @@ namespace ProceduralWorldGeneration.Parser.SyntaxTree
         {
             TreeRoot = new TreeNode<T>(root_value, null);
         }
-
     }
 }

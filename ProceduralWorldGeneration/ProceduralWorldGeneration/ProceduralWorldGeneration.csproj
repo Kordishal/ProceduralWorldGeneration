@@ -62,6 +62,7 @@
     <Compile Include="StateMachine\FiniteStateMachine.cs" />
     <Compile Include="StateMachine\FiniteStateMachineException.cs" />
     <Compile Include="StateMachine\StateTransition.cs" />
+    <Compile Include="SyntaxTreeTranslator\Translator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -87,7 +88,7 @@
     <Compile Include="Parser\Tokens\TokenPosition.cs" />
     <Compile Include="Input\MainInputReader.cs" />
     <Compile Include="Parser\MythCreationLexer.cs" />
-    <Compile Include="Input\MythObjectData.cs" />
+    <Compile Include="DataStructure\MythObjectData.cs" />
     <Compile Include="Parser\MythObjectReader.cs" />
     <Compile Include="Input\ParserDefinition\Parser.cs" />
     <Compile Include="Parser\SyntaxTree\Tree.cs" />

@@ -1,4 +1,5 @@
-﻿using ProceduralWorldGeneration.MythObjectAttributes;
+﻿using ProceduralWorldGeneration.DataStructure;
+using ProceduralWorldGeneration.MythObjectAttributes;
 using ProceduralWorldGeneration.MythObjects;
 using ProceduralWorldGeneration.Parser;
 using ProceduralWorldGeneration.Parser.Exceptions;

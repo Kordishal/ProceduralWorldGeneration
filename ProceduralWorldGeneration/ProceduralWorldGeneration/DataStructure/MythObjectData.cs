@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProceduralWorldGeneration.Input
+namespace ProceduralWorldGeneration.DataStructure
 {
     class MythObjectData
     {
