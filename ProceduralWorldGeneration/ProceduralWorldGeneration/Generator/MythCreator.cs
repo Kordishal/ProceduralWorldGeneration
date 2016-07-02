@@ -16,6 +16,8 @@ namespace ProceduralWorldGeneration.Generator
 {
     class MythCreator : INotifyPropertyChanged
     {
+        private MythCreationParser _parser;
+
         private CreationMythState _creation_myth;
         public CreationMythState CreationMyths
         {
@@ -45,6 +47,9 @@ namespace ProceduralWorldGeneration.Generator
             _creation_myth = null;
             _creation_myth = new CreationMythState();
 
+            _parser = new MythCreationParser();
+            _parser.Initialise();
+            _parser.parsing();
 
             _creation_myth.MythObjects = new ObservableCollection<BaseMythObject>();
             _creation_myth.ActionableMythObjects = new Queue<IActionTaker>();

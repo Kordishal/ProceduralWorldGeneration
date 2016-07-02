@@ -22,6 +22,7 @@ namespace ProceduralWorldGeneration.Parser
             root.ExpressionType = ExpressionTypes.Root;
             root.ExpressionValue = "root";
             SyntaxTree = new Tree<Expression>(root);
+            SyntaxTree.CurrentNode = SyntaxTree.TreeRoot;
         }
 
         public void Advance(S next_state, Token token)
@@ -64,12 +65,12 @@ namespace ProceduralWorldGeneration.Parser
 
     public enum State
     {
+        INITIAL_STATE,
         END_OF_FILE,
         VARIABLE,
         INTEGER,
         STRING,
-        TRUE,
-        FALSE,
+        BOOLEAN,
         ASSIGNMENT,
         COMMA_SEPERATOR,
         OPENING_CURLY_BRACES,
