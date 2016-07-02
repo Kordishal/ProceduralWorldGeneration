@@ -1,6 +1,9 @@
-﻿using ProceduralWorldGeneration.Input.LexerDefinition;
-using ProceduralWorldGeneration.MythObjectAttributes;
+﻿using ProceduralWorldGeneration.MythObjectAttributes;
 using ProceduralWorldGeneration.MythObjects;
+using ProceduralWorldGeneration.Parser;
+using ProceduralWorldGeneration.Parser.Exceptions;
+using ProceduralWorldGeneration.Parser.SyntaxTree;
+using ProceduralWorldGeneration.Parser.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +56,7 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                 {
                     // when a variable is encountered it creates a new expression and adds it as a child to the current tree node.
                     temp_expression_1 = new Expression();
-                    temp_expression_1.ExpressionType = ExpressionTypes.List; // most top level variables are lists. (may be overwritten by classes and string/integer/range variables)
+                    temp_expression_1.ExpressionType = ExpressionTypes.Assignment; // most top level variables are lists. (may be overwritten by classes and string/integer/range variables)
                     temp_expression_1.ExpressionValue = current_token.Value.Value; // the value is the name of the variable.
 
                     // Add a child to current tree node
@@ -92,7 +95,7 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                                     current_token = current_token.Next;
                                 }
                                 // makes sure that the tree node is a list.
-                                current_tree_node.Value.ExpressionType = ExpressionTypes.List;
+                                current_tree_node.Value.ExpressionType = ExpressionTypes.Assignment;
                             }
                             else if (current_token.Value.Type == "VARIABLE")
                             {
@@ -114,7 +117,7 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
 
                             current_tree_node.Value.ExpressionType = ExpressionTypes.Variable;
 
-                            current_tree_node.GetParent().Value.ExpressionType = ExpressionTypes.Class;
+                            current_tree_node.GetParent().Value.ExpressionType = ExpressionTypes.Assignment;
 
                             current_tree_node = current_tree_node.GetParent();
 
@@ -135,7 +138,7 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                             current_tree_node.Value.ExpressionType = ExpressionTypes.Variable;
 
                             // The parent of variables is always a class and not a list.
-                            current_tree_node.GetParent().Value.ExpressionType = ExpressionTypes.Class;
+                            current_tree_node.GetParent().Value.ExpressionType = ExpressionTypes.Assignment;
 
                             // Return current tree node to parent as there is nothing to add
                             current_tree_node = current_tree_node.GetParent();
@@ -158,7 +161,7 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                             current_tree_node.Value.ExpressionType = ExpressionTypes.Variable;
 
                             // the parent of variables is always a class and not a list
-                            current_tree_node.GetParent().Value.ExpressionType = ExpressionTypes.Class;
+                            current_tree_node.GetParent().Value.ExpressionType = ExpressionTypes.Assignment;
 
                             // Return current tree node to parent as there is nothing to add.
                             current_tree_node = current_tree_node.GetParent();
@@ -181,7 +184,7 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                             current_tree_node.Value.ExpressionType = ExpressionTypes.Variable;
 
                             // the parent of variables is always a class and not a list
-                            current_tree_node.GetParent().Value.ExpressionType = ExpressionTypes.Class;
+                            current_tree_node.GetParent().Value.ExpressionType = ExpressionTypes.Assignment;
 
                             // Return current tree node to parent as there is nothing to add.
                             current_tree_node = current_tree_node.GetParent();
@@ -230,7 +233,7 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
                                             current_tree_node = current_tree_node.GetParent();
 
                                             // parent tree node is always a class
-                                            current_tree_node.Value.ExpressionType = ExpressionTypes.Class;
+                                            current_tree_node.Value.ExpressionType = ExpressionTypes.Assignment;
 
                                             // Go to next token after "CLOSING_SQUARE_BRACES"
                                             current_token = current_token.Next;
@@ -291,7 +294,7 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
         {
             TreeNode<Expression> parent_node = current_node.GetParent();
 
-            if (current_node.Value.ExpressionType == ExpressionTypes.Class)
+            if (current_node.Value.ExpressionType == ExpressionTypes.Assignment)
             {
                 if (parent_node.Value.ExpressionValue == "primordial_forces")
                 {
@@ -316,7 +319,7 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
 
             if (current_node.Value.ExpressionType == ExpressionTypes.Variable)
             {
-                if (parent_node.Value.ExpressionType == ExpressionTypes.Class)
+                if (parent_node.Value.ExpressionType == ExpressionTypes.Assignment)
                 {
                     if (parent_node.GetParent().Value.ExpressionValue == "primordial_forces")
                     {
@@ -365,7 +368,7 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
 
             if (current_node.Value.ExpressionType == ExpressionTypes.String)
             {        
-                if (parent_node.Value.ExpressionType == ExpressionTypes.List)
+                if (parent_node.Value.ExpressionType == ExpressionTypes.Assignment)
                 {
                     if (parent_node.Value.ExpressionValue == "domains")
                     {
@@ -415,30 +418,5 @@ namespace ProceduralWorldGeneration.Input.ParserDefinition
 
             return null;
         }
-    }
-
-    class Expression
-    {
-        public ExpressionTypes ExpressionType { get; set; }
-        public string ExpressionValue { get; set; }
-
-
-        public override string ToString()
-        {
-            return ExpressionValue;
-        }
-    }
-
-
-    enum ExpressionTypes
-    {
-        Root,   
-        Class,
-        List,
-        Variable,
-        String,
-        Integer,
-        Range,
-        Boolean,
     }
 }

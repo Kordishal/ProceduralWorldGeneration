@@ -12,6 +12,8 @@ namespace ProceduralWorldGeneration.Parser.SyntaxTree
 
         public TreeNode<T> TreeRoot { get; set; }
 
+        public TreeNode<T> CurrentNode { get; set; }
+
 
         public Tree(T root_value) : base(root_value, null)
         {

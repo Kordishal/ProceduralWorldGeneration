@@ -1,8 +1,6 @@
 ﻿using ProceduralWorldGeneration.Elements;
 using ProceduralWorldGeneration.Generator;
 using ProceduralWorldGeneration.Input;
-using ProceduralWorldGeneration.Input.LexerDefinition;
-using ProceduralWorldGeneration.Input.ParserDefinition;
 using ProceduralWorldGeneration.MythObjects;
 using System;
 using System.Collections.Generic;

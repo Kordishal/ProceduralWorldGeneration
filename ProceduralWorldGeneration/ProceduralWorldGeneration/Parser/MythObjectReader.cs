@@ -1,4 +1,5 @@
-﻿using ProceduralWorldGeneration.Input.LexerDefinition;
+﻿using ProceduralWorldGeneration.Input;
+using ProceduralWorldGeneration.Parser.Tokens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,14 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProceduralWorldGeneration.Input
+namespace ProceduralWorldGeneration.Parser
 {
     class MythObjectReader : INotifyPropertyChanged
     {
         MythCreationLexer Lexer = new MythCreationLexer();
 
-        private LinkedList<Token> _tokens;
-        public LinkedList<Token> Tokens
+        private List<Token> _tokens;
+        public List<Token> Tokens
         {
             get
             {
@@ -38,16 +39,11 @@ namespace ProceduralWorldGeneration.Input
         public void readMythObjects()
         {
             List<string> file_names = readFileNames();
-            IEnumerable<Token> temp;
-            Tokens = new LinkedList<Token>();
+            Tokens = new List<Token>();
 
             foreach (string file in file_names)
             {
-                temp = Lexer.GetTokens(FileNames.DIRECTORY_PATH_MYTH_OBJECTS + file);
-                foreach (Token t in temp)
-                {
-                    Tokens.AddLast(t);
-                }
+                Tokens.AddRange(Lexer.GetTokens(FileNames.DIRECTORY_PATH_MYTH_OBJECTS + file));               
             }           
         }
 

@@ -25,7 +25,7 @@ namespace ProceduralWorldGeneration.StateMachine
             if (ReferenceEquals(this, other))
                 return true;
 
-            return InitialState.Equals(other.InitialState) && EndState.Equals(other.EndState));
+            return InitialState.Equals(other.InitialState) && EndState.Equals(other.EndState);
         }
 
         public override int GetHashCode()

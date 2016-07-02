@@ -3,6 +3,7 @@ using ProceduralWorldGeneration.Input;
 using ProceduralWorldGeneration.Input.ParserDefinition;
 using ProceduralWorldGeneration.MythObjects;
 using ProceduralWorldGeneration.Output;
+using ProceduralWorldGeneration.Parser;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,10 +16,6 @@ namespace ProceduralWorldGeneration.Generator
 {
     class MythCreator : INotifyPropertyChanged
     {
-
-        private MythObjectReader myth_object_reader;
-        private Parser myth_object_parser;
-
         private CreationMythState _creation_myth;
         public CreationMythState CreationMyths
         {
@@ -45,18 +42,9 @@ namespace ProceduralWorldGeneration.Generator
 
         public void InitializeMythCreation()
         {
-            myth_object_reader = null;
-            myth_object_reader = new MythObjectReader();
-            myth_object_reader.readMythObjects();
-            myth_object_parser = null;
-            myth_object_parser = new Parser();
-            myth_object_parser.generateExpressionTree(myth_object_reader.Tokens);
-            myth_object_parser.generateMythObjects();
-
             _creation_myth = null;
             _creation_myth = new CreationMythState();
 
-            _creation_myth.MythObjectData = myth_object_parser.MythObjects;
 
             _creation_myth.MythObjects = new ObservableCollection<BaseMythObject>();
             _creation_myth.ActionableMythObjects = new Queue<IActionTaker>();

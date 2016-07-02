@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Parser\Exceptions\ParserException.cs" />
+    <Compile Include="Parser\Expression.cs" />
+    <Compile Include="Parser\MythCreationParser.cs" />
+    <Compile Include="Parser\SyntaxTreeFiniteStateMachine.cs" />
     <Compile Include="StateMachine\FiniteStateMachine.cs" />
     <Compile Include="StateMachine\FiniteStateMachineException.cs" />
     <Compile Include="StateMachine\StateTransition.cs" />
@@ -84,9 +88,8 @@
     <Compile Include="Input\MainInputReader.cs" />
     <Compile Include="Parser\MythCreationLexer.cs" />
     <Compile Include="Input\MythObjectData.cs" />
-    <Compile Include="Input\MythObjectReader.cs" />
+    <Compile Include="Parser\MythObjectReader.cs" />
     <Compile Include="Input\ParserDefinition\Parser.cs" />
-    <Compile Include="Input\ParserDefinition\ParserException.cs" />
     <Compile Include="Parser\SyntaxTree\Tree.cs" />
     <Compile Include="Parser\SyntaxTree\TreeNode.cs" />
     <Compile Include="MainWindow.xaml.cs">
