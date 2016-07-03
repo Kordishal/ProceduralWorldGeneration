@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MythObjectAttributes\PlaneElement.cs" />
     <Compile Include="Parser\Exceptions\ParserException.cs" />
     <Compile Include="Parser\Expression.cs" />
     <Compile Include="Parser\MythCreationParser.cs" />

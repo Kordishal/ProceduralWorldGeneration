@@ -119,6 +119,23 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                                     temp_plane_size.MaxNeighbourPlanes = int.Parse(last_child_node.Value.ExpressionValue);
                                 }
                             }
+
+                            else if (typeof(PlaneElement) == temp_myth_object_attribute.GetType())
+                            {
+                                PlaneElement temp_plane_size = (PlaneElement)temp_myth_object_attribute;
+                                if (first_child_node.Value.ExpressionValue == "name")
+                                {
+                                    temp_plane_size.Name = cutStringSigns(last_child_node.Value.ExpressionValue);
+                                }
+                                else if (first_child_node.Value.ExpressionValue == "opposite")
+                                {
+                                    temp_plane_size.Opposite = (PlaneElement)searchAttributeTag(last_child_node.Value.ExpressionValue);
+                                }
+                                else if (first_child_node.Value.ExpressionValue == "primordial_force")
+                                {
+                                    temp_plane_size.PrimordialForce = (PrimordialForce)searchTag(last_child_node.Value.ExpressionValue);
+                                }
+                            }
                         }
                     }
                 }

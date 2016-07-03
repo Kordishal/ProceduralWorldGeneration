@@ -53,6 +53,43 @@ plane_sizes = {
 
 # The plane element is only set for elemental and ethereal planes. It determines what element is domaninat in this world. 
 plane_elements = {
-	"fire" "earth" "water" "air" "life" "death" "shadow" "light" "entropy" "harmony" "arcane" "neutral"
+	earth = {
+		name = "Earth"
+		opposite = air
+		primordial_force = order
+	}
+	water = {
+		name = "Water"
+		opposite = fire
+		primordial_force = order
+	}
+	fire = {
+		name = "Fire"
+		opposite = water
+		primordial_force = chaos
+	}
+	air = {
+		name = "Air"
+		opposite = air
+		primordial_force = chaos
+	}
+	light = {
+		name = "Light"
+		opposite = darkness
+		primordial_force = light
+	}
+	darkness = {
+		name = "Darkness"
+		opposite = light
+		primordial_force = darkness
+	}
+	electricity = {
+		name = "Electricity"
+		primordial_force = chaos
+	}
+	sound = {
+		name = "Sound"
+		primordial_force = order
+	}
 }
 
