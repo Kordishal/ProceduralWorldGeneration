@@ -41,12 +41,27 @@ namespace ProceduralWorldGeneration.Parser.SyntaxTree
 
         public TreeNode<T> GetLastChild()
         {
-            return _children.Last.Value;
+            if (_children.Last != null)
+            {
+                return _children.Last.Value;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public TreeNode<T> GetFirstChild()
         {
-            return _children.First.Value;
+            if (_children.First != null)
+            {
+                return _children.First.Value;
+            }
+            else
+            {
+                return null;
+            }
+            
         }
 
         public LinkedList<TreeNode<T>> GetChildren()
