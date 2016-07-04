@@ -2,6 +2,8 @@
 using ProceduralWorldGeneration.Input;
 using ProceduralWorldGeneration.MythObjects;
 using ProceduralWorldGeneration.Output;
+using ProceduralWorldGeneration.Parser;
+using ProceduralWorldGeneration.Parser.SyntaxTree;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,6 +16,39 @@ namespace ProceduralWorldGeneration.DataStructure
 {
     class CreationMythState : INotifyPropertyChanged
     {
+        private string _creation_string;
+        public string CreationString
+        {
+            get
+            {
+                return _creation_string;
+            }
+            set
+            {
+                if (_creation_string != value)
+                {
+                    _creation_string = value;
+                    this.NotifyPropertyChanged("CreationString");
+                }
+            }
+        }
+
+        private Tree<string> _creation_tree;
+        public Tree<string> CreationTree
+        {
+            get
+            {
+                return _creation_tree;
+            }
+            set
+            {
+                if (_creation_tree != value)
+                {
+                    _creation_tree = value;
+                    this.NotifyPropertyChanged("CreationTree");
+                }
+            }
+        }
 
         public CreationMythLogger Logger { get; set; }
 

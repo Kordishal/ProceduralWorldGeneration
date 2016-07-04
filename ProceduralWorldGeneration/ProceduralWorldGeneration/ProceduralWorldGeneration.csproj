@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Grammar\MythCreationGrammar.cs" />
+    <Compile Include="Grammar\ProductionRule.cs" />
     <Compile Include="MythObjectAttributes\PlaneElement.cs" />
     <Compile Include="Parser\Exceptions\ParserException.cs" />
     <Compile Include="Parser\Expression.cs" />
@@ -114,7 +116,6 @@
     <Compile Include="MythObjects\IActionTaker.cs" />
     <Compile Include="MythObjects\Plane.cs" />
     <Compile Include="MythObjects\PrimordialForce.cs" />
-    <Compile Include="MythObjects\Species.cs" />
     <Compile Include="Output\CreationMythLogger.cs" />
     <Compile Include="Output\LexerLog.cs" />
     <Compile Include="Output\ParserLog.cs" />

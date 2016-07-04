@@ -52,8 +52,10 @@ namespace ProceduralWorldGeneration
         {
             MainMythCreationClass.InitializeMythCreation();
             ElementListView.DataContext = MainMythCreationClass.CreationMyths;
-            ElementListView.ItemsSource = MainMythCreationClass.CreationMyths.MythObjects;
+            ElementListView.ItemsSource = MainMythCreationClass.CreationMyths.MythObjects;       
             MainMythCreationClass.creationLoop();
+            CreationMythTreeView.DataContext = MainMythCreationClass.CreationMyths;
+            CreationMythTreeView.ItemsSource = MainMythCreationClass.CreationMyths.CreationTree.GetChildren();
         }
 
         private void ElementListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -66,7 +68,6 @@ namespace ProceduralWorldGeneration
             if (e.AddedItems[0].GetType() == typeof(BaseMythObject))
             {
                 BaseMythObject myth_object = (BaseMythObject)e.AddedItems[0];
-                NameDisplayTextBlock.Text = myth_object.Name;
             }
              
         }

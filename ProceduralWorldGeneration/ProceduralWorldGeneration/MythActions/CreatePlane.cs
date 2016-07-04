@@ -92,7 +92,7 @@ namespace ProceduralWorldGeneration.MythActions
         {
             state.MythObjects.Add(_plane);
             state.Planes.Add(_plane);
-            state.Logger.updateLog(_plane, "Created");
+            //state.Logger.updateLog(_plane, "Created");
         }
 
     }

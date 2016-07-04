@@ -9,6 +9,7 @@ namespace ProceduralWorldGeneration.Parser.SyntaxTree
     class TreeNode<T>
     {
         public delegate void TreeVisitor(TreeNode<T> node);
+        public delegate bool SearchPredicate(TreeNode<T> current_node, string value);
 
         public T Value { get; set; }
         public int Depth { get; set; }
@@ -77,6 +78,34 @@ namespace ProceduralWorldGeneration.Parser.SyntaxTree
             {
                 node.traverseTree(visitor);
             }
+        }
+
+        public TreeNode<T> searchNode(SearchPredicate search_predicate, string value)
+        {
+            if (search_predicate(this, value))
+            {
+                return this;
+            }
+            else
+            {
+
+                TreeNode<T> temp = null;
+                foreach (TreeNode<T> node in _children)
+                {
+                    temp = node.searchNode(search_predicate, value);                   
+                }
+
+                if (temp != null)
+                {
+                    return temp;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            
+
         }
 
 

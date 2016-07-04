@@ -2,21 +2,35 @@
 using ProceduralWorldGeneration.Parser.Tokens;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Parser
 {
-    class MythCreationParser
+    class MythCreationParser : INotifyPropertyChanged
     {
 
         private MythObjectReader reader { get; set; }
         private List<Token> tokens { get; set; }
 
-        public SyntaxTreeFiniteStateMachine<State> SyntaxTreeFSM { get; private set; }
-
-
+        private SyntaxTreeFiniteStateMachine<State> _syntax_tree_fsm;
+        public SyntaxTreeFiniteStateMachine<State> SyntaxTreeFSM
+        {
+            get
+            {
+                return _syntax_tree_fsm;
+            }
+            set
+            {
+                if (_syntax_tree_fsm != value)
+                {
+                    _syntax_tree_fsm = value;
+                    this.NotifyPropertyChanged("SyntaxTreeFSM");
+                }
+            }
+        }
 
         public MythCreationParser()
         {
@@ -224,6 +238,14 @@ namespace ProceduralWorldGeneration.Parser
                         break;
                 }
             }
+        }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
     }
 }

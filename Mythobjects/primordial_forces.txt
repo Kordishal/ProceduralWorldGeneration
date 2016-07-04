@@ -12,7 +12,7 @@ primordial_forces = {
 
 	darkness = {
 		name = "Darkness"
-		opposing = void
+		opposing = light
 		spawn_weight = 20
 	}
 

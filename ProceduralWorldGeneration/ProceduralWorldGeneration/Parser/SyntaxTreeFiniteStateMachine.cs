@@ -3,18 +3,34 @@ using ProceduralWorldGeneration.Parser.Tokens;
 using ProceduralWorldGeneration.StateMachine;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Parser
 {
-    class SyntaxTreeFiniteStateMachine<S> : FiniteStateMachine<S>
+    class SyntaxTreeFiniteStateMachine<S> : FiniteStateMachine<S>, INotifyPropertyChanged
     {
 
         public delegate void StateHandler(Tree<Expression> current_tree_node, Token token);
 
-        public Tree<Expression> SyntaxTree { get; set; }
+        private Tree<Expression> _syntax_tree;
+        public Tree<Expression> SyntaxTree
+        {
+            get
+            {
+                return _syntax_tree;
+            }
+            set
+            {
+                if (_syntax_tree != value)
+                {
+                    _syntax_tree = value;
+                    this.NotifyPropertyChanged("SyntaxTreeFSM");
+                }
+            }
+        }
 
         public SyntaxTreeFiniteStateMachine()
         {
@@ -57,6 +73,13 @@ namespace ProceduralWorldGeneration.Parser
             }
 
             TransitionTable.Add(temp_transition, call);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
     }
 
