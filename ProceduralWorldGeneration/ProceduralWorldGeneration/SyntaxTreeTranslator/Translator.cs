@@ -38,7 +38,7 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                 return;
             }
 
-            TreeNode<Expression> parent_node = current_node.GetParent();
+            TreeNode<Expression> parent_node = current_node.Parent;
             TreeNode<Expression> first_child_node = current_node.GetFirstChild();
             TreeNode<Expression> last_child_node = current_node.GetLastChild();
 

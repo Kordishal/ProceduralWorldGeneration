@@ -142,7 +142,7 @@ namespace ProceduralWorldGeneration.Parser
             syntax_tree.CurrentNode.AddChild(expression);
 
             // return to the last assignment:
-            syntax_tree.CurrentNode = syntax_tree.CurrentNode.GetParent();
+            syntax_tree.CurrentNode = syntax_tree.CurrentNode.Parent;
         }
 
         private void createStringAssignmentExpression(Tree<Expression> syntax_tree, Token token)
@@ -155,7 +155,7 @@ namespace ProceduralWorldGeneration.Parser
             syntax_tree.CurrentNode.AddChild(expression);
 
             // return to the last assignment:
-            syntax_tree.CurrentNode = syntax_tree.CurrentNode.GetParent();
+            syntax_tree.CurrentNode = syntax_tree.CurrentNode.Parent;
         }
 
         private void createIntegerAssignmentExpression(Tree<Expression> syntax_tree, Token token)
@@ -168,7 +168,7 @@ namespace ProceduralWorldGeneration.Parser
             syntax_tree.CurrentNode.AddChild(expression);
 
             // return to the last assignment:
-            syntax_tree.CurrentNode = syntax_tree.CurrentNode.GetParent();
+            syntax_tree.CurrentNode = syntax_tree.CurrentNode.Parent;
         }
 
         private void createBooleanAssignmentExpression(Tree<Expression> syntax_tree, Token token)
@@ -181,7 +181,7 @@ namespace ProceduralWorldGeneration.Parser
             syntax_tree.CurrentNode.AddChild(expression);
 
             // return to the last assignment:
-            syntax_tree.CurrentNode = syntax_tree.CurrentNode.GetParent();
+            syntax_tree.CurrentNode = syntax_tree.CurrentNode.Parent;
         }
 
         private void createStringListAssignmentExpression(Tree<Expression> syntax_tree, Token token)
@@ -196,7 +196,7 @@ namespace ProceduralWorldGeneration.Parser
 
         private void returnToLastAssignment(Tree<Expression> syntax_tree, Token token)
         {
-            syntax_tree.CurrentNode = syntax_tree.CurrentNode.GetParent();
+            syntax_tree.CurrentNode = syntax_tree.CurrentNode.Parent;
         }
 
 

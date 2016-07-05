@@ -1,5 +1,4 @@
-﻿using ProceduralWorldGeneration.Elements;
-using ProceduralWorldGeneration.Generator;
+﻿using ProceduralWorldGeneration.Generator;
 using ProceduralWorldGeneration.Input;
 using ProceduralWorldGeneration.MythObjects;
 using System;
@@ -44,9 +43,6 @@ namespace ProceduralWorldGeneration
             RandomSeedTextBox.DataContext = GenerationConfigurations;
         }
 
-        private void WorldGenerationButton_Click(object sender, RoutedEventArgs e)
-        {
-        }
 
         private void MythCreationButton_Click(object sender, RoutedEventArgs e)
         {
@@ -54,8 +50,6 @@ namespace ProceduralWorldGeneration
             ElementListView.DataContext = MainMythCreationClass.CreationMyths;
             ElementListView.ItemsSource = MainMythCreationClass.CreationMyths.MythObjects;       
             MainMythCreationClass.creationLoop();
-            CreationMythTreeView.DataContext = MainMythCreationClass.CreationMyths;
-            CreationMythTreeView.ItemsSource = MainMythCreationClass.CreationMyths.CreationTree.GetChildren();
         }
 
         private void ElementListView_SelectionChanged(object sender, SelectionChangedEventArgs e)

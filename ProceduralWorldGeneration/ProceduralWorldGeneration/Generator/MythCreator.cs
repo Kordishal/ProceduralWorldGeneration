@@ -1,7 +1,6 @@
 ﻿using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.Grammar;
 using ProceduralWorldGeneration.Input;
-using ProceduralWorldGeneration.Input.ParserDefinition;
 using ProceduralWorldGeneration.MythObjects;
 using ProceduralWorldGeneration.Output;
 using ProceduralWorldGeneration.Parser;
@@ -64,6 +63,8 @@ namespace ProceduralWorldGeneration.Generator
 
             _creation_myth.PrimordialForces = new List<PrimordialForce>();
             _creation_myth.Planes = new List<Plane>();
+
+            _creation_myth.CreationString = "";
         }
 
 
@@ -79,9 +80,10 @@ namespace ProceduralWorldGeneration.Generator
 
             generateCreationTree();
 
-            // first the primordial powers are created. This strongly shapes what type of universe will spawn.
-            createPrimordialForces();
-            /*
+            _creation_myth.PrimordialForces.Add(_creation_myth.MythObjectData.PrimordialForces[0]);
+            _creation_myth.ActionableMythObjects.Enqueue(_creation_myth.MythObjectData.PrimordialForces[0]);
+            _creation_myth.MythObjects.Add(_creation_myth.PrimordialForces[0]);
+
             // each tick is one year. Each myth object that can take actions can take one action per year at most.
             while (_current_year < _end_year)
             {
@@ -109,8 +111,6 @@ namespace ProceduralWorldGeneration.Generator
             _creation_myth.Logger.updateLog("END OF CREATION");
             _creation_myth.Logger.Write();
             // END OF CREATION
-
-            */
         }
 
         private string createCreationString()
@@ -121,80 +121,6 @@ namespace ProceduralWorldGeneration.Generator
 
             return creation_grammar.Result; 
         }
-
-
-        private void createPrimordialForces()
-        {
-            List<PrimordialForce> all_primordial_forces = _creation_myth.MythObjectData.PrimordialForces;
-            int count = all_primordial_forces.Count;
-            int total_weight = 0;
-
-            // accumulate total weight
-            foreach (PrimordialForce primordial_force in all_primordial_forces)
-            {
-                total_weight += primordial_force.SpawnWeight;
-            }
-
-            // pick first primordial power. There needs to be always at least one as otherwise nothing will be created.
-            int chance = ConfigValues.RandomGenerator.Next(total_weight);
-            int current_weight = 0;
-            foreach (PrimordialForce primordial_force in all_primordial_forces)
-            {
-                current_weight += primordial_force.SpawnWeight;
-                if (chance < current_weight)
-                {
-                    _creation_myth.PrimordialForces.Add(primordial_force);
-                    break;
-                }
-            }
-
-            // remove primordial force from list to not spawn it twice
-            all_primordial_forces.Remove(_creation_myth.PrimordialForces[0]);
-            count = count - 1;
-
-            // chance for a second primordial force.
-            chance = ConfigValues.RandomGenerator.Next(100);
-            
-            // 50% chance of an opposing force appearing.
-            if (chance < 50 && _creation_myth.PrimordialForces[0].Opposing != null)
-            {
-                _creation_myth.PrimordialForces.Add(opposingForce(_creation_myth.PrimordialForces[0]));
-            }
-            // 20% chance of any other force appearing.
-            else if (chance < 70)
-            {
-                _creation_myth.PrimordialForces.Add(all_primordial_forces[ConfigValues.RandomGenerator.Next(count)]);
-                all_primordial_forces.Remove(_creation_myth.PrimordialForces[1]);
-                count = count - 1;
-                // 2% chance of a third force appearing
-                if (chance < 52)
-                {
-                    _creation_myth.PrimordialForces.Add(all_primordial_forces[ConfigValues.RandomGenerator.Next(count)]);
-                }
-            }
-
-            // Add them to the complete list for viewing
-            foreach (PrimordialForce primordial_force in _creation_myth.PrimordialForces)
-            {
-                _creation_myth.MythObjects.Add(primordial_force);
-                _creation_myth.ActionableMythObjects.Enqueue(primordial_force);
-                //_creation_myth.Logger.updateLog(primordial_force, "CREATED");
-            }
-
-        }
-
-        private PrimordialForce opposingForce(PrimordialForce primordial_force)
-        {
-            foreach (PrimordialForce current_primordial_force in _creation_myth.MythObjectData.PrimordialForces)
-            {
-                if (current_primordial_force.Opposing == primordial_force)
-                {
-                    return current_primordial_force;
-                }
-            }
-            return null;
-        }
-
 
         private void generateCreationTree()
         {

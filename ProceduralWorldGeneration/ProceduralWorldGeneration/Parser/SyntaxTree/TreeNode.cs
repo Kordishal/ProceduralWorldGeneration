@@ -1,45 +1,142 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Parser.SyntaxTree
 {
-    class TreeNode<T>
+    class TreeNode<T> : INotifyPropertyChanged
     {
+        /// <summary>
+        /// This delegate is applied to every tree node in the tree.
+        /// </summary>
+        /// <param name="node">Current Node</param>
         public delegate void TreeVisitor(TreeNode<T> node);
-        public delegate bool SearchPredicate(TreeNode<T> current_node, string value);
 
-        public T Value { get; set; }
-        public int Depth { get; set; }
+        /// <summary>
+        /// This predicate is used to compare the value of each node with the value.
+        /// </summary>
+        /// <param name="current_node">Current Node</param>
+        /// <param name="value">Value to compare the node value with</param>
+        /// <returns></returns>
+        public delegate bool SearchPredicate(TreeNode<T> current_node, T value);
+
+        private T _value;
+        /// <summary>
+        /// The Value of the node.
+        /// </summary>
+        public T Value
+        {
+            get
+            {
+                return _value;
+            }
+            set
+            {
+                if (_value != null)
+                {
+                    if (_value.Equals(value))
+                    {
+                        _value = value;
+                        this.NotifyPropertyChanged("Value");
+                    }               
+                }
+                else
+                {
+                    _value = value;
+                    this.NotifyPropertyChanged("Value");
+                }
+            }
+        }
+
+        private int _depth;
+        /// <summary>
+        /// Depth of this node in the tree.
+        /// </summary>
+        public int Depth
+        {
+            get
+            {
+                return _depth;
+            }
+            set
+            {
+                if (_depth != value)
+                {
+                    _depth = value;
+                    this.NotifyPropertyChanged("Depth");
+                }
+            }
+        }
 
         private TreeNode<T> _parent;
+        /// <summary>
+        /// Parent of this node.
+        /// </summary>
+        public TreeNode<T> Parent
+        {
+            get
+            {
+                return _parent;
+            }
+            set
+            {
+                if (_parent != value)
+                {
+                    _parent = value;
+                    this.NotifyPropertyChanged("Parent");
+                }
+            }
+        }
+
         private LinkedList<TreeNode<T>> _children;
+        /// <summary>
+        /// Children of this node.
+        /// </summary>
+        public LinkedList<TreeNode<T>> Children
+        {
+            get
+            {
+                return _children;
+            }
+            set
+            {
+                if (_children != value)
+                {
+                    _children = value;
+                    this.NotifyPropertyChanged("Children");
+                }
+            }
+        }
 
         public TreeNode(T value, TreeNode<T> parent)
         {
             _parent = parent;
             this.Value = value;
             if (_parent == null)
-                Depth = 0;
+                _depth = 0;
             else
-                Depth = _parent.Depth + 1;
+                _depth = _parent.Depth + 1;
 
             _children = new LinkedList<TreeNode<T>>();
         }
 
-
-        public TreeNode<T> GetParent()
-        {
-            return _parent;
-        }
-
+        /// <summary>
+        /// Adds a new last child.
+        /// </summary>
+        /// <param name="value">Value of this child</param>
         public void AddChild(T value)
         {
             _children.AddLast(new TreeNode<T>(value, this));
         }
 
+
+        /// <summary>
+        /// Gets the last child of this node.
+        /// </summary>
+        /// <returns>Last Child</returns>
         public TreeNode<T> GetLastChild()
         {
             if (_children.Last != null)
@@ -52,6 +149,10 @@ namespace ProceduralWorldGeneration.Parser.SyntaxTree
             }
         }
 
+        /// <summary>
+        /// Gets the first child of this node.
+        /// </summary>
+        /// <returns>First Child</returns>
         public TreeNode<T> GetFirstChild()
         {
             if (_children.First != null)
@@ -65,11 +166,6 @@ namespace ProceduralWorldGeneration.Parser.SyntaxTree
             
         }
 
-        public LinkedList<TreeNode<T>> GetChildren()
-        {
-            return _children;
-        }
-
         public void traverseTree(TreeVisitor visitor)
         {
             visitor(this);
@@ -80,7 +176,7 @@ namespace ProceduralWorldGeneration.Parser.SyntaxTree
             }
         }
 
-        public TreeNode<T> searchNode(SearchPredicate search_predicate, string value)
+        public TreeNode<T> searchNode(SearchPredicate search_predicate, T value)
         {
             if (search_predicate(this, value))
             {
@@ -112,6 +208,13 @@ namespace ProceduralWorldGeneration.Parser.SyntaxTree
         public override string ToString()
         {
             return Value.ToString() + " : " + Depth.ToString();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
     }

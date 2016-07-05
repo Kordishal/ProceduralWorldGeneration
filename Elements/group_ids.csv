@@ -1,8 +1,0 @@
-GROUP_ID;GROUP_NAME;FILE_NAME;SUBGROUP_1;SUBGROUP_2;SUBGROUP_3;SUBGROUP_4;SUBGROUP_5;SUBGROUP_6;SUBGROUP_7;SUBGROUP_8;SUBGROUP_9;SUBGROUP_10
-1;SUPER_REGIONS;super_regions.csv;2;7;-;-;-;-;-;-;-;-
-2;REGIONS;regions.csv;3;7;-;-;-;-;-;-;-;-
-3;AREAS;areas.csv;4;7;-;-;-;-;-;-;-;-
-4;PLACES;places.csv;5;6;-;-;-;-;-;-;-;-
-5;PLANTS;plants.csv;-;-;-;-;-;-;-;-;-;-
-6;VEHICLES;vehicles.csv;-;-;-;-;-;-;-;-;-;-
-7;BODIES_OF_WATER;body_of_water.csv;-;-;-;-;-;-;-;-;-;-

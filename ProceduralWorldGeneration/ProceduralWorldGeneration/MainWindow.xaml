@@ -4,7 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProceduralWorldGeneration"
-        xmlns:Generator="clr-namespace:ProceduralWorldGeneration.Generator" xmlns:DataStructure="clr-namespace:ProceduralWorldGeneration.DataStructure" xmlns:Input="clr-namespace:ProceduralWorldGeneration.Input" xmlns:Parser="clr-namespace:ProceduralWorldGeneration.Parser" x:Class="ProceduralWorldGeneration.MainWindow"
+        xmlns:Generator="clr-namespace:ProceduralWorldGeneration.Generator" 
+        xmlns:DataStructure="clr-namespace:ProceduralWorldGeneration.DataStructure" 
+        xmlns:Input="clr-namespace:ProceduralWorldGeneration.Input" 
+        xmlns:Parser="clr-namespace:ProceduralWorldGeneration.Parser" 
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Name="MainWindow1" 
+        x:Class="ProceduralWorldGeneration.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="800">
     <Grid Margin="0,0,2,0">
@@ -16,12 +21,11 @@
             <ColumnDefinition Width="269*"/>
             <ColumnDefinition Width="227*"/>
         </Grid.ColumnDefinitions>
+        <Button x:Name="MythCreationButton" Content="Generate Myth" Margin="10,122,0,0" VerticalAlignment="Top" Height="19" Click="MythCreationButton_Click" HorizontalAlignment="Left" Width="116"/>
 
-        <Button x:Name="WorldGenerationButton" Content="Generate World" Margin="0,10,24,0" Grid.Column="2" Click="WorldGenerationButton_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="116"/>
-        <Button x:Name="MythCreationButton" Content="Generate Myth" Grid.Column="2" Margin="0,35,24,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="116" Height="19" Click="MythCreationButton_Click"/>
+        <Label x:Name="RandomSeedLabel" Content="Seed:" Margin="0,10,237,0" HorizontalAlignment="Right" Width="47" Height="26" VerticalAlignment="Top"/>
+        <TextBox x:Name="RandomSeedTextBox" Margin="0,10,107,0" TextWrapping="Wrap" Text="{Binding RandomSeed}" SpellCheck.IsEnabled="True" Height="22" VerticalAlignment="Top" HorizontalAlignment="Right" Width="130"/>
 
-        <Label x:Name="RandomSeedLabel" Content="Seed:" Margin="0,86,147,0" Grid.Column="2" HorizontalAlignment="Right" Width="47" Height="26" VerticalAlignment="Top"/>
-        <TextBox x:Name="RandomSeedTextBox" Margin="0,90,10,0" TextWrapping="Wrap" Text="{Binding RandomSeed}" SpellCheck.IsEnabled="True" Grid.Column="2" Height="22" VerticalAlignment="Top" HorizontalAlignment="Right" Width="130"/>
         <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="503" Margin="10,156,0,0" VerticalAlignment="Top" Width="770" Grid.ColumnSpan="3">
             <TabItem Header="TabItem">
                 <Grid Background="#FFE5E5E5">
@@ -38,18 +42,6 @@
                 </Grid>
             </TabItem>
             <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5">
-                    <TreeView x:Name="CreationMythTreeView" HorizontalAlignment="Left" Height="455" Margin="10,10,0,0" VerticalAlignment="Top" Width="283" ItemsSource="{Binding CreationTree.TreeRoot}">
-                        <TreeView.DataContext>
-                            <DataStructure:CreationMythState/>
-                        </TreeView.DataContext>
-                        <TreeView.ItemTemplate>
-                            <HierarchicalDataTemplate>
-                                <TextBlock Text="{Binding CreationTree.Value}"/>
-                            </HierarchicalDataTemplate>
-                        </TreeView.ItemTemplate>
-                    </TreeView>
-                </Grid>
             </TabItem>
         </TabControl>
     </Grid>
