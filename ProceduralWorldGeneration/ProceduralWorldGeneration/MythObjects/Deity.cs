@@ -37,7 +37,7 @@ namespace ProceduralWorldGeneration.MythObjects
         {
         }
 
-        public override void addPossibleActions()
+        public override void buildExistingActionsTree()
         {
             throw new NotImplementedException();
         }

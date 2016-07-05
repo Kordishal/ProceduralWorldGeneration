@@ -25,7 +25,7 @@ namespace ProceduralWorldGeneration.DataStructure
 
         public List<PlaneType> PlaneTypes = new List<PlaneType>();
         public List<PlaneSize> PlaneSizes = new List<PlaneSize>();
-        public List<string> PlaneElements = new List<string>();
+        public List<PlaneElement> PlaneElements = new List<PlaneElement>();
 
 
         public MythObjectData()

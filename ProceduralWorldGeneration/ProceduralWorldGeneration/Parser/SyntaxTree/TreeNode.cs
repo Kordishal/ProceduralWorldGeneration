@@ -166,6 +166,10 @@ namespace ProceduralWorldGeneration.Parser.SyntaxTree
             
         }
 
+        /// <summary>
+        /// Traverse the tree and call an function on each node. This search is depth first.
+        /// </summary>
+        /// <param name="visitor">Delegate called on each node</param>
         public void traverseTree(TreeVisitor visitor)
         {
             visitor(this);

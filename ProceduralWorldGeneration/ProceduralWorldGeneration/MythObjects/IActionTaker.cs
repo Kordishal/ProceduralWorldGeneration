@@ -13,7 +13,7 @@ namespace ProceduralWorldGeneration.MythObjects
     interface IActionTaker
     {
 
-        List<MythAction> PossibleActions { get; }
+        List<MythAction> ValidActions { get; }
 
         MythAction CurrentAction { get; set; }
 
@@ -22,9 +22,10 @@ namespace ProceduralWorldGeneration.MythObjects
         /// </summary>
         void takeAction(CreationMythState creation_myth, int current_year);
 
-        void addPossibleActions();
+        void buildExistingActionsTree();
 
         void determineNextAction(CreationMythState creation_myth);
 
+        void determineNextGoal(CreationMythState creation_myth);
     }
 }

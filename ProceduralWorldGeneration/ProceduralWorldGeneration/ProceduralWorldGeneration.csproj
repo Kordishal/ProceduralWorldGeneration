@@ -57,6 +57,40 @@
     </ApplicationDefinition>
     <Compile Include="Grammar\MythCreationGrammar.cs" />
     <Compile Include="Grammar\ProductionRule.cs" />
+    <Compile Include="MythActions\ActionGoal.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\AddPlaneToUniverse.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\ConnectPlane.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConnectWithCoreWorld.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConnectWithInfinitePlane.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConnectWithMaterialWorld.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConnectWithNoPlane.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConnectWithRandomPlane.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\CreatePlaneCreationState.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\DeterminePlaneElement.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\DeterminePlaneSize.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\DeterminePlaneType.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlane.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetAirElement.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetDarknessElement.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetEarthElement.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetFireElement.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetLightElement.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetNoElement.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetRandomElement.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetWaterElement.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetInfiniteSize.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetLargeSize.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetMediumSize.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetNoSize.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetPocketSize.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetRandomSize.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetSmallSize.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\NamePlane.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\SetCreator.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneTypeSetters\SetElementalType.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneTypeSetters\SetEtherealType.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneTypeSetters\SetMaterialType.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneTypeSetters\SetRandomType.cs" />
     <Compile Include="MythObjectAttributes\PlaneElement.cs" />
     <Compile Include="Parser\Exceptions\ParserException.cs" />
     <Compile Include="Parser\Expression.cs" />
@@ -94,9 +128,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MythActions\CreateCorePlane.cs" />
-    <Compile Include="MythActions\CreatePlane.cs" />
-    <Compile Include="MythActions\GatherPower.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\CreatePlane.cs" />
     <Compile Include="MythActions\MythAction.cs" />
     <Compile Include="MythActions\Wait.cs" />
     <Compile Include="MythObjectAttributes\MythObjectAttribute.cs" />

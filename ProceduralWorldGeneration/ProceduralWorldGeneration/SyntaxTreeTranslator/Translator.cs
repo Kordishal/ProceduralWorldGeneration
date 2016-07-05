@@ -61,7 +61,13 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                     PlaneType temp_plane_type = new PlaneType(first_child_node.Value.ExpressionValue);
                     data.PlaneTypes.Add(temp_plane_type);
                     data.MythObjectAttributes.Add(temp_plane_type);
-                }            
+                }
+                else if (parent_node.GetFirstChild().Value.ExpressionValue == "plane_elements")
+                {
+                    PlaneElement temp_plane_elements = new PlaneElement(first_child_node.Value.ExpressionValue);
+                    data.PlaneElements.Add(temp_plane_elements);
+                    data.MythObjectAttributes.Add(temp_plane_elements);
+                }
                 else if (parent_node.GetFirstChild().Value.ExpressionType == ExpressionTypes.Variable)
                 {
                     BaseMythObject temp_myth_object = searchTag(parent_node.GetFirstChild().Value.ExpressionValue);
@@ -104,7 +110,7 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                                 }
                                 else if (first_child_node.Value.ExpressionValue == "is_attached_to")
                                 {
-                                    temp_plane_type.isAttachedTo = (PlaneType)searchAttributeTag(last_child_node.Value.ExpressionValue);
+                                    temp_plane_type.isAttachedTo = last_child_node.Value.ExpressionValue;
                                 }
                             }
                             else if (typeof(PlaneSize) == temp_myth_object_attribute.GetType())
@@ -129,11 +135,7 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                                 }
                                 else if (first_child_node.Value.ExpressionValue == "opposite")
                                 {
-                                    temp_plane_size.Opposite = (PlaneElement)searchAttributeTag(last_child_node.Value.ExpressionValue);
-                                }
-                                else if (first_child_node.Value.ExpressionValue == "primordial_force")
-                                {
-                                    temp_plane_size.PrimordialForce = (PrimordialForce)searchTag(last_child_node.Value.ExpressionValue);
+                                    temp_plane_size.Opposite = last_child_node.Value.ExpressionValue;
                                 }
                             }
                         }
@@ -145,10 +147,6 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                 if (parent_node.GetFirstChild().Value.ExpressionValue == "domains")
                 {
                     data.Domains.Add(cutStringSigns(current_node.Value.ExpressionValue));
-                }
-                else if (parent_node.GetFirstChild().Value.ExpressionValue == "plane_elements")
-                {
-                    data.PlaneElements.Add(cutStringSigns(current_node.Value.ExpressionValue));
                 }
             }
         }

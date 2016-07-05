@@ -9,8 +9,8 @@ namespace ProceduralWorldGeneration.MythObjectAttributes
 {
     class PlaneElement : MythObjectAttribute
     {
-        private PlaneElement _opposite;
-        public PlaneElement Opposite
+        private string _opposite;
+        public string Opposite
         {
             get
             {
@@ -25,24 +25,6 @@ namespace ProceduralWorldGeneration.MythObjectAttributes
                 }
             }
         }
-
-        private PrimordialForce _primordial_force;
-        public PrimordialForce PrimordialForce
-        {
-            get
-            {
-                return _primordial_force;
-            }
-            set
-            {
-                if (_primordial_force != value)
-                {
-                    _primordial_force = value;
-                    base.NotifyPropertyChanged("PrimordialForce");
-                }
-            }
-        }
-
 
         public PlaneElement(string tag = "default") : base(tag) { }
     }

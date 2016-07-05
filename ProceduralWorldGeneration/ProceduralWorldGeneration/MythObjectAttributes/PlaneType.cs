@@ -26,8 +26,8 @@ namespace ProceduralWorldGeneration.MythObjectAttributes
             }
         }
 
-        private PlaneType _is_attached_to;
-        public PlaneType isAttachedTo
+        private string _is_attached_to;
+        public string isAttachedTo
         {
             get
             {

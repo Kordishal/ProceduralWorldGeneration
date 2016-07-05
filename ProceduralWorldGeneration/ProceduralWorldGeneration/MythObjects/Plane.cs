@@ -44,8 +44,8 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        private string _plane_element;
-        public string PlaneElement
+        private PlaneElement _plane_element;
+        public PlaneElement PlaneElement
         {
             get
             {
@@ -95,37 +95,10 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        // each plane connects always at least with one other plane
-        int _base_connection_chance = 100;
-
-        public void connectPlane(List<Plane> existing_planes)
+        public void connectPlane(Plane connect_plane)
         {
-            int current_connection_chance = _base_connection_chance;
-
-            foreach (Plane p in existing_planes)
-            {
-                if (_neighbour_planes.Count >= _plane_size.MaxNeighbourPlanes)
-                {
-                    return;
-                }
-                // ethereal planes are only connected to a single material world.
-                else if (this.PlaneType.isAttachedTo != null)
-                {
-                    if (p.PlaneType == PlaneType.isAttachedTo && p.PlaneSize.MaxNeighbourPlanes > p._neighbour_planes.Count)
-                    {
-                        NeighbourPlanes.Add(p);
-                        p.NeighbourPlanes.Add(this);
-                        return;
-                    }
-                }
-                // the chance to add an additional plane && whether the current plane can actually accept a new neighbour
-                else if (current_connection_chance >= ConfigValues.RandomGenerator.Next(_base_connection_chance) && p.PlaneSize.MaxNeighbourPlanes < p._neighbour_planes.Count)
-                {
-                    NeighbourPlanes.Add(p);
-                    p.NeighbourPlanes.Add(this);
-                    current_connection_chance = current_connection_chance / 2;
-                }
-            }
+            _neighbour_planes.Add(connect_plane);
+            connect_plane.NeighbourPlanes.Add(this);           
         }
 
         public Plane() : base()

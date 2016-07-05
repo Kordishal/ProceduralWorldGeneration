@@ -15,6 +15,19 @@ namespace ProceduralWorldGeneration.MythActions
             return 10;
         }
 
+        protected bool _is_primitve;
+        public bool isPrimitive
+        {
+            get
+            {
+                return _is_primitve;
+            }
+            set
+            {
+                _is_primitve = value;
+            }
+        }
+
         protected int _cooldown = 0;
         protected int _passed_cooldown;
         /// <summary>
@@ -40,10 +53,13 @@ namespace ProceduralWorldGeneration.MythActions
         {
             _passed_cooldown = _passed_cooldown + 1;
         }
-
         virtual public void resetCooldown()
         {
             _passed_cooldown = 0;
+        }
+        virtual public bool onCooldown()
+        {
+            return getCurrentCooldown() > 0;
         }
 
         protected int _duration = 1;
@@ -71,7 +87,6 @@ namespace ProceduralWorldGeneration.MythActions
         {
             _passed_duration += 1;
         }
-
         virtual public void resetDuration()
         {
             _passed_duration = 0;
@@ -81,11 +96,16 @@ namespace ProceduralWorldGeneration.MythActions
 
         abstract public void Effect(CreationMythState state, BaseMythObject taker);
 
+        protected ActionGoal _reachable_goal;
+        public ActionGoal ReachableGoal
+        {
+            get { return _reachable_goal; }
+            set { _reachable_goal = value; }
+        }
 
         public MythAction()
         {
-
+            _is_primitve = false;
         }
-
     }
 }
