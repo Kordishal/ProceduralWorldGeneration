@@ -309,6 +309,8 @@ namespace ProceduralWorldGeneration.Generator
                     else if (current_node.Value == "m")
                     {
                         current_node.AddChild("v");
+                        parent_node = current_node;
+                        current_node = current_node.GetLastChild();
                     }
                 }
             }
