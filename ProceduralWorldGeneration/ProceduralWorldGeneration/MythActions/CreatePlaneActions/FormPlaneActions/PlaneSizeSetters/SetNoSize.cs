@@ -26,6 +26,8 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
 
         public override void Effect(CreationMythState state, BaseMythObject taker)
         {
+            PrimordialForce _taker = (PrimordialForce)taker;
+            _taker.PlaneConstructionState.hasSize = true;
         }
     }
 }

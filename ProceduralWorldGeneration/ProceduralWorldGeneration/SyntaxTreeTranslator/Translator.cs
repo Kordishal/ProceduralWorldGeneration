@@ -81,10 +81,6 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                             {
                                 temp_primordial_force.Name = cutStringSigns(last_child_node.Value.ExpressionValue);
                             }
-                            else if (first_child_node.Value.ExpressionValue == "opposing")
-                            {
-                                temp_primordial_force.Opposing = (PrimordialForce)searchTag(last_child_node.Value.ExpressionValue);
-                            }
                             else if (first_child_node.Value.ExpressionValue == "spawn_weight")
                             {
                                 temp_primordial_force.SpawnWeight = int.Parse(last_child_node.Value.ExpressionValue);

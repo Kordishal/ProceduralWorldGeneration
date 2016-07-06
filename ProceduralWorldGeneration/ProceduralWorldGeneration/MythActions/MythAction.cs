@@ -8,8 +8,11 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythActions
 {
-    abstract class MythAction
+    public abstract class MythAction
     {
+
+        public string Name { get; set; }
+
         virtual public int getWeight(CreationMythState state, BaseMythObject taker)
         {
             return 10;
@@ -105,7 +108,14 @@ namespace ProceduralWorldGeneration.MythActions
 
         public MythAction()
         {
+            string[] temp = GetType().ToString().Split('.');
+            Name = temp[temp.Length - 1];
             _is_primitve = false;
+        }
+
+        public override string ToString()
+        {
+            return Name + "[D:" + getDuration().ToString() + "]";
         }
     }
 }

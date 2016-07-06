@@ -1,19 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Parser.SyntaxTree
 {
-    class TreeNode<T> : INotifyPropertyChanged
+    public class TreeNode<T> : INotifyPropertyChanged
     {
         /// <summary>
         /// This delegate is applied to every tree node in the tree.
         /// </summary>
         /// <param name="node">Current Node</param>
         public delegate void TreeVisitor(TreeNode<T> node);
+
+        /// <summary>
+        /// This delegate is applied to every tree node in the tree.
+        /// </summary>
+        /// <param name="node">Current Node</param>
+        /// <param name="value">Value to be used by the delegate.</param>
+        public delegate void TreeVisitorWithValue(TreeNode<T> node, T value);
 
         /// <summary>
         /// This predicate is used to compare the value of each node with the value.
@@ -180,6 +188,21 @@ namespace ProceduralWorldGeneration.Parser.SyntaxTree
             }
         }
 
+        /// <summary>
+        /// Depth first search with a value
+        /// </summary>
+        /// <param name="visitor">Delegate</param>
+        /// <param name="value">Value to be used by delegate</param>
+        public void traverseTree(TreeVisitorWithValue visitor, T value)
+        {
+            visitor(this, value);
+
+            foreach (TreeNode<T> node in _children)
+            {
+                node.traverseTree(visitor, value);
+            }
+        }
+
         public TreeNode<T> searchNode(SearchPredicate search_predicate, T value)
         {
             if (search_predicate(this, value))
@@ -211,7 +234,7 @@ namespace ProceduralWorldGeneration.Parser.SyntaxTree
 
         public override string ToString()
         {
-            return Value.ToString() + " : " + Depth.ToString();
+            return "[" + Value.ToString() + " : " + Depth.ToString() + "]";
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

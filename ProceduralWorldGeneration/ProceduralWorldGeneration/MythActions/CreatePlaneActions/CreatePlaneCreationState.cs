@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
 {
-    class CreatePlaneCreationState
+    public class CreatePlaneCreationState
     {
 
         public bool hasCreator { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythObjectAttributes
 {
-    class PlaneElement : MythObjectAttribute
+    public class PlaneElement : MythObjectAttribute
     {
         private string _opposite;
         public string Opposite

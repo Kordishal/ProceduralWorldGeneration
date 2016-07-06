@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.DataStructure
 {
-    class MythObjectData
+    public class MythObjectData
     {
 
         public List<BaseMythObject> DefinedMythObjects = new List<BaseMythObject>();

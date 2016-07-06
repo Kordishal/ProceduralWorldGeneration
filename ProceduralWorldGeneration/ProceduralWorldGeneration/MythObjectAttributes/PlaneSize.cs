@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythObjectAttributes
 {
-    class PlaneSize : MythObjectAttribute
+    public class PlaneSize : MythObjectAttribute
     {
 
         private int _max_neighbour_planes;

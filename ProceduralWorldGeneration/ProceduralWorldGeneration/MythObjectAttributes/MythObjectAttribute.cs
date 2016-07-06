@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythObjectAttributes
 {
-    class MythObjectAttribute : INotifyPropertyChanged
+    public abstract class MythObjectAttribute : INotifyPropertyChanged
     {
 
         private string _tag;

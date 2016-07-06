@@ -84,11 +84,15 @@ namespace ProceduralWorldGeneration.Generator
             _creation_myth.ActionableMythObjects.Enqueue(_creation_myth.MythObjectData.PrimordialForces[0]);
             _creation_myth.MythObjects.Add(_creation_myth.PrimordialForces[0]);
 
+            _creation_myth.CreationTree.TreeRoot.Children.First.Value.Value.MythObject = _creation_myth.PrimordialForces[0];
+
+            _creation_myth.CreationTree.traverseTree(printCreationTree);
+
             // each tick is one year. Each myth object that can take actions can take one action per year at most.
             while (_current_year < _end_year)
             {
                 // LOg the current year
-                _creation_myth.Logger.updateLog(_current_year);
+                CreationMythLogger.updateLog(_current_year);
                 // go through action queue once.
                 counter = 0;
                 action_queue_count = _creation_myth.ActionableMythObjects.Count;
@@ -98,7 +102,7 @@ namespace ProceduralWorldGeneration.Generator
 
                     current_myth_object.takeAction(_creation_myth, _current_year);
         
-                    _creation_myth.Logger.updateLog((BaseMythObject)current_myth_object, "UPDATE");
+                    CreationMythLogger.updateLog((BaseMythObject)current_myth_object, "UPDATE");
 
                     _creation_myth.ActionableMythObjects.Enqueue(current_myth_object);
                     counter = counter + 1;
@@ -108,8 +112,8 @@ namespace ProceduralWorldGeneration.Generator
             }
 
 
-            _creation_myth.Logger.updateLog("END OF CREATION");
-            _creation_myth.Logger.Write();
+            CreationMythLogger.updateLog("END OF CREATION");
+            CreationMythLogger.Write();
             // END OF CREATION
         }
 
@@ -124,20 +128,20 @@ namespace ProceduralWorldGeneration.Generator
 
         private void generateCreationTree()
         {
-            Tree<string> tree = new Tree<string>("x");
-            TreeNode<string> parent_node = null;
-            TreeNode<string> current_node = tree.TreeRoot;
-            TreeNode<string> last_created_force = null;
-            TreeNode<string> last_created_plane = null;
-            TreeNode<string> last_created_world = null;
-            TreeNode<string> last_created_deity = null;
-            TreeNode<string> last_created_pre_sentient = null;
-            TreeNode<string> last_created_sentient = null;
-            TreeNode<string> last_created_sapient = null;
-            TreeNode<string> last_created_mythical = null;
-            TreeNode<string> last_created_legendary = null;
-            TreeNode<string> last_created_civilisation = null;
-            TreeNode<string> last_created_nation = null;
+            Tree<CreationTreeNode> tree = new Tree<CreationTreeNode>(new CreationTreeNode("x"));
+            TreeNode<CreationTreeNode> parent_node = null;
+            TreeNode<CreationTreeNode> current_node = tree.TreeRoot;
+            TreeNode<CreationTreeNode> last_created_force = null;
+            TreeNode<CreationTreeNode> last_created_plane = null;
+            TreeNode<CreationTreeNode> last_created_world = null;
+            TreeNode<CreationTreeNode> last_created_deity = null;
+            TreeNode<CreationTreeNode> last_created_pre_sentient = null;
+            TreeNode<CreationTreeNode> last_created_sentient = null;
+            TreeNode<CreationTreeNode> last_created_sapient = null;
+            TreeNode<CreationTreeNode> last_created_mythical = null;
+            TreeNode<CreationTreeNode> last_created_legendary = null;
+            TreeNode<CreationTreeNode> last_created_civilisation = null;
+            TreeNode<CreationTreeNode> last_created_nation = null;
 
 
             CreationMyths.CreationString = CreationMyths.CreationString.ToLower();
@@ -146,9 +150,9 @@ namespace ProceduralWorldGeneration.Generator
             {
                 if (c == 'f')
                 {
-                    if (current_node.Value == "x")
+                    if (current_node.Value.Character == "x")
                     {
-                        current_node.AddChild("f");
+                        current_node.AddChild(new CreationTreeNode("f"));
                         parent_node = current_node;
                         current_node = current_node.GetLastChild();
                         last_created_force = current_node;
@@ -160,9 +164,9 @@ namespace ProceduralWorldGeneration.Generator
                 }
                 else if (c == 'p')
                 {
-                    if (current_node.Value == "f")
+                    if (current_node.Value.Character == "f")
                     {
-                        current_node.AddChild("p");
+                        current_node.AddChild(new CreationTreeNode("p"));
                         parent_node = current_node;
                         current_node = current_node.GetLastChild();
                         last_created_plane = current_node;
@@ -174,9 +178,9 @@ namespace ProceduralWorldGeneration.Generator
                 }
                 else if (c == 'w')
                 {
-                    if (current_node.Value == "p")
+                    if (current_node.Value.Character == "p")
                     {
-                        current_node.AddChild("w");
+                        current_node.AddChild(new CreationTreeNode("w"));
                         parent_node = current_node;
                         current_node = current_node.GetLastChild();
                         last_created_world = current_node;
@@ -188,9 +192,9 @@ namespace ProceduralWorldGeneration.Generator
                 }
                 else if (c == 'd')
                 {
-                    if (current_node.Value == "w" || current_node.Value == "f" || current_node.Value == "v")
+                    if (current_node.Value.Character == "w" || current_node.Value.Character == "f" || current_node.Value.Character == "v")
                     {
-                        current_node.AddChild("d");
+                        current_node.AddChild(new CreationTreeNode("d"));
                         parent_node = current_node;
                         current_node = current_node.GetLastChild();
                         last_created_deity = current_node;
@@ -202,9 +206,9 @@ namespace ProceduralWorldGeneration.Generator
                 }
                 else if (c == 'a')
                 {
-                    if (current_node.Value == "d" || current_node.Value == "f" || current_node.Value == "e")
+                    if (current_node.Value.Character == "d" || current_node.Value.Character == "f" || current_node.Value.Character == "e")
                     {
-                        current_node.AddChild("a");
+                        current_node.AddChild(new CreationTreeNode("a"));
                         parent_node = current_node;
                         current_node = current_node.GetLastChild();
                         last_created_sapient = current_node;
@@ -216,9 +220,9 @@ namespace ProceduralWorldGeneration.Generator
                 }
                 else if (c == 'e')
                 {
-                    if (current_node.Value == "s")
+                    if (current_node.Value.Character == "s")
                     {
-                        current_node.AddChild("e");
+                        current_node.AddChild(new CreationTreeNode("e"));
                         parent_node = current_node;
                         current_node = current_node.GetLastChild();
                         last_created_sentient = current_node;
@@ -230,9 +234,9 @@ namespace ProceduralWorldGeneration.Generator
                 }
                 else if (c == 's')
                 {
-                    if (current_node.Value == "w")
+                    if (current_node.Value.Character == "w")
                     {
-                        current_node.AddChild("s");
+                        current_node.AddChild(new CreationTreeNode("s"));
                         parent_node = current_node;
                         current_node = current_node.GetLastChild();
                         last_created_pre_sentient = current_node;
@@ -244,9 +248,9 @@ namespace ProceduralWorldGeneration.Generator
                 }
                 else if (c == 'c')
                 {
-                    if (current_node.Value == "a" || current_node.Value == "m")
+                    if (current_node.Value.Character == "a" || current_node.Value.Character == "m")
                     {
-                        current_node.AddChild("c");
+                        current_node.AddChild(new CreationTreeNode("c"));
                         parent_node = current_node;
                         current_node = current_node.GetLastChild();
                         last_created_civilisation = current_node;
@@ -258,9 +262,9 @@ namespace ProceduralWorldGeneration.Generator
                 }
                 else if (c == 'n')
                 {
-                    if (current_node.Value == "l" || current_node.Value == "c")
+                    if (current_node.Value.Character == "l" || current_node.Value.Character == "c")
                     {
-                        current_node.AddChild("n");
+                        current_node.AddChild(new CreationTreeNode("n"));
                         parent_node = current_node;
                         current_node = current_node.GetLastChild();
                         last_created_nation = current_node;
@@ -272,9 +276,9 @@ namespace ProceduralWorldGeneration.Generator
                 }
                 else if (c == 'm')
                 {
-                    if (current_node.Value == "c" || current_node.Value == "v")
+                    if (current_node.Value.Character == "c" || current_node.Value.Character == "v")
                     {
-                        current_node.AddChild("m");
+                        current_node.AddChild(new CreationTreeNode("m"));
                         parent_node = current_node;
                         current_node = current_node.GetLastChild();
                         last_created_mythical = current_node;
@@ -286,9 +290,9 @@ namespace ProceduralWorldGeneration.Generator
                 }
                 else if (c == 'l')
                 {
-                    if (current_node.Value == "n" || current_node.Value == "c")
+                    if (current_node.Value.Character == "n" || current_node.Value.Character == "c")
                     {
-                        current_node.AddChild("l");
+                        current_node.AddChild(new CreationTreeNode("l"));
                         parent_node = current_node;
                         current_node = current_node.GetLastChild();
                         last_created_legendary = current_node;
@@ -300,15 +304,15 @@ namespace ProceduralWorldGeneration.Generator
                 }
                 else if (c == 'v')
                 {
-                    if (current_node.Value == "l")
+                    if (current_node.Value.Character == "l")
                     {
-                        current_node.AddChild("v");
+                        current_node.AddChild(new CreationTreeNode("v"));
                         parent_node = current_node;
                         current_node = current_node.GetLastChild();
                     }
-                    else if (current_node.Value == "m")
+                    else if (current_node.Value.Character == "m")
                     {
-                        current_node.AddChild("v");
+                        current_node.AddChild(new CreationTreeNode("v"));
                         parent_node = current_node;
                         current_node = current_node.GetLastChild();
                     }
@@ -330,6 +334,10 @@ namespace ProceduralWorldGeneration.Generator
             }
         }
 
+        private void printCreationTree(TreeNode<CreationTreeNode> current_node)
+        {
+            CreationMythLogger.updateTreeLog(current_node);
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -337,6 +345,39 @@ namespace ProceduralWorldGeneration.Generator
         {
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+        }
+    }
+
+    public class CreationTreeNode
+    {
+        public string Character { get; set; }
+        public BaseMythObject MythObject { get; set; }
+        public bool UnderConstruction { get; set; }
+        public ActionTakerMythObject Creator { get; set; }
+        
+        public CreationTreeNode(string character)
+        {
+            this.Character = character;
+            this.MythObject = null;
+            UnderConstruction = false;
+        }
+
+        public CreationTreeNode(BaseMythObject myth_object)
+        {
+            this.MythObject = myth_object;
+            UnderConstruction = false;
+        }
+
+        public override string ToString()
+        {
+            if (MythObject == null)
+            {
+                return "[" + Character + "|NONE]";
+            }
+            else
+            {
+                return "[" + Character + "|" + MythObject.ToString() + "]";
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
-    interface IActionTaker
+    public interface IActionTaker
     {
 
         List<MythAction> ValidActions { get; }

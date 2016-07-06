@@ -4,11 +4,15 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace ProceduralWorldGeneration.Parser.SyntaxTree
 {
-    class Tree<T> : INotifyPropertyChanged
+    [DebuggerDisplay("{TreeRoot}")]
+    public class Tree<T> : INotifyPropertyChanged
     {
+
+        public delegate void TreeVisitor(TreeNode<T> current_node);
 
         private TreeNode<T> _tree_root;
         /// <summary>
@@ -56,11 +60,37 @@ namespace ProceduralWorldGeneration.Parser.SyntaxTree
             CurrentNode = TreeRoot;
         }
 
+        /// <summary>
+        /// Breath First Seach of the tree
+        /// </summary>
+        public void traverseTree(TreeVisitor visitor)
+        {
+            Queue<TreeNode<T>> search_queue = new Queue<TreeNode<T>>();
+            TreeNode<T> current_node = null;
+            search_queue.Enqueue(TreeRoot);
+
+            while (search_queue.Count > 0)
+            {
+                current_node = search_queue.Dequeue();
+                visitor(current_node);
+
+                foreach (TreeNode<T> node in current_node.Children)
+                {
+                    search_queue.Enqueue(node);
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+        }
+
+        public override string ToString()
+        {
+            return TreeRoot.ToString();
         }
     }
 }

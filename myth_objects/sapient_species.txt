@@ -1,0 +1,48 @@
+traits = {
+	"Immortal" "Eternal Youth" 
+	
+	"Herbivore" "Omnivore" "Carnivore"
+	
+	"Water Breather" "Air Breather" "Aquatic"
+	
+	"Immunity: Fire"
+	"Affinity: Fire"
+	"Vulnerability: Fire"
+	"Resistance: Fire"
+}
+
+
+ethos = {
+	pacifism = {
+		name = "Pacifism"
+		opposite = militarism
+	}
+	militarism = {
+		name = "Militarism"
+		opposite = pacifism
+	}
+	collectivism = {
+		name = "Collectivism"
+		opposite = individualism
+	}
+	individualism = {
+		name = "Individualism"
+		opposite = collectivism
+	}
+	spiritualism = {
+		name = "Spiritualism"
+		opposite = materialism
+	}
+	materialism = {
+		name = "Materialism"
+		opposite = spiritualism
+	}
+	xenophobia = {
+		name = "Xenophobia"
+		opposite = xenophilia
+	}
+	xenophilia = {
+		name = "Xenophilia"
+		opposite = xenophobia
+	}
+}

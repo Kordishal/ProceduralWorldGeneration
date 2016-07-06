@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.DataStructure
 {
-    class CreationMythState : INotifyPropertyChanged
+    public class CreationMythState : INotifyPropertyChanged
     {
         private string _creation_string;
         public string CreationString
@@ -33,8 +33,8 @@ namespace ProceduralWorldGeneration.DataStructure
             }
         }
 
-        private Tree<string> _creation_tree;
-        public Tree<string> CreationTree
+        private Tree<CreationTreeNode> _creation_tree;
+        public Tree<CreationTreeNode> CreationTree
         {
             get
             {
@@ -49,8 +49,6 @@ namespace ProceduralWorldGeneration.DataStructure
                 }
             }
         }
-
-        public CreationMythLogger Logger { get; set; }
 
         private MythObjectData _myth_object_data;
         public MythObjectData MythObjectData
@@ -139,7 +137,6 @@ namespace ProceduralWorldGeneration.DataStructure
 
         public CreationMythState()
         {
-            Logger = new CreationMythLogger();
             MythObjects = new ObservableCollection<BaseMythObject>();
             PrimordialForces = new List<PrimordialForce>();
             Planes = new List<Plane>();

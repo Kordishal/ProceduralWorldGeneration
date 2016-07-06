@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
+using ProceduralWorldGeneration.Parser.SyntaxTree;
+using ProceduralWorldGeneration.Generator;
+using ProceduralWorldGeneration.Output;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
 {
@@ -36,8 +39,24 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
             PrimordialForce _taker = (PrimordialForce)taker;
             state.MythObjects.Add(_taker.PlaneConstruction);
             state.Planes.Add(_taker.PlaneConstruction);
+            state.CreationTree.TreeRoot.traverseTree(addPlaneToCreationTree, new CreationTreeNode(taker));
             _taker.PlaneConstructionState = new CreatePlaneCreationState();
             _taker.PlaneConstruction = null;
+            CreationMythLogger.updateActionLog(_taker, true);
+            _taker.CurrentGoal = ActionGoal.None;
+        }
+
+        private void addPlaneToCreationTree(TreeNode<CreationTreeNode> current_node, CreationTreeNode node)
+        {
+            if (current_node.Value.UnderConstruction)
+            {
+                if (current_node.Value.Creator == node.MythObject)
+                {
+                    PrimordialForce _taker = (PrimordialForce)node.MythObject;
+                    current_node.Value.MythObject = _taker.PlaneConstruction;
+                    current_node.Value.UnderConstruction = false;
+                }
+            }
         }
     }
 }

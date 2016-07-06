@@ -36,7 +36,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
         {
             List<Plane> temp = new List<Plane>();
             foreach (Plane p in planes)
-                if (p.PlaneSize.Tag == size)
+                if (p.PlaneSize != null && p.PlaneSize.Tag == size)
                     temp.Add(p);
 
             if (temp.Count <= 0)

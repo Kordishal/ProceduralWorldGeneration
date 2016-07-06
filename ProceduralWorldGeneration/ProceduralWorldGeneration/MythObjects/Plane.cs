@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
-    class Plane : BaseMythObject
+    public class Plane : BaseMythObject
     {
         private PlaneType _plane_type;
         public PlaneType PlaneType

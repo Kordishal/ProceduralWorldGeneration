@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
-    class BaseMythObject : INotifyPropertyChanged
+    public class BaseMythObject : INotifyPropertyChanged
     {
         static int _identifier_seed = 0;
 
@@ -63,7 +63,7 @@ namespace ProceduralWorldGeneration.MythObjects
 
         public override string ToString()
         {
-            return Name;
+            return "[" + Name + "|" + Identifier.ToString() + "]";
         }
     }
 }

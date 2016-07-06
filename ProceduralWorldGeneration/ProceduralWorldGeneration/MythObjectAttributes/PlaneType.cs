@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythObjectAttributes
 {
-    class PlaneType : MythObjectAttribute
+    public class PlaneType : MythObjectAttribute
     {
 
         private bool _has_dominant_element;

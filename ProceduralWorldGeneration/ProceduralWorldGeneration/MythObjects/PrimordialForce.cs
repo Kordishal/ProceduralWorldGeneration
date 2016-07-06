@@ -15,14 +15,12 @@ using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.
 using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneSizeSetters;
 using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneElementSetters;
 using ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneActions;
+using ProceduralWorldGeneration.Output;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
-    class PrimordialForce : ActionTakerMythObject
+    public class PrimordialForce : ActionTakerMythObject
     {
-
-
-
         private int _spawn_weight;
         public int SpawnWeight
         {
@@ -40,8 +38,8 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        private PrimordialForce _opposing;
-        public PrimordialForce Opposing
+        private string _opposing;
+        public string Opposing
         {
             get
             {
@@ -88,6 +86,7 @@ namespace ProceduralWorldGeneration.MythObjects
 
             if (CurrentAction.getDuration() <= 0)
             {
+                CreationMythLogger.updateActionLog(this);
                 CurrentAction.Effect(state, this);
                 CurrentAction.resetCooldown();
                 CurrentAction.resetDuration();
@@ -101,7 +100,7 @@ namespace ProceduralWorldGeneration.MythObjects
 
         public override string ToString()
         {
-            return Name + "          { Opposing : " + (Opposing == null ? "NONE" : Opposing.ToString()) + " }";
+            return "[" + Name + "]";
         }
 
         public override void buildExistingActionsTree()
