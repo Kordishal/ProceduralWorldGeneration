@@ -13,7 +13,10 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            return true;
+            if (taker.CurrentCreationState.hasType)
+                return false;
+            else
+                return true;
         }
 
         public override void Effect(ActionTakerMythObject taker)

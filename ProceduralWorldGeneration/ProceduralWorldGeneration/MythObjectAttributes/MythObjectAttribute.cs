@@ -36,6 +36,24 @@ namespace ProceduralWorldGeneration.MythObjectAttributes
             }
         }
 
+
+        private int _spawn_weight;
+        public int SpawnWeight
+        {
+            get
+            {
+                return _spawn_weight;
+            }
+            set
+            {
+                if (value != _spawn_weight)
+                {
+                    _spawn_weight = value;
+                    this.NotifyPropertyChanged("SpawnWeight");
+                }
+            }
+        }
+
         public MythObjectAttribute(string tag = "default")
         {
             _tag = tag;

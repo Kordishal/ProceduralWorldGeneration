@@ -1,4 +1,5 @@
 ﻿using ProceduralWorldGeneration.DataStructure;
+using ProceduralWorldGeneration.Generator;
 using ProceduralWorldGeneration.MythObjectAttributes;
 using ProceduralWorldGeneration.MythObjects;
 using System;
@@ -16,6 +17,9 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
             if (!taker.CurrentCreationState.hasType)
                 return false;
 
+            if (taker.PlaneConstruction.PlaneType.isInfiniteOnly)
+                return false;
+
             if (taker.PlaneConstruction.PlaneType.isAttachedTo == null)
                 return true;
             else
@@ -24,7 +28,24 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            taker.PlaneConstruction.PlaneSize = searchSize("small");
+            int total_spawn_weight = 0;
+
+            foreach (PlaneSize s in CreationMythState.MythObjectData.PlaneSizes)
+            {
+                total_spawn_weight = total_spawn_weight + s.SpawnWeight;
+            }
+
+            int chance = ConfigValues.RandomGenerator.Next(total_spawn_weight);
+            int prev_weight = 0;
+            int current_weight = 0;
+            foreach (PlaneSize s in CreationMythState.MythObjectData.PlaneSizes)
+            {
+                current_weight = current_weight + s.SpawnWeight;
+                if (prev_weight < chance && chance < current_weight)
+                    taker.PlaneConstruction.PlaneSize = s;
+
+                prev_weight = current_weight;
+            }
             taker.CurrentCreationState.hasSize = true;
         }
     }

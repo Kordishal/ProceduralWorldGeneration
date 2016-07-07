@@ -13,6 +13,9 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
+            if (taker.CurrentCreationState.hasType)
+                return false;
+
             if (CreationMythState.Planes.Count < 1)
                 return false;
             else

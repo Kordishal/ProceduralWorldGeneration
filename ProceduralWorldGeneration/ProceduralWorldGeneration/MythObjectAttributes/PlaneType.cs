@@ -26,6 +26,23 @@ namespace ProceduralWorldGeneration.MythObjectAttributes
             }
         }
 
+        private bool _is_infinite_only;
+        public bool isInfiniteOnly
+        {
+            get
+            {
+                return _is_infinite_only;
+            }
+            set
+            {
+                if (_is_infinite_only != value)
+                {
+                    _is_infinite_only = value;
+                    base.NotifyPropertyChanged("isInfiniteOnly");
+                }
+            }
+        }
+
         private string _is_attached_to;
         public string isAttachedTo
         {

@@ -8,16 +8,10 @@ using ProceduralWorldGeneration.MythObjects;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneActions
 {
-    class ConnectWithNoPlane : ConnectPlane
+    class ConnectWithNoPlane : ConnectPlanes
     {
-        public ConnectWithNoPlane()
-        {
-            _is_primitve = true;
-        }
-
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            PrimordialForce _taker = (PrimordialForce)taker;
             if (CreationMythState.Planes.Count <= 0)
                 return true;
             else
@@ -26,8 +20,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            PrimordialForce _taker = (PrimordialForce)taker;
-            _taker.CurrentCreationState.isConnected = true;
+            taker.CurrentCreationState.isConnected = true;
         }
     }
 }

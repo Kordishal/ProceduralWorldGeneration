@@ -22,6 +22,7 @@ namespace ProceduralWorldGeneration.MythActions
                 return hasType && hasSize && hasElement;
             }
         }
+        public bool hasFirstConnection { get; set; }
         public bool isConnected { get; set; }
         public bool hasName { get; set; }
         public bool isAddedToUniverse { get; set; }

@@ -84,13 +84,14 @@ namespace ProceduralWorldGeneration.Generator
                     counter = counter + 1;
                 }
 
+                CreationMythLogger.Write();
                 _current_year += 1;
             }
 
 
             CreationMythLogger.updateLog("END OF CREATION");
             CreationMythLogger.Write();
-
+            CreationMythLogger.Clear();
             _user.Update();
             // END OF CREATION
         }

@@ -24,6 +24,13 @@ namespace ProceduralWorldGeneration.Output
 
         }
 
+        static public void Clear()
+        {
+            _temp_log.Clear();
+            _action_log.Clear();
+            _tree_log.Clear();
+        }
+
         static public void Write()
         {
             writer = new StreamWriter(@"C:\Users\Jonas\Documents\ProceduralWorldGeneration\logs\myth_creation.log");
@@ -32,7 +39,6 @@ namespace ProceduralWorldGeneration.Output
                 writer.WriteLine(s);
             }         
             writer.Close();
-            _temp_log.Clear();
 
             writer = new StreamWriter(@"C:\Users\Jonas\Documents\ProceduralWorldGeneration\logs\action.log");
             foreach (string s in _action_log)
@@ -40,7 +46,6 @@ namespace ProceduralWorldGeneration.Output
                 writer.WriteLine(s);
             }
             writer.Close();
-            _action_log.Clear();
 
             writer = new StreamWriter(@"C:\Users\Jonas\Documents\ProceduralWorldGeneration\logs\tree.log");
             foreach (string s in _tree_log)
@@ -48,7 +53,30 @@ namespace ProceduralWorldGeneration.Output
                 writer.WriteLine(s);
             }
             writer.Close();
-            _tree_log.Clear();
+        }
+
+        static public void AppendWrite()
+        {
+            writer = new StreamWriter(@"C:\Users\Jonas\Documents\ProceduralWorldGeneration\logs\myth_creation.log",true);
+            foreach (string s in _temp_log)
+            {
+                writer.WriteLine(s);
+            }
+            writer.Close();
+
+            writer = new StreamWriter(@"C:\Users\Jonas\Documents\ProceduralWorldGeneration\logs\action.log", true);
+            foreach (string s in _action_log)
+            {
+                writer.WriteLine(s);
+            }
+            writer.Close();
+
+            writer = new StreamWriter(@"C:\Users\Jonas\Documents\ProceduralWorldGeneration\logs\tree.log", true);
+            foreach (string s in _tree_log)
+            {
+                writer.WriteLine(s);
+            }
+            writer.Close();
         }
 
         static public void updateLog(string line)

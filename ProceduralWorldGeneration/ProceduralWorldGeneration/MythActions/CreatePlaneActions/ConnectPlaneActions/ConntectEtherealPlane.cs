@@ -9,17 +9,11 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneActions
 {
-    class ConnectWithMaterialWorld : ConnectPlane
+    class ConntectEtherealPlane : ConnectPlanes
     {
-        public ConnectWithMaterialWorld()
-        {
-            _is_primitve = true;
-        }
-
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            PrimordialForce _taker = (PrimordialForce)taker;
-            if (!(CreationMythState.Planes.Count <= 0))
+            if (taker.PlaneConstruction.PlaneType.isAttachedTo != null)
                 return true;
             else
                 return false;
@@ -27,9 +21,9 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            PrimordialForce _taker = (PrimordialForce)taker;
-            _taker.PlaneConstruction.connectPlane(searchPlaneType("material"));
-            _taker.CurrentCreationState.isConnected = true;
+            taker.PlaneConstruction.connectPlane(searchPlaneType(taker.PlaneConstruction.PlaneType.isAttachedTo));
+            taker.PlaneConstruction.PlaneSize = taker.PlaneConstruction.NeighbourPlanes[0].PlaneSize;
+            taker.CurrentCreationState.isConnected = true;
         }
     }
 }

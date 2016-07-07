@@ -18,6 +18,10 @@ namespace ProceduralWorldGeneration.MythObjects
             {
                 return _tag;
             }
+            set
+            {
+                _tag = value;
+            }
         }
 
         private int _identifier;

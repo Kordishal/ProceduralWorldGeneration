@@ -17,6 +17,7 @@ plane_types = {
 	elemental = {
 		name = "elemental"
 		has_dominant_element = true
+		is_infinite_only = true
 	}
 }
 
@@ -26,26 +27,26 @@ plane_types = {
 # medium: can connect with up to 8 planes
 # small: can connect with up to 4 planes
 # pocket: can only connect to a single plane.
-plane_sizes = {
+finite_plane_sizes = {
 	pocket = {
 		name = "pocket"
 		max_neighbours = 1
+		spawn_weight = 5
 	}
 	small = {
 		name = "small"
 		max_neighbours = 4
+		spawn_weight = 10
 	}
 	medium = {
 		name = "medium"
 		max_neighbours = 8
+		spawn_weight = 20
 	}
 	large = {
 		name = "large"
 		max_neighbours = 16
-	}
-	infinite = {
-		name = "infinite"
-		max_neighbours = -1
+		spawn_weight = 5
 	}
 }
 
@@ -67,7 +68,7 @@ plane_elements = {
 	}
 	air = {
 		name = "Air"
-		opposite = air
+		opposite = earth
 	}
 	light = {
 		name = "Light"
@@ -75,7 +76,7 @@ plane_elements = {
 	}
 	darkness = {
 		name = "Darkness"
-		opposite
+		opposite = light
 	}
 }
 

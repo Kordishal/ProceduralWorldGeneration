@@ -70,11 +70,11 @@
     <Compile Include="MythActions\CreateDeityActions\SetTraits.cs" />
     <Compile Include="MythActions\CreatePlaneActions\AddToUniverse.cs" />
     <Compile Include="MythActions\CreatePlaneActions\ConnectPlane.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConnectWithCoreWorld.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConnectWithInfinitePlane.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConnectWithMaterialWorld.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConnectPlanes.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\SetFirstConnection.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConntectEtherealPlane.cs" />
     <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConnectWithNoPlane.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConnectWithRandomPlane.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\AddConnections.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetPlaneElement.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetPlaneSize.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneTypeSetters\SetPlaneType.cs" />

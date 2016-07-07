@@ -95,6 +95,23 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
+        public bool maxConnectionsReached()
+        {
+            if (_plane_size.MaxNeighbourPlanes == -1)
+                return false;
+            else
+                return _neighbour_planes.Count == _plane_size.MaxNeighbourPlanes;
+        }
+
+        public bool isNotConnectedTo(Plane plane)
+        {
+            foreach (Plane p in _neighbour_planes)
+                if (p.Equals(plane))
+                    return true;
+
+            return false;
+        }
+
         public void connectPlane(Plane connect_plane)
         {
             _neighbour_planes.Add(connect_plane);

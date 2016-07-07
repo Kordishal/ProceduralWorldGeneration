@@ -30,7 +30,6 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
             return data;
         }
 
-
         private void translator(TreeNode<Expression> current_node)
         {
             if (current_node.Value.ExpressionType == ExpressionTypes.Root)
@@ -50,7 +49,7 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                     data.PrimordialForces.Add(temp_primordial_force);
                     data.DefinedMythObjects.Add(temp_primordial_force);
                 }
-                else if (parent_node.GetFirstChild().Value.ExpressionValue == "plane_sizes")
+                else if (parent_node.GetFirstChild().Value.ExpressionValue == "finite_plane_sizes")
                 {
                     PlaneSize temp_plane_size = new PlaneSize(first_child_node.Value.ExpressionValue);
                     data.PlaneSizes.Add(temp_plane_size);
@@ -108,6 +107,10 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                                 {
                                     temp_plane_type.isAttachedTo = last_child_node.Value.ExpressionValue;
                                 }
+                                else if (first_child_node.Value.ExpressionValue == "is_infinite_only")
+                                {
+                                    temp_plane_type.isInfiniteOnly = bool.Parse(last_child_node.Value.ExpressionValue);
+                                }
                             }
                             else if (typeof(PlaneSize) == temp_myth_object_attribute.GetType())
                             {
@@ -119,6 +122,10 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                                 else if (first_child_node.Value.ExpressionValue == "max_neighbours")
                                 {
                                     temp_plane_size.MaxNeighbourPlanes = int.Parse(last_child_node.Value.ExpressionValue);
+                                }
+                                else if (first_child_node.Value.ExpressionValue == "spawn_weight")
+                                {
+                                    temp_plane_size.SpawnWeight = int.Parse(last_child_node.Value.ExpressionValue);
                                 }
                             }
 

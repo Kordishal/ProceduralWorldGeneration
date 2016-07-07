@@ -15,6 +15,9 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
         {
             if (!taker.CurrentCreationState.hasType)
                 return false;
+            if (taker.CurrentCreationState.hasElement)
+                return false;
+
             if (taker.PlaneConstruction.PlaneType.hasDominantElement)
                 return true;
             else

@@ -299,11 +299,10 @@ namespace ProceduralWorldGeneration.MythObjects
             _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetDarknessElement());
             _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetNoElement());
             _existing_actions[0].TreeRoot.AddChild(new ConnectPlane());
-            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConnectWithCoreWorld());
-            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConnectWithInfinitePlane());
-            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConnectWithMaterialWorld());
+            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new SetFirstConnection());
+            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConntectEtherealPlane());
             _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConnectWithNoPlane());
-            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConnectWithRandomPlane());
+            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new AddConnections());
             _existing_actions[0].TreeRoot.AddChild(new SetName());
             _existing_actions[0].TreeRoot.AddChild(new AddToUniverse());
 
