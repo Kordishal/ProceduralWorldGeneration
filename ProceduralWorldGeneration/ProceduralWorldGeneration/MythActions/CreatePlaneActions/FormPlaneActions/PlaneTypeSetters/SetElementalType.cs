@@ -16,7 +16,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
             _is_primitve = true;
         }
 
-        public override bool checkPrecondition(CreationMythState state, BaseMythObject taker)
+        public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
         {
             if (state.Planes.Count > 0)
                 return true;
@@ -24,11 +24,11 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
                 return false; ;
         }
 
-        public override void Effect(CreationMythState state, BaseMythObject taker)
+        public override void Effect(CreationMythState state, ActionTakerMythObject taker)
         {
             PrimordialForce _taker = (PrimordialForce)taker;
             _taker.PlaneConstruction.PlaneType = searchPlaneType(state.MythObjectData.PlaneTypes);
-            _taker.PlaneConstructionState.hasType = true;
+            _taker.CurrentCreationState.hasType = true;
         }
 
         private PlaneType searchPlaneType(List<PlaneType> plane_types)

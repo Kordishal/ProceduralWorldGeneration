@@ -55,26 +55,8 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-
-        private Plane _plane_construction;
-        public Plane PlaneConstruction
-        {
-            get
-            {
-                return _plane_construction;
-            }
-            set
-            {
-                _plane_construction = value;
-            }
-        }
-
-        public CreatePlaneCreationState PlaneConstructionState { get; set; }
-
         public PrimordialForce(string tag = "default_tag") : base(tag)
         {
-            PlaneConstructionState = new CreatePlaneCreationState();
-
         }
 
         public override void takeAction(CreationMythState state, int current_year)
@@ -101,43 +83,6 @@ namespace ProceduralWorldGeneration.MythObjects
         public override string ToString()
         {
             return "[" + Name + "]";
-        }
-
-        public override void buildExistingActionsTree()
-        {
-            _existing_actions.Add(new Tree<MythAction>(new CreatePlane()));
-            _existing_actions[0].TreeRoot.AddChild(new SetCreator());
-            _existing_actions[0].TreeRoot.AddChild(new FormPlane());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new DeterminePlaneType());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Value.AddChild(new SetMaterialType());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Value.AddChild(new SetElementalType());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Value.AddChild(new SetEtherealType());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Value.AddChild(new SetRandomType());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new DeterminePlaneSize());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetPocketSize());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetSmallSize());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetMediumSize());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetLargeSize());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetInfiniteSize());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetRandomSize());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetNoSize());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new DeterminePlaneElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetAirElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetEarthElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetFireElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetWaterElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetLightElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetDarknessElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetRandomElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetNoElement());
-            _existing_actions[0].TreeRoot.AddChild(new ConnectPlane());
-            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConnectWithCoreWorld());
-            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConnectWithInfinitePlane());
-            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConnectWithMaterialWorld());
-            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConnectWithNoPlane());
-            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConnectWithRandomPlane());
-            _existing_actions[0].TreeRoot.AddChild(new NamePlane());
-            _existing_actions[0].TreeRoot.AddChild(new AddPlaneToUniverse());
         }
     }
 }

@@ -17,12 +17,11 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
             _is_primitve = false;
         }
 
-        public override bool checkPrecondition(CreationMythState state, BaseMythObject taker)
+        public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
         {
-            PrimordialForce _taker = (PrimordialForce)taker;
-            if (_taker.PlaneConstructionState.hasCreator)
+            if (taker.CurrentCreationState.hasCreator)
             {
-                if (!_taker.PlaneConstructionState.hasType || !_taker.PlaneConstructionState.hasSize || !_taker.PlaneConstructionState.hasElement)
+                if (!taker.CurrentCreationState.hasType || !taker.CurrentCreationState.hasSize || !taker.CurrentCreationState.hasElement)
                 {
                     return true;
                 }
@@ -33,7 +32,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
                 return false;
         }
 
-        public override void Effect(CreationMythState state, BaseMythObject taker)
+        public override void Effect(CreationMythState state, ActionTakerMythObject taker)
         {
             throw new NotImplementedException();
         }

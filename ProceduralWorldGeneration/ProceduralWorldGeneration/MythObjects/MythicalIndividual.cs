@@ -7,9 +7,9 @@ using ProceduralWorldGeneration.DataStructure;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
-    class MythicalIndividual : ActionTakerMythObject
+    public class MythicalIndividual : ActionTakerMythObject
     {
-        public override void addPossibleActions()
+        public override void buildExistingActionsTree()
         {
             throw new NotImplementedException();
         }

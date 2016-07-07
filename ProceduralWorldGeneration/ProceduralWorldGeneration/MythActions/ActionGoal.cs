@@ -8,10 +8,10 @@ namespace ProceduralWorldGeneration.MythActions
 {
     public enum ActionGoal
     {
+        None,
         CreatePlane,
         CreateWorld,
         CreateDeity,
-        CreateSapientSpecies,
-        None,
+        CreateSapientSpecies,       
     }
 }

@@ -206,7 +206,7 @@ namespace ProceduralWorldGeneration.Generator
                 }
                 else if (c == 'a')
                 {
-                    if (current_node.Value.Character == "d" || current_node.Value.Character == "f" || current_node.Value.Character == "e")
+                    if (current_node.Value.Character == "d" || current_node.Value.Character == "p" || current_node.Value.Character == "e")
                     {
                         current_node.AddChild(new CreationTreeNode("a"));
                         parent_node = current_node;

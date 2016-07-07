@@ -11,26 +11,36 @@ namespace ProceduralWorldGeneration.DataStructure
     public class MythObjectData
     {
 
-        public List<BaseMythObject> DefinedMythObjects = new List<BaseMythObject>();
-        public List<MythObjectAttribute> MythObjectAttributes = new List<MythObjectAttribute>();
+        public List<BaseMythObject> DefinedMythObjects { get; set; }
+        public List<MythObjectAttribute> MythObjectAttributes { get; set; }
 
         // PRIMORDIAL FORCES
-        public List<PrimordialForce> PrimordialForces = new List<PrimordialForce>();
+        public List<PrimordialForce> PrimordialForces { get; set; }
 
         // DEITIES
-        public List<string> Domains = new List<string>();
+        public List<string> Domains { get; set; }
+        public List<string> Personalities { get; set; }
+        public List<string> Traits { get; set; }
 
         // PLANES
-        public List<Plane> DefinedPlanes = new List<Plane>();
+        public List<Plane> DefinedPlanes { get; set; }
 
-        public List<PlaneType> PlaneTypes = new List<PlaneType>();
-        public List<PlaneSize> PlaneSizes = new List<PlaneSize>();
-        public List<PlaneElement> PlaneElements = new List<PlaneElement>();
+        public List<PlaneType> PlaneTypes { get; set; }
+        public List<PlaneSize> PlaneSizes { get; set; }
+        public List<PlaneElement> PlaneElements { get; set; }
 
 
         public MythObjectData()
         {
-
+            DefinedMythObjects = new List<BaseMythObject>();
+            MythObjectAttributes = new List<MythObjectAttribute>();
+            PrimordialForces = new List<PrimordialForce>();
+            Domains = new List<string>();
+            Personalities = new List<string>();
+            Traits = new List<string>();
+            PlaneTypes = new List<PlaneType>();
+            PlaneSizes = new List<PlaneSize>();
+            PlaneElements = new List<PlaneElement>();
         }
 
         public MythObjectAttribute searchAttribute(string tag)

@@ -92,6 +92,11 @@ namespace ProceduralWorldGeneration.Output
 
         }
 
+        static public void updateActionLog(string line)
+        {
+            _action_log.Add(line);
+        }
+
         static public void updateTreeLog(TreeNode<CreationTreeNode> node)
         {
             string child_names = "";

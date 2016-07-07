@@ -5,29 +5,28 @@ using System.Text;
 using System.Threading.Tasks;
 using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneElementSetters;
 
-namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions
+namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
 {
-    class DeterminePlaneElement : MythAction
+    class CreateSapientSpecies : MythAction
     {
-        public DeterminePlaneElement() : base()
+
+        public CreateSapientSpecies()
         {
-            _is_primitve = false;
+            _reachable_goal = ActionGoal.CreateSapientSpecies;
         }
 
         public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
         {
-            PrimordialForce _taker = (PrimordialForce)taker;
-            if (_taker.CurrentCreationState.hasType && !_taker.CurrentCreationState.hasElement)
+            if (taker.GetType() == typeof(PrimordialForce))
                 return true;
             else
                 return false;
-
         }
 
         public override void Effect(CreationMythState state, ActionTakerMythObject taker)
         {
+
         }
     }
 }

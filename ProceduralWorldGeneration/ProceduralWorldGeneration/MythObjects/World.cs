@@ -7,12 +7,8 @@ using ProceduralWorldGeneration.DataStructure;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
-    class World : ActionTakerMythObject
+    public class World : ActionTakerMythObject
     {
-        public override void addPossibleActions()
-        {
-            throw new NotImplementedException();
-        }
 
         public override void takeAction(CreationMythState creation_myth, int current_year)
         {

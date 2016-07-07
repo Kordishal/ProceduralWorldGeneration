@@ -13,7 +13,7 @@ namespace ProceduralWorldGeneration.MythActions
 
         public string Name { get; set; }
 
-        virtual public int getWeight(CreationMythState state, BaseMythObject taker)
+        virtual public int getWeight(CreationMythState state, ActionTakerMythObject taker)
         {
             return 10;
         }
@@ -95,9 +95,9 @@ namespace ProceduralWorldGeneration.MythActions
             _passed_duration = 0;
         }
 
-        abstract public bool checkPrecondition(CreationMythState state, BaseMythObject taker);
+        abstract public bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker);
 
-        abstract public void Effect(CreationMythState state, BaseMythObject taker);
+        abstract public void Effect(CreationMythState state, ActionTakerMythObject taker);
 
         protected ActionGoal _reachable_goal;
         public ActionGoal ReachableGoal

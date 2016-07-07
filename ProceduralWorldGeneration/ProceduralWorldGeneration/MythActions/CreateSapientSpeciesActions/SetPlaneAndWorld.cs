@@ -5,25 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneElementSetters;
 
-namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions
+namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
 {
-    class DeterminePlaneElement : MythAction
+    class SetPlaneAndWorld : MythAction
     {
-        public DeterminePlaneElement() : base()
+        public SetPlaneAndWorld() : base()
         {
-            _is_primitve = false;
+            _is_primitve = true;
         }
+
 
         public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
         {
-            PrimordialForce _taker = (PrimordialForce)taker;
-            if (_taker.CurrentCreationState.hasType && !_taker.CurrentCreationState.hasElement)
+            if (taker.CurrentCreationState.isCreatingSapientSpecies && !taker.CurrentCreationState.hasPlaneAndWorld)
                 return true;
             else
                 return false;
-
         }
 
         public override void Effect(CreationMythState state, ActionTakerMythObject taker)

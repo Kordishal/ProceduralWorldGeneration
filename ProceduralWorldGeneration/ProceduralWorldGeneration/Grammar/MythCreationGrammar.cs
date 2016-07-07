@@ -37,10 +37,10 @@ namespace ProceduralWorldGeneration.Grammar
             ProductionRules.Add(new ProductionRule('F', "FF", 10));
             ProductionRules.Add(new ProductionRule('F', "fP", 10));
             ProductionRules.Add(new ProductionRule('F', "fD", 10));
-            ProductionRules.Add(new ProductionRule('F', "fA", 10));
             // Planes
             ProductionRules.Add(new ProductionRule('P', "PP", 10));
             ProductionRules.Add(new ProductionRule('P', "pW", 10));
+            ProductionRules.Add(new ProductionRule('P', "pA", 10));
             // World
             ProductionRules.Add(new ProductionRule('W', "WW", 10));
             ProductionRules.Add(new ProductionRule('W', "wD", 10));

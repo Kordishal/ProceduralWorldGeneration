@@ -28,7 +28,7 @@ namespace ProceduralWorldGeneration.Generator
             }
         }
 
-        static public Random RandomGenerator;
+        static public Random RandomGenerator { get; set; }
         
 
         public ConfigValues()

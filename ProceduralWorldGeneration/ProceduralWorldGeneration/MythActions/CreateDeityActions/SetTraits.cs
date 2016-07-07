@@ -5,25 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneElementSetters;
 
-namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions
+namespace ProceduralWorldGeneration.MythActions.CreateDeityActions
 {
-    class DeterminePlaneElement : MythAction
+    class SetTraits : MythAction
     {
-        public DeterminePlaneElement() : base()
-        {
-            _is_primitve = false;
-        }
-
         public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
         {
-            PrimordialForce _taker = (PrimordialForce)taker;
-            if (_taker.CurrentCreationState.hasType && !_taker.CurrentCreationState.hasElement)
+            if (taker.CurrentCreationState.hasDomains && !taker.CurrentCreationState.hasTraits)
                 return true;
             else
                 return false;
-
         }
 
         public override void Effect(CreationMythState state, ActionTakerMythObject taker)

@@ -17,17 +17,17 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
         }
 
 
-        public override bool checkPrecondition(CreationMythState state, BaseMythObject taker)
+        public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
         {
             PrimordialForce _taker = (PrimordialForce)taker;
-            if (_taker.PlaneConstructionState.formedPlane && !_taker.PlaneConstructionState.isConnected)
+            if (_taker.CurrentCreationState.formedPlane && !_taker.CurrentCreationState.isConnected)
                 return true;
             else
                 return false;
 
         }
 
-        public override void Effect(CreationMythState state, BaseMythObject taker)
+        public override void Effect(CreationMythState state, ActionTakerMythObject taker)
         {
             
         }

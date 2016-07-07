@@ -5,4 +5,8 @@ domains = {
 	"decay" "fate" "destiny" "oracle" "moon" "pestilence" "summoner"
 }
 
+personalities = {
+	"aggressive" "peaceful" "kind-hearted" "cold" "curious"
+}
+
 

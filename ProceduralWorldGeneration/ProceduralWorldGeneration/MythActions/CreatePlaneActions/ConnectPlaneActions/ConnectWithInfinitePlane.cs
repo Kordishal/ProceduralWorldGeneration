@@ -16,7 +16,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
             _is_primitve = true;
         }
 
-        public override bool checkPrecondition(CreationMythState state, BaseMythObject taker)
+        public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
         {
             PrimordialForce _taker = (PrimordialForce)taker;
             if (!(state.Planes.Count <= 0))
@@ -32,11 +32,11 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
                 return false;
         }
 
-        public override void Effect(CreationMythState state, BaseMythObject taker)
+        public override void Effect(CreationMythState state, ActionTakerMythObject taker)
         {
             PrimordialForce _taker = (PrimordialForce)taker;
             _taker.PlaneConstruction.connectPlane(searchPlaneSize(state.Planes, "infinite"));
-            _taker.PlaneConstructionState.isConnected = true;
+            _taker.CurrentCreationState.isConnected = true;
         }
     }
 }

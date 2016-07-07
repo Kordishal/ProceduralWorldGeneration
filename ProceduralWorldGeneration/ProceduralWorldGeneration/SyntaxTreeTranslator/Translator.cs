@@ -48,7 +48,7 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                 {
                     PrimordialForce temp_primordial_force = new PrimordialForce(first_child_node.Value.ExpressionValue);
                     data.PrimordialForces.Add(temp_primordial_force);
-                    data.DefinedMythObjects.Add(temp_primordial_force);                 
+                    data.DefinedMythObjects.Add(temp_primordial_force);
                 }
                 else if (parent_node.GetFirstChild().Value.ExpressionValue == "plane_sizes")
                 {
@@ -71,7 +71,7 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                 else if (parent_node.GetFirstChild().Value.ExpressionType == ExpressionTypes.Variable)
                 {
                     BaseMythObject temp_myth_object = searchTag(parent_node.GetFirstChild().Value.ExpressionValue);
-                    
+
                     if (temp_myth_object != null)
                     {
                         if (typeof(PrimordialForce) == temp_myth_object.GetType())
@@ -143,6 +143,14 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                 if (parent_node.GetFirstChild().Value.ExpressionValue == "domains")
                 {
                     data.Domains.Add(cutStringSigns(current_node.Value.ExpressionValue));
+                }
+                else if (parent_node.GetFirstChild().Value.ExpressionValue == "personalities")
+                {
+                    data.Personalities.Add(cutStringSigns(current_node.Value.ExpressionValue));
+                }
+                else if (parent_node.GetFirstChild().Value.ExpressionValue == "traits")
+                {
+                    data.Traits.Add(cutStringSigns(current_node.Value.ExpressionValue));
                 }
             }
         }

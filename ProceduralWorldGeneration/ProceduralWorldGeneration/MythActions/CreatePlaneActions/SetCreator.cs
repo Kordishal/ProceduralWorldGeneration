@@ -15,27 +15,37 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
             _is_primitve = true;
         }
 
-        public override bool checkPrecondition(CreationMythState state, BaseMythObject taker)
+        public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
         {
-            if (taker.GetType() == typeof(PrimordialForce))
-            {
-                PrimordialForce _taker = (PrimordialForce)taker;
-                if (!_taker.PlaneConstructionState.hasCreator)
-                    return true;
-                else
-                    return false;
-            }
+            if (!taker.CurrentCreationState.hasCreator)
+                return true;
             else
                 return false;
         }
 
-        public override void Effect(CreationMythState state, BaseMythObject taker)
+        public override void Effect(CreationMythState state, ActionTakerMythObject taker)
         {
-            PrimordialForce _taker = (PrimordialForce)taker;
-
-            _taker.PlaneConstruction = new Plane();
-            _taker.PlaneConstruction.Creator = _taker;
-            _taker.PlaneConstructionState.hasCreator = true;
+            if (taker.CurrentGoal == ActionGoal.CreatePlane)
+            {
+                taker.PlaneConstruction = new Plane();
+                taker.PlaneConstruction.Creator = taker;
+                taker.CurrentCreationState.hasCreator = true;
+                taker.CurrentCreationState.isCreatingPlane = true;
+            }
+            else if (taker.CurrentGoal == ActionGoal.CreateSapientSpecies)
+            {
+                taker.SapientSpeciesCreation = new SapientSpecies();
+                taker.SapientSpeciesCreation.Creator = taker;
+                taker.CurrentCreationState.hasCreator = true;
+                taker.CurrentCreationState.isCreatingSapientSpecies = true;
+            }
+            else if(taker.CurrentGoal == ActionGoal.CreateDeity)
+            {
+                taker.DeityCreation = new Deity();
+                taker.DeityCreation.Creator = taker;
+                taker.CurrentCreationState.hasCreator = true;
+                taker.CurrentCreationState.isCreatingDeity = true;
+            }
         }
     }
 }

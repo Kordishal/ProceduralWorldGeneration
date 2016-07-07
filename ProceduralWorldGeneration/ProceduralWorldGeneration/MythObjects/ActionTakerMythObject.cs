@@ -10,6 +10,15 @@ using ProceduralWorldGeneration.Generator;
 using ProceduralWorldGeneration.MythActions;
 using ProceduralWorldGeneration.Parser.SyntaxTree;
 using ProceduralWorldGeneration.Output;
+using ProceduralWorldGeneration.MythActions.CreatePlaneActions;
+using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions;
+using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneTypeSetters;
+using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneSizeSetters;
+using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneElementSetters;
+using ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneActions;
+using ProceduralWorldGeneration.MythActions.CreateDeityActions;
+using ProceduralWorldGeneration.MythActions.CreateDeityActions.SetDomainActions;
+using ProceduralWorldGeneration.MythActions.CreateDeityActions.SetTraitActions;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
@@ -61,8 +70,48 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        public abstract void takeAction(CreationMythState creation_myth, int current_year);
+        private Plane _plane_construction;
+        public Plane PlaneConstruction
+        {
+            get
+            {
+                return _plane_construction;
+            }
+            set
+            {
+                _plane_construction = value;
+            }
+        }
 
+        private SapientSpecies _sapient_species_creatio;
+        public SapientSpecies SapientSpeciesCreation
+        {
+            get
+            {
+                return _sapient_species_creatio;
+            }
+            set
+            {
+                _sapient_species_creatio = value;
+            }
+        }
+
+        private Deity _deity_creation;
+        public Deity DeityCreation
+        {
+            get
+            {
+                return _deity_creation;
+            }
+            set
+            {
+                _deity_creation = value;
+            }
+        }
+
+        public CreationState CurrentCreationState { get; set; }
+
+        public abstract void takeAction(CreationMythState creation_myth, int current_year);
 
         public void determineNextGoal(CreationMythState creation_myth)
         {
@@ -78,29 +127,34 @@ namespace ProceduralWorldGeneration.MythObjects
 
             foreach (TreeNode<CreationTreeNode> child in action_taker_node.Children)
             {
-                if (child.Value.MythObject == null)
+                if (child.Value.MythObject != null)
                 {
-                    switch (child.Value.Character)
-                    {
-                        case "p":
-                            _current_goal = ActionGoal.CreatePlane;
-                            child.Value.UnderConstruction = true;
-                            child.Value.Creator = this;
-                            break;
-                        case "d":
-                            _current_goal = ActionGoal.CreateDeity;
-                            child.Value.UnderConstruction = true;
-                            child.Value.Creator = this;
-                            break;
-                        case "a":
-                            _current_goal = ActionGoal.CreateSapientSpecies;
-                            child.Value.UnderConstruction = true;
-                            child.Value.Creator = this;
-                            break;
-                        default:
-                            _current_goal = ActionGoal.None;
-                            break;
-                    }
+                    continue;
+                }
+
+                switch (child.Value.Character)
+                {
+                    case "p":
+                        CreationMythLogger.updateActionLog("Start the creation of a plane.");
+                        _current_goal = ActionGoal.CreatePlane;
+                        child.Value.UnderConstruction = true;
+                        child.Value.Creator = this;
+                        return;
+                    case "d":
+                        CreationMythLogger.updateActionLog("Start the creation of a deity.");
+                        _current_goal = ActionGoal.CreateDeity;
+                        child.Value.UnderConstruction = true;
+                        child.Value.Creator = this;
+                        return;
+                    case "a":
+                        CreationMythLogger.updateActionLog("Start the creation of a sentient species.");
+                        _current_goal = ActionGoal.CreateSapientSpecies;
+                        child.Value.UnderConstruction = true;
+                        child.Value.Creator = this;
+                        return;
+                    default:
+                        _current_goal = ActionGoal.None;
+                        break;
                 }
 
                 if (_current_goal == ActionGoal.None && child.Value.Character == "p")
@@ -112,10 +166,11 @@ namespace ProceduralWorldGeneration.MythObjects
                             switch (child_of_child.Value.Character)
                             {
                                 case "w":
+                                    CreationMythLogger.updateActionLog("Start the creation of a world.");
                                     _current_goal = ActionGoal.CreateWorld;
                                     child_of_child.Value.UnderConstruction = true;
                                     child.Value.Creator = this;
-                                    break;
+                                    return;
                                 default:
                                     _current_goal = ActionGoal.None;
                                     break;
@@ -142,6 +197,9 @@ namespace ProceduralWorldGeneration.MythObjects
 
         virtual public void determineNextAction(CreationMythState creation_myth)
         {
+            //CreationMythLogger.updateActionLog("NEXT ACTION.");
+            //CreationMythLogger.updateActionLog(this);
+            
             Tree<MythAction> current_action_tree = null;
             MythAction local_action = null;
             List<TreeNode<MythAction>> next_action_candidates;
@@ -219,7 +277,54 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        public abstract void buildExistingActionsTree();
+        virtual public void buildExistingActionsTree()
+        {
+            _existing_actions.Add(new Tree<MythAction>(new CreatePlane()));
+            _existing_actions[0].TreeRoot.AddChild(new SetCreator());
+            _existing_actions[0].TreeRoot.AddChild(new FormPlane());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new DeterminePlaneType());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Value.AddChild(new SetMaterialType());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Value.AddChild(new SetElementalType());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Value.AddChild(new SetEtherealType());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Value.AddChild(new SetRandomType());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new DeterminePlaneSize());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetPocketSize());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetSmallSize());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetMediumSize());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetLargeSize());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetInfiniteSize());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetRandomSize());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetNoSize());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new DeterminePlaneElement());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetAirElement());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetEarthElement());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetFireElement());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetWaterElement());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetLightElement());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetDarknessElement());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetRandomElement());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetNoElement());
+            _existing_actions[0].TreeRoot.AddChild(new ConnectPlane());
+            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConnectWithCoreWorld());
+            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConnectWithInfinitePlane());
+            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConnectWithMaterialWorld());
+            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConnectWithNoPlane());
+            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConnectWithRandomPlane());
+            _existing_actions[0].TreeRoot.AddChild(new SetName());
+            _existing_actions[0].TreeRoot.AddChild(new AddToUniverse());
+
+            _existing_actions.Add(new Tree<MythAction>(new CreateDeity()));
+            _existing_actions[1].TreeRoot.AddChild(new SetCreator());
+            _existing_actions[1].TreeRoot.AddChild(new SetDomains());
+            _existing_actions[1].TreeRoot.Children.First.Next.Value.AddChild(new SetPrimaryDomain());
+            _existing_actions[1].TreeRoot.Children.First.Next.Value.AddChild(new AddRandomDomain());
+            _existing_actions[1].TreeRoot.AddChild(new SetTraits());
+            _existing_actions[1].TreeRoot.Children.First.Next.Next.Value.AddChild(new AddRandomTrait());
+            _existing_actions[1].TreeRoot.AddChild(new SetPersonality());
+            _existing_actions[1].TreeRoot.AddChild(new SetPower());
+            _existing_actions[1].TreeRoot.AddChild(new SetName());
+            _existing_actions[1].TreeRoot.AddChild(new AddToUniverse());
+        }
 
         protected void progressCooldowns()
         {
@@ -242,6 +347,7 @@ namespace ProceduralWorldGeneration.MythObjects
         {
             _valid_actions = new List<MythAction>();
             _existing_actions = new List<Tree<MythAction>>();
+            CurrentCreationState = new CreationState();
             buildExistingActionsTree();
         }
     }

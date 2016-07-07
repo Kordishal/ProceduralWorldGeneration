@@ -118,6 +118,23 @@ namespace ProceduralWorldGeneration.DataStructure
             }
         }
 
+        private List<Deity> _deities;
+        public List<Deity> Deities
+        {
+            get
+            {
+                return _deities;
+            }
+            set
+            {
+                if (_deities != value)
+                {
+                    _deities = value;
+                    this.NotifyPropertyChanged("Deities");
+                }
+            }
+        }
+
         private Queue<IActionTaker> _actionable_myth_objects;
         public Queue<IActionTaker> ActionableMythObjects
         {
@@ -141,6 +158,7 @@ namespace ProceduralWorldGeneration.DataStructure
             PrimordialForces = new List<PrimordialForce>();
             Planes = new List<Plane>();
             ActionableMythObjects = new Queue<IActionTaker>();
+            _deities = new List<Deity>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

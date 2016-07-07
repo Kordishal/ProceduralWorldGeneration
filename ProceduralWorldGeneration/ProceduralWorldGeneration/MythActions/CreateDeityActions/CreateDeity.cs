@@ -5,30 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
-using ProceduralWorldGeneration.Generator;
-using ProceduralWorldGeneration.MythObjectAttributes;
 
-namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
+namespace ProceduralWorldGeneration.MythActions.CreateDeityActions
 {
-    class CreatePlane : MythAction
+    class CreateDeity : MythAction
     {
 
-        public CreatePlane() : base() {
-            _is_primitve = false;
-            _reachable_goal = ActionGoal.CreatePlane;
+        public CreateDeity() : base()
+        {
+            _reachable_goal = ActionGoal.CreateDeity;
         }
-
         public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
         {
-            if (taker.GetType() == typeof(PrimordialForce))
-                return true;
-            else
-                return false;
+            return true;
         }
 
         public override void Effect(CreationMythState state, ActionTakerMythObject taker)
         {
-
 
         }
     }
