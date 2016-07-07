@@ -8,21 +8,17 @@ using ProceduralWorldGeneration.MythObjects;
 
 namespace ProceduralWorldGeneration.MythActions.CreateDeityActions
 {
-    class CreateDeity : MythAction
+    class CreateDeity : NonPrimitiveMythAction
     {
 
         public CreateDeity() : base()
         {
             _reachable_goal = ActionGoal.CreateDeity;
         }
-        public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
+
+        public override bool checkPrecondition(ActionTakerMythObject taker)
         {
             return true;
-        }
-
-        public override void Effect(CreationMythState state, ActionTakerMythObject taker)
-        {
-
         }
     }
 }

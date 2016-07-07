@@ -18,53 +18,29 @@ namespace ProceduralWorldGeneration.Generator
 {
     class MythCreator : INotifyPropertyChanged
     {
+        private UserInterfaceData _user;
+
         private MythCreationParser _parser;
         private Translator _translator;
-
-        private CreationMythState _creation_myth;
-        public CreationMythState CreationMyths
-        {
-            get
-            {
-                return _creation_myth;
-            }
-
-            set
-            {
-                if (_creation_myth != value)
-                {
-                    _creation_myth = value;
-                    NotifyPropertyChanged("CreationMyths");
-
-                }
-            }
-        }
 
         public MythCreator()
         {
            
         }
 
-        public void InitializeMythCreation()
+        public void initialise(UserInterfaceData user)
         {
-            _creation_myth = null;
-            _creation_myth = new CreationMythState();
+            CreationMythState.initialise();
+
+            _user = user;
+            _user.Update();
 
             _parser = new MythCreationParser();
-            _parser.Initialise();
+            _parser.initialise();
             _parser.parsing();
 
             _translator = new Translator(_parser.SyntaxTreeFSM.SyntaxTree);
-            _creation_myth.MythObjectData = _translator.translate();
-
-
-            _creation_myth.MythObjects = new ObservableCollection<BaseMythObject>();
-            _creation_myth.ActionableMythObjects = new Queue<IActionTaker>();
-
-            _creation_myth.PrimordialForces = new List<PrimordialForce>();
-            _creation_myth.Planes = new List<Plane>();
-
-            _creation_myth.CreationString = "";
+            CreationMythState.MythObjectData = _translator.translate();
         }
 
 
@@ -76,17 +52,17 @@ namespace ProceduralWorldGeneration.Generator
             int action_queue_count, counter;
             IActionTaker current_myth_object;
 
-            CreationMyths.CreationString = createCreationString();
+            CreationMythState.CreationString = createCreationString();
 
             generateCreationTree();
 
-            _creation_myth.PrimordialForces.Add(_creation_myth.MythObjectData.PrimordialForces[0]);
-            _creation_myth.ActionableMythObjects.Enqueue(_creation_myth.MythObjectData.PrimordialForces[0]);
-            _creation_myth.MythObjects.Add(_creation_myth.PrimordialForces[0]);
+            CreationMythState.PrimordialForces.Add(CreationMythState.MythObjectData.PrimordialForces[0]);
+            CreationMythState.ActionableMythObjects.Enqueue(CreationMythState.MythObjectData.PrimordialForces[0]);
+            CreationMythState.MythObjects.Add(CreationMythState.PrimordialForces[0]);
 
-            _creation_myth.CreationTree.TreeRoot.Children.First.Value.Value.MythObject = _creation_myth.PrimordialForces[0];
+            CreationMythState.CreationTree.TreeRoot.Children.First.Value.Value.MythObject = CreationMythState.PrimordialForces[0];
 
-            _creation_myth.CreationTree.traverseTree(printCreationTree);
+            CreationMythState.CreationTree.traverseTree(printCreationTree);
 
             // each tick is one year. Each myth object that can take actions can take one action per year at most.
             while (_current_year < _end_year)
@@ -95,16 +71,16 @@ namespace ProceduralWorldGeneration.Generator
                 CreationMythLogger.updateLog(_current_year);
                 // go through action queue once.
                 counter = 0;
-                action_queue_count = _creation_myth.ActionableMythObjects.Count;
+                action_queue_count = CreationMythState.ActionableMythObjects.Count;
                 while (counter < action_queue_count)
                 {
-                    current_myth_object = _creation_myth.ActionableMythObjects.Dequeue();
+                    current_myth_object = CreationMythState.ActionableMythObjects.Dequeue();
 
-                    current_myth_object.takeAction(_creation_myth, _current_year);
+                    current_myth_object.takeAction(_current_year);
         
                     CreationMythLogger.updateLog((BaseMythObject)current_myth_object, "UPDATE");
 
-                    _creation_myth.ActionableMythObjects.Enqueue(current_myth_object);
+                    CreationMythState.ActionableMythObjects.Enqueue(current_myth_object);
                     counter = counter + 1;
                 }
 
@@ -114,6 +90,8 @@ namespace ProceduralWorldGeneration.Generator
 
             CreationMythLogger.updateLog("END OF CREATION");
             CreationMythLogger.Write();
+
+            _user.Update();
             // END OF CREATION
         }
 
@@ -144,9 +122,9 @@ namespace ProceduralWorldGeneration.Generator
             TreeNode<CreationTreeNode> last_created_nation = null;
 
 
-            CreationMyths.CreationString = CreationMyths.CreationString.ToLower();
+            CreationMythState.CreationString = CreationMythState.CreationString.ToLower();
 
-            foreach (char c in CreationMyths.CreationString)
+            foreach (char c in CreationMythState.CreationString)
             {
                 if (c == 'f')
                 {
@@ -319,7 +297,7 @@ namespace ProceduralWorldGeneration.Generator
                 }
             }
 
-            CreationMyths.CreationTree = tree;      
+            CreationMythState.CreationTree = tree;      
         }
 
         private bool compareTreeNodeValue(TreeNode<string> node, string value)

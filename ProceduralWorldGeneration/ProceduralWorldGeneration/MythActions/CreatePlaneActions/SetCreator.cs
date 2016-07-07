@@ -8,14 +8,9 @@ using ProceduralWorldGeneration.MythObjects;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
 {
-    class SetCreator : MythAction
+    class SetCreator : PrimitivMythAction
     {
-        public SetCreator() : base()
-        {
-            _is_primitve = true;
-        }
-
-        public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
+        public override bool checkPrecondition(ActionTakerMythObject taker)
         {
             if (!taker.CurrentCreationState.hasCreator)
                 return true;
@@ -23,7 +18,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
                 return false;
         }
 
-        public override void Effect(CreationMythState state, ActionTakerMythObject taker)
+        public override void Effect(ActionTakerMythObject taker)
         {
             if (taker.CurrentGoal == ActionGoal.CreatePlane)
             {

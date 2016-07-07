@@ -16,19 +16,19 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
             _is_primitve = true;
         }
 
-        public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
+        public override bool checkPrecondition(ActionTakerMythObject taker)
         {
             PrimordialForce _taker = (PrimordialForce)taker;
-            if (!(state.Planes.Count <= 0))
+            if (!(CreationMythState.Planes.Count <= 0))
                 return true;
             else
                 return false;
         }
 
-        public override void Effect(CreationMythState state, ActionTakerMythObject taker)
+        public override void Effect(ActionTakerMythObject taker)
         {
             PrimordialForce _taker = (PrimordialForce)taker;
-            _taker.PlaneConstruction.connectPlane(state.Planes[ConfigValues.RandomGenerator.Next(state.Planes.Count)]);
+            _taker.PlaneConstruction.connectPlane(CreationMythState.Planes[ConfigValues.RandomGenerator.Next(CreationMythState.Planes.Count)]);
             _taker.CurrentCreationState.isConnected = true;
         }
     }

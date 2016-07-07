@@ -8,15 +8,9 @@ using ProceduralWorldGeneration.MythObjects;
 
 namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
 {
-    class SetPlaneAndWorld : MythAction
+    class SetPlaneAndWorld : PrimitivMythAction
     {
-        public SetPlaneAndWorld() : base()
-        {
-            _is_primitve = true;
-        }
-
-
-        public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
+        public override bool checkPrecondition(ActionTakerMythObject taker)
         {
             if (taker.CurrentCreationState.isCreatingSapientSpecies && !taker.CurrentCreationState.hasPlaneAndWorld)
                 return true;
@@ -24,7 +18,7 @@ namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
                 return false;
         }
 
-        public override void Effect(CreationMythState state, ActionTakerMythObject taker)
+        public override void Effect(ActionTakerMythObject taker)
         {
         }
     }

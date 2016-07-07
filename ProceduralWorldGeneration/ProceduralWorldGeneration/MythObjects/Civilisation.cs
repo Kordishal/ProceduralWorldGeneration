@@ -14,7 +14,7 @@ namespace ProceduralWorldGeneration.MythObjects
             throw new NotImplementedException();
         }
 
-        public override void takeAction(CreationMythState creation_myth, int current_year)
+        public override void takeAction(int current_year)
         {
             throw new NotImplementedException();
         }

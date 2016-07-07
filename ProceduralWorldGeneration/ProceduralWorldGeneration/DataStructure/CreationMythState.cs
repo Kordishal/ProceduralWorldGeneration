@@ -14,10 +14,10 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.DataStructure
 {
-    public class CreationMythState : INotifyPropertyChanged
+    public class CreationMythState
     {
-        private string _creation_string;
-        public string CreationString
+        static private string _creation_string;
+        static public string CreationString
         {
             get
             {
@@ -25,16 +25,12 @@ namespace ProceduralWorldGeneration.DataStructure
             }
             set
             {
-                if (_creation_string != value)
-                {
-                    _creation_string = value;
-                    this.NotifyPropertyChanged("CreationString");
-                }
+                _creation_string = value;
             }
         }
 
-        private Tree<CreationTreeNode> _creation_tree;
-        public Tree<CreationTreeNode> CreationTree
+        static private Tree<CreationTreeNode> _creation_tree;
+        static public Tree<CreationTreeNode> CreationTree
         {
             get
             {
@@ -42,16 +38,12 @@ namespace ProceduralWorldGeneration.DataStructure
             }
             set
             {
-                if (_creation_tree != value)
-                {
-                    _creation_tree = value;
-                    this.NotifyPropertyChanged("CreationTree");
-                }
+                _creation_tree = value;
             }
         }
 
-        private MythObjectData _myth_object_data;
-        public MythObjectData MythObjectData
+        static private MythObjectData _myth_object_data;
+        static public MythObjectData MythObjectData
         {
             get
             {
@@ -59,16 +51,12 @@ namespace ProceduralWorldGeneration.DataStructure
             }
             set
             {
-                if (_myth_object_data != value)
-                {
-                    _myth_object_data = value;
-                    this.NotifyPropertyChanged("MythObjectData");
-                }
+                _myth_object_data = value;
             }
         }
 
-        private ObservableCollection<BaseMythObject> _myth_objects;
-        public ObservableCollection<BaseMythObject> MythObjects
+        static private List<BaseMythObject> _myth_objects;
+        static public List<BaseMythObject> MythObjects
         {
             get
             {
@@ -76,16 +64,12 @@ namespace ProceduralWorldGeneration.DataStructure
             }
             set
             {
-                if (_myth_objects != value)
-                {
-                    _myth_objects = value;
-                    this.NotifyPropertyChanged("MythObjects");
-                }
+                _myth_objects = value;
             }
         }
 
-        private List<PrimordialForce> _primordial_forces;
-        public List<PrimordialForce> PrimordialForces
+        static private List<PrimordialForce> _primordial_forces;
+        static public List<PrimordialForce> PrimordialForces
         {
             get
             {
@@ -93,16 +77,12 @@ namespace ProceduralWorldGeneration.DataStructure
             }
             set
             {
-                if (_primordial_forces != value)
-                {
-                    _primordial_forces = value;
-                    this.NotifyPropertyChanged("PrimordialForces");
-                }
+                _primordial_forces = value;
             }
         }
 
-        private List<Plane> _planes;
-        public List<Plane> Planes
+        static private List<Plane> _planes;
+        static public List<Plane> Planes
         {
             get
             {
@@ -110,16 +90,12 @@ namespace ProceduralWorldGeneration.DataStructure
             }
             set
             {
-                if (_planes != value)
-                {
-                    _planes = value;
-                    this.NotifyPropertyChanged("Planes");
-                }
+                _planes = value;
             }
         }
 
-        private List<Deity> _deities;
-        public List<Deity> Deities
+        static private List<Deity> _deities;
+        static public List<Deity> Deities
         {
             get
             {
@@ -127,16 +103,12 @@ namespace ProceduralWorldGeneration.DataStructure
             }
             set
             {
-                if (_deities != value)
-                {
-                    _deities = value;
-                    this.NotifyPropertyChanged("Deities");
-                }
+                _deities = value;
             }
         }
 
-        private Queue<IActionTaker> _actionable_myth_objects;
-        public Queue<IActionTaker> ActionableMythObjects
+        static private Queue<IActionTaker> _actionable_myth_objects;
+        static public Queue<IActionTaker> ActionableMythObjects
         {
             get
             {
@@ -144,28 +116,27 @@ namespace ProceduralWorldGeneration.DataStructure
             }
             set
             {
-                if (_actionable_myth_objects != value)
-                {
-                    _actionable_myth_objects = value;
-                    this.NotifyPropertyChanged("ActionableMythObjects");
-                }
+                _actionable_myth_objects = value;
             }
+        }
+
+
+        static public void initialise()
+        {
+            _myth_objects = new List<BaseMythObject>();
+            _actionable_myth_objects = new Queue<IActionTaker>();
+            _primordial_forces = new List<PrimordialForce>();
+            _planes = new List<Plane>();         
+            _deities = new List<Deity>();
+
+            _creation_string = "";
         }
 
         public CreationMythState()
         {
-            MythObjects = new ObservableCollection<BaseMythObject>();
-            PrimordialForces = new List<PrimordialForce>();
-            Planes = new List<Plane>();
-            ActionableMythObjects = new Queue<IActionTaker>();
-            _deities = new List<Deity>();
+            
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propName)
-        {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-        }
+        
     }
 }

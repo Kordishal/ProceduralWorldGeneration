@@ -20,7 +20,7 @@ namespace ProceduralWorldGeneration.MythActions.CreateDeityActions.SetTraitActio
             _is_primitve = true;
         }
 
-        public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
+        public override bool checkPrecondition(ActionTakerMythObject taker)
         {
             if (taker.CurrentCreationState.hasDomains && !taker.CurrentCreationState.hasTraits)
                 return true;
@@ -28,11 +28,11 @@ namespace ProceduralWorldGeneration.MythActions.CreateDeityActions.SetTraitActio
                 return false;
         }
 
-        public override void Effect(CreationMythState state, ActionTakerMythObject taker)
+        public override void Effect(ActionTakerMythObject taker)
         {
             if (_current_trait_points < _max_trait_points_deites)
             {
-                taker.DeityCreation.Traits.Add(state.MythObjectData.Traits[ConfigValues.RandomGenerator.Next(state.MythObjectData.Traits.Count)]);
+                taker.DeityCreation.Traits.Add(CreationMythState.MythObjectData.Traits[ConfigValues.RandomGenerator.Next(CreationMythState.MythObjectData.Traits.Count)]);
                 _current_trait_points += 1;
             }
             else

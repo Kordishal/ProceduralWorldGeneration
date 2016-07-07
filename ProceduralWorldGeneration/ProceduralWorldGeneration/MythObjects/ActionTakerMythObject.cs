@@ -111,11 +111,11 @@ namespace ProceduralWorldGeneration.MythObjects
 
         public CreationState CurrentCreationState { get; set; }
 
-        public abstract void takeAction(CreationMythState creation_myth, int current_year);
+        public abstract void takeAction(int current_year);
 
-        public void determineNextGoal(CreationMythState creation_myth)
+        public void determineNextGoal()
         {
-            TreeNode<CreationTreeNode> action_taker_node = creation_myth.CreationTree.TreeRoot.searchNode(compareNode, new CreationTreeNode(this));
+            TreeNode<CreationTreeNode> action_taker_node = CreationMythState.CreationTree.TreeRoot.searchNode(compareNode, new CreationTreeNode(this));
 
             if (action_taker_node == null)
             {
@@ -195,7 +195,7 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        virtual public void determineNextAction(CreationMythState creation_myth)
+        virtual public void determineNextAction()
         {
             //CreationMythLogger.updateActionLog("NEXT ACTION.");
             //CreationMythLogger.updateActionLog(this);
@@ -207,7 +207,7 @@ namespace ProceduralWorldGeneration.MythObjects
 
             // if no goal is chosen a new one is determined.
             if (CurrentGoal == ActionGoal.None)
-                determineNextGoal(creation_myth);
+                determineNextGoal();
 
             // if after choosing a new goal it still has no action it simply waits for better times.
             if (CurrentGoal == ActionGoal.None)
@@ -228,7 +228,7 @@ namespace ProceduralWorldGeneration.MythObjects
             }
 
             // Assign the top action as local action. If the preconditions for this are not met then a wait is executed.
-            if (current_action_tree.TreeRoot.Value.checkPrecondition(creation_myth, this))
+            if (current_action_tree.TreeRoot.Value.checkPrecondition(this))
             {
                 local_action = current_action_tree.TreeRoot.Value;
                 current_action_tree.CurrentNode = current_action_tree.TreeRoot;
@@ -244,9 +244,9 @@ namespace ProceduralWorldGeneration.MythObjects
                 // Determines what children of the current action are valid actions.
                 foreach (TreeNode<MythAction> action_node in current_action_tree.CurrentNode.Children)
                 {
-                    if (!action_node.Value.onCooldown() && action_node.Value.checkPrecondition(creation_myth, this))
+                    if (!action_node.Value.onCooldown() && action_node.Value.checkPrecondition(this))
                     {
-                        total_action_weight += action_node.Value.getWeight(creation_myth, this);
+                        total_action_weight += action_node.Value.getWeight(this);
                         next_action_candidates.Add(action_node);
                     }
                 }
@@ -254,7 +254,7 @@ namespace ProceduralWorldGeneration.MythObjects
 
 
                 int chance = ConfigValues.RandomGenerator.Next(total_action_weight + 1);
-                int prev_weight = 0, current_weight = next_action_candidates[0].Value.getWeight(creation_myth, this);
+                int prev_weight = 0, current_weight = next_action_candidates[0].Value.getWeight(this);
                 foreach (TreeNode<MythAction> action_node in next_action_candidates)
                 {
                     // if chance is between the two weights the current action is chosen.
@@ -265,7 +265,7 @@ namespace ProceduralWorldGeneration.MythObjects
                     }
 
                     prev_weight = current_weight;
-                    current_weight += action_node.Value.getWeight(creation_myth, this);
+                    current_weight += action_node.Value.getWeight(this);
                 }                
             }
 
@@ -282,28 +282,22 @@ namespace ProceduralWorldGeneration.MythObjects
             _existing_actions.Add(new Tree<MythAction>(new CreatePlane()));
             _existing_actions[0].TreeRoot.AddChild(new SetCreator());
             _existing_actions[0].TreeRoot.AddChild(new FormPlane());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new DeterminePlaneType());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Value.AddChild(new SetMaterialType());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Value.AddChild(new SetElementalType());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Value.AddChild(new SetEtherealType());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Value.AddChild(new SetRandomType());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new DeterminePlaneSize());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetPocketSize());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetSmallSize());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetMediumSize());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetLargeSize());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetInfiniteSize());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetRandomSize());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Value.AddChild(new SetNoSize());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new DeterminePlaneElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetAirElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetEarthElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetFireElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetWaterElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetLightElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetDarknessElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetRandomElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.Children.First.Next.Next.Value.AddChild(new SetNoElement());
+            // Types
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetMaterialType());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetElementalType());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetEtherealType());
+            // Sizes
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetFinitePlaneSize());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetInfinitePlaneSize());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetNoPlaneSize());
+            // Elements
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetAirElement());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetEarthElement());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetFireElement());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetWaterElement());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetLightElement());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetDarknessElement());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetNoElement());
             _existing_actions[0].TreeRoot.AddChild(new ConnectPlane());
             _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConnectWithCoreWorld());
             _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConnectWithInfinitePlane());

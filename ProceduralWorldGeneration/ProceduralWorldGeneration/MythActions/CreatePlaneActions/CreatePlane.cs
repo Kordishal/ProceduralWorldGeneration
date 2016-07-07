@@ -10,26 +10,20 @@ using ProceduralWorldGeneration.MythObjectAttributes;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
 {
-    class CreatePlane : MythAction
+    class CreatePlane : NonPrimitiveMythAction
     {
 
-        public CreatePlane() : base() {
-            _is_primitve = false;
+        public CreatePlane() : base()
+        {
             _reachable_goal = ActionGoal.CreatePlane;
         }
 
-        public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
+        public override bool checkPrecondition(ActionTakerMythObject taker)
         {
             if (taker.GetType() == typeof(PrimordialForce))
                 return true;
             else
                 return false;
-        }
-
-        public override void Effect(CreationMythState state, ActionTakerMythObject taker)
-        {
-
-
         }
     }
 }

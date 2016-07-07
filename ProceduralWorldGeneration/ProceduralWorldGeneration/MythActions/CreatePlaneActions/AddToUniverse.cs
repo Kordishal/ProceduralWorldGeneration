@@ -19,7 +19,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
             _is_primitve = true;
         }
 
-        public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
+        public override bool checkPrecondition(ActionTakerMythObject taker)
         {
             if (taker.CurrentCreationState.hasName && !taker.CurrentCreationState.isAddedToUniverse)
                 return true;
@@ -27,20 +27,20 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
                 return false;
         }
 
-        public override void Effect(CreationMythState state, ActionTakerMythObject taker)
+        public override void Effect(ActionTakerMythObject taker)
         {
             if (taker.CurrentCreationState.isCreatingPlane)
             {
-                state.MythObjects.Add(taker.PlaneConstruction);
-                state.Planes.Add(taker.PlaneConstruction);
-                state.CreationTree.TreeRoot.traverseTree(addPlaneToCreationTree, new CreationTreeNode(taker));
+                CreationMythState.MythObjects.Add(taker.PlaneConstruction);
+                CreationMythState.Planes.Add(taker.PlaneConstruction);
+                CreationMythState.CreationTree.TreeRoot.traverseTree(addPlaneToCreationTree, new CreationTreeNode(taker));
             }
             else if (taker.CurrentCreationState.isCreatingDeity)
             {
-                state.ActionableMythObjects.Enqueue(taker.DeityCreation);
-                state.MythObjects.Add(taker.DeityCreation);
-                state.Deities.Add(taker.DeityCreation);
-                state.CreationTree.TreeRoot.traverseTree(addDeityToCreationTree, new CreationTreeNode(taker));
+                CreationMythState.ActionableMythObjects.Enqueue(taker.DeityCreation);
+                CreationMythState.MythObjects.Add(taker.DeityCreation);
+                CreationMythState.Deities.Add(taker.DeityCreation);
+                CreationMythState.CreationTree.TreeRoot.traverseTree(addDeityToCreationTree, new CreationTreeNode(taker));
             }
             
             

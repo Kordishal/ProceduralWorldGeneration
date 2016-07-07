@@ -26,7 +26,7 @@ namespace ProceduralWorldGeneration.Output
 
         static public void Write()
         {
-            writer = new StreamWriter(@"C:\Users\Jonas\Documents\Projekte\ProceduralWorldGeneration\logs\myth_creation.log");
+            writer = new StreamWriter(@"C:\Users\Jonas\Documents\ProceduralWorldGeneration\logs\myth_creation.log");
             foreach (string s in _temp_log)
             {
                 writer.WriteLine(s);
@@ -34,7 +34,7 @@ namespace ProceduralWorldGeneration.Output
             writer.Close();
             _temp_log.Clear();
 
-            writer = new StreamWriter(@"C:\Users\Jonas\Documents\Projekte\ProceduralWorldGeneration\logs\action.log");
+            writer = new StreamWriter(@"C:\Users\Jonas\Documents\ProceduralWorldGeneration\logs\action.log");
             foreach (string s in _action_log)
             {
                 writer.WriteLine(s);
@@ -42,7 +42,7 @@ namespace ProceduralWorldGeneration.Output
             writer.Close();
             _action_log.Clear();
 
-            writer = new StreamWriter(@"C:\Users\Jonas\Documents\Projekte\ProceduralWorldGeneration\logs\tree.log");
+            writer = new StreamWriter(@"C:\Users\Jonas\Documents\ProceduralWorldGeneration\logs\tree.log");
             foreach (string s in _tree_log)
             {
                 writer.WriteLine(s);

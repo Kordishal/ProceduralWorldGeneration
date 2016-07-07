@@ -8,25 +8,19 @@ using ProceduralWorldGeneration.MythObjects;
 
 namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
 {
-    class CreateSapientSpecies : MythAction
+    class CreateSapientSpecies : NonPrimitiveMythAction
     {
-
         public CreateSapientSpecies()
         {
             _reachable_goal = ActionGoal.CreateSapientSpecies;
         }
 
-        public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
+        public override bool checkPrecondition(ActionTakerMythObject taker)
         {
             if (taker.GetType() == typeof(PrimordialForce))
                 return true;
             else
                 return false;
-        }
-
-        public override void Effect(CreationMythState state, ActionTakerMythObject taker)
-        {
-
         }
     }
 }

@@ -10,7 +10,7 @@ namespace ProceduralWorldGeneration.MythObjects
     public class World : ActionTakerMythObject
     {
 
-        public override void takeAction(CreationMythState creation_myth, int current_year)
+        public override void takeAction(int current_year)
         {
             throw new NotImplementedException();
         }

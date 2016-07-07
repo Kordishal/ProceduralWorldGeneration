@@ -1,5 +1,7 @@
-﻿using ProceduralWorldGeneration.Generator;
+﻿using ProceduralWorldGeneration.DataStructure;
+using ProceduralWorldGeneration.Generator;
 using ProceduralWorldGeneration.Input;
+using ProceduralWorldGeneration.Main;
 using ProceduralWorldGeneration.MythObjects;
 using System;
 using System.Collections.Generic;
@@ -27,29 +29,33 @@ namespace ProceduralWorldGeneration
         /// <summary>
         /// Stores certain top level values to invluence generation, which can be changed in the GUI.
         /// </summary>
-        private ConfigValues GenerationConfigurations;
+        private ConfigValues _config;
 
         /// <summary>
-        /// The central class which holds the main creation loop, references to all the data classes and creates the primordial forces.
+        /// The data stored from the world state.
         /// </summary>
-        private MythCreator MainMythCreationClass;
+        private UserInterfaceData _user_interface_data;
         
 
         public MainWindow()
         {
             InitializeComponent();
-            GenerationConfigurations = new ConfigValues();
-            MainMythCreationClass = new MythCreator();
-            RandomSeedTextBox.DataContext = GenerationConfigurations;
+            initialise();
         }
 
+        private void initialise()
+        {
+            _config = new ConfigValues();
+            RandomSeedTextBox.Text = _config.RandomSeed;
+            _user_interface_data = new UserInterfaceData();
+        }
 
         private void MythCreationButton_Click(object sender, RoutedEventArgs e)
         {
-            MainMythCreationClass.InitializeMythCreation();
-            ElementListView.DataContext = MainMythCreationClass.CreationMyths;
-            ElementListView.ItemsSource = MainMythCreationClass.CreationMyths.MythObjects;       
-            MainMythCreationClass.creationLoop();
+            Programm.initialise(_user_interface_data);
+            Programm.startCreationLoop();
+            ElementListView.DataContext = _user_interface_data;
+            ElementListView.ItemsSource = _user_interface_data.MythObjects;
         }
 
         private void ElementListView_SelectionChanged(object sender, SelectionChangedEventArgs e)

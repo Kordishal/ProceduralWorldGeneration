@@ -9,32 +9,18 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
 {
-    class FormPlane : MythAction
+    class FormPlane : NonPrimitiveMythAction
     {
-
-        public FormPlane() : base()
+        public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            _is_primitve = false;
-        }
-
-        public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
-        {
-            if (taker.CurrentCreationState.hasCreator)
-            {
-                if (!taker.CurrentCreationState.hasType || !taker.CurrentCreationState.hasSize || !taker.CurrentCreationState.hasElement)
-                {
-                    return true;
-                }
-                else
-                    return false;
-            }
-            else
+            // Needs an creater to become active
+            if (!taker.CurrentCreationState.hasCreator)
                 return false;
-        }
+            // Only becomes valid if at least o
+            if (!taker.CurrentCreationState.formedPlane)
+                return true;
 
-        public override void Effect(CreationMythState state, ActionTakerMythObject taker)
-        {
-            throw new NotImplementedException();
+            return false;
         }
     }
 }

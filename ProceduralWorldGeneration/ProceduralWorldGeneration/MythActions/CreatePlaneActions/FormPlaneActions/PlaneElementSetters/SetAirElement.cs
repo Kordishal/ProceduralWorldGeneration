@@ -9,36 +9,20 @@ using ProceduralWorldGeneration.MythObjectAttributes;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneElementSetters
 {
-    class SetAirElement : MythAction
+    class SetAirElement : SetPlaneElement
     {
-        public SetAirElement()
+
+        protected override void AdjustWeight(ActionTakerMythObject taker)
         {
-            _is_primitve = true;
+            _weight = 10;           
         }
 
-        public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
+        public override void Effect(ActionTakerMythObject taker)
         {
-            PrimordialForce _taker = (PrimordialForce)taker;
-            if (_taker.PlaneConstruction.PlaneType.hasDominantElement)
-                return true;
-            else
-                return false;
-
+            taker.PlaneConstruction.PlaneElement = searchElement("air");
+            taker.CurrentCreationState.hasElement = true;
         }
 
-        public override void Effect(CreationMythState state, ActionTakerMythObject taker)
-        {
-            PrimordialForce _taker = (PrimordialForce)taker;
-            _taker.PlaneConstruction.PlaneElement = searchElement(state.MythObjectData.PlaneElements);
-            _taker.CurrentCreationState.hasElement = true;
-        }
-
-        private PlaneElement searchElement(List<PlaneElement> plane_elements)
-        {
-            foreach (PlaneElement p in plane_elements)
-                if (p.Tag == "air")
-                    return p;
-            return null;
-        }
+        
     }
 }

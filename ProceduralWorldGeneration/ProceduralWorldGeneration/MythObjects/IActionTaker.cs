@@ -20,12 +20,12 @@ namespace ProceduralWorldGeneration.MythObjects
         /// <summary>
         /// The actions which can be taken by the entity.
         /// </summary>
-        void takeAction(CreationMythState creation_myth, int current_year);
+        void takeAction(int current_year);
 
         void buildExistingActionsTree();
 
-        void determineNextAction(CreationMythState creation_myth);
+        void determineNextAction();
 
-        void determineNextGoal(CreationMythState creation_myth);
+        void determineNextGoal();
     }
 }

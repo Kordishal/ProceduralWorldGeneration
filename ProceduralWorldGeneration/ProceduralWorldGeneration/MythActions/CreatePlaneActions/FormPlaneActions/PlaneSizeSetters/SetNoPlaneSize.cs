@@ -5,16 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
-using ProceduralWorldGeneration.Generator;
 
-namespace ProceduralWorldGeneration.MythActions.CreateDeityActions.SetDomainActions
+namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneSizeSetters
 {
-    class AddRandomDomain : PrimitivMythAction
+    class SetNoPlaneSize : SetPlaneSize
     {
-
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (taker.CurrentCreationState.hasPrimaryDomain)
+            if (!taker.CurrentCreationState.hasType)
+                return false;
+
+            if (taker.PlaneConstruction.PlaneType.isAttachedTo != null)
                 return true;
             else
                 return false;
@@ -22,8 +23,7 @@ namespace ProceduralWorldGeneration.MythActions.CreateDeityActions.SetDomainActi
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            taker.DeityCreation.Domains.Add(CreationMythState.MythObjectData.Domains[ConfigValues.RandomGenerator.Next(CreationMythState.MythObjectData.Domains.Count)]);
-            taker.CurrentCreationState.hasDomains = true;
+            taker.CurrentCreationState.hasSize = true;
         }
     }
 }

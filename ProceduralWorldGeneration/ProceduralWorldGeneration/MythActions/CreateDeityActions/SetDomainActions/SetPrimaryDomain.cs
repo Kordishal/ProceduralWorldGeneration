@@ -9,14 +9,9 @@ using ProceduralWorldGeneration.Generator;
 
 namespace ProceduralWorldGeneration.MythActions.CreateDeityActions.SetDomainActions
 {
-    class SetPrimaryDomain : MythAction
+    class SetPrimaryDomain : PrimitivMythAction
     {
-        public SetPrimaryDomain()
-        {
-            _is_primitve = true;
-        }
-
-        public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
+        public override bool checkPrecondition(ActionTakerMythObject taker)
         {
             if (!taker.CurrentCreationState.hasPrimaryDomain)
                 return true;
@@ -24,9 +19,9 @@ namespace ProceduralWorldGeneration.MythActions.CreateDeityActions.SetDomainActi
                 return false;
         }
 
-        public override void Effect(CreationMythState state, ActionTakerMythObject taker)
+        public override void Effect(ActionTakerMythObject taker)
         {
-            taker.DeityCreation.Domains.Add(state.MythObjectData.Domains[ConfigValues.RandomGenerator.Next(state.MythObjectData.Domains.Count)]);
+            taker.DeityCreation.Domains.Add(CreationMythState.MythObjectData.Domains[ConfigValues.RandomGenerator.Next(CreationMythState.MythObjectData.Domains.Count)]);
             taker.CurrentCreationState.hasPrimaryDomain = true;
         }
     }

@@ -55,8 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataStructure\UserInterfaceData.cs" />
     <Compile Include="Grammar\MythCreationGrammar.cs" />
     <Compile Include="Grammar\ProductionRule.cs" />
+    <Compile Include="Main\Programm.cs" />
     <Compile Include="MythActions\ActionGoal.cs" />
     <Compile Include="MythActions\CreateDeityActions\CreateDeity.cs" />
     <Compile Include="MythActions\CreateDeityActions\SetDomainActions\AddRandomDomain.cs" />
@@ -73,12 +75,12 @@
     <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConnectWithMaterialWorld.cs" />
     <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConnectWithNoPlane.cs" />
     <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConnectWithRandomPlane.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetPlaneElement.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetPlaneSize.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneTypeSetters\SetPlaneType.cs" />
     <Compile Include="MythActions\CreateSapientSpeciesActions\CreateSapientSpecies.cs" />
     <Compile Include="MythActions\CreateSapientSpeciesActions\SetPlaneAndWorld.cs" />
     <Compile Include="MythActions\CreationState.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\DeterminePlaneElement.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\DeterminePlaneSize.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\DeterminePlaneType.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlane.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetAirElement.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetDarknessElement.cs" />
@@ -86,21 +88,17 @@
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetFireElement.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetLightElement.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetNoElement.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetRandomElement.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetWaterElement.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetInfiniteSize.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetLargeSize.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetMediumSize.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetNoSize.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetPocketSize.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetRandomSize.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetSmallSize.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetInfinitePlaneSize.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetNoPlaneSize.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetFinitePlaneSize.cs" />
     <Compile Include="MythActions\CreatePlaneActions\SetName.cs" />
     <Compile Include="MythActions\CreatePlaneActions\SetCreator.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneTypeSetters\SetElementalType.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneTypeSetters\SetEtherealType.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneTypeSetters\SetMaterialType.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneTypeSetters\SetRandomType.cs" />
+    <Compile Include="MythActions\NonPrimitiveMythAction.cs" />
+    <Compile Include="MythActions\PrimitiveMythAction.cs" />
     <Compile Include="MythObjectAttributes\Ethos.cs" />
     <Compile Include="MythObjectAttributes\PlaneElement.cs" />
     <Compile Include="MythObjects\Civilisation.cs" />

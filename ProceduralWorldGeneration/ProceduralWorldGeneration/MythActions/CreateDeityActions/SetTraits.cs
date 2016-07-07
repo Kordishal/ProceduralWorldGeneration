@@ -8,18 +8,14 @@ using ProceduralWorldGeneration.MythObjects;
 
 namespace ProceduralWorldGeneration.MythActions.CreateDeityActions
 {
-    class SetTraits : MythAction
+    class SetTraits : NonPrimitiveMythAction
     {
-        public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
+        public override bool checkPrecondition(ActionTakerMythObject taker)
         {
             if (taker.CurrentCreationState.hasDomains && !taker.CurrentCreationState.hasTraits)
                 return true;
             else
                 return false;
-        }
-
-        public override void Effect(CreationMythState state, ActionTakerMythObject taker)
-        {
         }
     }
 }

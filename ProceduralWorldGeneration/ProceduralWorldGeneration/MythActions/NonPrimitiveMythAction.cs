@@ -3,26 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
+using ProceduralWorldGeneration.DataStructure;
 
 namespace ProceduralWorldGeneration.MythActions
 {
-    class Wait : PrimitivMythAction
+    abstract class NonPrimitiveMythAction : MythAction
     {
-        public override bool checkPrecondition(ActionTakerMythObject taker)
+        public NonPrimitiveMythAction() : base()
         {
-            return true;
+            _is_primitve = false;
         }
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            // WAIT
-        }
 
-        public Wait() {
-            Cooldown = 0;
-            Duration = 0;
         }
     }
 }

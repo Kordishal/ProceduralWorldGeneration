@@ -59,17 +59,17 @@ namespace ProceduralWorldGeneration.MythObjects
         {
         }
 
-        public override void takeAction(CreationMythState state, int current_year)
+        public override void takeAction(int current_year)
         {
             progressCooldowns();
 
             if (CurrentAction == null)
-                determineNextAction(state);
+                determineNextAction();
 
             if (CurrentAction.getDuration() <= 0)
             {
                 CreationMythLogger.updateActionLog(this);
-                CurrentAction.Effect(state, this);
+                CurrentAction.Effect(this);
                 CurrentAction.resetCooldown();
                 CurrentAction.resetDuration();
                 CurrentAction = null;

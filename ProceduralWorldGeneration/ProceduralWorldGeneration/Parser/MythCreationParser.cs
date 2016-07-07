@@ -37,7 +37,7 @@ namespace ProceduralWorldGeneration.Parser
 
         }
 
-        public void Initialise()
+        public void initialise()
         {
             // Read the files and put them through the Lexer.
             reader = new MythObjectReader();

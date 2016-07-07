@@ -9,14 +9,9 @@ using ProceduralWorldGeneration.Generator;
 
 namespace ProceduralWorldGeneration.MythActions.CreateDeityActions
 {
-    class SetPersonality : MythAction
+    class SetPersonality : PrimitivMythAction
     {
-        public SetPersonality()
-        {
-            _is_primitve = true;
-        }
-
-        public override bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker)
+        public override bool checkPrecondition(ActionTakerMythObject taker)
         {
             if (taker.CurrentCreationState.hasTraits && !taker.CurrentCreationState.hasPersonality)
                 return true;
@@ -24,9 +19,9 @@ namespace ProceduralWorldGeneration.MythActions.CreateDeityActions
                 return false;
         }
 
-        public override void Effect(CreationMythState state, ActionTakerMythObject taker)
+        public override void Effect(ActionTakerMythObject taker)
         {
-            taker.DeityCreation.Personality = state.MythObjectData.Personalities[ConfigValues.RandomGenerator.Next(state.MythObjectData.Personalities.Count)];
+            taker.DeityCreation.Personality = CreationMythState.MythObjectData.Personalities[ConfigValues.RandomGenerator.Next(CreationMythState.MythObjectData.Personalities.Count)];
             taker.CurrentCreationState.hasPersonality = true;
         }
     }

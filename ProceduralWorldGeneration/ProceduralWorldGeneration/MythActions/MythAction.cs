@@ -10,12 +10,17 @@ namespace ProceduralWorldGeneration.MythActions
 {
     public abstract class MythAction
     {
-
         public string Name { get; set; }
 
-        virtual public int getWeight(CreationMythState state, ActionTakerMythObject taker)
+        protected int _weight;
+        virtual protected void AdjustWeight(ActionTakerMythObject taker)
         {
-            return 10;
+            _weight = 10;
+        }
+        public int getWeight(ActionTakerMythObject taker)
+        {
+            AdjustWeight(taker);
+            return _weight;
         }
 
         protected bool _is_primitve;
@@ -95,9 +100,9 @@ namespace ProceduralWorldGeneration.MythActions
             _passed_duration = 0;
         }
 
-        abstract public bool checkPrecondition(CreationMythState state, ActionTakerMythObject taker);
+        abstract public bool checkPrecondition(ActionTakerMythObject taker);
 
-        abstract public void Effect(CreationMythState state, ActionTakerMythObject taker);
+        abstract public void Effect(ActionTakerMythObject taker);
 
         protected ActionGoal _reachable_goal;
         public ActionGoal ReachableGoal
@@ -108,9 +113,9 @@ namespace ProceduralWorldGeneration.MythActions
 
         public MythAction()
         {
+            // set name of action to its type - namespace
             string[] temp = GetType().ToString().Split('.');
             Name = temp[temp.Length - 1];
-            _is_primitve = false;
         }
 
         public override string ToString()
