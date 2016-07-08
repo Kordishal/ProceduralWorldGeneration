@@ -1,17 +1,3 @@
-traits = {
-	"Immortal" "Eternal Youth" 
-	
-	"Herbivore" "Omnivore" "Carnivore"
-	
-	"Water Breather" "Air Breather" "Aquatic"
-	
-	"Immunity: Fire"
-	"Affinity: Fire"
-	"Vulnerability: Fire"
-	"Resistance: Fire"
-}
-
-
 ethos = {
 	pacifism = {
 		name = "Pacifism"

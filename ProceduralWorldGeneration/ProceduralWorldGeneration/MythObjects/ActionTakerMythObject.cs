@@ -18,7 +18,6 @@ using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.
 using ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneActions;
 using ProceduralWorldGeneration.MythActions.CreateDeityActions;
 using ProceduralWorldGeneration.MythActions.CreateDeityActions.SetDomainActions;
-using ProceduralWorldGeneration.MythActions.CreateDeityActions.SetTraitActions;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
@@ -316,8 +315,6 @@ namespace ProceduralWorldGeneration.MythObjects
             _existing_actions[1].TreeRoot.AddChild(new SetDomains());
             _existing_actions[1].TreeRoot.Children.First.Next.Value.AddChild(new SetPrimaryDomain());
             _existing_actions[1].TreeRoot.Children.First.Next.Value.AddChild(new AddRandomDomain());
-            _existing_actions[1].TreeRoot.AddChild(new SetTraits());
-            _existing_actions[1].TreeRoot.Children.First.Next.Next.Value.AddChild(new AddRandomTrait());
             _existing_actions[1].TreeRoot.AddChild(new SetPersonality());
             _existing_actions[1].TreeRoot.AddChild(new SetPower());
             _existing_actions[1].TreeRoot.AddChild(new SetName());

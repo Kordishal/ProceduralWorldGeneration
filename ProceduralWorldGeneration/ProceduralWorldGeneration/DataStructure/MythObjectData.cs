@@ -20,7 +20,6 @@ namespace ProceduralWorldGeneration.DataStructure
         // DEITIES
         public List<string> Domains { get; set; }
         public List<string> Personalities { get; set; }
-        public List<string> Traits { get; set; }
 
         // PLANES
         public List<Plane> DefinedPlanes { get; set; }
@@ -28,6 +27,11 @@ namespace ProceduralWorldGeneration.DataStructure
         public List<PlaneType> PlaneTypes { get; set; }
         public List<PlaneSize> PlaneSizes { get; set; }
         public List<PlaneElement> PlaneElements { get; set; }
+
+        // SPECIES
+        public List<Ethos> Ethoses { get; set; }
+        public List<Trait> Traits { get; set; }
+
 
 
         public MythObjectData()
@@ -37,7 +41,7 @@ namespace ProceduralWorldGeneration.DataStructure
             PrimordialForces = new List<PrimordialForce>();
             Domains = new List<string>();
             Personalities = new List<string>();
-            Traits = new List<string>();
+            Traits = new List<Trait>();
             PlaneTypes = new List<PlaneType>();
             PlaneSizes = new List<PlaneSize>();
             PlaneElements = new List<PlaneElement>();

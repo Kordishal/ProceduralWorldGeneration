@@ -64,24 +64,6 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        // Trats describe the deity in greater detail.
-        private List<string> _traits;
-        public List<string> Traits
-        {
-            get
-            {
-                return _traits;
-            }
-            set
-            {
-                if (_traits != value)
-                {
-                    _traits = value;
-                    base.NotifyPropertyChanged("Traits");
-                }
-            }
-        }
-
         // The more power a deity has the more they can do.
         private int _power;
         public int Power
@@ -104,7 +86,6 @@ namespace ProceduralWorldGeneration.MythObjects
         public Deity(string tag = "default_tag") : base(tag)
         {
             _domains = new List<string>();
-            _traits = new List<string>();
         }
 
         public override void takeAction(int current_year)

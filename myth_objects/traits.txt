@@ -1,10 +1,63 @@
 traits = {
+	wings = {
+		name = "Wings"
+		category = "physiognomy"
+	}
+	
+	aquatic = {
+		name = "Aquatic"
+		category = "habitat"	
+	}
+	
+	amphibious = {
+		name = "Amphibious"
+		category = "habitat"
+	}
+	
+	terranean = {
+		name = "Terranean"
+		category = "habitat"
+	}
+	
+	subterranean = {
+		name = "Subterranean"
+		category = "habitat"
+	}
+	
+	aviatic = {
+		name = "Aviatic"
+		category = "habitat"
+	}
+	
 	immortal = {
 		name = "Immortal"
 		category = "lifespan"
-		excludes = {
-			eternal_youth
-		}
-		
 	}
+	
+	eternal = {
+		name = "Eternal"
+		category = "lifespan"
+	}
+	
+	very_long = {
+		name = "Very Long"
+		category = "lifespan"
+	}
+	
+	long = {
+		name = "Long"
+		category = "lifespan"
+	}
+	
+	average = {
+		name = "Average"
+		category = "lifespan"
+	}
+	
+	short = {
+		name = "Short"
+		category = "lifespan"
+	}
+	
+	
 }

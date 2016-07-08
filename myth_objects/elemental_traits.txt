@@ -1,0 +1,9 @@
+traits = {
+	immunity_fire = {
+		name = "Immunity: Fire"
+		add_trait_tag = "immunity"
+		add_trait_tag = "fire"
+	}
+	
+	resistance
+}
