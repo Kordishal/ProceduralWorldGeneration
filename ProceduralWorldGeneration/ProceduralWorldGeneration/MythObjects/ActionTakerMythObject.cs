@@ -146,41 +146,46 @@ namespace ProceduralWorldGeneration.MythObjects
                         child.Value.UnderConstruction = true;
                         child.Value.Creator = this;
                         return;
-                    case "a":
-                        CreationMythLogger.updateActionLog("Start the creation of a sentient species.");
-                        _current_goal = ActionGoal.CreateSapientSpecies;
-                        child.Value.UnderConstruction = true;
-                        child.Value.Creator = this;
-                        return;
                     default:
                         _current_goal = ActionGoal.None;
                         break;
                 }
 
-                if (_current_goal == ActionGoal.None && child.Value.Character == "p")
+            }
+
+            if (_current_goal == ActionGoal.None)
+            {
+                foreach (TreeNode<CreationTreeNode> child in action_taker_node.Children)
                 {
-                    foreach (TreeNode<CreationTreeNode> child_of_child in child.Children)
+                    if (_current_goal == ActionGoal.None && child.Value.Character == "p")
                     {
-                        if (child_of_child.Value.MythObject == null)
+                        foreach (TreeNode<CreationTreeNode> child_of_child in child.Children)
                         {
-                            switch (child_of_child.Value.Character)
+                            if (child_of_child.Value.MythObject == null)
                             {
-                                case "w":
-                                    CreationMythLogger.updateActionLog("Start the creation of a world.");
-                                    _current_goal = ActionGoal.CreateWorld;
-                                    child_of_child.Value.UnderConstruction = true;
-                                    child.Value.Creator = this;
-                                    return;
-                                default:
-                                    _current_goal = ActionGoal.None;
-                                    break;
+                                switch (child_of_child.Value.Character)
+                                {
+                                    case "w":
+                                        CreationMythLogger.updateActionLog("Start the creation of a world.");
+                                        _current_goal = ActionGoal.CreateWorld;
+                                        child_of_child.Value.UnderConstruction = true;
+                                        child.Value.Creator = this;
+                                        return;
+                                    case "a":
+                                        CreationMythLogger.updateActionLog("Start the creation of a sentient species.");
+                                        _current_goal = ActionGoal.CreateSapientSpecies;
+                                        child.Value.UnderConstruction = true;
+                                        child.Value.Creator = this;
+                                        return;
+                                    default:
+                                        _current_goal = ActionGoal.None;
+                                        break;
+                                }
                             }
                         }
                     }
                 }
-            }
-
-            
+            }       
         }
 
         private bool compareNode(TreeNode<CreationTreeNode> current_node, CreationTreeNode tree_node_value)

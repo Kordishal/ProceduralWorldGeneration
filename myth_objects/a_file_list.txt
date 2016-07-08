@@ -2,3 +2,4 @@ primordial_forces.txt
 deities.txt
 planes.txt
 sapient_species.txt
+traits.txt

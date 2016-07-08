@@ -13,8 +13,12 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
+            if (taker.CurrentCreationState.hasFirstConnection)
+                return false;
+
             if (taker.PlaneConstruction.PlaneSize == null)
                 return false;
+
             if (CreationMythState.Planes.Count > 0)
                 return true;
             else

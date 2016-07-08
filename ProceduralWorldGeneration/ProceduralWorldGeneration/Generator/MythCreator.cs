@@ -84,7 +84,7 @@ namespace ProceduralWorldGeneration.Generator
                     counter = counter + 1;
                 }
 
-                CreationMythLogger.Write();
+                //CreationMythLogger.Write();
                 _current_year += 1;
             }
 

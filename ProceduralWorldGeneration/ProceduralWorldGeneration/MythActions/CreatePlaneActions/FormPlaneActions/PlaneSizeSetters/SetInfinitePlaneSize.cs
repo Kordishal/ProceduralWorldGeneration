@@ -45,6 +45,9 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
             if (!taker.CurrentCreationState.hasType)
                 return false;
 
+            if (taker.CurrentCreationState.hasSize)
+                return false;
+
             if (taker.PlaneConstruction.PlaneType.isAttachedTo != null)
                 return false;
             else

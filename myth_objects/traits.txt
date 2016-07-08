@@ -1,0 +1,10 @@
+traits = {
+	immortal = {
+		name = "Immortal"
+		category = "lifespan"
+		excludes = {
+			eternal_youth
+		}
+		
+	}
+}
