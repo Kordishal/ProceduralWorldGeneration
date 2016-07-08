@@ -79,6 +79,7 @@
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneTypeSetters\SetPlaneType.cs" />
     <Compile Include="MythActions\CreateSapientSpeciesActions\CreateSapientSpecies.cs" />
     <Compile Include="MythActions\CreateSapientSpeciesActions\SetPlaneAndWorld.cs" />
+    <Compile Include="MythActions\CreateSapientSpeciesActions\SetSpeciesType.cs" />
     <Compile Include="MythActions\CreationState.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlane.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetAirElement.cs" />
@@ -98,9 +99,10 @@
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneTypeSetters\SetMaterialType.cs" />
     <Compile Include="MythActions\NonPrimitiveMythAction.cs" />
     <Compile Include="MythActions\PrimitiveMythAction.cs" />
-    <Compile Include="MythObjectAttributes\Ethos.cs" />
+    <Compile Include="MythObjectAttributes\CivilisationEthos.cs" />
     <Compile Include="MythObjectAttributes\PlaneElement.cs" />
-    <Compile Include="MythObjectAttributes\Trait.cs" />
+    <Compile Include="MythObjectAttributes\SpeciesTrait.cs" />
+    <Compile Include="MythObjectAttributes\SpeciesType.cs" />
     <Compile Include="MythObjects\Civilisation.cs" />
     <Compile Include="MythObjects\LegendaryIndividual.cs" />
     <Compile Include="MythObjects\MythicalIndividual.cs" />

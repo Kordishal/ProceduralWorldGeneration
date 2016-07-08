@@ -110,8 +110,8 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        private List<Ethos> _ethoi;
-        public List<Ethos> Ethoi
+        private List<CivilisationEthos> _ethoi;
+        public List<CivilisationEthos> Ethoi
         {
             get
             {
