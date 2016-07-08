@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythObjectAttributes
 {
-    public class Ethos : MythObjectAttribute
+    public class CivilisationEthos : MythObjectAttribute
     {
 
         private string _opposite;

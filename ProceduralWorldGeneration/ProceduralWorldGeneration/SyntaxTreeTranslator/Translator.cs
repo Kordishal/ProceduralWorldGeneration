@@ -69,7 +69,7 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                 }
                 else if (parent_node.GetFirstChild().Value.ExpressionValue == "traits")
                 {
-                    Trait temp_trait = new Trait(first_child_node.Value.ExpressionValue);
+                    SpeciesTrait temp_trait = new SpeciesTrait(first_child_node.Value.ExpressionValue);
                     data.Traits.Add(temp_trait);
                     data.MythObjectAttributes.Add(temp_trait);
                 }
@@ -147,9 +147,9 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                                     temp_plane_size.Opposite = last_child_node.Value.ExpressionValue;
                                 }
                             }
-                            else if (typeof(Trait) == temp_myth_object_attribute.GetType())
+                            else if (typeof(SpeciesTrait) == temp_myth_object_attribute.GetType())
                             {
-                                Trait temp_trait = (Trait)temp_myth_object_attribute;
+                                SpeciesTrait temp_trait = (SpeciesTrait)temp_myth_object_attribute;
                                 if (first_child_node.Value.ExpressionValue == "name")
                                 {
                                     temp_trait.Name = cutStringSigns(last_child_node.Value.ExpressionValue);
@@ -159,9 +159,9 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                                     temp_trait.Category = cutStringSigns(last_child_node.Value.ExpressionValue);
                                 }
                             }
-                            else if (typeof(Ethos) == temp_myth_object_attribute.GetType())
+                            else if (typeof(CivilisationEthos) == temp_myth_object_attribute.GetType())
                             {
-                                Ethos temp_ethos = (Ethos)temp_myth_object_attribute;
+                                CivilisationEthos temp_ethos = (CivilisationEthos)temp_myth_object_attribute;
                                 if (first_child_node.Value.ExpressionValue == "name")
                                 {
                                     temp_ethos.Name = cutStringSigns(last_child_node.Value.ExpressionValue);

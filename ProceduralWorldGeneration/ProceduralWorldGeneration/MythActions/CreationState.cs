@@ -31,13 +31,35 @@ namespace ProceduralWorldGeneration.MythActions
         public bool isCreatingSapientSpecies { get; set; }
 
         public bool hasPlaneAndWorld { get; set; }
+        public bool hasSpeciesType { get; set; }
+        public bool hasPacificsmMilitarism { get; set; }
+        public bool hasSpiritualismMaterialism { get; set; }
+        public bool hasXenophobiaXenophilia { get; set; }
+        public bool hasCollectivismIndividualism { get; set; }
+        public bool hasEthos
+        {
+            get
+            {
+                return hasPacificsmMilitarism && hasSpiritualismMaterialism && hasXenophobiaXenophilia && hasCollectivismIndividualism;
+            }
+        }
+        public bool hasHabitat { get; set; }
+        public bool hasLifespan { get; set; }
+        public bool hasPhysognomical { get; set; }
+        public bool hasTraits
+        {
+            get
+            {
+                return hasHabitat && hasLifespan && hasPhysognomical;
+            }
+        }
+        public bool hasInnatePower { get; set; }
 
         //
         public bool isCreatingDeity { get; set; }
 
         public bool hasPrimaryDomain { get; set; }
         public bool hasDomains { get; set; }
-        public bool hasTraits { get; set; }
         public bool hasPersonality { get; set; }
         public bool hasPower { get; set; }
 

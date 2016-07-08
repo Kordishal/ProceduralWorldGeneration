@@ -1,3 +1,19 @@
+species_types = {
+	humanoid = {
+		name = "Humanoid"
+		spawn_weight = 100
+		prefered_plane_type = material
+	}
+	
+	elemental = {
+		name = "Elemental"
+		spawn_weight = 10
+		prefered_plane_type = elemental
+	}
+
+}
+
+
 ethos = {
 	pacifism = {
 		name = "Pacifism"

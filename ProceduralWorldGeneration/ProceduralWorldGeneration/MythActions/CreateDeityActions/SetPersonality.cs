@@ -13,7 +13,7 @@ namespace ProceduralWorldGeneration.MythActions.CreateDeityActions
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (taker.CurrentCreationState.hasTraits && !taker.CurrentCreationState.hasPersonality)
+            if (taker.CurrentCreationState.hasDomains && !taker.CurrentCreationState.hasPersonality)
                 return true;
             else
                 return false;

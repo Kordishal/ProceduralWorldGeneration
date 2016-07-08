@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythObjectAttributes
 {
-    public class Trait : MythObjectAttribute
+    public class SpeciesTrait : MythObjectAttribute
     {
 
 
@@ -46,7 +46,7 @@ namespace ProceduralWorldGeneration.MythObjectAttributes
 
 
 
-        public Trait(string tag = "default_tag") : base(tag)
+        public SpeciesTrait(string tag = "default_tag") : base(tag)
         {
             _trait_tags = new List<string>();
         }

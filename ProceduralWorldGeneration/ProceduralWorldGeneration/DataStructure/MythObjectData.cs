@@ -29,8 +29,8 @@ namespace ProceduralWorldGeneration.DataStructure
         public List<PlaneElement> PlaneElements { get; set; }
 
         // SPECIES
-        public List<Ethos> Ethoses { get; set; }
-        public List<Trait> Traits { get; set; }
+        public List<CivilisationEthos> Ethoses { get; set; }
+        public List<SpeciesTrait> Traits { get; set; }
 
 
 
@@ -41,7 +41,7 @@ namespace ProceduralWorldGeneration.DataStructure
             PrimordialForces = new List<PrimordialForce>();
             Domains = new List<string>();
             Personalities = new List<string>();
-            Traits = new List<Trait>();
+            Traits = new List<SpeciesTrait>();
             PlaneTypes = new List<PlaneType>();
             PlaneSizes = new List<PlaneSize>();
             PlaneElements = new List<PlaneElement>();

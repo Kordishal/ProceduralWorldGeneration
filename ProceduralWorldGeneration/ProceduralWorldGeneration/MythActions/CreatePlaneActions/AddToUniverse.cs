@@ -42,10 +42,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
                 CreationMythState.Deities.Add(taker.DeityCreation);
                 CreationMythState.CreationTree.TreeRoot.traverseTree(addDeityToCreationTree, new CreationTreeNode(taker));
             }
-            
-            
-            
-            
+                     
             taker.CurrentGoal = ActionGoal.None;
             taker.CurrentCreationState = new CreationState();
             CreationMythLogger.updateActionLog(taker, true);
