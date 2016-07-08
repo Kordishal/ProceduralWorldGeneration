@@ -26,6 +26,12 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
                 taker.PlaneConstruction.Creator = taker;
                 taker.CurrentCreationState.hasCreator = true;
                 taker.CurrentCreationState.isCreatingPlane = true;
+
+                if (CreationMythState.Planes.Count == 0)
+                    taker.PlaneConstruction.Tag = "core_plane";
+
+                if (CreationMythState.Planes.Count == 1)
+                    taker.PlaneConstruction.Tag = "travel_dimension";
             }
             else if (taker.CurrentGoal == ActionGoal.CreateSapientSpecies)
             {

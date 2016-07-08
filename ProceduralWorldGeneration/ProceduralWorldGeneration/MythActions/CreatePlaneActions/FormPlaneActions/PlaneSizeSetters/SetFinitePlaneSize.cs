@@ -28,6 +28,14 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
 
         public override void Effect(ActionTakerMythObject taker)
         {
+            if (taker.PlaneConstruction.Tag == "core_plane")
+            {
+                taker.PlaneConstruction.PlaneSize = CreationMythState.MythObjectData.PlaneSizes[CreationMythState.MythObjectData.PlaneSizes.Count - 1];
+                taker.CurrentCreationState.hasSize = true;
+                return;
+            }
+
+
             int total_spawn_weight = 0;
 
             foreach (PlaneSize s in CreationMythState.MythObjectData.PlaneSizes)
@@ -41,7 +49,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
             foreach (PlaneSize s in CreationMythState.MythObjectData.PlaneSizes)
             {
                 current_weight = current_weight + s.SpawnWeight;
-                if (prev_weight < chance && chance < current_weight)
+                if (prev_weight <= chance && chance < current_weight)
                     taker.PlaneConstruction.PlaneSize = s;
 
                 prev_weight = current_weight;

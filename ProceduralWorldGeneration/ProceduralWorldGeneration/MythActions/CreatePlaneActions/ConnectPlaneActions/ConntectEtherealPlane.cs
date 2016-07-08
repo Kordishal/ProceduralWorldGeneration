@@ -21,6 +21,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
 
         public override void Effect(ActionTakerMythObject taker)
         {
+            // Connect a attached plane type to its respective plane type.
             taker.PlaneConstruction.connectPlane(searchPlaneType(taker.PlaneConstruction.PlaneType.isAttachedTo));
             taker.PlaneConstruction.PlaneSize = taker.PlaneConstruction.NeighbourPlanes[0].PlaneSize;
             taker.CurrentCreationState.isConnected = true;

@@ -4,17 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProceduralWorldGeneration.Input;
-using ProceduralWorldGeneration.DataStructure;
-using ProceduralWorldGeneration.Generator;
-using ProceduralWorldGeneration.MythActions;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions;
-using ProceduralWorldGeneration.Parser.SyntaxTree;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneTypeSetters;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneSizeSetters;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneElementSetters;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneActions;
 using ProceduralWorldGeneration.Output;
 
 namespace ProceduralWorldGeneration.MythObjects

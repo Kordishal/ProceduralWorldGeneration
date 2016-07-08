@@ -13,31 +13,41 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
+            // No longer execute this once the first connection has been set.
             if (taker.CurrentCreationState.hasFirstConnection)
                 return false;
 
+            // Do not take any ethereal planes
             if (taker.PlaneConstruction.PlaneSize == null)
                 return false;
 
-            if (CreationMythState.Planes.Count > 0)
-                return true;
-            else
+            // Do not take any pocket worlds.
+            if (taker.PlaneConstruction.PlaneSize.MaxNeighbourPlanes == 1)
                 return false;
+
+            return true;
         }
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            // try to connect any plane first to an infinite plane. If this does not exist connect it to the core world.
-            Plane temp_plane = searchPlaneSize("infinite");
-            if (temp_plane != null)
-                taker.PlaneConstruction.connectPlane(temp_plane);
+            // In case of the core world it cannot be connected with anything as no other plane exists yet.
+            if (taker.PlaneConstruction.Tag == "core_plane")
+            {
+                taker.CurrentCreationState.isConnected = true;
+                return;
+            }
+            // the travel dimension is connected to the core world.
+            else if (taker.PlaneConstruction.Tag == "travel_dimension")
+            {
+                taker.PlaneConstruction.connectPlane(searchPlaneTag("core_plane"));
+            }
             else
-                taker.PlaneConstruction.connectPlane(CreationMythState.Planes[0]);
+            {
+                // Connect every plane with the travel dimension.
+                taker.PlaneConstruction.connectPlane(searchPlaneTag("tavel_dimension"));
+            }
 
             taker.CurrentCreationState.hasFirstConnection = true;
-
-            if (taker.PlaneConstruction.maxConnectionsReached())
-                taker.CurrentCreationState.isConnected = true;
         }
     }
 }

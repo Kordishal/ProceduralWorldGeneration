@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythObjectAttributes
 {
-    class SpeciesType : MythObjectAttribute
+    public class SpeciesType : MythObjectAttribute
     {
 
-        private bool _preferred_plane_type;
-        public bool preferredPlaneType
+        private string _preferred_plane_type;
+        public string preferredPlaneType
         {
             get
             {
@@ -24,6 +24,10 @@ namespace ProceduralWorldGeneration.MythObjectAttributes
                     base.NotifyPropertyChanged("preferredPlaneType");
                 }
             }
+        }
+
+        public SpeciesType(string tag = "default") : base(tag)
+        {
         }
     }
 }

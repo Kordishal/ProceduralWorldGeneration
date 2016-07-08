@@ -73,6 +73,12 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                     data.Traits.Add(temp_trait);
                     data.MythObjectAttributes.Add(temp_trait);
                 }
+                else if (parent_node.GetFirstChild().Value.ExpressionValue == "species_types")
+                {
+                    SpeciesType temp_species_type = new SpeciesType(first_child_node.Value.ExpressionValue);
+                    data.SpeciesTypes.Add(temp_species_type);
+                    data.MythObjectAttributes.Add(temp_species_type);
+                }
                 else if (parent_node.GetFirstChild().Value.ExpressionType == ExpressionTypes.Variable)
                 {
                     BaseMythObject temp_myth_object = searchTag(parent_node.GetFirstChild().Value.ExpressionValue);
@@ -117,6 +123,10 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                                 {
                                     temp_plane_type.isInfiniteOnly = bool.Parse(last_child_node.Value.ExpressionValue);
                                 }
+                                else if (first_child_node.Value.ExpressionValue == "spawn_weight")
+                                {
+                                    temp_plane_type.SpawnWeight = int.Parse(last_child_node.Value.ExpressionValue);
+                                }
                             }
                             else if (typeof(PlaneSize) == temp_myth_object_attribute.GetType())
                             {
@@ -134,7 +144,6 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                                     temp_plane_size.SpawnWeight = int.Parse(last_child_node.Value.ExpressionValue);
                                 }
                             }
-
                             else if (typeof(PlaneElement) == temp_myth_object_attribute.GetType())
                             {
                                 PlaneElement temp_plane_size = (PlaneElement)temp_myth_object_attribute;
@@ -169,6 +178,22 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                                 else if (first_child_node.Value.ExpressionValue == "opposite")
                                 {
                                     temp_ethos.Opposite = last_child_node.Value.ExpressionValue;
+                                }
+                            }
+                            else if (typeof(SpeciesType) == temp_myth_object_attribute.GetType())
+                            {
+                                SpeciesType temp_species_type = (SpeciesType)temp_myth_object_attribute;
+                                if (first_child_node.Value.ExpressionValue == "name")
+                                {
+                                    temp_species_type.Name = cutStringSigns(last_child_node.Value.ExpressionValue);
+                                }
+                                else if (first_child_node.Value.ExpressionValue == "preferred_plane_type")
+                                {
+                                    temp_species_type.preferredPlaneType = last_child_node.Value.ExpressionValue;
+                                }
+                                else if (first_child_node.Value.ExpressionValue == "spawn_weight")
+                                {
+                                    temp_species_type.SpawnWeight = int.Parse(last_child_node.Value.ExpressionValue);
                                 }
                             }
                         }

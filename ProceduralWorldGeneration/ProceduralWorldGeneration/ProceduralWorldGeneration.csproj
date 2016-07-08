@@ -72,11 +72,10 @@
     <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConnectPlanes.cs" />
     <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\SetFirstConnection.cs" />
     <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConntectEtherealPlane.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConnectWithNoPlane.cs" />
     <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\AddConnections.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetPlaneElement.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetPlaneSize.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneTypeSetters\SetPlaneType.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\SetPlaneType.cs" />
     <Compile Include="MythActions\CreateSapientSpeciesActions\CreateSapientSpecies.cs" />
     <Compile Include="MythActions\CreateSapientSpeciesActions\SetPlaneAndWorld.cs" />
     <Compile Include="MythActions\CreateSapientSpeciesActions\SetSpeciesType.cs" />
@@ -94,9 +93,6 @@
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetFinitePlaneSize.cs" />
     <Compile Include="MythActions\CreatePlaneActions\SetName.cs" />
     <Compile Include="MythActions\CreatePlaneActions\SetCreator.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneTypeSetters\SetElementalType.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneTypeSetters\SetEtherealType.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneTypeSetters\SetMaterialType.cs" />
     <Compile Include="MythActions\NonPrimitiveMythAction.cs" />
     <Compile Include="MythActions\PrimitiveMythAction.cs" />
     <Compile Include="MythObjectAttributes\CivilisationEthos.cs" />

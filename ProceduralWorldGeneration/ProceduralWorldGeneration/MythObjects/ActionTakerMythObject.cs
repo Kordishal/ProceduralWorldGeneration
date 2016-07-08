@@ -12,7 +12,6 @@ using ProceduralWorldGeneration.Parser.SyntaxTree;
 using ProceduralWorldGeneration.Output;
 using ProceduralWorldGeneration.MythActions.CreatePlaneActions;
 using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneTypeSetters;
 using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneSizeSetters;
 using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneElementSetters;
 using ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneActions;
@@ -255,6 +254,11 @@ namespace ProceduralWorldGeneration.MythObjects
                     }
                 }
 
+                if (next_action_candidates.Count == 0)
+                {
+                    CurrentAction = new Wait();
+                    return;
+                }
 
 
                 int chance = ConfigValues.RandomGenerator.Next(total_action_weight + 1);
@@ -287,9 +291,7 @@ namespace ProceduralWorldGeneration.MythObjects
             _existing_actions[0].TreeRoot.AddChild(new SetCreator());
             _existing_actions[0].TreeRoot.AddChild(new FormPlane());
             // Types
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetMaterialType());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetElementalType());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetEtherealType());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetPlaneType());
             // Sizes
             _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetFinitePlaneSize());
             _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetInfinitePlaneSize());
@@ -305,7 +307,6 @@ namespace ProceduralWorldGeneration.MythObjects
             _existing_actions[0].TreeRoot.AddChild(new ConnectPlane());
             _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new SetFirstConnection());
             _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConntectEtherealPlane());
-            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConnectWithNoPlane());
             _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new AddConnections());
             _existing_actions[0].TreeRoot.AddChild(new SetName());
             _existing_actions[0].TreeRoot.AddChild(new AddToUniverse());

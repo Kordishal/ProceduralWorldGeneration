@@ -43,6 +43,8 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
             }
             else
             {
+
+                
                 Plane temp = CreationMythState.Planes[ConfigValues.RandomGenerator.Next(CreationMythState.Planes.Count)];
                 while (temp.maxConnectionsReached() || !temp.isNotConnectedTo(taker.PlaneConstruction))
                 {

@@ -8,16 +8,19 @@ plane_types = {
 	material = {
 		name = "material"
 		has_dominant_element = false
+		spawn_weight = 10
 	}
 	ethereal = {
 		name = "ethereal"
 		has_dominant_element = true
 		is_attached_to = material
+		spawn_weight = 5
 	}
 	elemental = {
 		name = "elemental"
 		has_dominant_element = true
 		is_infinite_only = true
+		spawn_weight = 20
 	}
 }
 

@@ -37,5 +37,15 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
                 return temp[ConfigValues.RandomGenerator.Next(temp.Count)];
         }
 
+
+        protected Plane searchPlaneTag(string tag)
+        {
+            Plane temp = new Plane();
+            foreach (Plane p in CreationMythState.Planes)
+                if (p.Tag == tag)
+                    return p;
+
+            return null;
+        }
     }
 }

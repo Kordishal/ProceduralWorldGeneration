@@ -13,11 +13,12 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            // Needs an creater to become active
-            if (!taker.CurrentCreationState.hasCreator)
+            // Not used when the plane has formed.
+            if (taker.CurrentCreationState.formedPlane)
                 return false;
-            // Only becomes valid if at least o
-            if (!taker.CurrentCreationState.formedPlane)
+
+            // active as long as there is a creator
+            if (taker.CurrentCreationState.hasCreator)
                 return true;
 
             return false;

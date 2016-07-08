@@ -48,7 +48,7 @@ namespace ProceduralWorldGeneration.MythObjectAttributes
             {
                 if (value != _spawn_weight)
                 {
-                    _spawn_weight = value;
+                    _spawn_weight = value < 0 ? 0 : value;
                     this.NotifyPropertyChanged("SpawnWeight");
                 }
             }

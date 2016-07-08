@@ -120,7 +120,6 @@ namespace ProceduralWorldGeneration.DataStructure
             }
         }
 
-
         static public void initialise()
         {
             _myth_objects = new List<BaseMythObject>();
@@ -137,6 +136,6 @@ namespace ProceduralWorldGeneration.DataStructure
             
         }
 
-        
+        // SEARCH FUNCTIONS
     }
 }

@@ -76,25 +76,26 @@ namespace ProceduralWorldGeneration.MythObjects
                 }
             }
         }
-        private int _average_lifespan;
-        public int AverageLifespan
+
+        private SpeciesType _species_type;
+        public SpeciesType SpeciesType
         {
             get
             {
-                return _average_lifespan;
+                return _species_type;
             }
             set
             {
-                if (_average_lifespan != value)
+                if (_species_type != value)
                 {
-                    _average_lifespan = value;
-                    base.NotifyPropertyChanged("AverageLifespan");
+                    _species_type = value;
+                    base.NotifyPropertyChanged("SpeciesType");
                 }
             }
         }
 
-        private List<string> _traits;
-        public List<string> Traits
+        private List<SpeciesTrait> _traits;
+        public List<SpeciesTrait> Traits
         {
             get
             {

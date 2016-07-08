@@ -28,7 +28,16 @@ namespace ProceduralWorldGeneration.DataStructure
         public List<PlaneSize> PlaneSizes { get; set; }
         public List<PlaneElement> PlaneElements { get; set; }
 
+        static public PlaneType searchPlaneType(string tag)
+        {
+            foreach (PlaneType p in CreationMythState.MythObjectData.PlaneTypes)
+                if (p.Tag == tag)
+                    return p;
+            return null;
+        }
+
         // SPECIES
+        public List<SpeciesType> SpeciesTypes { get; set; }
         public List<CivilisationEthos> Ethoses { get; set; }
         public List<SpeciesTrait> Traits { get; set; }
 
@@ -45,6 +54,7 @@ namespace ProceduralWorldGeneration.DataStructure
             PlaneTypes = new List<PlaneType>();
             PlaneSizes = new List<PlaneSize>();
             PlaneElements = new List<PlaneElement>();
+            SpeciesTypes = new List<SpeciesType>();
         }
 
         public MythObjectAttribute searchAttribute(string tag)
