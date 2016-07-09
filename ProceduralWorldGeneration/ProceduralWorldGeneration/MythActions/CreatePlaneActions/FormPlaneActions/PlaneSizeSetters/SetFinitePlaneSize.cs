@@ -12,6 +12,12 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
 {
     class SetFinitePlaneSize : SetPlaneSize
     {
+        protected override void AdjustWeight(ActionTakerMythObject taker)
+        {
+            _weight = 10 * CreationMythState.Planes.Count;
+        }
+
+
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
             if (!taker.CurrentCreationState.hasType)
@@ -28,7 +34,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            if (taker.PlaneConstruction.Tag == "core_plane")
+            if (taker.PlaneConstruction.Tag == Constants.SpecialTags.CORE_WORLD_TAG)
             {
                 taker.PlaneConstruction.PlaneSize = CreationMythState.MythObjectData.PlaneSizes[CreationMythState.MythObjectData.PlaneSizes.Count - 1];
                 taker.CurrentCreationState.hasSize = true;

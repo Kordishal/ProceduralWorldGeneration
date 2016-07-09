@@ -61,23 +61,6 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        private BaseMythObject _creator;
-        public BaseMythObject Creator
-        {
-            get
-            {
-                return _creator;
-            }
-            set
-            {
-                if (_creator != value)
-                {
-                    _creator = value;
-                    base.NotifyPropertyChanged("Creator");
-                }
-            }
-        }
-
         private List<Plane> _neighbour_planes;
         public List<Plane> NeighbourPlanes
         {
@@ -106,19 +89,19 @@ namespace ProceduralWorldGeneration.MythObjects
         public bool isNotConnectedTo(Plane plane)
         {
             foreach (Plane p in _neighbour_planes)
-                if (p.Equals(plane))
-                    return true;
+                if (p.Identifier == plane.Identifier)
+                    return false;
 
-            return false;
+            return true;
         }
 
         public void connectPlane(Plane connect_plane)
         {
             _neighbour_planes.Add(connect_plane);
-            connect_plane.NeighbourPlanes.Add(this);           
+            connect_plane.NeighbourPlanes.Add(this);  
         }
 
-        public Plane() : base()
+        public Plane(string tag = Constants.SpecialTags.DEFAULT_TAG) : base(tag)
         {
             _neighbour_planes = new List<Plane>();
         }

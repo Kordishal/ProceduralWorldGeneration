@@ -334,7 +334,7 @@ namespace ProceduralWorldGeneration.MythObjects
 
         
 
-        public ActionTakerMythObject(string tag = "default_tag") : base(tag)
+        public ActionTakerMythObject(string tag = Constants.SpecialTags.DEFAULT_TAG) : base(tag)
         {
             _valid_actions = new List<MythAction>();
             _existing_actions = new List<Tree<MythAction>>();

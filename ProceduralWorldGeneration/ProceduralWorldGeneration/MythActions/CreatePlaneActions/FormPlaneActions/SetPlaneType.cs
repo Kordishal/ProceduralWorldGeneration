@@ -22,14 +22,14 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            if (taker.PlaneConstruction.Tag == "core_world")
+            if (taker.PlaneConstruction.Tag == Constants.SpecialTags.CORE_WORLD_TAG)
             {
                 taker.PlaneConstruction.PlaneType = MythObjectData.searchPlaneType("material");
                 taker.CurrentCreationState.hasType = true;
                 return;
             }
 
-            if (taker.PlaneConstruction.Tag == "travel_dimension")
+            if (taker.PlaneConstruction.Tag == Constants.SpecialTags.TRAVEL_DIMENSION_TAG)
             {
                 taker.PlaneConstruction.PlaneType = MythObjectData.searchPlaneType("elemental");
                 taker.CurrentCreationState.hasType = true;

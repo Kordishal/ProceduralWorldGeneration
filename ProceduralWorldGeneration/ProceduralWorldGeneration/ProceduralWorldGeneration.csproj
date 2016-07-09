@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Constants\SpecialTags.cs" />
     <Compile Include="DataStructure\UserInterfaceData.cs" />
     <Compile Include="Effects\Effect.cs" />
     <Compile Include="Grammar\MythCreationGrammar.cs" />

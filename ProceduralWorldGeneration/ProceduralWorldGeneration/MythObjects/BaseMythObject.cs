@@ -20,7 +20,11 @@ namespace ProceduralWorldGeneration.MythObjects
             }
             set
             {
-                _tag = value;
+                if (value != _tag)
+                {
+                    _tag = value;
+                    this.NotifyPropertyChanged("Tag");
+                }
             }
         }
 
@@ -30,6 +34,14 @@ namespace ProceduralWorldGeneration.MythObjects
             get
             {
                 return _identifier;
+            }
+            set
+            {
+                if (value != _identifier)
+                {
+                    _identifier = value;
+                    this.NotifyPropertyChanged("Identifier");
+                }
             }
         }
 
@@ -50,7 +62,24 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        public BaseMythObject(string tag = "default_tag")
+        private BaseMythObject _creator;
+        public BaseMythObject Creator
+        {
+            get
+            {
+                return _creator;
+            }
+            set
+            {
+                if (_creator != value)
+                {
+                    _creator = value;
+                    NotifyPropertyChanged("Creator");
+                }
+            }
+        }
+
+        public BaseMythObject(string tag = Constants.SpecialTags.DEFAULT_TAG)
         {
             _identifier = _identifier_seed;
             _identifier_seed += 1;

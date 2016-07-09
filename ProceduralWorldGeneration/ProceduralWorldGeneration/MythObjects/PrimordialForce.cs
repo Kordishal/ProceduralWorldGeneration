@@ -44,7 +44,7 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        public PrimordialForce(string tag = "default_tag") : base(tag)
+        public PrimordialForce(string tag = Constants.SpecialTags.DEFAULT_TAG) : base(tag)
         {
         }
 

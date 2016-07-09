@@ -11,23 +11,6 @@ namespace ProceduralWorldGeneration.MythObjects
 {
     public class Deity : ActionTakerMythObject
     {
-        private BaseMythObject _creator;
-        public BaseMythObject Creator
-        {
-            get
-            {
-                return _creator;
-            }
-            set
-            {
-                if (_creator != value)
-                {
-                    _creator = value;
-                    base.NotifyPropertyChanged("Creator");
-                }
-            }
-        }
-
         // The first domain is always the primary domain
         private List<string> _domains;
         public List<string> Domains
@@ -83,7 +66,7 @@ namespace ProceduralWorldGeneration.MythObjects
         }
 
 
-        public Deity(string tag = "default_tag") : base(tag)
+        public Deity(string tag = Constants.SpecialTags.DEFAULT_TAG) : base(tag)
         {
             _domains = new List<string>();
         }

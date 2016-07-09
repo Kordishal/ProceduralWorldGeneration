@@ -10,24 +10,6 @@ namespace ProceduralWorldGeneration.MythObjects
 {
     public class SapientSpecies : ActionTakerMythObject
     {
-
-        private BaseMythObject _creator;
-        public BaseMythObject Creator
-        {
-            get
-            {
-                return _creator;
-            }
-            set
-            {
-                if (_creator != value)
-                {
-                    _creator = value;
-                    base.NotifyPropertyChanged("Creator");
-                }
-            }
-        }
-
         private int _innate_power;
         public int InnatePower
         {

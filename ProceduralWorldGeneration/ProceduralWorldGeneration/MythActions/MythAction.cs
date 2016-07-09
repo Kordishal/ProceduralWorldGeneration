@@ -20,7 +20,7 @@ namespace ProceduralWorldGeneration.MythActions
         public int getWeight(ActionTakerMythObject taker)
         {
             AdjustWeight(taker);
-            return _weight;
+            return _weight > 0 ? _weight : 0;
         }
 
         protected bool _is_primitve;

@@ -23,7 +23,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
         {
             if (taker.PlaneConstruction.PlaneSize.MaxNeighbourPlanes == -1)
             {
-                if (taker.PlaneConstruction.Tag == "travel_dimension")
+                if (taker.PlaneConstruction.Tag == Constants.SpecialTags.TRAVEL_DIMENSION_TAG)
                 {
                     foreach (Plane p in CreationMythState.Planes)
                     {

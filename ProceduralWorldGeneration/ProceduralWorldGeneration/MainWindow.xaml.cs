@@ -65,9 +65,63 @@ namespace ProceduralWorldGeneration
                 return;
             }
 
-            if (e.AddedItems[0].GetType() == typeof(BaseMythObject))
+            BaseMythObject myth_object = (BaseMythObject)e.AddedItems[0];
+            textBlock_name_value.Text = myth_object.Name;
+            textBlock_tag_value.Text = myth_object.Tag;
+            textBlock_identifier_value.Text = myth_object.Identifier.ToString();
+
+            if (myth_object.Creator != null)
             {
-                BaseMythObject myth_object = (BaseMythObject)e.AddedItems[0];
+                textBlock_creator_value.Text = myth_object.Creator.ToString();
+            }
+            else
+            {
+                textBlock_creator_value.Text = "NONE";
+            }
+
+            if (e.AddedItems[0].GetType() == typeof(PrimordialForce))
+            {
+
+            }
+            else if (e.AddedItems[0].GetType() == typeof(Plane))
+            {
+                Plane plane = (Plane)e.AddedItems[0];
+
+                LabelOtherInformation.Content = "Plane Information";
+
+                textBlock_other1.Text = "Plane Type: ";
+                if (plane.PlaneType != null)
+                    textBlock_other1_value.Text = plane.PlaneType.ToString();
+                else
+                    textBlock_other1_value.Text = "NONE";
+
+                textBlock_other2.Text = "Plane Size: ";
+                if (plane.PlaneSize != null)
+                    textBlock_other2_value.Text = plane.PlaneSize.ToString();
+                else
+                    textBlock_other2_value.Text = "NONE";
+
+                textBlock_other3.Text = "Plane Element: ";
+                if (plane.PlaneElement != null)
+                    textBlock_other3_value.Text = plane.PlaneElement.ToString();
+                else
+                    textBlock_other3_value.Text = "NONE";
+
+                listBox_other.ItemsSource = plane.NeighbourPlanes;
+            }
+            else if (e.AddedItems[0].GetType() == typeof(Deity))
+            {
+                Deity deity = (Deity)e.AddedItems[0];
+
+                LabelOtherInformation.Content = "Deity Information";
+
+                textBlock_other1.Text = "Personality: ";
+                textBlock_other1_value.Text = deity.Personality;
+                textBlock_other2.Text = "Power: ";
+                textBlock_other2_value.Text = deity.Power.ToString();
+
+
+                listBox_other.ItemsSource = deity.Domains;
             }
              
         }

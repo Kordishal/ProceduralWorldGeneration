@@ -1,4 +1,5 @@
-﻿using ProceduralWorldGeneration.DataStructure;
+﻿using ProceduralWorldGeneration.Constants;
+using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.Generator;
 using ProceduralWorldGeneration.MythObjects;
 using System;
@@ -31,20 +32,20 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
         public override void Effect(ActionTakerMythObject taker)
         {
             // In case of the core world it cannot be connected with anything as no other plane exists yet.
-            if (taker.PlaneConstruction.Tag == "core_plane")
+            if (taker.PlaneConstruction.Tag == SpecialTags.CORE_WORLD_TAG)
             {
                 taker.CurrentCreationState.isConnected = true;
                 return;
             }
             // the travel dimension is connected to the core world.
-            else if (taker.PlaneConstruction.Tag == "travel_dimension")
+            else if (taker.PlaneConstruction.Tag == SpecialTags.TRAVEL_DIMENSION_TAG)
             {
-                taker.PlaneConstruction.connectPlane(searchPlaneTag("core_plane"));
+                taker.PlaneConstruction.connectPlane(searchPlaneTag(SpecialTags.CORE_WORLD_TAG));
             }
             else
             {
                 // Connect every plane with the travel dimension.
-                taker.PlaneConstruction.connectPlane(searchPlaneTag("tavel_dimension"));
+                taker.PlaneConstruction.connectPlane(searchPlaneTag(SpecialTags.TRAVEL_DIMENSION_TAG));
             }
 
             taker.CurrentCreationState.hasFirstConnection = true;
