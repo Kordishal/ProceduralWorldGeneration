@@ -36,6 +36,14 @@ namespace ProceduralWorldGeneration.DataStructure
             return null;
         }
 
+        static public PlaneElement searchElement(string tag)
+        {
+            foreach (PlaneElement p in CreationMythState.MythObjectData.PlaneElements)
+                if (p.Tag == tag)
+                    return p;
+            return null;
+        }
+
         // SPECIES
         public List<SpeciesType> SpeciesTypes { get; set; }
         public List<CivilisationEthos> Ethoses { get; set; }

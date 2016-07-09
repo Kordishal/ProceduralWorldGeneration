@@ -297,12 +297,7 @@ namespace ProceduralWorldGeneration.MythObjects
             _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetInfinitePlaneSize());
             _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetNoPlaneSize());
             // Elements
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetAirElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetEarthElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetFireElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetWaterElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetLightElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetDarknessElement());
+            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetPlaneElement());
             _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetNoElement());
             _existing_actions[0].TreeRoot.AddChild(new ConnectPlane());
             _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new SetFirstConnection());

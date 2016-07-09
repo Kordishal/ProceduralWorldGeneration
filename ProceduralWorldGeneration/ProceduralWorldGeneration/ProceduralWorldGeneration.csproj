@@ -81,13 +81,7 @@
     <Compile Include="MythActions\CreateSapientSpeciesActions\SetSpeciesType.cs" />
     <Compile Include="MythActions\CreationState.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlane.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetAirElement.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetDarknessElement.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetEarthElement.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetFireElement.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetLightElement.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetNoElement.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetWaterElement.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetInfinitePlaneSize.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetNoPlaneSize.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetFinitePlaneSize.cs" />

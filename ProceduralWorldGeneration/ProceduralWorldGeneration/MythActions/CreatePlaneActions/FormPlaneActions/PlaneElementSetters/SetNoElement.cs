@@ -28,6 +28,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
 
         public override void Effect(ActionTakerMythObject taker)
         {
+            taker.PlaneConstruction.PlaneElement = null;
             taker.CurrentCreationState.hasElement = true;
         }
     }
