@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
+using ProceduralWorldGeneration.Constants;
 
-namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneSizeSetters
+namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneActions
 {
-    class SetNoPlaneSize : SetPlaneSize
+    class NoConnections : ConnectPlanes
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (taker.PlaneConstruction.PlaneType.isAttachedTo != null)
+            // In case of the core world it cannot be connected with anything as no other plane exists yet.
+            if (taker.PlaneConstruction.Tag == SpecialTags.CORE_WORLD_TAG)
                 return true;
             else
                 return false;

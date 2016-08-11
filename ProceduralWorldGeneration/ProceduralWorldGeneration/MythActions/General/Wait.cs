@@ -6,21 +6,28 @@ using System.Threading.Tasks;
 using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
 
-namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneSizeSetters
+namespace ProceduralWorldGeneration.MythActions.General
 {
-    class SetNoPlaneSize : SetPlaneSize
+    class Wait : MythAction
     {
+        protected override void AdjustWeight(ActionTakerMythObject taker)
+        {
+            _weight = 0;
+        }
+
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (taker.PlaneConstruction.PlaneType.isAttachedTo != null)
-                return true;
-            else
-                return false;
+            return true;
         }
 
         public override void Effect(ActionTakerMythObject taker)
         {
+            // WAIT
+        }
 
+        public Wait() {
+            Cooldown = 0;
+            Duration = 0;
         }
     }
 }

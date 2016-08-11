@@ -27,6 +27,15 @@ namespace ProceduralWorldGeneration.StateMachine
             currentState = state;
         }
 
+        virtual public IEnumerable<S> getPossibleStates()
+        {
+            foreach (StateTransition<S> s in TransitionTable.Keys)
+            {
+                if (s.InitialState.Equals(currentState))
+                    yield return s.EndState;
+            }
+        } 
+
         virtual public void Advance(S next_state)
         {
             StateTransition<S> temp_state_transition = new StateTransition<S>(currentState, next_state);

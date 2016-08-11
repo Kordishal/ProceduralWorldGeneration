@@ -18,17 +18,14 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
 
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
+            if (taker.PlaneConstruction.PlaneType.isInfiniteOnly)
+                return true;
+
             if (taker.PlaneConstruction.Tag == Constants.SpecialTags.CORE_WORLD_TAG)
                 return false;
 
             if (taker.PlaneConstruction.Tag == Constants.SpecialTags.TRAVEL_DIMENSION_TAG)
                 return true;
-
-            if (!taker.CurrentCreationState.hasType)
-                return false;
-
-            if (taker.CurrentCreationState.hasSize)
-                return false;
 
             if (taker.PlaneConstruction.PlaneType.isAttachedTo != null)
                 return false;
@@ -41,7 +38,6 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
             taker.PlaneConstruction.PlaneSize = new PlaneSize(Constants.SpecialTags.INFINITE_PLANE_SIZE);
             taker.PlaneConstruction.PlaneSize.MaxNeighbourPlanes = -1;
             taker.PlaneConstruction.PlaneSize.Name = "Infinite";
-            taker.CurrentCreationState.hasSize = true;
         }
 
 

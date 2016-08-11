@@ -1,4 +1,5 @@
 ﻿using ProceduralWorldGeneration.DataStructure;
+using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneElementSetters;
 using ProceduralWorldGeneration.MythObjectAttributes;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneSizeSetters
 {
-    abstract class SetPlaneSize : PrimitivMythAction
+    abstract class SetPlaneSize : MythAction
     {
 
         protected PlaneSize searchSize(string tag)

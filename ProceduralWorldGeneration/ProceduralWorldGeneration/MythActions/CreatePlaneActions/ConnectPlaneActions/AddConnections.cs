@@ -1,5 +1,6 @@
 ﻿using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.Generator;
+using ProceduralWorldGeneration.MythActions.General;
 using ProceduralWorldGeneration.MythObjects;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,20 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
 {
     class AddConnections : ConnectPlanes
     {
+        protected override void AdjustWeight(ActionTakerMythObject taker)
+        {
+            _weight = 1000;
+        }
+
+
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (taker.CurrentCreationState.hasFirstConnection)
-                return true;
-            else
+            if (taker.PlaneConstruction.maxConnectionsReached())
                 return false;
+            else if (taker.PlaneConstruction.NeighbourPlanes.Count >= CreationMythState.Planes.Count)
+                return false;
+            else
+                return true;
         }
 
         public override void Effect(ActionTakerMythObject taker)
@@ -32,13 +41,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
                             taker.PlaneConstruction.connectPlane(p);
                         }
                     }
-
-                    taker.CurrentCreationState.isConnected = true;
                     return; 
-                }
-                else
-                {
-                    taker.CurrentCreationState.isConnected = true;
                 }
             }
             else
@@ -51,9 +54,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
                     temp = CreationMythState.Planes[ConfigValues.RandomGenerator.Next(CreationMythState.Planes.Count)];
                 }
                 taker.PlaneConstruction.connectPlane(temp);
-
-                if (taker.PlaneConstruction.maxConnectionsReached())
-                    taker.CurrentCreationState.isConnected = true;
+                    
             }
         }
     }

@@ -20,9 +20,6 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
 
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (!taker.CurrentCreationState.hasType)
-                return false;
-
             if (taker.PlaneConstruction.PlaneType.isInfiniteOnly)
                 return false;
 
@@ -37,7 +34,6 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
             if (taker.PlaneConstruction.Tag == Constants.SpecialTags.CORE_WORLD_TAG)
             {
                 taker.PlaneConstruction.PlaneSize = CreationMythState.MythObjectData.PlaneSizes[CreationMythState.MythObjectData.PlaneSizes.Count - 1];
-                taker.CurrentCreationState.hasSize = true;
                 return;
             }
 
@@ -60,7 +56,6 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
 
                 prev_weight = current_weight;
             }
-            taker.CurrentCreationState.hasSize = true;
         }
     }
 }

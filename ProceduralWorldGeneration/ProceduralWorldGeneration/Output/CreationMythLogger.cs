@@ -33,21 +33,21 @@ namespace ProceduralWorldGeneration.Output
 
         static public void Write()
         {
-            writer = new StreamWriter(@"C:\Users\Jonas\Documents\Projekte\ProceduralWorldGeneration\logs\myth_creation.log");
+            writer = new StreamWriter(@"C:\Users\Jonas\Documents\ProceduralWorldGeneration\logs\myth_creation.log");
             foreach (string s in _temp_log)
             {
                 writer.WriteLine(s);
             }         
             writer.Close();
 
-            writer = new StreamWriter(@"C:\Users\Jonas\Documents\Projekte\ProceduralWorldGeneration\logs\action.log");
+            writer = new StreamWriter(@"C:\Users\Jonas\Documents\ProceduralWorldGeneration\logs\action.log");
             foreach (string s in _action_log)
             {
                 writer.WriteLine(s);
             }
             writer.Close();
 
-            writer = new StreamWriter(@"C:\Users\Jonas\Documents\Projekte\ProceduralWorldGeneration\logs\tree.log");
+            writer = new StreamWriter(@"C:\Users\Jonas\Documents\ProceduralWorldGeneration\logs\tree.log");
             foreach (string s in _tree_log)
             {
                 writer.WriteLine(s);
@@ -96,14 +96,7 @@ namespace ProceduralWorldGeneration.Output
 
         static public void updateActionLog(ActionTakerMythObject myth_object)
         {
-            if (myth_object.CurrentAction == null)
-            {
-                _action_log.Add(myth_object.Name + " is taking no action to reach current goal: " + myth_object.CurrentGoal.ToString());
-            }
-            else
-            {
-                _action_log.Add(myth_object.Name + " is taking " + myth_object.CurrentAction.ToString() + " to reach current goal: " + myth_object.CurrentGoal.ToString());
-            }
+            _action_log.Add(myth_object.Name + " is taking " + myth_object.CurrentAction.ToString() + " to reach current goal: " + myth_object.CurrentGoal.ToString());
             
         }
 

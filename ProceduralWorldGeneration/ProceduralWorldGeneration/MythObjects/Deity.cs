@@ -76,5 +76,10 @@ namespace ProceduralWorldGeneration.MythObjects
 
 
         }
+
+        protected override void setStateTransitions()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -14,10 +14,6 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            // No longer execute this once the first connection has been set.
-            if (taker.CurrentCreationState.hasFirstConnection)
-                return false;
-
             // Do not take any ethereal planes
             if (taker.PlaneConstruction.PlaneSize == null)
                 return false;
@@ -31,14 +27,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            // In case of the core world it cannot be connected with anything as no other plane exists yet.
-            if (taker.PlaneConstruction.Tag == SpecialTags.CORE_WORLD_TAG)
-            {
-                taker.CurrentCreationState.isConnected = true;
-                return;
-            }
-            // the travel dimension is connected to the core world.
-            else if (taker.PlaneConstruction.Tag == SpecialTags.TRAVEL_DIMENSION_TAG)
+            if (taker.PlaneConstruction.Tag == SpecialTags.TRAVEL_DIMENSION_TAG)
             {
                 taker.PlaneConstruction.connectPlane(searchPlaneTag(SpecialTags.CORE_WORLD_TAG));
             }
@@ -47,8 +36,6 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
                 // Connect every plane with the travel dimension.
                 taker.PlaneConstruction.connectPlane(searchPlaneTag(SpecialTags.TRAVEL_DIMENSION_TAG));
             }
-
-            taker.CurrentCreationState.hasFirstConnection = true;
         }
     }
 }

@@ -12,17 +12,11 @@ namespace ProceduralWorldGeneration.MythObjects
 {
     public interface IActionTaker
     {
-
-        List<MythAction> ValidActions { get; }
-
-        MythAction CurrentAction { get; set; }
-
+        
         /// <summary>
         /// The actions which can be taken by the entity.
         /// </summary>
         void takeAction(int current_year);
-
-        void buildExistingActionsTree();
 
         void determineNextAction();
 

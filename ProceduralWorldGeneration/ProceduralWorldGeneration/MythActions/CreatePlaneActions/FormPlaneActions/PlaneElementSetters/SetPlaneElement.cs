@@ -7,19 +7,15 @@ using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
 using ProceduralWorldGeneration.MythObjectAttributes;
 using ProceduralWorldGeneration.Generator;
+using ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneActions;
+using ProceduralWorldGeneration.Constants;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneElementSetters
 {
-    class SetPlaneElement : PrimitivMythAction
+    class SetPlaneElement : MythAction
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (!taker.CurrentCreationState.hasType)
-                return false;
-
-            if (taker.CurrentCreationState.hasElement)
-                return false;
-
             if (taker.PlaneConstruction.PlaneType.hasDominantElement)
                 return true;
             else
@@ -28,10 +24,9 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            if (taker.PlaneConstruction.Tag == "travel_dimension")
+            if (taker.PlaneConstruction.Tag == SpecialTags.TRAVEL_DIMENSION_TAG)
             {
                 taker.PlaneConstruction.PlaneElement = MythObjectData.searchElement("air");
-                taker.CurrentCreationState.hasElement = true;
                 return;
             }
 
@@ -74,11 +69,6 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
                 else
                     elements[i].SpawnWeight = spawn_weights[i] + 5;
             }
-
-
-
-
-            taker.CurrentCreationState.hasElement = true;
         }
     }
 }
