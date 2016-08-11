@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneActions
 {
-    class AddConnections : ConnectPlanes
+    class AddAdditionalConnection : ConnectPlanes
     {
         protected override void AdjustWeight(ActionTakerMythObject taker)
         {
@@ -20,9 +20,12 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
 
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
+            if (CreationMythState.Planes.Count <= 0)
+                return false;
+
             if (taker.PlaneConstruction.maxConnectionsReached())
                 return false;
-            else if (taker.PlaneConstruction.NeighbourPlanes.Count >= CreationMythState.Planes.Count)
+            else if (taker.PlaneConstruction.NeighbourPlanes.Count > CreationMythState.Planes.Count)
                 return false;
             else
                 return true;
@@ -45,9 +48,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
                 }
             }
             else
-            {
-
-                
+            {            
                 Plane temp = CreationMythState.Planes[ConfigValues.RandomGenerator.Next(CreationMythState.Planes.Count)];
                 while (temp.maxConnectionsReached() || !temp.isNotConnectedTo(taker.PlaneConstruction))
                 {

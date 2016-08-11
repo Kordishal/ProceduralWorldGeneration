@@ -1,6 +1,5 @@
 ﻿using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.Generator;
-using ProceduralWorldGeneration.Input;
 using ProceduralWorldGeneration.Main;
 using ProceduralWorldGeneration.MythObjects;
 using System;

@@ -71,7 +71,7 @@
     <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\NoConnections.cs" />
     <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\SetFirstConnection.cs" />
     <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\ConntectEtherealPlane.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\AddConnections.cs" />
+    <Compile Include="MythActions\CreatePlaneActions\ConnectPlaneActions\AddAdditionalConnection.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneElementSetters\SetPlaneElement.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\PlaneSizeSetters\SetPlaneSize.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\SetPlaneType.cs" />
@@ -116,7 +116,7 @@
     <Compile Include="DataStructure\CreationMythState.cs" />
     <Compile Include="Generator\MythCreator.cs" />
     <Compile Include="Generator\ConfigValues.cs" />
-    <Compile Include="Input\FileNames.cs" />
+    <Compile Include="Constants\FileNames.cs" />
     <Compile Include="Parser\LexerDefinition\ILexer.cs" />
     <Compile Include="Parser\LexerDefinition\Lexer.cs" />
     <Compile Include="Parser\Tokens\Token.cs" />

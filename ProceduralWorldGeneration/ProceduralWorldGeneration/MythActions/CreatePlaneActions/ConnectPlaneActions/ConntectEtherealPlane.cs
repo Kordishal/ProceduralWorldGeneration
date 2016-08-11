@@ -9,10 +9,13 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneActions
 {
-    class ConntectEtherealPlane : ConnectPlanes
+    class EtherealPlaneConnection : ConnectPlanes
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
+            if (CreationMythState.Planes.Count <= 0)
+                return false;
+
             if (taker.PlaneConstruction.PlaneType.isAttachedTo != null)
                 return true;
             else

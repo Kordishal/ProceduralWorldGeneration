@@ -33,21 +33,21 @@ namespace ProceduralWorldGeneration.Output
 
         static public void Write()
         {
-            writer = new StreamWriter(@"C:\Users\Jonas\Documents\ProceduralWorldGeneration\logs\myth_creation.log");
+            writer = new StreamWriter(Constants.FileNames.DIRECTORY_PATH_LOGS + Constants.FileNames.MYTHCREATION_LOG);
             foreach (string s in _temp_log)
             {
                 writer.WriteLine(s);
             }         
             writer.Close();
 
-            writer = new StreamWriter(@"C:\Users\Jonas\Documents\ProceduralWorldGeneration\logs\action.log");
+            writer = new StreamWriter(Constants.FileNames.DIRECTORY_PATH_LOGS + Constants.FileNames.ACTION_LOG);
             foreach (string s in _action_log)
             {
                 writer.WriteLine(s);
             }
             writer.Close();
 
-            writer = new StreamWriter(@"C:\Users\Jonas\Documents\ProceduralWorldGeneration\logs\tree.log");
+            writer = new StreamWriter(Constants.FileNames.DIRECTORY_PATH_LOGS + Constants.FileNames.CREATION_TREE_LOG);
             foreach (string s in _tree_log)
             {
                 writer.WriteLine(s);
@@ -57,21 +57,21 @@ namespace ProceduralWorldGeneration.Output
 
         static public void AppendWrite()
         {
-            writer = new StreamWriter(@"C:\Users\Jonas\Documents\Projekte\ProceduralWorldGeneration\logs\myth_creation.log", true);
+            writer = new StreamWriter(Constants.FileNames.DIRECTORY_PATH_LOGS + Constants.FileNames.MYTHCREATION_LOG, true);
             foreach (string s in _temp_log)
             {
                 writer.WriteLine(s);
             }
             writer.Close();
 
-            writer = new StreamWriter(@"C:\Users\Jonas\Documents\Projekte\ProceduralWorldGeneration\logs\action.log", true);
+            writer = new StreamWriter(Constants.FileNames.DIRECTORY_PATH_LOGS + Constants.FileNames.ACTION_LOG, true);
             foreach (string s in _action_log)
             {
                 writer.WriteLine(s);
             }
             writer.Close();
 
-            writer = new StreamWriter(@"C:\Users\Jonas\Documents\Projekte\ProceduralWorldGeneration\logs\tree.log", true);
+            writer = new StreamWriter(Constants.FileNames.DIRECTORY_PATH_LOGS + Constants.FileNames.CREATION_TREE_LOG, true);
             foreach (string s in _tree_log)
             {
                 writer.WriteLine(s);

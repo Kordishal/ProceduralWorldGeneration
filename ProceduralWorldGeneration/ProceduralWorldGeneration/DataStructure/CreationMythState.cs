@@ -1,5 +1,4 @@
 ﻿using ProceduralWorldGeneration.Generator;
-using ProceduralWorldGeneration.Input;
 using ProceduralWorldGeneration.MythObjects;
 using ProceduralWorldGeneration.Output;
 using ProceduralWorldGeneration.Parser;

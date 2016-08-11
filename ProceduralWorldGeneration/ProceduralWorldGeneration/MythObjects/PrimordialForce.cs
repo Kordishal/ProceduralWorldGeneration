@@ -18,7 +18,6 @@ namespace ProceduralWorldGeneration.MythObjects
     public class PrimordialForce : ActionTakerMythObject
     {
 
-
         private int _spawn_weight;
         public int SpawnWeight
         {
@@ -100,16 +99,21 @@ namespace ProceduralWorldGeneration.MythObjects
             AddTransition(new SetInfinitePlaneSize(), new SetNoPlaneElement());
 
             AddTransition(new SetPlaneElement(), new SetFirstConnection());
-            AddTransition(new SetPlaneElement(), new ConntectEtherealPlane());
-            AddTransition(new SetPlaneElement(), new NoConnections());
+            AddTransition(new SetPlaneElement(), new EtherealPlaneConnection());
+            AddTransition(new SetPlaneElement(), new AddNoConnection());
 
             AddTransition(new SetNoPlaneElement(), new SetFirstConnection());
-            AddTransition(new SetNoPlaneElement(), new NoConnections());
+            AddTransition(new SetNoPlaneElement(), new AddNoConnection());
 
-            AddTransition(new SetFirstConnection(), new AddConnections());
+            AddTransition(new SetFirstConnection(), new AddAdditionalConnection());
+            AddTransition(new SetFirstConnection(), new SetName());
 
-            AddTransition(new AddConnections(), new AddConnections());
-            AddTransition(new AddConnections(), new SetName());
+            AddTransition(new AddAdditionalConnection(), new AddAdditionalConnection());
+            AddTransition(new AddAdditionalConnection(), new SetName());
+
+            AddTransition(new AddNoConnection(), new SetName());
+
+            AddTransition(new EtherealPlaneConnection(), new SetName());
 
             AddTransition(new SetName(), new AddToUniverse());
 

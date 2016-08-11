@@ -14,12 +14,11 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            // Do not take any ethereal planes
-            if (taker.PlaneConstruction.PlaneSize == null)
+            if (CreationMythState.Planes.Count <= 0)
                 return false;
 
-            // Do not take any pocket worlds.
-            if (taker.PlaneConstruction.PlaneSize.MaxNeighbourPlanes == 1)
+            // Do not take any ethereal planes
+            if (taker.PlaneConstruction.PlaneSize == null)
                 return false;
 
             return true;
@@ -30,6 +29,11 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
             if (taker.PlaneConstruction.Tag == SpecialTags.TRAVEL_DIMENSION_TAG)
             {
                 taker.PlaneConstruction.connectPlane(searchPlaneTag(SpecialTags.CORE_WORLD_TAG));
+            }
+            else if (taker.PlaneConstruction.PlaneSize.MaxNeighbourPlanes <= 1)
+            {
+                taker.PlaneConstruction.connectPlane(searchPlaneSize("large"));
+
             }
             else
             {

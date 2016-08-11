@@ -14,7 +14,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
     {
         protected override void AdjustWeight(ActionTakerMythObject taker)
         {
-            _weight = 10 * CreationMythState.Planes.Count;
+            _weight = 10 + 10 * CreationMythState.Planes.Count;
         }
 
 

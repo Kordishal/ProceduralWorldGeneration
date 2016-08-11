@@ -12,7 +12,7 @@ namespace ProceduralWorldGeneration.MythActions.General
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            return false;
+            return true;
         }
 
         public override void Effect(ActionTakerMythObject taker)
@@ -22,7 +22,7 @@ namespace ProceduralWorldGeneration.MythActions.General
 
         protected override void AdjustWeight(ActionTakerMythObject taker)
         {
-            _weight = 0;
+            _weight = 10;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using ProceduralWorldGeneration.Input;
+﻿using ProceduralWorldGeneration.Constants;
 using ProceduralWorldGeneration.Parser.Tokens;
 using System;
 using System.Collections.Generic;
