@@ -9,33 +9,25 @@ using ProceduralWorldGeneration.Parser.SyntaxTree;
 using ProceduralWorldGeneration.Generator;
 using ProceduralWorldGeneration.Output;
 
-namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
+namespace ProceduralWorldGeneration.MythActions.General
 {
     class AddToUniverse : MythAction
     {
 
-        public AddToUniverse() : base()
-        {
-            _is_primitve = true;
-        }
-
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (taker.CurrentCreationState.hasName && !taker.CurrentCreationState.isAddedToUniverse)
-                return true;
-            else
-                return false;
+            return true;
         }
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            if (taker.CurrentCreationState.isCreatingPlane)
+            if (taker.CurrentGoal == ActionGoal.CreatePlane)
             {
                 CreationMythState.MythObjects.Add(taker.PlaneConstruction);
                 CreationMythState.Planes.Add(taker.PlaneConstruction);
                 CreationMythState.CreationTree.TreeRoot.traverseTree(addPlaneToCreationTree, new CreationTreeNode(taker));
             }
-            else if (taker.CurrentCreationState.isCreatingDeity)
+            else if (taker.CurrentGoal == ActionGoal.CreateDeity)
             {
                 CreationMythState.ActionableMythObjects.Enqueue(taker.DeityCreation);
                 CreationMythState.MythObjects.Add(taker.DeityCreation);
@@ -44,7 +36,6 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
             }
                      
             taker.CurrentGoal = ActionGoal.None;
-            taker.CurrentCreationState = new CreationState();
             CreationMythLogger.updateActionLog(taker, true);
         }
 

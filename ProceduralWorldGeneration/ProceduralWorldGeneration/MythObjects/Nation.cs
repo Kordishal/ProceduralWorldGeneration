@@ -9,12 +9,13 @@ namespace ProceduralWorldGeneration.MythObjects
 {
     public class Nation : ActionTakerMythObject
     {
-        public override void buildExistingActionsTree()
+
+        public override void takeAction(int current_year)
         {
             throw new NotImplementedException();
         }
 
-        public override void takeAction(int current_year)
+        protected override void setStateTransitions()
         {
             throw new NotImplementedException();
         }

@@ -10,14 +10,11 @@ using ProceduralWorldGeneration.Generator;
 
 namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
 {
-    class SetSpeciesType : PrimitivMythAction
+    class SetSpeciesType : MythAction
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (taker.CurrentCreationState.hasPlaneAndWorld && !taker.CurrentCreationState.hasSpeciesType)
-                return true;
-            else
-                return false;
+            return true;
         }
 
         public override void Effect(ActionTakerMythObject taker)
@@ -70,8 +67,6 @@ namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
                 else
                     types[i].SpawnWeight = spawn_weights[i] + 10;
             }
-
-            taker.CurrentCreationState.hasSpeciesType = true;
         }
     }
 }

@@ -5,17 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
+using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
 {
-    class SetCreator : PrimitivMythAction
+    class SetCreator : MythAction
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (!taker.CurrentCreationState.hasCreator)
-                return true;
-            else
-                return false;
+            return true;
         }
 
         public override void Effect(ActionTakerMythObject taker)
@@ -24,8 +22,6 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
             {
                 taker.PlaneConstruction = new Plane();
                 taker.PlaneConstruction.Creator = taker;
-                taker.CurrentCreationState.hasCreator = true;
-                taker.CurrentCreationState.isCreatingPlane = true;
 
                 if (CreationMythState.Planes.Count == 0)
                     taker.PlaneConstruction.Tag = Constants.SpecialTags.CORE_WORLD_TAG;
@@ -37,15 +33,11 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
             {
                 taker.SapientSpeciesCreation = new SapientSpecies();
                 taker.SapientSpeciesCreation.Creator = taker;
-                taker.CurrentCreationState.hasCreator = true;
-                taker.CurrentCreationState.isCreatingSapientSpecies = true;
             }
             else if(taker.CurrentGoal == ActionGoal.CreateDeity)
             {
                 taker.DeityCreation = new Deity();
                 taker.DeityCreation.Creator = taker;
-                taker.CurrentCreationState.hasCreator = true;
-                taker.CurrentCreationState.isCreatingDeity = true;
             }
         }
     }

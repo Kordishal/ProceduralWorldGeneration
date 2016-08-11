@@ -9,20 +9,16 @@ using ProceduralWorldGeneration.Generator;
 
 namespace ProceduralWorldGeneration.MythActions.CreateDeityActions
 {
-    class SetPower : PrimitivMythAction
+    class SetPower : MythAction
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (taker.CurrentCreationState.hasPersonality && !taker.CurrentCreationState.hasPower)
-                return true;
-            else
-                return false;
+            return true;
         }
 
         public override void Effect(ActionTakerMythObject taker)
         {
             taker.DeityCreation.Power = ConfigValues.RandomGenerator.Next(10);
-            taker.CurrentCreationState.hasPower = true;
         }
     }
 }

@@ -114,5 +114,10 @@ namespace ProceduralWorldGeneration.MythObjects
         {
             throw new NotImplementedException();
         }
+
+        protected override void setStateTransitions()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

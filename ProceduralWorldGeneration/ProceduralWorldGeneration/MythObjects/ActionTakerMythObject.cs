@@ -10,29 +10,26 @@ using ProceduralWorldGeneration.Generator;
 using ProceduralWorldGeneration.MythActions;
 using ProceduralWorldGeneration.Parser.SyntaxTree;
 using ProceduralWorldGeneration.Output;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneSizeSetters;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneElementSetters;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneActions;
-using ProceduralWorldGeneration.MythActions.CreateDeityActions;
-using ProceduralWorldGeneration.MythActions.CreateDeityActions.SetDomainActions;
+using ProceduralWorldGeneration.MythActions.General;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
     public abstract class ActionTakerMythObject : BaseMythObject, IActionTaker
     {
-        private MythAction _current_action;
+        private MythActionStateMachine<MythAction> _action_fsm { get; set; }
+
+        protected abstract void setStateTransitions();
+
+        protected void AddTransition(MythAction initial_state, MythAction end_state)
+        {
+            _action_fsm.AddTransition(initial_state, end_state, end_state.Effect);
+        }
+
         public MythAction CurrentAction
         {
             get
             {
-                return _current_action;
-            }
-
-            set
-            {
-                _current_action = value;
+                return _action_fsm.CurrentState;
             }
         }
 
@@ -47,24 +44,6 @@ namespace ProceduralWorldGeneration.MythObjects
             set
             {
                 _current_goal = value;
-            }
-        }
-
-        protected List<MythAction> _valid_actions;
-        public List<MythAction> ValidActions
-        {
-            get
-            {
-                return _valid_actions;
-            }
-        }
-
-        protected List<Tree<MythAction>> _existing_actions;
-        public List<Tree<MythAction>> ExistingActions
-        {
-            get
-            {
-                return _existing_actions;
             }
         }
 
@@ -107,8 +86,6 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        public CreationState CurrentCreationState { get; set; }
-
         public abstract void takeAction(int current_year);
 
         public void determineNextGoal()
@@ -118,7 +95,7 @@ namespace ProceduralWorldGeneration.MythObjects
             if (action_taker_node == null)
             {
                 _current_goal = ActionGoal.None;
-                _current_action = new Wait();
+                _action_fsm.Advance(new Wait());
                 CreationMythLogger.updateActionLog(this);
                 return;
             }
@@ -170,7 +147,7 @@ namespace ProceduralWorldGeneration.MythObjects
                                         child.Value.Creator = this;
                                         return;
                                     case "a":
-                                        CreationMythLogger.updateActionLog("Start the creation of a sentient species.");
+                                        CreationMythLogger.updateActionLog("Start the creation of a sapient species.");
                                         _current_goal = ActionGoal.CreateSapientSpecies;
                                         child.Value.UnderConstruction = true;
                                         child.Value.Creator = this;
@@ -200,146 +177,40 @@ namespace ProceduralWorldGeneration.MythObjects
 
         virtual public void determineNextAction()
         {
-            //CreationMythLogger.updateActionLog("NEXT ACTION.");
-            //CreationMythLogger.updateActionLog(this);
-            
-            Tree<MythAction> current_action_tree = null;
-            MythAction local_action = null;
-            List<TreeNode<MythAction>> next_action_candidates;
-            int total_action_weight = 0;
-
-            // if no goal is chosen a new one is determined.
-            if (CurrentGoal == ActionGoal.None)
-                determineNextGoal();
-
-            // if after choosing a new goal it still has no action it simply waits for better times.
-            if (CurrentGoal == ActionGoal.None)
+            List<MythAction> next_actions = new List<MythAction>();
+            MythAction current_action = _action_fsm.CurrentState;
+            int total_weight = 0;
+            foreach (MythAction action in _action_fsm.getPossibleStates())
             {
-                CurrentAction = new Wait();
-                return;
-            }
-
-            // Set the current action tree according to the goal to be achieved.
-            foreach (Tree<MythAction> action_tree in _existing_actions)
-                if (action_tree.TreeRoot.Value.ReachableGoal == CurrentGoal)
-                    current_action_tree = action_tree;
-
-            if (current_action_tree == null)
-            {
-                CurrentAction = new Wait();
-                return;
-            }
-
-            // Assign the top action as local action. If the preconditions for this are not met then a wait is executed.
-            if (current_action_tree.TreeRoot.Value.checkPrecondition(this))
-            {
-                local_action = current_action_tree.TreeRoot.Value;
-                current_action_tree.CurrentNode = current_action_tree.TreeRoot;
-            }          
-            else
-                local_action = new Wait();
-
-            // Will run until we have a primitve function which can be called.
-            while (!local_action.isPrimitive)
-            {
-                total_action_weight = 0;
-                next_action_candidates = new List<TreeNode<MythAction>>();
-                // Determines what children of the current action are valid actions.
-                foreach (TreeNode<MythAction> action_node in current_action_tree.CurrentNode.Children)
+                if (action.checkPrecondition(this))
                 {
-                    if (!action_node.Value.onCooldown() && action_node.Value.checkPrecondition(this))
-                    {
-                        total_action_weight += action_node.Value.getWeight(this);
-                        next_action_candidates.Add(action_node);
-                    }
+                    next_actions.Add(action);
+                    total_weight += action.getWeight(this);
                 }
+            }
 
-                if (next_action_candidates.Count == 0)
+
+            int random = ConfigValues.RandomGenerator.Next(total_weight);
+            int prev_weight = 0, current_weight;
+            foreach (MythAction action in next_actions)
+            {
+                current_weight = action.getWeight(this);
+                if (prev_weight < random && random < current_weight)
                 {
-                    CurrentAction = new Wait();
+                    _action_fsm.Advance(action, this);
                     return;
                 }
 
-
-                int chance = ConfigValues.RandomGenerator.Next(total_action_weight + 1);
-                int prev_weight = 0, current_weight = next_action_candidates[0].Value.getWeight(this);
-                foreach (TreeNode<MythAction> action_node in next_action_candidates)
-                {
-                    // if chance is between the two weights the current action is chosen.
-                    if (prev_weight < chance && chance <= current_weight)
-                    {
-                        local_action = action_node.Value;
-                        current_action_tree.CurrentNode = action_node;
-                    }
-
-                    prev_weight = current_weight;
-                    current_weight += action_node.Value.getWeight(this);
-                }                
-            }
-
-            _current_action = local_action;
-
-            if  (_current_action == null)
-            {
-                _current_action = new Wait();
+                prev_weight = current_weight;
             }
         }
-
-        virtual public void buildExistingActionsTree()
-        {
-            _existing_actions.Add(new Tree<MythAction>(new CreatePlane()));
-            _existing_actions[0].TreeRoot.AddChild(new SetCreator());
-            _existing_actions[0].TreeRoot.AddChild(new FormPlane());
-            // Types
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetPlaneType());
-            // Sizes
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetFinitePlaneSize());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetInfinitePlaneSize());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetNoPlaneSize());
-            // Elements
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetPlaneElement());
-            _existing_actions[0].TreeRoot.Children.First.Next.Value.AddChild(new SetNoElement());
-            _existing_actions[0].TreeRoot.AddChild(new ConnectPlane());
-            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new SetFirstConnection());
-            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new ConntectEtherealPlane());
-            _existing_actions[0].TreeRoot.Children.First.Next.Next.Value.AddChild(new AddConnections());
-            _existing_actions[0].TreeRoot.AddChild(new SetName());
-            _existing_actions[0].TreeRoot.AddChild(new AddToUniverse());
-
-            _existing_actions.Add(new Tree<MythAction>(new CreateDeity()));
-            _existing_actions[1].TreeRoot.AddChild(new SetCreator());
-            _existing_actions[1].TreeRoot.AddChild(new SetDomains());
-            _existing_actions[1].TreeRoot.Children.First.Next.Value.AddChild(new SetPrimaryDomain());
-            _existing_actions[1].TreeRoot.Children.First.Next.Value.AddChild(new AddRandomDomain());
-            _existing_actions[1].TreeRoot.AddChild(new SetPersonality());
-            _existing_actions[1].TreeRoot.AddChild(new SetPower());
-            _existing_actions[1].TreeRoot.AddChild(new SetName());
-            _existing_actions[1].TreeRoot.AddChild(new AddToUniverse());
-        }
-
-        protected void progressCooldowns()
-        {
-            foreach (Tree<MythAction> tree in _existing_actions)
-            {
-                tree.TreeRoot.traverseTree(progressCooldowns);
-            }
-        }
-        private void progressCooldowns(TreeNode<MythAction> myth_action)
-        {
-            if (myth_action.Value.getCurrentCooldown() > 0)
-            {
-                myth_action.Value.progressCooldown();
-            }
-        }
-
         
 
         public ActionTakerMythObject(string tag = Constants.SpecialTags.DEFAULT_TAG) : base(tag)
         {
-            _valid_actions = new List<MythAction>();
-            _existing_actions = new List<Tree<MythAction>>();
-            CurrentCreationState = new CreationState();
-            buildExistingActionsTree();
+            _action_fsm = new MythActionStateMachine<MythAction>();
+            _action_fsm.Initialise(new InitialActionState());
+            setStateTransitions();
         }
     }
 }

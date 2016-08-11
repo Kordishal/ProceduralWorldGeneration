@@ -8,30 +8,23 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
 {
-    class SetName : PrimitivMythAction
+    class SetName : MythAction
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (taker.CurrentCreationState.hasName)
-                return false;
-
-            if (taker.CurrentCreationState.isConnected || taker.CurrentCreationState.hasPower)
-                return true;
-            else
-                return false;
+            return true;
         }
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            if (taker.CurrentCreationState.isCreatingPlane)
+            if (taker.CurrentGoal == ActionGoal.CreatePlane)
             {
                 taker.PlaneConstruction.Name = "Plane " + taker.PlaneConstruction.Identifier;
             }
-            else if (taker.CurrentCreationState.isCreatingDeity)
+            else if (taker.CurrentGoal == ActionGoal.CreateDeity)
             {
                 taker.DeityCreation.Name = "Deity " + taker.DeityCreation.Identifier;
             }
-            taker.CurrentCreationState.hasName = true;
         }
     }
 }

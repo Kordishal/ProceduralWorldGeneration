@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
+using ProceduralWorldGeneration.MythActions.CreatePlaneActions;
 
-namespace ProceduralWorldGeneration.MythActions
+namespace ProceduralWorldGeneration.MythActions.General
 {
-    class Wait : PrimitivMythAction
+    class InitialActionState : MythAction
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            return true;
+            return false;
         }
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            // WAIT
+
         }
 
-        public Wait() {
-            Cooldown = 0;
-            Duration = 0;
+        protected override void AdjustWeight(ActionTakerMythObject taker)
+        {
+            _weight = 0;
         }
     }
 }

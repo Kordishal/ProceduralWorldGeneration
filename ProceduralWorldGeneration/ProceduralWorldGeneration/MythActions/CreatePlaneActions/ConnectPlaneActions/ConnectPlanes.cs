@@ -9,7 +9,7 @@ using ProceduralWorldGeneration.Generator;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneActions
 {
-    abstract class ConnectPlanes : PrimitivMythAction
+    abstract class ConnectPlanes : MythAction
     {
         protected Plane searchPlaneSize(string size)
         {

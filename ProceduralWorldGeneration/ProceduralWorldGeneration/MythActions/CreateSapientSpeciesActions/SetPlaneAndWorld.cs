@@ -10,14 +10,11 @@ using ProceduralWorldGeneration.Generator;
 
 namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
 {
-    class SetPlaneAndWorld : PrimitivMythAction
+    class SetPlaneAndWorld : MythAction
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (taker.CurrentCreationState.isCreatingSapientSpecies && !taker.CurrentCreationState.hasPlaneAndWorld)
-                return true;
-            else
-                return false;
+            return true;
         }
 
         public override void Effect(ActionTakerMythObject taker)
@@ -27,7 +24,6 @@ namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
             if (species_node.Parent.Value.Character == "p")
                 taker.SapientSpeciesCreation.NativePlane = (Plane)species_node.Parent.Value.MythObject;
 
-            taker.CurrentCreationState.hasPlaneAndWorld = true;
         }
 
 

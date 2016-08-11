@@ -9,16 +9,10 @@ using ProceduralWorldGeneration.MythObjects;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneElementSetters
 {
-    class SetNoElement : SetPlaneElement
+    class SetNoPlaneElement : SetPlaneElement
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (!taker.CurrentCreationState.hasType)
-                return false;
-
-            if (taker.CurrentCreationState.hasElement)
-                return false;
-
             if (!taker.PlaneConstruction.PlaneType.hasDominantElement)
                 return true;
             else
@@ -29,7 +23,6 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
         public override void Effect(ActionTakerMythObject taker)
         {
             taker.PlaneConstruction.PlaneElement = null;
-            taker.CurrentCreationState.hasElement = true;
         }
     }
 }

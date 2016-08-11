@@ -5,11 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProceduralWorldGeneration.Output;
+using ProceduralWorldGeneration.MythActions;
+using ProceduralWorldGeneration.MythActions.General;
+using ProceduralWorldGeneration.MythActions.CreatePlaneActions;
+using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions;
+using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneSizeSetters;
+using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneElementSetters;
+using ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneActions;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
     public class PrimordialForce : ActionTakerMythObject
     {
+
+
         private int _spawn_weight;
         public int SpawnWeight
         {
@@ -46,22 +55,19 @@ namespace ProceduralWorldGeneration.MythObjects
 
         public PrimordialForce(string tag = Constants.SpecialTags.DEFAULT_TAG) : base(tag)
         {
+            
         }
 
         public override void takeAction(int current_year)
         {
-            progressCooldowns();
-
-            if (CurrentAction == null)
-                determineNextAction();
+            if (CurrentGoal == ActionGoal.None)
+                determineNextGoal();
 
             if (CurrentAction.getDuration() <= 0)
             {
                 CreationMythLogger.updateActionLog(this);
-                CurrentAction.Effect(this);
-                CurrentAction.resetCooldown();
                 CurrentAction.resetDuration();
-                CurrentAction = null;
+                determineNextAction();              
             }
             else
             {
@@ -72,6 +78,43 @@ namespace ProceduralWorldGeneration.MythObjects
         public override string ToString()
         {
             return "[" + Name + "]";
+        }
+
+        protected override void setStateTransitions()
+        {
+            AddTransition(new InitialActionState(), new SetCreator());
+
+            AddTransition(new SetCreator(), new SetPlaneType());
+
+            AddTransition(new SetPlaneType(), new SetFinitePlaneSize());
+            AddTransition(new SetPlaneType(), new SetInfinitePlaneSize());
+            AddTransition(new SetPlaneType(), new SetNoPlaneSize());
+
+            AddTransition(new SetFinitePlaneSize(), new SetPlaneElement());
+            AddTransition(new SetFinitePlaneSize(), new SetNoPlaneElement());
+
+            AddTransition(new SetNoPlaneSize(), new SetPlaneElement());
+            AddTransition(new SetNoPlaneSize(), new SetNoPlaneElement());
+
+            AddTransition(new SetInfinitePlaneSize(), new SetPlaneElement());
+            AddTransition(new SetInfinitePlaneSize(), new SetNoPlaneElement());
+
+            AddTransition(new SetPlaneElement(), new SetFirstConnection());
+            AddTransition(new SetPlaneElement(), new ConntectEtherealPlane());
+            AddTransition(new SetPlaneElement(), new NoConnections());
+
+            AddTransition(new SetNoPlaneElement(), new SetFirstConnection());
+            AddTransition(new SetNoPlaneElement(), new NoConnections());
+
+            AddTransition(new SetFirstConnection(), new AddConnections());
+
+            AddTransition(new AddConnections(), new AddConnections());
+            AddTransition(new AddConnections(), new SetName());
+
+            AddTransition(new SetName(), new AddToUniverse());
+
+            AddTransition(new AddToUniverse(), new InitialActionState());
+
         }
     }
 }

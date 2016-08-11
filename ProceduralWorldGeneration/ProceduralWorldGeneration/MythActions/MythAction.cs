@@ -1,4 +1,5 @@
 ﻿using ProceduralWorldGeneration.DataStructure;
+using ProceduralWorldGeneration.MythActions.General;
 using ProceduralWorldGeneration.MythObjects;
 using System;
 using System.Collections.Generic;
@@ -21,19 +22,6 @@ namespace ProceduralWorldGeneration.MythActions
         {
             AdjustWeight(taker);
             return _weight > 0 ? _weight : 0;
-        }
-
-        protected bool _is_primitve;
-        public bool isPrimitive
-        {
-            get
-            {
-                return _is_primitve;
-            }
-            set
-            {
-                _is_primitve = value;
-            }
         }
 
         protected int _cooldown = 0;
@@ -104,13 +92,6 @@ namespace ProceduralWorldGeneration.MythActions
 
         abstract public void Effect(ActionTakerMythObject taker);
 
-        protected ActionGoal _reachable_goal;
-        public ActionGoal ReachableGoal
-        {
-            get { return _reachable_goal; }
-            set { _reachable_goal = value; }
-        }
-
         public MythAction()
         {
             // set name of action to its type - namespace
@@ -121,6 +102,16 @@ namespace ProceduralWorldGeneration.MythActions
         public override string ToString()
         {
             return Name + "[D:" + getDuration().ToString() + "]";
+        }
+
+        public override bool Equals(object obj)
+        {
+            return ((MythAction)obj).Name == this.Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Name.GetHashCode();
         }
     }
 }

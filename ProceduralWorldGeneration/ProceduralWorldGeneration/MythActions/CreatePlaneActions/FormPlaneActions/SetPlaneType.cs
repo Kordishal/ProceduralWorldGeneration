@@ -7,17 +7,15 @@ using System.Text;
 using System.Threading.Tasks;
 using ProceduralWorldGeneration.MythObjects;
 using ProceduralWorldGeneration.Generator;
+using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneSizeSetters;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions
 {
-    class SetPlaneType : PrimitivMythAction
+    class SetPlaneType : MythAction
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (taker.CurrentCreationState.hasType)
-                return false;
-            else
-                return true;
+            return true;
         }
 
         public override void Effect(ActionTakerMythObject taker)
@@ -25,14 +23,12 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
             if (taker.PlaneConstruction.Tag == Constants.SpecialTags.CORE_WORLD_TAG)
             {
                 taker.PlaneConstruction.PlaneType = MythObjectData.searchPlaneType("material");
-                taker.CurrentCreationState.hasType = true;
                 return;
             }
 
             if (taker.PlaneConstruction.Tag == Constants.SpecialTags.TRAVEL_DIMENSION_TAG)
             {
                 taker.PlaneConstruction.PlaneType = MythObjectData.searchPlaneType("elemental");
-                taker.CurrentCreationState.hasType = true;
                 return;
             }
 
@@ -73,10 +69,6 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
                 else
                     types[i].SpawnWeight = spawn_weights[i] + 5;
             }
-
-
-            taker.CurrentCreationState.hasType = true;
         }
-
     }
 }
