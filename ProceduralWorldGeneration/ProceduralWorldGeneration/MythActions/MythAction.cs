@@ -12,16 +12,7 @@ namespace ProceduralWorldGeneration.MythActions
     {
         public string Name { get; set; }
 
-        protected int _weight;
-        virtual protected void AdjustWeight(ActionTakerMythObject taker)
-        {
-            _weight = 10;
-        }
-        public int getWeight(ActionTakerMythObject taker)
-        {
-            AdjustWeight(taker);
-            return _weight > 0 ? _weight : 0;
-        }
+
 
         protected bool _is_primitve;
         public bool isPrimitive
@@ -52,7 +43,6 @@ namespace ProceduralWorldGeneration.MythActions
                 _cooldown = value;
             }
         }
-
         virtual public int getCurrentCooldown()
         {
             return _cooldown - _passed_cooldown;
@@ -86,7 +76,6 @@ namespace ProceduralWorldGeneration.MythActions
                 _duration = value;
             }
         }
-
         virtual public int getDuration()
         {
             return _duration - _passed_duration;
@@ -98,6 +87,18 @@ namespace ProceduralWorldGeneration.MythActions
         virtual public void resetDuration()
         {
             _passed_duration = 0;
+        }
+
+
+        protected int _weight;
+        virtual protected void AdjustWeight(ActionTakerMythObject taker)
+        {
+            _weight = 10;
+        }
+        public int getWeight(ActionTakerMythObject taker)
+        {
+            AdjustWeight(taker);
+            return _weight > 0 ? _weight : 0;
         }
 
         abstract public bool checkPrecondition(ActionTakerMythObject taker);
