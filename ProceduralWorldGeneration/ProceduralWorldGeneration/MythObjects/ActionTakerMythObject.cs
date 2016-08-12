@@ -46,43 +46,50 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        private Plane _plane_construction;
-        public Plane PlaneConstruction
+        private Plane _created_plane;
+        public Plane CreatedPlane
         {
             get
             {
-                return _plane_construction;
+                return _created_plane;
             }
             set
             {
-                _plane_construction = value;
+                _created_plane = value;
             }
         }
 
-        private SapientSpecies _sapient_species_creatio;
-        public SapientSpecies SapientSpeciesCreation
+        private SapientSpecies _created_sapient_species;
+        public SapientSpecies CreatedSapientSpecies
         {
             get
             {
-                return _sapient_species_creatio;
+                return _created_sapient_species;
             }
             set
             {
-                _sapient_species_creatio = value;
+                _created_sapient_species = value;
             }
         }
 
-        private Deity _deity_creation;
-        public Deity DeityCreation
+        private Deity _created_deity;
+        public Deity CreadedDeity
         {
             get
             {
-                return _deity_creation;
+                return _created_deity;
             }
             set
             {
-                _deity_creation = value;
+                _created_deity = value;
             }
+        }
+
+        private Civilisation _created_civilisation;
+        public Civilisation CreatedCivilisation
+        {
+            get { return _created_civilisation; }
+            set { _created_civilisation = value; }
         }
 
         public abstract void takeAction(int current_year);
@@ -194,7 +201,7 @@ namespace ProceduralWorldGeneration.MythObjects
             foreach (MythAction action in next_actions)
             {
                 current_weight = action.getWeight(this);
-                if (prev_weight < random && random < current_weight)
+                if (prev_weight <= random && random < current_weight)
                 {
                     _action_fsm.Advance(action, this);
                     return;

@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
 using ProceduralWorldGeneration.Generator;
 
-namespace ProceduralWorldGeneration.MythActions.CreateDeityActions
+namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
 {
-    class SetPower : MythAction
+    class SetInnatePower : MythAction
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
@@ -18,7 +17,7 @@ namespace ProceduralWorldGeneration.MythActions.CreateDeityActions
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            taker.CreadedDeity.Power = ConfigValues.RandomGenerator.Next(10);
+            taker.CreatedSapientSpecies.InnatePower = ConfigValues.RandomGenerator.Next(10);
         }
     }
 }

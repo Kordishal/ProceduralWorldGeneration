@@ -9,9 +9,8 @@ using ProceduralWorldGeneration.MythActions;
 using ProceduralWorldGeneration.MythActions.General;
 using ProceduralWorldGeneration.MythActions.CreatePlaneActions;
 using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneSizeSetters;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneElementSetters;
 using ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneActions;
+using ProceduralWorldGeneration.MythActions.CreateDeityActions;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
@@ -84,6 +83,7 @@ namespace ProceduralWorldGeneration.MythObjects
             AddTransition(new InitialActionState(), new SetCreator());
 
             AddTransition(new SetCreator(), new SetPlaneType());
+            AddTransition(new SetCreator(), new SetPrimaryDomain());
 
             AddTransition(new SetPlaneType(), new SetFinitePlaneSize());
             AddTransition(new SetPlaneType(), new SetInfinitePlaneSize());
@@ -118,6 +118,17 @@ namespace ProceduralWorldGeneration.MythObjects
             AddTransition(new SetName(), new AddToUniverse());
 
             AddTransition(new AddToUniverse(), new InitialActionState());
+
+            // CREATE A DEITY  
+
+            AddTransition(new SetPrimaryDomain(), new AddRandomDomain());
+
+            AddTransition(new AddRandomDomain(), new AddRandomDomain());
+            AddTransition(new AddRandomDomain(), new SetPower());
+
+            AddTransition(new SetPower(), new SetPersonality());
+
+            AddTransition(new SetPersonality(), new SetName());
 
         }
     }

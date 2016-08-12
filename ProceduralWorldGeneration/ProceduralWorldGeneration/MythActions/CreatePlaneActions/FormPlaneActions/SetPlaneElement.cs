@@ -10,13 +10,13 @@ using ProceduralWorldGeneration.Generator;
 using ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneActions;
 using ProceduralWorldGeneration.Constants;
 
-namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneElementSetters
+namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions
 {
     class SetPlaneElement : MythAction
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (taker.PlaneConstruction.PlaneType.hasDominantElement)
+            if (taker.CreatedPlane.PlaneType.hasDominantElement)
                 return true;
             else
                 return false;
@@ -24,9 +24,9 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            if (taker.PlaneConstruction.Tag == SpecialTags.TRAVEL_DIMENSION_TAG)
+            if (taker.CreatedPlane.Tag == SpecialTags.TRAVEL_DIMENSION_TAG)
             {
-                taker.PlaneConstruction.PlaneElement = MythObjectData.searchElement("air");
+                taker.CreatedPlane.PlaneElement = MythObjectData.searchElement("air");
                 return;
             }
 
@@ -56,15 +56,15 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
             {
                 current_weight += spawn_weights[i];
                 if (prev_weight <= chance && chance < current_weight)
-                    taker.PlaneConstruction.PlaneElement = elements[i];
+                    taker.CreatedPlane.PlaneElement = elements[i];
                 prev_weight = current_weight;
             }
 
             for (int i = 0; i < plane_element_count; i++)
             {
-                if (elements[i] == taker.PlaneConstruction.PlaneElement)
+                if (elements[i] == taker.CreatedPlane.PlaneElement)
                     elements[i].SpawnWeight = spawn_weights[i] - 5;
-                else if (elements[i].Opposite == taker.PlaneConstruction.PlaneElement.Tag)
+                else if (elements[i].Opposite == taker.CreatedPlane.PlaneElement.Tag)
                     elements[i].SpawnWeight = spawn_weights[i] + 100;
                 else
                     elements[i].SpawnWeight = spawn_weights[i] + 5;

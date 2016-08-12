@@ -1,0 +1,19 @@
+trait_categories = {
+	lifespan = {
+		name = "Lifespan"
+		unique = true
+		forced = true
+	}
+	habitat = {
+		name = "Habitat"
+		unique = true
+		forced = true
+	}
+	physical = {
+		name = "Physical"
+		unique = false
+		forced = false
+	}
+
+
+}

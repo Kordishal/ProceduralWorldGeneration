@@ -79,6 +79,12 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                     data.SpeciesTypes.Add(temp_species_type);
                     data.MythObjectAttributes.Add(temp_species_type);
                 }
+                else if (parent_node.GetFirstChild().Value.ExpressionValue == "trait_categories")
+                {
+                    TraitCategory temp_trait_category = new TraitCategory(first_child_node.Value.ExpressionValue);
+                    data.TraitCategories.Add(temp_trait_category);
+                    data.MythObjectAttributes.Add(temp_trait_category);
+                }
                 else if (parent_node.GetFirstChild().Value.ExpressionType == ExpressionTypes.Variable)
                 {
                     BaseMythObject temp_myth_object = searchTag(parent_node.GetFirstChild().Value.ExpressionValue);
@@ -199,6 +205,23 @@ namespace ProceduralWorldGeneration.SyntaxTreeTranslator
                                 {
                                     temp_species_type.SpawnWeight = int.Parse(last_child_node.Value.ExpressionValue);
                                 }
+                            }
+                            else if (typeof(TraitCategory) == temp_myth_object_attribute.GetType())
+                            {
+                                TraitCategory temp_trait_category = (TraitCategory)temp_myth_object_attribute;
+                                if (first_child_node.Value.ExpressionValue == "name")
+                                {
+                                    temp_trait_category.Name = cutStringSigns(last_child_node.Value.ExpressionValue);
+                                }
+                                else if (first_child_node.Value.ExpressionValue == "unique")
+                                {
+                                    temp_trait_category.isUnique = bool.Parse(last_child_node.Value.ExpressionValue);
+                                }
+                                else if (first_child_node.Value.ExpressionValue == "forced")
+                                {
+                                    temp_trait_category.isForced = bool.Parse(last_child_node.Value.ExpressionValue);
+                                }
+
                             }
                         }
                     }

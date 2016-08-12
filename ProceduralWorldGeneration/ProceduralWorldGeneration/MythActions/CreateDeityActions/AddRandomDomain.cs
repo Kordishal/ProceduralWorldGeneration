@@ -9,16 +9,20 @@ using ProceduralWorldGeneration.Generator;
 
 namespace ProceduralWorldGeneration.MythActions.CreateDeityActions
 {
-    class SetPower : MythAction
+    class AddRandomDomain : MythAction
     {
+
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            return true;
+            if (taker.CreadedDeity.Domains.Count > 5)
+                return false;
+            else
+                return true;
         }
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            taker.CreadedDeity.Power = ConfigValues.RandomGenerator.Next(10);
+            taker.CreadedDeity.Domains.Add(CreationMythState.MythObjectData.Domains[ConfigValues.RandomGenerator.Next(CreationMythState.MythObjectData.Domains.Count)]);
         }
     }
 }

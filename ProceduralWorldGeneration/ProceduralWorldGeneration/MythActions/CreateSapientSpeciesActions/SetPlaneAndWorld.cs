@@ -14,7 +14,10 @@ namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            return true;
+            if (taker.CurrentGoal == ActionGoal.CreateSapientSpecies)
+                return true;
+            else
+                return false;
         }
 
         public override void Effect(ActionTakerMythObject taker)
@@ -22,7 +25,7 @@ namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
             TreeNode<CreationTreeNode> species_node = CreationMythState.CreationTree.TreeRoot.searchNode(searchPlaneNode, new CreationTreeNode(taker));
 
             if (species_node.Parent.Value.Character == "p")
-                taker.SapientSpeciesCreation.NativePlane = (Plane)species_node.Parent.Value.MythObject;
+                taker.CreatedSapientSpecies.NativePlane = (Plane)species_node.Parent.Value.MythObject;
 
         }
 

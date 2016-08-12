@@ -1,63 +1,67 @@
 traits = {
 	wings = {
 		name = "Wings"
-		category = "physiognomy"
+		category = physical
 	}
 	
 	aquatic = {
 		name = "Aquatic"
-		category = "habitat"	
+		category = habitat	
 	}
 	
 	amphibious = {
 		name = "Amphibious"
-		category = "habitat"
+		category = habitat
 	}
 	
 	terranean = {
 		name = "Terranean"
-		category = "habitat"
+		category = habitat
 	}
 	
 	subterranean = {
 		name = "Subterranean"
-		category = "habitat"
+		category = habitat
 	}
 	
 	aviatic = {
 		name = "Aviatic"
-		category = "habitat"
+		category = habitat
 	}
 	
 	immortal = {
 		name = "Immortal"
-		category = "lifespan"
+		category = lifespan
+		spawn_weight = 10
 	}
 	
 	eternal = {
 		name = "Eternal"
-		category = "lifespan"
+		category = lifespan
+		spawn_weight = 10
 	}
 	
 	very_long = {
 		name = "Very Long"
-		category = "lifespan"
+		category = lifespan
+		spawn_weight = 10
 	}
 	
 	long = {
 		name = "Long"
-		category = "lifespan"
+		category = lifespan
+		spawn_weight = 10
 	}
 	
 	average = {
 		name = "Average"
-		category = "lifespan"
+		category = lifespan
+		spawn_weight = 100
 	}
 	
 	short = {
 		name = "Short"
-		category = "lifespan"
+		category = lifespan
+		spawn_weight = 10
 	}
-	
-	
 }

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneSizeSetters
+namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions
 {
     class SetFinitePlaneSize : SetPlaneSize
     {
@@ -20,10 +20,10 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
 
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (taker.PlaneConstruction.PlaneType.isInfiniteOnly)
+            if (taker.CreatedPlane.PlaneType.isInfiniteOnly)
                 return false;
 
-            if (taker.PlaneConstruction.PlaneType.isAttachedTo == null)
+            if (taker.CreatedPlane.PlaneType.isAttachedTo == null)
                 return true;
             else
                 return false; ;
@@ -31,9 +31,9 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            if (taker.PlaneConstruction.Tag == Constants.SpecialTags.CORE_WORLD_TAG)
+            if (taker.CreatedPlane.Tag == Constants.SpecialTags.CORE_WORLD_TAG)
             {
-                taker.PlaneConstruction.PlaneSize = CreationMythState.MythObjectData.PlaneSizes[CreationMythState.MythObjectData.PlaneSizes.Count - 1];
+                taker.CreatedPlane.PlaneSize = CreationMythState.MythObjectData.PlaneSizes[CreationMythState.MythObjectData.PlaneSizes.Count - 1];
                 return;
             }
 
@@ -52,7 +52,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
             {
                 current_weight = current_weight + s.SpawnWeight;
                 if (prev_weight <= chance && chance < current_weight)
-                    taker.PlaneConstruction.PlaneSize = s;
+                    taker.CreatedPlane.PlaneSize = s;
 
                 prev_weight = current_weight;
             }

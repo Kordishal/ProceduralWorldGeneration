@@ -20,42 +20,32 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
 
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (CreationMythState.Planes.Count <= 0)
+            if (CreationMythState.Planes.Count <= 1)
                 return false;
 
-            if (taker.PlaneConstruction.maxConnectionsReached())
+            if (taker.CreatedPlane.maxConnectionsReached())
                 return false;
-            else if (taker.PlaneConstruction.NeighbourPlanes.Count > CreationMythState.Planes.Count)
+
+            if (taker.CreatedPlane.NeighbourPlanes.Count >= CreationMythState.Planes.Count)
                 return false;
-            else
-                return true;
+
+            return true;
         }
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            if (taker.PlaneConstruction.PlaneSize.MaxNeighbourPlanes == -1)
+            if (taker.CreatedPlane.Tag == Constants.SpecialTags.TRAVEL_DIMENSION_TAG)
             {
-                if (taker.PlaneConstruction.Tag == Constants.SpecialTags.TRAVEL_DIMENSION_TAG)
-                {
-                    foreach (Plane p in CreationMythState.Planes)
-                    {
-                        if (p.isNotConnectedTo(taker.PlaneConstruction))
-                        {
-                            taker.PlaneConstruction.connectPlane(p);
-                        }
-                    }
-                    return; 
-                }
+                taker.CreatedPlane.connectPlane(CreationMythState.Planes[0]);
             }
             else
             {            
                 Plane temp = CreationMythState.Planes[ConfigValues.RandomGenerator.Next(CreationMythState.Planes.Count)];
-                while (temp.maxConnectionsReached() || !temp.isNotConnectedTo(taker.PlaneConstruction))
+                while (temp.maxConnectionsReached() || !temp.isNotConnectedTo(taker.CreatedPlane))
                 {
                     temp = CreationMythState.Planes[ConfigValues.RandomGenerator.Next(CreationMythState.Planes.Count)];
                 }
-                taker.PlaneConstruction.connectPlane(temp);
-                    
+                taker.CreatedPlane.connectPlane(temp);
             }
         }
     }

@@ -93,31 +93,14 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        private List<CivilisationEthos> _ethoi;
-        public List<CivilisationEthos> Ethoi
-        {
-            get
-            {
-                return _ethoi;
-            }
-            set
-            {
-                if (_ethoi != value)
-                {
-                    _ethoi = value;
-                    base.NotifyPropertyChanged("Ethoi");
-                }
-            }
-        }
-
         public override void takeAction(int current_year)
         {
-            throw new NotImplementedException();
+            
         }
 
         protected override void setStateTransitions()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

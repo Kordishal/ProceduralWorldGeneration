@@ -3,3 +3,5 @@ deities.txt
 planes.txt
 sapient_species.txt
 traits.txt
+trait_categories.txt
+ethos.txt

@@ -6,21 +6,23 @@ using System.Threading.Tasks;
 using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
 
-namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneSizeSetters
+
+namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions
 {
-    class SetNoPlaneSize : SetPlaneSize
+    class SetNoPlaneElement : SetPlaneElement
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (taker.PlaneConstruction.PlaneType.isAttachedTo != null)
+            if (!taker.CreatedPlane.PlaneType.hasDominantElement)
                 return true;
             else
                 return false;
+
         }
 
         public override void Effect(ActionTakerMythObject taker)
         {
-
+            taker.CreatedPlane.PlaneElement = null;
         }
     }
 }

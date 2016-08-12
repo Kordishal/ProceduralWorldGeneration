@@ -7,7 +7,7 @@ using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
 using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions;
 
-namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
+namespace ProceduralWorldGeneration.MythActions.General
 {
     class SetCreator : MythAction
     {
@@ -20,24 +20,24 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
         {
             if (taker.CurrentGoal == ActionGoal.CreatePlane)
             {
-                taker.PlaneConstruction = new Plane();
-                taker.PlaneConstruction.Creator = taker;
+                taker.CreatedPlane = new Plane();
+                taker.CreatedPlane.Creator = taker;
 
                 if (CreationMythState.Planes.Count == 0)
-                    taker.PlaneConstruction.Tag = Constants.SpecialTags.CORE_WORLD_TAG;
+                    taker.CreatedPlane.Tag = Constants.SpecialTags.CORE_WORLD_TAG;
 
                 if (CreationMythState.Planes.Count == 1)
-                    taker.PlaneConstruction.Tag = Constants.SpecialTags.TRAVEL_DIMENSION_TAG;
+                    taker.CreatedPlane.Tag = Constants.SpecialTags.TRAVEL_DIMENSION_TAG;
             }
             else if (taker.CurrentGoal == ActionGoal.CreateSapientSpecies)
             {
-                taker.SapientSpeciesCreation = new SapientSpecies();
-                taker.SapientSpeciesCreation.Creator = taker;
+                taker.CreatedSapientSpecies = new SapientSpecies();
+                taker.CreatedSapientSpecies.Creator = taker;
             }
             else if(taker.CurrentGoal == ActionGoal.CreateDeity)
             {
-                taker.DeityCreation = new Deity();
-                taker.DeityCreation.Creator = taker;
+                taker.CreadedDeity = new Deity();
+                taker.CreadedDeity.Creator = taker;
             }
         }
     }

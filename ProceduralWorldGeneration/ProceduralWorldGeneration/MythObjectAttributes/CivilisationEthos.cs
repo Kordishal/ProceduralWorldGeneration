@@ -26,19 +26,19 @@ namespace ProceduralWorldGeneration.MythObjectAttributes
             }
         }
 
-        private int[] _range;
-        public int[] Range
+        private int _value;
+        public int Value
         {
             get
             {
-                return _range;
+                return _value;
             }
             set
             {
-                if (_range != value)
+                if (_value != value)
                 {
-                    _range = value;
-                    base.NotifyPropertyChanged("Range");
+                    _value = value;
+                    base.NotifyPropertyChanged("Value");
                 }
             }
         }

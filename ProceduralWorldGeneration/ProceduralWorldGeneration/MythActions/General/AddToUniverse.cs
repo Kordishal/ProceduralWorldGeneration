@@ -23,15 +23,15 @@ namespace ProceduralWorldGeneration.MythActions.General
         {
             if (taker.CurrentGoal == ActionGoal.CreatePlane)
             {
-                CreationMythState.MythObjects.Add(taker.PlaneConstruction);
-                CreationMythState.Planes.Add(taker.PlaneConstruction);
+                CreationMythState.MythObjects.Add(taker.CreatedPlane);
+                CreationMythState.Planes.Add(taker.CreatedPlane);
                 CreationMythState.CreationTree.TreeRoot.traverseTree(addPlaneToCreationTree, new CreationTreeNode(taker));
             }
             else if (taker.CurrentGoal == ActionGoal.CreateDeity)
             {
-                CreationMythState.ActionableMythObjects.Enqueue(taker.DeityCreation);
-                CreationMythState.MythObjects.Add(taker.DeityCreation);
-                CreationMythState.Deities.Add(taker.DeityCreation);
+                CreationMythState.ActionableMythObjects.Enqueue(taker.CreadedDeity);
+                CreationMythState.MythObjects.Add(taker.CreadedDeity);
+                CreationMythState.Deities.Add(taker.CreadedDeity);
                 CreationMythState.CreationTree.TreeRoot.traverseTree(addDeityToCreationTree, new CreationTreeNode(taker));
             }
                      
@@ -46,7 +46,7 @@ namespace ProceduralWorldGeneration.MythActions.General
                 if (current_node.Value.Creator == node.MythObject)
                 {
                     PrimordialForce taker = (PrimordialForce)node.MythObject;
-                    current_node.Value.MythObject = taker.PlaneConstruction;
+                    current_node.Value.MythObject = taker.CreatedPlane;
                     current_node.Value.UnderConstruction = false;
                 }
             }
@@ -59,7 +59,7 @@ namespace ProceduralWorldGeneration.MythActions.General
                 if (current_node.Value.Creator == node.MythObject)
                 {
                     PrimordialForce taker = (PrimordialForce)node.MythObject;
-                    current_node.Value.MythObject = taker.DeityCreation;
+                    current_node.Value.MythObject = taker.CreadedDeity;
                     current_node.Value.UnderConstruction = false;
                 }
             }

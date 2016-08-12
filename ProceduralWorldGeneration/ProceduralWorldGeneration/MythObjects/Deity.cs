@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProceduralWorldGeneration.DataStructure;
+using ProceduralWorldGeneration.MythActions.CreatePlaneActions;
+using ProceduralWorldGeneration.MythActions.General;
+using ProceduralWorldGeneration.MythActions.CreateDeityActions;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
@@ -73,12 +76,17 @@ namespace ProceduralWorldGeneration.MythObjects
         public override void takeAction(int current_year)
         {
 
-
         }
 
         protected override void setStateTransitions()
         {
-            throw new NotImplementedException();
+            AddTransition(new InitialActionState(), new SetCreator());
+
+            
+
+            AddTransition(new SetName(), new AddToUniverse());
+
+            AddTransition(new AddToUniverse(), new InitialActionState());
         }
     }
 }

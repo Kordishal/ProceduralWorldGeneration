@@ -16,7 +16,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
             if (CreationMythState.Planes.Count <= 0)
                 return false;
 
-            if (taker.PlaneConstruction.PlaneType.isAttachedTo != null)
+            if (taker.CreatedPlane.PlaneType.isAttachedTo != null)
                 return true;
             else
                 return false;
@@ -25,8 +25,8 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
         public override void Effect(ActionTakerMythObject taker)
         {
             // Connect a attached plane type to its respective plane type.
-            taker.PlaneConstruction.connectPlane(searchPlaneType(taker.PlaneConstruction.PlaneType.isAttachedTo));
-            taker.PlaneConstruction.PlaneSize = taker.PlaneConstruction.NeighbourPlanes[0].PlaneSize;
+            taker.CreatedPlane.connectPlane(searchPlaneType(taker.CreatedPlane.PlaneType.isAttachedTo));
+            taker.CreatedPlane.PlaneSize = taker.CreatedPlane.NeighbourPlanes[0].PlaneSize;
         }
     }
 }

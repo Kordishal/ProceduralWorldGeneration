@@ -19,11 +19,11 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions
         {
             if (taker.CurrentGoal == ActionGoal.CreatePlane)
             {
-                taker.PlaneConstruction.Name = "Plane " + taker.PlaneConstruction.Identifier;
+                taker.CreatedPlane.Name = "Plane " + taker.CreatedPlane.Identifier;
             }
             else if (taker.CurrentGoal == ActionGoal.CreateDeity)
             {
-                taker.DeityCreation.Name = "Deity " + taker.DeityCreation.Identifier;
+                taker.CreadedDeity.Name = "Deity " + taker.CreadedDeity.Identifier;
             }
         }
     }

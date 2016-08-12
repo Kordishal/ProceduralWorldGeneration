@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using ProceduralWorldGeneration.MythObjects;
 using ProceduralWorldGeneration.Generator;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneSizeSetters;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions
 {
@@ -15,20 +14,23 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            return true;
+            if (taker.CurrentGoal == ActionGoal.CreatePlane)
+                return true;
+            else
+                return false;
         }
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            if (taker.PlaneConstruction.Tag == Constants.SpecialTags.CORE_WORLD_TAG)
+            if (taker.CreatedPlane.Tag == Constants.SpecialTags.CORE_WORLD_TAG)
             {
-                taker.PlaneConstruction.PlaneType = MythObjectData.searchPlaneType("material");
+                taker.CreatedPlane.PlaneType = MythObjectData.searchPlaneType("material");
                 return;
             }
 
-            if (taker.PlaneConstruction.Tag == Constants.SpecialTags.TRAVEL_DIMENSION_TAG)
+            if (taker.CreatedPlane.Tag == Constants.SpecialTags.TRAVEL_DIMENSION_TAG)
             {
-                taker.PlaneConstruction.PlaneType = MythObjectData.searchPlaneType("elemental");
+                taker.CreatedPlane.PlaneType = MythObjectData.searchPlaneType("elemental");
                 return;
             }
 
@@ -58,13 +60,13 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
             {
                 current_weight += spawn_weights[i];
                 if (prev_weight <= chance && chance < current_weight)
-                    taker.PlaneConstruction.PlaneType = types[i];
+                    taker.CreatedPlane.PlaneType = types[i];
                 prev_weight = current_weight;
             }
 
             for (int i = 0; i < plane_type_count; i++)
             {
-                if (types[i] == taker.PlaneConstruction.PlaneType)
+                if (types[i] == taker.CreatedPlane.PlaneType)
                     types[i].SpawnWeight = spawn_weights[i] - 5;
                 else
                     types[i].SpawnWeight = spawn_weights[i] + 5;

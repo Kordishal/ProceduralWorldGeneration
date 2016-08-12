@@ -7,7 +7,7 @@ using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
 using ProceduralWorldGeneration.MythObjectAttributes;
 
-namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions.PlaneSizeSetters
+namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions
 {
     class SetInfinitePlaneSize : SetPlaneSize
     {
@@ -18,16 +18,16 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
 
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (taker.PlaneConstruction.PlaneType.isInfiniteOnly)
+            if (taker.CreatedPlane.PlaneType.isInfiniteOnly)
                 return true;
 
-            if (taker.PlaneConstruction.Tag == Constants.SpecialTags.CORE_WORLD_TAG)
+            if (taker.CreatedPlane.Tag == Constants.SpecialTags.CORE_WORLD_TAG)
                 return false;
 
-            if (taker.PlaneConstruction.Tag == Constants.SpecialTags.TRAVEL_DIMENSION_TAG)
+            if (taker.CreatedPlane.Tag == Constants.SpecialTags.TRAVEL_DIMENSION_TAG)
                 return true;
 
-            if (taker.PlaneConstruction.PlaneType.isAttachedTo != null)
+            if (taker.CreatedPlane.PlaneType.isAttachedTo != null)
                 return false;
             else
                 return true;
@@ -35,9 +35,9 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            taker.PlaneConstruction.PlaneSize = new PlaneSize(Constants.SpecialTags.INFINITE_PLANE_SIZE);
-            taker.PlaneConstruction.PlaneSize.MaxNeighbourPlanes = -1;
-            taker.PlaneConstruction.PlaneSize.Name = "Infinite";
+            taker.CreatedPlane.PlaneSize = new PlaneSize(Constants.SpecialTags.INFINITE_PLANE_SIZE);
+            taker.CreatedPlane.PlaneSize.MaxNeighbourPlanes = -1;
+            taker.CreatedPlane.PlaneSize.Name = "Infinite";
         }
 
 

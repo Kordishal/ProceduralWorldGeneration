@@ -18,7 +18,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
                 return false;
 
             // Do not take any ethereal planes
-            if (taker.PlaneConstruction.PlaneSize == null)
+            if (taker.CreatedPlane.PlaneSize == null)
                 return false;
 
             return true;
@@ -26,19 +26,19 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            if (taker.PlaneConstruction.Tag == SpecialTags.TRAVEL_DIMENSION_TAG)
+            if (taker.CreatedPlane.Tag == SpecialTags.TRAVEL_DIMENSION_TAG)
             {
-                taker.PlaneConstruction.connectPlane(searchPlaneTag(SpecialTags.CORE_WORLD_TAG));
+                taker.CreatedPlane.connectPlane(searchPlaneTag(SpecialTags.CORE_WORLD_TAG));
             }
-            else if (taker.PlaneConstruction.PlaneSize.MaxNeighbourPlanes <= 1)
+            else if (taker.CreatedPlane.PlaneSize.MaxNeighbourPlanes <= 1)
             {
-                taker.PlaneConstruction.connectPlane(searchPlaneSize("large"));
+                taker.CreatedPlane.connectPlane(searchPlaneSize("large"));
 
             }
             else
             {
                 // Connect every plane with the travel dimension.
-                taker.PlaneConstruction.connectPlane(searchPlaneTag(SpecialTags.TRAVEL_DIMENSION_TAG));
+                taker.CreatedPlane.connectPlane(searchPlaneTag(SpecialTags.TRAVEL_DIMENSION_TAG));
             }
         }
     }
