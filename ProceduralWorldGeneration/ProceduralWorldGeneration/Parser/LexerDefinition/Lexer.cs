@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Parser.LexerDefinition
 {
+    /// <summary>
+    /// Not my code. Found on the interent. Should reimplement to actually get how this works...
+    /// </summary>
     public class Lexer : ILexer
     {
         Regex endOfLineRegex = new Regex(@"\r\n|\r|\n", RegexOptions.Compiled);

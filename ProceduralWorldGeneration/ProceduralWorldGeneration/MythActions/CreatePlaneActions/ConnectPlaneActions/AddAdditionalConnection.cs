@@ -40,10 +40,10 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
             }
             else
             {            
-                Plane temp = CreationMythState.Planes[ConfigValues.RandomGenerator.Next(CreationMythState.Planes.Count)];
+                Plane temp = CreationMythState.Planes[ConfigValues.Random.Next(CreationMythState.Planes.Count)];
                 while (temp.maxConnectionsReached() || !temp.isNotConnectedTo(taker.CreatedPlane))
                 {
-                    temp = CreationMythState.Planes[ConfigValues.RandomGenerator.Next(CreationMythState.Planes.Count)];
+                    temp = CreationMythState.Planes[ConfigValues.Random.Next(CreationMythState.Planes.Count)];
                 }
                 taker.CreatedPlane.connectPlane(temp);
             }

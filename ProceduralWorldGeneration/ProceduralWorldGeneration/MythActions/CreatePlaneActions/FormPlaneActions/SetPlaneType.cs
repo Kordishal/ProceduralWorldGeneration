@@ -54,7 +54,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
             }
 
 
-            int chance = ConfigValues.RandomGenerator.Next(total_spawn_weight);
+            int chance = ConfigValues.Random.Next(total_spawn_weight);
             int prev_weight = 0, current_weight = 0;
             for (int i = 0; i < plane_type_count; i++)
             {

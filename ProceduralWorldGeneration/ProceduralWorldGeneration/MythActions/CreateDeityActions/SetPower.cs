@@ -18,7 +18,7 @@ namespace ProceduralWorldGeneration.MythActions.CreateDeityActions
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            taker.CreadedDeity.Power = ConfigValues.RandomGenerator.Next(10);
+            taker.CreadedDeity.Power = ConfigValues.Random.Next(10);
         }
     }
 }

@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Grammar
 {
+    /// <summary>
+    /// Defines the grammar for the creation string.
+    /// This string then guides how the world is created.
+    /// It leaves out most of the details.
+    /// </summary>
     class MythCreationGrammar
     {
         public char StartSymbol { get; set; }
@@ -143,7 +148,7 @@ namespace ProceduralWorldGeneration.Grammar
             }
 
             // pick first primordial power. There needs to be always at least one as otherwise nothing will be created.
-            int chance = ConfigValues.RandomGenerator.Next(total_weight);
+            int chance = ConfigValues.Random.Next(total_weight);
             int current_weight = 0;
             foreach (ProductionRule pr in valid_rules)
             {

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Parser
 {
+    /// <summary>
+    /// An expression is the combination of a number of tokens which form a logical unit.
+    /// </summary>
     class Expression
     {
         public ExpressionTypes ExpressionType { get; set; }

@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.DataStructure
 {
+    /// <summary>
+    /// Contains all of the myth objects as a list or sorted into types.
+    /// </summary>
     public class CreationMythState
     {
         static private string _creation_string;
@@ -106,6 +109,7 @@ namespace ProceduralWorldGeneration.DataStructure
             }
         }
 
+        // All the mythobjects which can take actions and create something of their own.
         static private Queue<IActionTaker> _actionable_myth_objects;
         static public Queue<IActionTaker> ActionableMythObjects
         {

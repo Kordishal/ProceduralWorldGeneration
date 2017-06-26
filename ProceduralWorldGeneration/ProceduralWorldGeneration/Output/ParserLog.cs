@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Output
 {
+    /// <summary>
+    /// Creates a log from the parser output.
+    /// </summary>
     class ParserLog
     {
     }

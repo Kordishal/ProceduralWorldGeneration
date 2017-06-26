@@ -21,7 +21,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
             if (temp.Count <= 0)
                 return null;
             else
-                return temp[ConfigValues.RandomGenerator.Next(temp.Count)];
+                return temp[ConfigValues.Random.Next(temp.Count)];
         }
 
         protected Plane searchPlaneType(string type)
@@ -34,7 +34,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
             if (temp.Count <= 0)
                 return null;
             else
-                return temp[ConfigValues.RandomGenerator.Next(temp.Count)];
+                return temp[ConfigValues.Random.Next(temp.Count)];
         }
 
 

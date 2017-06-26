@@ -8,18 +8,17 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Main
 {
+    /// <summary>
+    /// Main starting point of the program.
+    /// </summary>
     class Programm
     {
-
-
         static private MythCreator _creation_myth_generator;
-
 
         static public void startCreationLoop()
         {
             _creation_myth_generator.creationLoop();
         }
-
 
         static public void initialise(UserInterfaceData user)
         {

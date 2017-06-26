@@ -19,7 +19,7 @@ namespace ProceduralWorldGeneration.MythActions.CreateDeityActions
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            taker.CreadedDeity.Personality = CreationMythState.MythObjectData.Personalities[ConfigValues.RandomGenerator.Next(CreationMythState.MythObjectData.Personalities.Count)];
+            taker.CreadedDeity.Personality = CreationMythState.MythObjectData.Personalities[ConfigValues.Random.Next(CreationMythState.MythObjectData.Personalities.Count)];
         }
     }
 }

@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.SyntaxTreeTranslator
 {
+    /// <summary>
+    /// Takes the syntax tree from the parser and creates the data from the files.
+    /// </summary>
     class Translator
     {
         private MythObjectData data { get; set; }

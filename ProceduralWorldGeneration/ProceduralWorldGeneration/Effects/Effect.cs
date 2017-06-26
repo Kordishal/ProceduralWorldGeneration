@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Effects
 {
+    /// <summary>
+    /// ABSTRACT CLASS
+    /// An Effect is an object with a tag, name and spawn weight. 
+    /// Needs to be implemented into specific effects for myth objects.
+    /// </summary>
     public abstract class Effect : INotifyPropertyChanged
     {
 
@@ -35,7 +40,6 @@ namespace ProceduralWorldGeneration.Effects
                 }
             }
         }
-
 
         private int _spawn_weight;
         public int SpawnWeight

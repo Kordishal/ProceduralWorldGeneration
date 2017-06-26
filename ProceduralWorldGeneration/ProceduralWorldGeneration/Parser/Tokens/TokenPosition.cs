@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Parser.Tokens
 {
+    /// <summary>
+    /// Stores the position of a token in the files read. Not actually clear what the individual values mean.
+    /// </summary>
     public class TokenPosition
     {
         public int Column { get; set; }

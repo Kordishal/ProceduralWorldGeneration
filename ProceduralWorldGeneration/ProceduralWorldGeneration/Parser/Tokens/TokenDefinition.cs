@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Parser.Tokens
 {
+    /// <summary>
+    /// Stores a single token type and the regex it can be found with.
+    /// </summary>
     public class TokenDefinition
     {
         public bool IsIgnored { get; set; }

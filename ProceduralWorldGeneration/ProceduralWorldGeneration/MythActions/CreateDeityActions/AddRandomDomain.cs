@@ -22,7 +22,7 @@ namespace ProceduralWorldGeneration.MythActions.CreateDeityActions
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            taker.CreadedDeity.Domains.Add(CreationMythState.MythObjectData.Domains[ConfigValues.RandomGenerator.Next(CreationMythState.MythObjectData.Domains.Count)]);
+            taker.CreadedDeity.Domains.Add(CreationMythState.MythObjectData.Domains[ConfigValues.Random.Next(CreationMythState.MythObjectData.Domains.Count)]);
         }
     }
 }

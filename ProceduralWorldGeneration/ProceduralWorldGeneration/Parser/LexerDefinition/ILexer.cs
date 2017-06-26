@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Parser.LexerDefinition
 {
+    /// <summary>
+    /// Interface for the lexer. Defines what functions need to be implemented to use this lexer.
+    /// </summary>
     public interface ILexer
     {
         void AddDefinition(TokenDefinition tokenDefinition);

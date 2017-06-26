@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Grammar
 {
+    /// <summary>
+    /// A production rule indicates how to continue the grammar.
+    /// </summary>
     class ProductionRule
     {
         public char InitialSymbol { get; set; }

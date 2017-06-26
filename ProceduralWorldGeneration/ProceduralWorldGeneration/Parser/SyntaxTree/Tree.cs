@@ -8,6 +8,11 @@ using System.Diagnostics;
 
 namespace ProceduralWorldGeneration.Parser.SyntaxTree
 {
+    /// <summary>
+    /// Implementation for a generic tree class. Implemented with an interface to update the interface when nodes are changed.
+    /// Technically anyway, no idea if it actually works.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     [DebuggerDisplay("{TreeRoot}")]
     public class Tree<T> : INotifyPropertyChanged
     {
@@ -84,8 +89,7 @@ namespace ProceduralWorldGeneration.Parser.SyntaxTree
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
         public override string ToString()

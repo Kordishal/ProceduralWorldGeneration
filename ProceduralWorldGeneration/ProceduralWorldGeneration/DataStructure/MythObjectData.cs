@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.DataStructure
 {
+    /// <summary>
+    /// Stores all the elements predefined in text files. Sorted by type.
+    /// </summary>
     public class MythObjectData
     {
 

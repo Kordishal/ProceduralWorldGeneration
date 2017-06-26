@@ -15,18 +15,16 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Generator
 {
-    class MythCreator : INotifyPropertyChanged
+    /// <summary>
+    /// Main Class which contains the main loop and setup.
+    /// </summary>
+    class MythCreator
     {
         private UserInterfaceData _user;
-
         private MythCreationParser _parser;
         private Translator _translator;
 
-        public MythCreator()
-        {
-           
-        }
-
+        // initialize all the important values, parse the myth files and translate them into myth object data.
         public void initialise(UserInterfaceData user)
         {
             CreationMythState.initialise();
@@ -43,7 +41,7 @@ namespace ProceduralWorldGeneration.Generator
         }
 
 
-
+        // Main generation loop
         public void creationLoop()
         {
             int _current_year = 0;
@@ -52,9 +50,9 @@ namespace ProceduralWorldGeneration.Generator
             IActionTaker current_myth_object;
 
             CreationMythState.CreationString = createCreationString();
-
+            // Generate the creation tree from the grammar rules.
             generateCreationTree();
-
+            // Begin with the first primordial force
             CreationMythState.PrimordialForces.Add(CreationMythState.MythObjectData.PrimordialForces[0]);
             CreationMythState.ActionableMythObjects.Enqueue(CreationMythState.MythObjectData.PrimordialForces[0]);
             CreationMythState.MythObjects.Add(CreationMythState.PrimordialForces[0]);
@@ -91,10 +89,15 @@ namespace ProceduralWorldGeneration.Generator
             CreationMythLogger.updateLog("END OF CREATION");
             CreationMythLogger.Write();
             CreationMythLogger.Clear();
+            // Update the user interface data class.
             _user.Update();
             // END OF CREATION
         }
 
+        /// <summary>
+        /// Creates a string from the grammar rules.
+        /// </summary>
+        /// <returns>Returns a string of characters which represent the creation order.</returns>
         private string createCreationString()
         {
             MythCreationGrammar creation_grammar = new MythCreationGrammar();
@@ -104,6 +107,9 @@ namespace ProceduralWorldGeneration.Generator
             return creation_grammar.Result; 
         }
 
+        // Parses the creation string and generates a tree from it. 
+        // To better visualize how the parts interact with each other.
+        // A child is always created by a parent or grand parent (the first which can take action).
         private void generateCreationTree()
         {
             Tree<CreationTreeNode> tree = new Tree<CreationTreeNode>(new CreationTreeNode("x"));
@@ -126,6 +132,10 @@ namespace ProceduralWorldGeneration.Generator
 
             foreach (char c in CreationMythState.CreationString)
             {
+
+                // PRIMORDIAL FORCES
+                // There can always only be a single primodrial force. 
+                // Each repeatin f in the creation string is another action for the same force.
                 if (c == 'f')
                 {
                     if (current_node.Value.Character == "x")
@@ -140,6 +150,8 @@ namespace ProceduralWorldGeneration.Generator
                         current_node = last_created_force;
                     }
                 }
+                // PLANES
+                // Planes are always created by premordial forces.
                 else if (c == 'p')
                 {
                     if (current_node.Value.Character == "f")
@@ -316,33 +328,28 @@ namespace ProceduralWorldGeneration.Generator
         {
             CreationMythLogger.updateTreeLog(current_node);
         }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propName)
-        {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-        }
     }
 
+    /// <summary>
+    /// A node of the creation tree stores all information on the object created and who created it.
+    /// </summary>
     public class CreationTreeNode
     {
         public string Character { get; set; }
         public BaseMythObject MythObject { get; set; }
-        public bool UnderConstruction { get; set; }
+        public bool UnderConstruction { get; set; } // this object is being created by something.
         public ActionTakerMythObject Creator { get; set; }
         
         public CreationTreeNode(string character)
         {
-            this.Character = character;
-            this.MythObject = null;
+            Character = character;
+            MythObject = null;
             UnderConstruction = false;
         }
 
         public CreationTreeNode(BaseMythObject myth_object)
         {
-            this.MythObject = myth_object;
+            MythObject = myth_object;
             UnderConstruction = false;
         }
 

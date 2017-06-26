@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.DataStructure
 {
+    /// <summary>
+    /// All the created in universe stuff stored in a way to display within the UI.
+    /// </summary>
     class UserInterfaceData : INotifyPropertyChanged
     {
         private ObservableCollection<BaseMythObject> _myth_objects;
@@ -28,6 +31,11 @@ namespace ProceduralWorldGeneration.DataStructure
             }
         }
 
+
+        
+        /// <summary>
+        /// Updates the list of mythobjects with the list in from CreationMythState. It is a direct duplicate...
+        /// </summary>
         public void Update()
         {
             this.MythObjects = new ObservableCollection<BaseMythObject>(CreationMythState.MythObjects);

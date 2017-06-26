@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Parser.Exceptions
 {
+
+    /// <summary>
+    /// The parser exception has a specific message related to where an unexpected token appeared during parsing.
+    /// Is not very understandable implemented...
+    /// </summary>
     class ParserException : Exception
     {
         private string _message;

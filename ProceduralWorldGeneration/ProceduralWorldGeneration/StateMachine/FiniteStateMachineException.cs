@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.StateMachine
 {
+    /// <summary>
+    /// A custom exception for the FSM when encountering a invalid transition.
+    /// Needs to be expanded to be useful.
+    /// </summary>
     class FiniteStateMachineException : Exception
     {
 

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.StateMachine
 {
+    /// <summary>
+    /// Basic FSM implementation
+    /// </summary>
+    /// <typeparam name="S"></typeparam>
     class FiniteStateMachine<S>
     {
         public delegate void StateTransitionCall();

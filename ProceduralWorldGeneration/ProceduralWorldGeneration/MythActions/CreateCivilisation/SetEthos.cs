@@ -28,7 +28,7 @@ namespace ProceduralWorldGeneration.MythActions.CreateCivilisation
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            CivilisationEthos temp = CreationMythState.MythObjectData.Ethoses[ConfigValues.RandomGenerator.Next(CreationMythState.MythObjectData.Ethoses.Count)];
+            CivilisationEthos temp = CreationMythState.MythObjectData.Ethoses[ConfigValues.Random.Next(CreationMythState.MythObjectData.Ethoses.Count)];
             
             foreach (CivilisationEthos ethos in taker.CreatedCivilisation.Ethos)
             {
@@ -43,7 +43,7 @@ namespace ProceduralWorldGeneration.MythActions.CreateCivilisation
                     
             }
 
-            temp.Value = ConfigValues.RandomGenerator.Next(1, 5);
+            temp.Value = ConfigValues.Random.Next(1, 5);
             taker.CreatedCivilisation.Ethos.Add(temp);
 
         }

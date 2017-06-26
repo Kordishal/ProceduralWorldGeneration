@@ -10,7 +10,10 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Parser
 {
-    class MythObjectReader : INotifyPropertyChanged
+    /// <summary>
+    /// Reads the myth object files and creates the tokens.
+    /// </summary>
+    class MythObjectReader
     {
         MythCreationLexer Lexer = new MythCreationLexer();
 
@@ -23,11 +26,7 @@ namespace ProceduralWorldGeneration.Parser
             }
             set
             {
-                if (value != _tokens)
-                {
-                    _tokens = value;
-                    this.NotifyPropertyChanged("Tokens");
-                }
+                _tokens = value;
             }
         }
 
@@ -61,16 +60,5 @@ namespace ProceduralWorldGeneration.Parser
 
             return file_names;
         }
-
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propName)
-        {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-        }
-
-
     }
 }

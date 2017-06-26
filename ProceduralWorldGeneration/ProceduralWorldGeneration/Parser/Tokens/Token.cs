@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Parser.Tokens
 {
+
+    /// <summary>
+    /// Stores a token and its position and type.
+    /// </summary>
     public class Token
     {
         public TokenPosition Position { get; set; }

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.StateMachine
 {
+    /// <summary>
+    /// Defines a possible transition from one state to another
+    /// </summary>
+    /// <typeparam name="S"> The type of the state</typeparam>
     class StateTransition<S> : IEquatable<StateTransition<S>>
     {
         public S InitialState { get; protected set; }

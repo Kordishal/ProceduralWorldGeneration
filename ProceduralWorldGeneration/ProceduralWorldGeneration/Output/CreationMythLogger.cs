@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Output
 {
+    /// <summary>
+    /// Creates three different logs of the creation process.
+    /// </summary>
     class CreationMythLogger
     {
         static public StreamWriter writer;

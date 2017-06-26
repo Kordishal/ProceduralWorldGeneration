@@ -17,7 +17,7 @@ namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            taker.CreatedSapientSpecies.InnatePower = ConfigValues.RandomGenerator.Next(10);
+            taker.CreatedSapientSpecies.InnatePower = ConfigValues.Random.Next(10);
         }
     }
 }

@@ -13,6 +13,9 @@ using ProceduralWorldGeneration.MythActions.General;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
+    /// <summary>
+    /// The base class for a myth object which can act during basic world creation.
+    /// </summary>
     public abstract class ActionTakerMythObject : BaseMythObject, IActionTaker
     {
         private MythActionStateMachine<MythAction> _action_fsm { get; set; }
@@ -196,7 +199,7 @@ namespace ProceduralWorldGeneration.MythObjects
             }
 
 
-            int random = ConfigValues.RandomGenerator.Next(total_weight);
+            int random = ConfigValues.Random.Next(total_weight);
             int prev_weight = 0, current_weight;
             foreach (MythAction action in next_actions)
             {

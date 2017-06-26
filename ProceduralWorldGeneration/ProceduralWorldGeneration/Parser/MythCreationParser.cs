@@ -9,7 +9,10 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Parser
 {
-    class MythCreationParser : INotifyPropertyChanged
+    /// <summary>
+    /// Implements the parser with a FSM to create a syntax tree.
+    /// </summary>
+    class MythCreationParser
     {
 
         private MythObjectReader reader { get; set; }
@@ -24,11 +27,7 @@ namespace ProceduralWorldGeneration.Parser
             }
             set
             {
-                if (_syntax_tree_fsm != value)
-                {
-                    _syntax_tree_fsm = value;
-                    this.NotifyPropertyChanged("SyntaxTreeFSM");
-                }
+                _syntax_tree_fsm = value;
             }
         }
 
@@ -238,14 +237,6 @@ namespace ProceduralWorldGeneration.Parser
                         break;
                 }
             }
-        }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propName)
-        {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
     }
 }

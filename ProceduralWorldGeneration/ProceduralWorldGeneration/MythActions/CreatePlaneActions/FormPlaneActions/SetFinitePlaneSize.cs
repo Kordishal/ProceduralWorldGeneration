@@ -45,7 +45,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
                 total_spawn_weight = total_spawn_weight + s.SpawnWeight;
             }
 
-            int chance = ConfigValues.RandomGenerator.Next(total_spawn_weight);
+            int chance = ConfigValues.Random.Next(total_spawn_weight);
             int prev_weight = 0;
             int current_weight = 0;
             foreach (PlaneSize s in CreationMythState.MythObjectData.PlaneSizes)

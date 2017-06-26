@@ -7,9 +7,13 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Generator
 {
+    /// <summary>
+    /// A class to store the config values for the universe generated.
+    /// </summary>
     class ConfigValues : INotifyPropertyChanged
     {
 
+        // The seed for the random number generator. To ensure that each execution comes from the same seed.
         private string _random_seed;
         public string RandomSeed
         {
@@ -22,26 +26,24 @@ namespace ProceduralWorldGeneration.Generator
                 if (value != _random_seed)
                 {
                     _random_seed = value;
-                    RandomGenerator = new Random(_random_seed.GetHashCode());
+                    Random = new Random(_random_seed.GetHashCode());
                     NotifyPropertyChanged("RandomSeed");
                 }
             }
         }
 
-        static public Random RandomGenerator { get; set; }
-        
-
+        static public Random Random { get; set; }
+       
         public ConfigValues()
         {
             _random_seed = "Hello World";
-            RandomGenerator = new Random(_random_seed.GetHashCode());
+            Random = new Random(_random_seed.GetHashCode());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
     }
 }

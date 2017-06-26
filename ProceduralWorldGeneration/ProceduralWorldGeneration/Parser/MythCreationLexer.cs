@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Parser
 {
+    /// <summary>
+    /// Implement the lexer to read myth creation files.
+    /// </summary>
     class MythCreationLexer
     {
 

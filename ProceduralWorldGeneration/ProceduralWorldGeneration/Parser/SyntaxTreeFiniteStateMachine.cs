@@ -10,7 +10,11 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Parser
 {
-    class SyntaxTreeFiniteStateMachine<S> : FiniteStateMachine<S>, INotifyPropertyChanged
+    /// <summary>
+    /// Implements the FSM to create a syntax tree as output.
+    /// </summary>
+    /// <typeparam name="S"></typeparam>
+    class SyntaxTreeFiniteStateMachine<S> : FiniteStateMachine<S>
     {
 
         public delegate void StateHandler(Tree<Expression> current_tree_node, Token token);
@@ -24,11 +28,7 @@ namespace ProceduralWorldGeneration.Parser
             }
             set
             {
-                if (_syntax_tree != value)
-                {
-                    _syntax_tree = value;
-                    this.NotifyPropertyChanged("SyntaxTreeFSM");
-                }
+                _syntax_tree = value;
             }
         }
 
@@ -45,7 +45,7 @@ namespace ProceduralWorldGeneration.Parser
         {
             StateTransition<S> temp_state_transition = new StateTransition<S>(currentState, next_state);
 
-            System.Delegate temp_delegate;
+            Delegate temp_delegate;
             if (TransitionTable.TryGetValue(temp_state_transition, out temp_delegate))
             {
                 if (temp_delegate != null)
@@ -73,13 +73,6 @@ namespace ProceduralWorldGeneration.Parser
             }
 
             TransitionTable.Add(temp_transition, call);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propName)
-        {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
     }
 

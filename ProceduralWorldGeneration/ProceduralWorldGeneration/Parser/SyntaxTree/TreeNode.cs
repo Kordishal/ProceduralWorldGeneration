@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.Parser.SyntaxTree
 {
+    /// <summary>
+    /// The implementation of the tree node for my tree implementation.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class TreeNode<T> : INotifyPropertyChanged
     {
         /// <summary>
@@ -240,8 +244,7 @@ namespace ProceduralWorldGeneration.Parser.SyntaxTree
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
     }
