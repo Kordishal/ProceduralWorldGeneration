@@ -123,21 +123,23 @@ namespace ProceduralWorldGeneration.DataStructure
             }
         }
 
-        static public void initialise()
+        // Initialises all of the lists
+        static private void initialise()
         {
             _myth_objects = new List<BaseMythObject>();
             _actionable_myth_objects = new Queue<IActionTaker>();
             _primordial_forces = new List<PrimordialForce>();
-            _planes = new List<Plane>();         
+            _planes = new List<Plane>();
             _deities = new List<Deity>();
 
             _creation_string = "";
         }
 
-        public CreationMythState()
+        static CreationMythState()
         {
-            
+            initialise();
         }
+
 
         // SEARCH FUNCTIONS
     }

@@ -21,24 +21,17 @@ namespace ProceduralWorldGeneration.DataStructure
                 if (_myth_objects != value)
                 {
                     _myth_objects = value;
-                    this.NotifyPropertyChanged("MythObjects");
+                    NotifyPropertyChanged("MythObjects");
                 }
             }
         }
-
-
-        
+            
         /// <summary>
         /// Updates the list of mythobjects with the list in from CreationMythState. It is a direct duplicate...
         /// </summary>
         public void Update()
         {
-            this.MythObjects = new ObservableCollection<BaseMythObject>(CreationMythState.MythObjects);
-        }
-
-        public UserInterfaceData()
-        {
-
+            MythObjects = new ObservableCollection<BaseMythObject>(CreationMythState.MythObjects);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

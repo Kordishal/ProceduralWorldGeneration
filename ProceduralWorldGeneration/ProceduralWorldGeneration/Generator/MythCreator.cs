@@ -27,10 +27,7 @@ namespace ProceduralWorldGeneration.Generator
         // initialize all the important values, parse the myth files and translate them into myth object data.
         public void initialise(UserInterfaceData user)
         {
-            CreationMythState.initialise();
-
             _user = user;
-            _user.Update();
 
             _parser = new MythCreationParser();
             _parser.initialise();

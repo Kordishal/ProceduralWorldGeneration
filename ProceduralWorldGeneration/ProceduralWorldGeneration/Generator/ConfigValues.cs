@@ -33,11 +33,27 @@ namespace ProceduralWorldGeneration.Generator
         }
 
         static public Random Random { get; set; }
-       
+
+        private int _production_cycle_count { get; set; }
+        public int ProductionCycleCount
+        {
+            get
+            {
+                return _production_cycle_count;
+            }
+            set
+            {
+                _production_cycle_count = value;
+                NotifyPropertyChanged("ProductionCycleChanged");
+            }
+        }
+
         public ConfigValues()
         {
             _random_seed = "Hello World";
             Random = new Random(_random_seed.GetHashCode());
+
+            _production_cycle_count = 10;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

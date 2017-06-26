@@ -1,4 +1,5 @@
 ﻿using ProceduralWorldGeneration.Generator;
+using ProceduralWorldGeneration.Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,76 +9,85 @@ using System.Threading.Tasks;
 namespace ProceduralWorldGeneration.Grammar
 {
     /// <summary>
-    /// Defines the grammar for the creation string.
-    /// This string then guides how the world is created.
-    /// It leaves out most of the details.
+    /// The Creation Myth Grammar is used to define the creation string.
+    /// The creation string is then used to guide what types of myth objects are created by whom.
+    /// It does not state any details about the myth objects only their type is defined.
     /// </summary>
     class MythCreationGrammar
     {
-        public char StartSymbol { get; set; }
-        public List<char> Terminals { get; set; }
-        public List<char> NonTerminals { get; set; }
+        // The symbol to start the result string.
+        private char _start_symbol { get; set; }
 
-        public List<ProductionRule> ProductionRules { get; set; }
+        // Terminals are valid characters which are no longer produced.
+        private List<char> _terminals { get; set; }
 
+        // Non-terminals are valid characters which need to be produced.
+        private List<char> _non_terminals { get; set; }
+
+        // The rules by which non-terminals are changed in each production cycle.
+        private List<ProductionRule> _production_rules { get; set; }
+
+        private int production_cycle_count = Program.config.ProductionCycleCount; 
+
+        // The resulting string after X production cycles.
         public string Result { get; set; }
 
         public MythCreationGrammar()
         {
-            StartSymbol = 'X';
-            Terminals = new List<char>() {'x', 'v', 'f', 'p', 'w', 'd', 's', 'a', 'e', 'c', 'n', 'm', 'l' };
-            NonTerminals = new List<char>() {'X', 'F', 'P', 'W', 'D', 'S', 'A', 'E', 'C', 'N', 'M', 'L' };
-            ProductionRules = new List<ProductionRule>();
+            _start_symbol = 'X';
+            _terminals = new List<char>() {'x', 'v', 'f', 'p', 'w', 'd', 's', 'a', 'e', 'c', 'n', 'm', 'l' };
+            _non_terminals = new List<char>() {'X', 'F', 'P', 'W', 'D', 'S', 'A', 'E', 'C', 'N', 'M', 'L' };
+            _production_rules = new List<ProductionRule>();
             initialiseProductionRules();
 
-            Result = StartSymbol.ToString();
+            Result = _start_symbol.ToString();
         }
 
         private void initialiseProductionRules()
         {
             // Start
-            ProductionRules.Add(new ProductionRule('X', "xfPPPFFFFF", 10));
+            _production_rules.Add(new ProductionRule('X', "xfPPPFFFFF", 10));
 
             // Primordial Forces
-            ProductionRules.Add(new ProductionRule('F', "FF", 10));
-            ProductionRules.Add(new ProductionRule('F', "fP", 10));
-            ProductionRules.Add(new ProductionRule('F', "fD", 10));
+            _production_rules.Add(new ProductionRule('F', "FF", 10));
+            _production_rules.Add(new ProductionRule('F', "fP", 10));
+            _production_rules.Add(new ProductionRule('F', "fD", 10));
             // Planes
-            ProductionRules.Add(new ProductionRule('P', "PP", 10));
-            ProductionRules.Add(new ProductionRule('P', "pW", 10));
-            ProductionRules.Add(new ProductionRule('P', "pA", 10));
+            _production_rules.Add(new ProductionRule('P', "PP", 10));
+            _production_rules.Add(new ProductionRule('P', "pW", 10));
+            _production_rules.Add(new ProductionRule('P', "pA", 10));
             // World
-            ProductionRules.Add(new ProductionRule('W', "WW", 10));
-            ProductionRules.Add(new ProductionRule('W', "wD", 10));
-            ProductionRules.Add(new ProductionRule('W', "wS", 10));
+            _production_rules.Add(new ProductionRule('W', "WW", 10));
+            _production_rules.Add(new ProductionRule('W', "wD", 10));
+            _production_rules.Add(new ProductionRule('W', "wS", 10));
             // Deities
-            ProductionRules.Add(new ProductionRule('D', "DD", 10));
-            ProductionRules.Add(new ProductionRule('D', "dA", 10));
+            _production_rules.Add(new ProductionRule('D', "DD", 10));
+            _production_rules.Add(new ProductionRule('D', "dA", 10));
             // Pre Sentient Species
-            ProductionRules.Add(new ProductionRule('S', "SS", 10));
-            ProductionRules.Add(new ProductionRule('S', "sE", 10));
+            _production_rules.Add(new ProductionRule('S', "SS", 10));
+            _production_rules.Add(new ProductionRule('S', "sE", 10));
             // Sentien Species
-            ProductionRules.Add(new ProductionRule('E', "EE", 10));
-            ProductionRules.Add(new ProductionRule('E', "eA", 10));
+            _production_rules.Add(new ProductionRule('E', "EE", 10));
+            _production_rules.Add(new ProductionRule('E', "eA", 10));
             // Sapient Species
-            ProductionRules.Add(new ProductionRule('A', "AA", 10));
-            ProductionRules.Add(new ProductionRule('A', "aC", 10));
+            _production_rules.Add(new ProductionRule('A', "AA", 10));
+            _production_rules.Add(new ProductionRule('A', "aC", 10));
             // Mythical Individuals
-            ProductionRules.Add(new ProductionRule('M', "MM", 10));
-            ProductionRules.Add(new ProductionRule('M', "mC", 10));
-            ProductionRules.Add(new ProductionRule('M', "mvD", 10));
+            _production_rules.Add(new ProductionRule('M', "MM", 10));
+            _production_rules.Add(new ProductionRule('M', "mC", 10));
+            _production_rules.Add(new ProductionRule('M', "mvD", 10));
             // Legendary Individual
-            ProductionRules.Add(new ProductionRule('L', "LL", 10));
-            ProductionRules.Add(new ProductionRule('L', "lN", 10));
-            ProductionRules.Add(new ProductionRule('L', "lvM", 10));
+            _production_rules.Add(new ProductionRule('L', "LL", 10));
+            _production_rules.Add(new ProductionRule('L', "lN", 10));
+            _production_rules.Add(new ProductionRule('L', "lvM", 10));
             // Civilisation
-            ProductionRules.Add(new ProductionRule('C', "CC", 10));
-            ProductionRules.Add(new ProductionRule('C', "cM", 10));
-            ProductionRules.Add(new ProductionRule('C', "cL", 10));
-            ProductionRules.Add(new ProductionRule('C', "cN", 10));
+            _production_rules.Add(new ProductionRule('C', "CC", 10));
+            _production_rules.Add(new ProductionRule('C', "cM", 10));
+            _production_rules.Add(new ProductionRule('C', "cL", 10));
+            _production_rules.Add(new ProductionRule('C', "cN", 10));
             // Nation
-            ProductionRules.Add(new ProductionRule('N', "NN", 10));
-            ProductionRules.Add(new ProductionRule('N', "nL", 10));            
+            _production_rules.Add(new ProductionRule('N', "NN", 10));
+            _production_rules.Add(new ProductionRule('N', "nL", 10));            
         }
 
         public void repeatProduction(int count)
@@ -102,7 +112,6 @@ namespace ProceduralWorldGeneration.Grammar
                 if (valid_rules.Count > 0)
                 {
                     rule = chooseRule(valid_rules, production_cycle);
-
                     changed_characters.Add(rule.replaceSymbol(c));
                 }
                 else
@@ -121,7 +130,7 @@ namespace ProceduralWorldGeneration.Grammar
 
         private IEnumerable<ProductionRule> searchProductionRules(char input)
         {
-            foreach (ProductionRule pr in ProductionRules)
+            foreach (ProductionRule pr in _production_rules)
             {
                 if (pr.isValidProductionRule(input))
                 {
