@@ -11,9 +11,14 @@ namespace ProceduralWorldGeneration.Main
     /// <summary>
     /// Main starting point of the program.
     /// </summary>
-    class Programm
+    class Program
     {
         static private MythCreator _creation_myth_generator;
+
+        /// <summary>
+        /// Global config values for the application. Defined before first start.
+        /// </summary>
+        static public ConfigValues config { get; set; }
 
         static public void startCreationLoop()
         {
