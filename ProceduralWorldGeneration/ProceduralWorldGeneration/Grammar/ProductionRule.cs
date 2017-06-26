@@ -47,8 +47,6 @@ namespace ProceduralWorldGeneration.Grammar
             {
                 return false;
             }
-        }
-
-        
+        }      
     }
 }

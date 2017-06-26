@@ -1,18 +1,13 @@
 ﻿using ProceduralWorldGeneration.MythObjects;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.DataStructure
 {
     /// <summary>
     /// All the created in universe stuff stored in a way to display within the UI.
     /// </summary>
-    class UserInterfaceData : INotifyPropertyChanged
+    public class UserInterfaceData : INotifyPropertyChanged
     {
         private ObservableCollection<BaseMythObject> _myth_objects;
         public ObservableCollection<BaseMythObject> MythObjects

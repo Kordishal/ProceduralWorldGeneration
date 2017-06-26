@@ -18,7 +18,7 @@ namespace ProceduralWorldGeneration.Generator
     /// <summary>
     /// Main Class which contains the main loop and setup.
     /// </summary>
-    class MythCreator
+    public class MythCreator
     {
         private UserInterfaceData _user;
         private MythCreationParser _parser;
