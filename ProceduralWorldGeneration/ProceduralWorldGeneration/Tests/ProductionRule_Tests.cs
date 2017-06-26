@@ -4,7 +4,7 @@ using ProceduralWorldGeneration.Grammar;
 namespace ProceduralWorldGeneration.Tests
 {
     [TestClass()]
-    class ProductionRule_Tests
+    public class ProductionRule_Tests
     {
         private ProductionRule production_rule { get; set; }
 
@@ -18,7 +18,7 @@ namespace ProceduralWorldGeneration.Tests
         public void replaceSymbol_True_Test()
         {
             string test = production_rule.replaceSymbol('F');
-            Assert.Equals("FF", test);
+            Assert.AreEqual("FF", test);
         }
 
         [TestMethod()]

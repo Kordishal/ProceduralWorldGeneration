@@ -10,7 +10,7 @@ namespace ProceduralWorldGeneration.Grammar
     /// The production rule defines the behaviour of the grammar. 
     /// It defines how an input character is translated into output characters.
     /// </summary>
-    class ProductionRule
+    public class ProductionRule
     {
         private char _initial_symbol { get; set; }
         private string _end_symbol { get; set; }
