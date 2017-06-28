@@ -30,5 +30,10 @@ namespace ProceduralWorldGeneration.Main
             _creation_myth_generator = new MythCreator();
             _creation_myth_generator.initialise(user);
         }
+
+        static Program()
+        {
+            config = new ConfigValues();
+        }
     }
 }

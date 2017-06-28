@@ -111,6 +111,7 @@
     <Compile Include="StateMachine\FiniteStateMachineException.cs" />
     <Compile Include="StateMachine\StateTransition.cs" />
     <Compile Include="SyntaxTreeTranslator\Translator.cs" />
+    <Compile Include="Tests\MythCreationGrammar_Tests.cs" />
     <Compile Include="Tests\MythCreator_Tests.cs" />
     <Compile Include="Tests\ProductionRule_Tests.cs" />
     <Page Include="MainWindow.xaml">

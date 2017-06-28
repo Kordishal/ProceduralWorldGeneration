@@ -10,12 +10,13 @@ namespace ProceduralWorldGeneration.Tests
     public class MythCreator_Tests
     {
         [TestMethod()]
-        public void initialise_private_variables_True_Test()
+        public void initialise_NotNull_Test()
         {
             MythCreator myth = new MythCreator();
-            myth.initialise(new UserInterfaceData());
-            PrivateObject private_object = new PrivateObject(myth);
 
+            myth.initialise(new UserInterfaceData());
+
+            PrivateObject private_object = new PrivateObject(myth);
             Assert.IsNotNull(private_object.GetFieldOrProperty("_user"));
             Assert.IsNotNull(private_object.GetFieldOrProperty("_parser"));
             Assert.IsNotNull(private_object.GetFieldOrProperty("_translator"));

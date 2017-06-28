@@ -98,8 +98,9 @@ namespace ProceduralWorldGeneration.Generator
         private string createCreationString()
         {
             MythCreationGrammar creation_grammar = new MythCreationGrammar();
+            creation_grammar.initialiseProductionRules();
 
-            creation_grammar.repeatProduction(10);
+            creation_grammar.repeatProduction();
 
             return creation_grammar.Result; 
         }

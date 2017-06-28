@@ -13,7 +13,7 @@ namespace ProceduralWorldGeneration.Grammar
     /// The creation string is then used to guide what types of myth objects are created by whom.
     /// It does not state any details about the myth objects only their type is defined.
     /// </summary>
-    class MythCreationGrammar
+    public class MythCreationGrammar
     {
         // The symbol to start the result string.
         private char _start_symbol { get; set; }
@@ -27,7 +27,7 @@ namespace ProceduralWorldGeneration.Grammar
         // The rules by which non-terminals are changed in each production cycle.
         private List<ProductionRule> _production_rules { get; set; }
 
-        private int production_cycle_count = Program.config.ProductionCycleCount; 
+        private int production_cycle_count { get; set; }
 
         // The resulting string after X production cycles.
         public string Result { get; set; }
@@ -38,12 +38,12 @@ namespace ProceduralWorldGeneration.Grammar
             _terminals = new List<char>() {'x', 'v', 'f', 'p', 'w', 'd', 's', 'a', 'e', 'c', 'n', 'm', 'l' };
             _non_terminals = new List<char>() {'X', 'F', 'P', 'W', 'D', 'S', 'A', 'E', 'C', 'N', 'M', 'L' };
             _production_rules = new List<ProductionRule>();
-            initialiseProductionRules();
 
+            production_cycle_count = Program.config.ProductionCycleCount;
             Result = _start_symbol.ToString();
         }
 
-        private void initialiseProductionRules()
+        public void initialiseProductionRules()
         {
             // Start
             _production_rules.Add(new ProductionRule('X', "xfPPPFFFFF", 10));
@@ -90,9 +90,9 @@ namespace ProceduralWorldGeneration.Grammar
             _production_rules.Add(new ProductionRule('N', "nL", 10));            
         }
 
-        public void repeatProduction(int count)
+        public void repeatProduction()
         {
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < production_cycle_count; i++)
             {
                 produce(i);
             }
