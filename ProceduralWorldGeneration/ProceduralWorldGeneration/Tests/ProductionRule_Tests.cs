@@ -6,25 +6,25 @@ namespace ProceduralWorldGeneration.Tests
     [TestClass()]
     public class ProductionRule_Tests
     {
-        private ProductionRule production_rule { get; set; }
+        private ProductionRule ProductionRule { get; set; }
 
         [TestInitialize()]
-        public void initialise()
+        public void Initialise()
         {
-            production_rule = new ProductionRule('F', "FF", 10);
+            ProductionRule = new ProductionRule('F', "FF", 10);
         }
 
         [TestMethod()]
-        public void replaceSymbol_True_Test()
+        public void ReplaceSymbol_True_Test()
         {
-            string test = production_rule.replaceSymbol('F');
+            string test = ProductionRule.replaceSymbol('F');
             Assert.AreEqual("FF", test);
         }
 
         [TestMethod()]
-        public void isValidProductionRule_True_Test()
+        public void IsValidProductionRule_True_Test()
         {
-            Assert.IsTrue(production_rule.isValidProductionRule('F'));
+            Assert.IsTrue(ProductionRule.isValidProductionRule('F'));
         }
     }
 }

@@ -9,7 +9,7 @@ namespace ProceduralWorldGeneration.Tests
     public class MythCreationGrammar_Tests
     {
         [TestMethod()]
-        public void initialiseProductionRules_ProductionRulesPresent_Test()
+        public void InitialiseProductionRules_ProductionRulesPresent_Test()
         {
             Program.config.ProductionCycleCount = 10;
 

@@ -10,7 +10,7 @@ namespace ProceduralWorldGeneration.Tests
     public class MythCreator_Tests
     {
         [TestMethod()]
-        public void initialise_NotNull_Test()
+        public void Initialise_NotNull_Test()
         {
             MythCreator myth = new MythCreator();
 
