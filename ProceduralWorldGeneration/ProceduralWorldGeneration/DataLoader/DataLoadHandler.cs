@@ -57,7 +57,7 @@ namespace ProceduralWorldGeneration.DataLoader
 
         public void ReadDataFiles()
         {
-            // TODO: Add function to controll whether the input is correct.
+            // TODO: Add function to control whether the input is correct.
             Domains = ReadFile<Domain>(_domains);
 
             PlaneElements = ReadFile<PlaneElement>(_plane_elements);
@@ -76,19 +76,6 @@ namespace ProceduralWorldGeneration.DataLoader
             CivilizationEthos = ReadFile<CivilizationEthos>(_civilization_ethos);
 
 
-
-            Debug.Assert(Domains.TrueForAll(x => x != null));
-
-            Debug.Assert(PlaneElements.TrueForAll(x => x != null));
-            Debug.Assert(PlaneSizes.TrueForAll(x => x != null));
-            Debug.Assert(PlaneTypes.TrueForAll(x => x != null));
-
-            Debug.Assert(SpeciesTypes.TrueForAll(x => x != null));
-            Debug.Assert(SpeciesTraits.TrueForAll(x => x != null));
-
-            Debug.Assert(TraitCategories.TrueForAll(x => x != null));
-
-            Debug.Assert(CivilizationEthos.TrueForAll(x => x != null));
         }
 
         private List<T> ReadFile<T>(string path)

@@ -310,10 +310,10 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTemplateColumn x:Name="catergoryColumn" Header="Catergory" Width="SizeToHeader">
+                            <DataGridTemplateColumn x:Name="categoryColumn" Header="Category" Width="SizeToHeader">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Catergory}"/>
+                                        <TextBlock Text="{Binding Category}"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>

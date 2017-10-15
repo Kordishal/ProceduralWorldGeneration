@@ -11,7 +11,7 @@ namespace ProceduralWorldGeneration.Attributes
     public class SpeciesTrait : Attribute
     {
         private string _category;
-        public string Catergory
+        public string Category
         {
             get
             {
@@ -22,7 +22,7 @@ namespace ProceduralWorldGeneration.Attributes
                 if (_category != value)
                 {
                     _category = value;
-                    NotifyPropertyChanged("Catergory");
+                    NotifyPropertyChanged("Category");
                 }
             }
         }
