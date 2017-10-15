@@ -1,0 +1,75 @@
+{
+    "Name": "Habitat: Aquatic",
+    "Tag": "aquatic",
+    "Category": "habitat_trait",
+    "SpawnWeight": 10,
+    "Attributes": [
+        "water", 
+    ],
+    "OppositeAttributes": [
+        "fire",
+    ],
+    "ExcludedTags": [
+    
+    ]
+};
+{
+    "Name": "Habitat: Amphibious",
+    "Tag": "amphibious",
+    "Category": "habitat_trait",
+    "SpawnWeight": 10,
+    "Attributes": [
+        "water", "air", "earth"
+    ],
+    "OppositeAttributes": [
+        "fire"
+    ],
+    "ExcludedTags": [
+    
+    ]
+};
+{
+    "Name": "Habitat: Terranean",
+    "Tag": "terranean",
+    "Category": "habitat_trait",
+    "SpawnWeight": 10,
+    "Attributes": [
+        "earth", "air", "surface", "sun"
+    ],
+    "OppositeAttributes": [
+        "darkness"
+    ],
+    "ExcludedTags": [
+        
+    ]
+};
+{
+    "Name": "Habitat: Subterranean",
+    "Tag": "subterranean",
+    "Category": "habitat_trait",
+    "SpawnWeight": 10,
+    "Attributes": [
+        "earth", "underground"
+    ],
+    "OppositeAttributes": [
+        "sun"
+    ],
+    "ExcludedTags": [
+        
+    ]
+};
+{
+    "Name": "Habitat: Aviatic",
+    "Tag": "aviatic",
+    "Category": "habitat_trait",
+    "SpawnWeight": 10,
+    "Attributes": [
+        "air", "flight"
+    ],
+    "OppositeAttributes": [
+        "surface", "earth"
+    ],
+    "ExcludedTags": [
+        
+    ]
+};

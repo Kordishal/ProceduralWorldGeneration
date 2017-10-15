@@ -4,25 +4,7 @@
 # 		Creator: The creator is either a primordial force or a deity. 
 #		Neighbours: Determines what planes are connected to each other. It is not possible to travel between two unconnected planes.
 #       Types: Material, Ethereal, Elemental. These types are broad definitions of any world.
-plane_types = {
-	material = {
-		name = "material"
-		has_dominant_element = false
-		spawn_weight = 10
-	}
-	ethereal = {
-		name = "ethereal"
-		has_dominant_element = true
-		is_attached_to = material
-		spawn_weight = 5
-	}
-	elemental = {
-		name = "elemental"
-		has_dominant_element = true
-		is_infinite_only = true
-		spawn_weight = 20
-	}
-}
+
 
 ## The size of a plane determines with how many other planes it can connect and how much space there is inside of it.
 # inifinite: Can connect to any number of planes.
@@ -30,28 +12,7 @@ plane_types = {
 # medium: can connect with up to 8 planes
 # small: can connect with up to 4 planes
 # pocket: can only connect to a single plane.
-finite_plane_sizes = {
-	pocket = {
-		name = "pocket"
-		max_neighbours = 1
-		spawn_weight = 5
-	}
-	small = {
-		name = "small"
-		max_neighbours = 4
-		spawn_weight = 10
-	}
-	medium = {
-		name = "medium"
-		max_neighbours = 8
-		spawn_weight = 20
-	}
-	large = {
-		name = "large"
-		max_neighbours = 16
-		spawn_weight = 5
-	}
-}
+
 
 
 

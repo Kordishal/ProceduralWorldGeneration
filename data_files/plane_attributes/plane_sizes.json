@@ -1,0 +1,24 @@
+{
+    "Name": "Pocket Plane",
+    "Tag": "pocket",
+    "MaxNeighbours": 1,
+    "SpawnWeight": 1
+};
+{
+    "Name": "Small Plane",
+    "Tag": "small",
+    "MaxNeighbours": 5,
+    "SpawnWeight": 10
+};
+{
+    "Name": "Medium Plane",
+    "Tag": "medium",
+    "MaxNeighbours": 8,
+    "SpawnWeight": 20
+};
+{
+    "Name": "Large Plane",
+    "Tag": "large",
+    "MaxNeighbours": 16,
+    "SpawnWeight": 10
+};

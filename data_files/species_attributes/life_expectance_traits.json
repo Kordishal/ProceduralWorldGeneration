@@ -1,0 +1,90 @@
+{
+    "Name": "Lifespan: Immortal",
+    "Tag": "immortal",
+    "Category": "life_expectancy_trait",
+    "SpawnWeight": 10,
+    "Attributes": [
+        "immortal", "divinity"
+    ],
+    "OppositeAttributes": [
+        "death"
+    ],
+    "ExcludedTags": [
+        
+    ]
+};
+{
+    "Name": "Lifespan: Eternal",
+    "Tag": "eternal",
+    "Category": "life_expectancy_trait",
+    "SpawnWeight": 10,
+    "Attributes": [
+        "eternal", "undeath"
+    ],
+    "OppositeAttributes": [
+        "decay"
+    ],
+    "ExcludedTags": [
+        
+    ]
+};
+{
+    "Name": "Lifespan: Very Long",
+    "Tag": "very_long",
+    "Category": "life_expectancy_trait",
+    "SpawnWeight": 10,
+    "Attributes": [
+        "decay", "death", "infertility"
+    ],
+    "OppositeAttributes": [
+    
+    ],
+    "ExcludedTags": [
+        
+    ]
+};
+{
+    "Name": "Lifespan: Long",
+    "Tag": "long",
+    "Category": "life_expectancy_trait",
+    "SpawnWeight": 10,
+    "Attributes": [
+        "decay", "death", "infertility"
+    ],
+    "OppositeAttributes": [
+    
+    ],
+    "ExcludedTags": [
+        
+    ]
+};
+{
+    "Name": "Lifespan: Average",
+    "Tag": "average",
+    "Category": "life_expectancy_trait",
+    "SpawnWeight": 10,
+    "Attributes": [
+        "decay", "death", "fertility"
+    ],
+    "OppositeAttributes": [
+    
+    ],
+    "ExcludedTags": [
+        
+    ]
+};
+{
+    "Name": "Lifespan: Short",
+    "Tag": "short",
+    "Category": "life_expectancy_trait",
+    "SpawnWeight": 10,
+    "Attributes": [
+        "decay", "death", "fertility"
+    ],
+    "OppositeAttributes": [
+    
+    ],
+    "ExcludedTags": [
+        
+    ]
+};  

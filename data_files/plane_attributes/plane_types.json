@@ -1,0 +1,21 @@
+{
+    "Name": "Material Plane",
+    "Tag": "material",
+    "HasDominantElement": false,
+    "IsIntegrated": false,
+    "SpawnWeight": 10
+};
+{
+    "Name": "Ethereal Plane",
+    "Tag": "ethereal",
+    "HasDominantElement": true,
+    "IsIntegrated": true,
+    "SpawnWeight": 5
+};
+{
+    "Name": "Elemental Plane",
+    "Tag": "elemetal",
+    "HasDominantElement": true,
+    "IsIntegrated": false,
+    "SpawnWeight": 10
+};

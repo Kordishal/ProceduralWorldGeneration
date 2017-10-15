@@ -11,6 +11,9 @@ namespace ProceduralWorldGeneration.Utility
 
         public static string ListToString(List<string> list)
         {
+            if (list == null)
+                return "";
+
             var result = "";
             int i = 0;
             if (list.Count == 1)

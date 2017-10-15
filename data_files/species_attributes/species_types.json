@@ -1,0 +1,18 @@
+{
+    "Name": "Humanoid",
+    "Tag": "humanoid",
+    "SpawnWeight": 100,
+    "PlaneType": "material",
+    "Attributes":[
+        "physical"
+    ]
+};
+{
+    "Name": "Elemental",
+    "Tag": "elemental",
+    "SpawnWeight": 100,
+    "PlaneType": "elemental",
+    "Attributes":[
+        "elemental"
+    ]
+};

@@ -1,0 +1,35 @@
+{
+    "Name": "Life Expectancy Trait",
+    "Tag": "life_expectancy_trait",
+    "SpawnWeight": 10,
+    "Unique": true,
+    "Always": true
+};
+{
+    "Name": "Habitat",
+    "Tag": "habitat_trait",
+    "SpawnWeight": 10,
+    "Unique": true,
+    "Always": true
+};
+{
+    "Name": "Preferred Biome",
+    "Tag": "preferred_biome",
+    "SpawnWeight": 10,
+    "Unique": false,
+    "Always": false
+};
+{
+    "Name": "Physical Trait",
+    "Tag": "physical_trait",
+    "SpawnWeight": 10,
+    "Unique": false,
+    "Always": false
+};
+{
+    "Name": "Elemental Trait",
+    "Tag": "elemental_trait",
+    "SpawnWeight": 10,
+    "Unique": false,
+    "Always": false
+};

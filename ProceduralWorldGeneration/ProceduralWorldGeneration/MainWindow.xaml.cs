@@ -4,6 +4,7 @@ using ProceduralWorldGeneration.Main;
 using ProceduralWorldGeneration.MythObjects;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,7 +42,13 @@ namespace ProceduralWorldGeneration
         {
             Program.InitialiseData();
             domainDataGrid.DataContext = Program.DataLoadHandler.Domains;
+
             planeElementDataGrid.DataContext = Program.DataLoadHandler.PlaneElements;
+            planeSizeDataGrid.DataContext = Program.DataLoadHandler.PlaneSizes;
+            planeTypeDataGrid.DataContext = Program.DataLoadHandler.PlaneTypes;
+            speciesTypeDataGrid.DataContext = Program.DataLoadHandler.SpeciesTypes;
+            speciesTraitDataGrid.DataContext = Program.DataLoadHandler.SpeciesTraits;
+            traitCategoriesDataGrid.DataContext = Program.DataLoadHandler.TraitCategories;
 
             Program.GeneratorConfigurations = new ConfigValues();
             RandomSeedTextBox.Text = Program.GeneratorConfigurations.RandomSeed;
@@ -133,6 +140,21 @@ namespace ProceduralWorldGeneration
             System.Windows.Data.CollectionViewSource planeElementViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("planeElementViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // planeElementViewSource.Source = [generic data source]
+            System.Windows.Data.CollectionViewSource planeSizeViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("planeSizeViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // planeSizeViewSource.Source = [generic data source]
+            System.Windows.Data.CollectionViewSource planeTypeViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("planeTypeViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // planeTypeViewSource.Source = [generic data source]
+            System.Windows.Data.CollectionViewSource speciesTypeViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("speciesTypeViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // speciesTypeViewSource.Source = [generic data source]
+            System.Windows.Data.CollectionViewSource speciesTraitViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("speciesTraitViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // speciesTraitViewSource.Source = [generic data source]
+            System.Windows.Data.CollectionViewSource traitCategoriesViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("traitCategoriesViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // traitCategoriesViewSource.Source = [generic data source]
         }
     }
 }

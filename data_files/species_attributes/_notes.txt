@@ -1,0 +1,11 @@
+# Traits make different species distinct. They are determined by the deity creating them, the plane they live in and some randomisation.
+
+damage_types = {
+	"cold" 
+	"heat" "fire"
+	"acid" 
+	"nature" "necrotic"
+	"light" "shadow"
+	"arcane"
+	"electrical" "thunder"
+}

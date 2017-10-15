@@ -1,0 +1,48 @@
+{
+    "Name": "Pacifism",
+    "Tag": "pacifism",
+    "SpawnWeight": 10,
+    "Opposite": "militarism"
+};
+{
+    "Name": "Militarism",
+    "Tag": "militarism",
+    "SpawnWeight": 10,
+    "Opposite": "pacifism"
+};
+{
+    "Name": "Authoritarianism",
+    "Tag": "authoritarianism",
+    "SpawnWeight": 10,
+    "Opposite": "egalitarianism"
+};
+{
+    "Name": "Egalitarianism",
+    "Tag": "egalitarianism",
+    "SpawnWeight": 10,
+    "Opposite": "authoritarianism"
+};
+{
+    "Name": "Spiritualism",
+    "Tag": "spiritualism",
+    "SpawnWeight": 10,
+    "Opposite": "materialism"
+};
+{
+    "Name": "Materialism",
+    "Tag": "materialism",
+    "SpawnWeight": 10,
+    "Opposite": "spiritualism"
+};
+{
+    "Name": "Xenophilia",
+    "Tag": "xenophilia",
+    "SpawnWeight": 10,
+    "Opposite": "xenophobia"
+};
+{
+    "Name": "Xenophobia",
+    "Tag": "xenophobia",
+    "SpawnWeight": 10,
+    "Opposite": "xenophilia"
+};

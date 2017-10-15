@@ -33,8 +33,7 @@ namespace ProceduralWorldGeneration.Main
         static public void InitialiseData()
         {
             DataLoadHandler = new DataLoadHandler();
-            DataLoadHandler.ReadDomainFile();
-            DataLoadHandler.ReadPlaneElementFile();
+            DataLoadHandler.ReadDataFiles();
         }
 
         static Program()

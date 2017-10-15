@@ -1,0 +1,34 @@
+{
+    "Name": "Immunity: Fire",
+    "Tag": "immunity_fire",
+    "Category": "elemental_trait",
+    "SpawnWeight": 10,
+    "Attributes": [
+        "immunity", 
+        "fire"
+    ],
+    "OppositeAttributes": [
+        "water"
+    ],
+    "ExcludedTags": [
+        "vulnerability_fire", 
+        "resistance_fire"
+    ]
+};
+{
+    "Name": "Immunity: Water",
+    "Tag": "immunity_water",
+    "Category": "elemental_trait",
+    "SpawnWeight": 10,
+    "Attributes": [
+        "immunity", 
+        "water"
+    ],
+    "OppositeAttributes": [
+        "fire"
+    ],
+    "ExcludedTags": [
+        "vulnerability_water", 
+        "resistance_water"
+    ]
+};

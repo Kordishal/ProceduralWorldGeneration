@@ -66,8 +66,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Attributes\Attribute.cs" />
+    <Compile Include="Attributes\CivilizationEthos.cs" />
     <Compile Include="Attributes\Domain.cs" />
     <Compile Include="Attributes\PlaneElement.cs" />
+    <Compile Include="Attributes\PlaneSize.cs" />
+    <Compile Include="Attributes\PlaneType.cs" />
+    <Compile Include="Attributes\SpeciesTrait.cs" />
+    <Compile Include="Attributes\SpeciesType.cs" />
+    <Compile Include="Attributes\TraitCategories.cs" />
     <Compile Include="Constants\SpecialTags.cs" />
     <Compile Include="DataLoader\DataLoadHandler.cs" />
     <Compile Include="DataStructure\UserInterfaceData.cs" />
@@ -187,6 +193,11 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.Domain.datasource" />
     <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.PlaneElement.datasource" />
+    <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.PlaneSize.datasource" />
+    <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.PlaneType.datasource" />
+    <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.SpeciesTrait.datasource" />
+    <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.SpeciesType.datasource" />
+    <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.TraitCategories.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -1,0 +1,15 @@
+{
+    "Name": "Two Wings",
+    "Tag": "two_wings",
+    "Category": "physical_trait",
+    "SpawnWeight": 10,
+    "Attributes": [
+        "flight", "air"
+    ],
+    "OppositeAttributes": [
+        "earth"
+    ],
+    "ExcludedTags": [
+        
+    ]
+};
