@@ -1,15 +1,7 @@
 ﻿using ProceduralWorldGeneration.Generator;
 using ProceduralWorldGeneration.MythObjects;
-using ProceduralWorldGeneration.Output;
-using ProceduralWorldGeneration.Parser;
-using ProceduralWorldGeneration.Parser.SyntaxTree;
-using System;
+using ProceduralWorldGeneration.Utility;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.DataStructure
 {
@@ -41,19 +33,6 @@ namespace ProceduralWorldGeneration.DataStructure
             set
             {
                 _creation_tree = value;
-            }
-        }
-
-        static private MythObjectData _myth_object_data;
-        static public MythObjectData MythObjectData
-        {
-            get
-            {
-                return _myth_object_data;
-            }
-            set
-            {
-                _myth_object_data = value;
             }
         }
 
@@ -124,7 +103,7 @@ namespace ProceduralWorldGeneration.DataStructure
         }
 
         // Initialises all of the lists
-        static private void initialise()
+        static private void Initialise()
         {
             _myth_objects = new List<BaseMythObject>();
             _actionable_myth_objects = new Queue<IActionTaker>();
@@ -137,7 +116,7 @@ namespace ProceduralWorldGeneration.DataStructure
 
         static CreationMythState()
         {
-            initialise();
+            Initialise();
         }
 
 

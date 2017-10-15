@@ -23,7 +23,7 @@ namespace ProceduralWorldGeneration.MythObjects
                 if (value != _tag)
                 {
                     _tag = value;
-                    this.NotifyPropertyChanged("Tag");
+                    NotifyPropertyChanged("Tag");
                 }
             }
         }
@@ -40,7 +40,7 @@ namespace ProceduralWorldGeneration.MythObjects
                 if (value != _identifier)
                 {
                     _identifier = value;
-                    this.NotifyPropertyChanged("Identifier");
+                    NotifyPropertyChanged("Identifier");
                 }
             }
         }
@@ -57,7 +57,7 @@ namespace ProceduralWorldGeneration.MythObjects
                 if (value != _name)
                 {
                     _name = value;
-                    this.NotifyPropertyChanged("Name");
+                    NotifyPropertyChanged("Name");
                 }
             }
         }
@@ -84,14 +84,12 @@ namespace ProceduralWorldGeneration.MythObjects
             _identifier = _identifier_seed;
             _identifier_seed += 1;
             _tag = tag;
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
         public override string ToString()

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ProceduralWorldGeneration.Attributes
 {
     [Serializable]
-    public class TraitCategories : Attribute
+    public class TraitCategory : Attribute
     {
 
         private bool _always;

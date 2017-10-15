@@ -23,7 +23,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
             if (CreationMythState.Planes.Count <= 1)
                 return false;
 
-            if (taker.CreatedPlane.maxConnectionsReached())
+            if (taker.CreatedPlane.MaxConnectionsReached())
                 return false;
 
             if (taker.CreatedPlane.NeighbourPlanes.Count >= CreationMythState.Planes.Count)
@@ -41,7 +41,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
             else
             {            
                 Plane temp = CreationMythState.Planes[ConfigValues.Random.Next(CreationMythState.Planes.Count)];
-                while (temp.maxConnectionsReached() || !temp.isNotConnectedTo(taker.CreatedPlane))
+                while (temp.MaxConnectionsReached() || !temp.IsNotConnectedTo(taker.CreatedPlane))
                 {
                     temp = CreationMythState.Planes[ConfigValues.Random.Next(CreationMythState.Planes.Count)];
                 }

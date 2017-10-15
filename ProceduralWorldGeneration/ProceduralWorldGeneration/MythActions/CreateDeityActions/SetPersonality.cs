@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
 using ProceduralWorldGeneration.Generator;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions;
+using ProceduralWorldGeneration.Main;
 
 namespace ProceduralWorldGeneration.MythActions.CreateDeityActions
 {
@@ -19,7 +15,7 @@ namespace ProceduralWorldGeneration.MythActions.CreateDeityActions
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            taker.CreadedDeity.Personality = CreationMythState.MythObjectData.Personalities[ConfigValues.Random.Next(CreationMythState.MythObjectData.Personalities.Count)];
+            taker.CreadedDeity.Personality = Program.DataLoadHandler.Personalities[ConfigValues.Random.Next(Program.DataLoadHandler.Personalities.Count)];
         }
     }
 }

@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:ProceduralWorldGeneration"
         xmlns:Generator="clr-namespace:ProceduralWorldGeneration.Generator" 
         xmlns:DataStructure="clr-namespace:ProceduralWorldGeneration.DataStructure"
-        xmlns:Parser="clr-namespace:ProceduralWorldGeneration.Parser" 
         xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Attributes="clr-namespace:ProceduralWorldGeneration.Attributes" x:Name="MainWindow1" 
         x:Class="ProceduralWorldGeneration.MainWindow"
         mc:Ignorable="d"
@@ -18,7 +17,7 @@
         <CollectionViewSource x:Key="planeTypeViewSource" d:DesignSource="{d:DesignInstance {x:Type Attributes:PlaneType}, CreateList=True}"/>
         <CollectionViewSource x:Key="speciesTypeViewSource" d:DesignSource="{d:DesignInstance {x:Type Attributes:SpeciesType}, CreateList=True}"/>
         <CollectionViewSource x:Key="speciesTraitViewSource" d:DesignSource="{d:DesignInstance {x:Type Attributes:SpeciesTrait}, CreateList=True}"/>
-        <CollectionViewSource x:Key="traitCategoriesViewSource" d:DesignSource="{d:DesignInstance {x:Type Attributes:TraitCategories}, CreateList=True}"/>
+        <CollectionViewSource x:Key="traitCategoriesViewSource" d:DesignSource="{d:DesignInstance {x:Type Attributes:TraitCategory}, CreateList=True}"/>
     </Window.Resources>
     <Grid Margin="0,0,2,0" DataContext="{StaticResource domainViewSource}">
         <Grid.RowDefinitions>

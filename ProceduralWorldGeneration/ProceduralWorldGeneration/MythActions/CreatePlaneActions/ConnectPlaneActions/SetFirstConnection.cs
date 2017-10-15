@@ -30,7 +30,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneA
             {
                 taker.CreatedPlane.connectPlane(searchPlaneTag(SpecialTags.CORE_WORLD_TAG));
             }
-            else if (taker.CreatedPlane.PlaneSize.MaxNeighbourPlanes <= 1)
+            else if (taker.CreatedPlane.PlaneSize.MaxNeighbours <= 1)
             {
                 taker.CreatedPlane.connectPlane(searchPlaneSize("large"));
 

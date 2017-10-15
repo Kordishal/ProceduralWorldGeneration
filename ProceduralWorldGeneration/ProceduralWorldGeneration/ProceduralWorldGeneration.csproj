@@ -67,13 +67,14 @@
     </ApplicationDefinition>
     <Compile Include="Attributes\Attribute.cs" />
     <Compile Include="Attributes\CivilizationEthos.cs" />
+    <Compile Include="Attributes\DeityPersonality.cs" />
     <Compile Include="Attributes\Domain.cs" />
     <Compile Include="Attributes\PlaneElement.cs" />
     <Compile Include="Attributes\PlaneSize.cs" />
     <Compile Include="Attributes\PlaneType.cs" />
     <Compile Include="Attributes\SpeciesTrait.cs" />
     <Compile Include="Attributes\SpeciesType.cs" />
-    <Compile Include="Attributes\TraitCategories.cs" />
+    <Compile Include="Attributes\TraitCategory.cs" />
     <Compile Include="Constants\SpecialTags.cs" />
     <Compile Include="DataLoader\DataLoadHandler.cs" />
     <Compile Include="DataStructure\UserInterfaceData.cs" />
@@ -102,18 +103,12 @@
     <Compile Include="MythActions\CreateSapientSpeciesActions\SetPlaneAndWorld.cs" />
     <Compile Include="MythActions\CreateSapientSpeciesActions\SetSpeciesType.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\SetNoElement.cs" />
-    <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\SetInfinitePlaneSize.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\SetNoPlaneSize.cs" />
     <Compile Include="MythActions\CreatePlaneActions\FormPlaneActions\SetFinitePlaneSize.cs" />
     <Compile Include="MythActions\General\SetName.cs" />
     <Compile Include="MythActions\General\SetCreator.cs" />
     <Compile Include="MythActions\General\InitialActionState.cs" />
     <Compile Include="MythActions\MythActionStateMachine.cs" />
-    <Compile Include="MythObjectAttributes\CivilisationEthos.cs" />
-    <Compile Include="MythObjectAttributes\PlaneElement.cs" />
-    <Compile Include="MythObjectAttributes\SpeciesTrait.cs" />
-    <Compile Include="MythObjectAttributes\SpeciesType.cs" />
-    <Compile Include="MythObjectAttributes\TraitCategories.cs" />
     <Compile Include="MythObjects\Civilisation.cs" />
     <Compile Include="MythObjects\LegendaryIndividual.cs" />
     <Compile Include="MythObjects\MythicalIndividual.cs" />
@@ -122,15 +117,12 @@
     <Compile Include="MythObjects\SapientSpecies.cs" />
     <Compile Include="MythObjects\SentientSpecies.cs" />
     <Compile Include="MythObjects\World.cs" />
-    <Compile Include="Parser\Exceptions\ParserException.cs" />
-    <Compile Include="Parser\Expression.cs" />
-    <Compile Include="Parser\MythCreationParser.cs" />
-    <Compile Include="Parser\SyntaxTreeFiniteStateMachine.cs" />
     <Compile Include="StateMachine\FiniteStateMachine.cs" />
     <Compile Include="StateMachine\FiniteStateMachineException.cs" />
     <Compile Include="StateMachine\StateTransition.cs" />
-    <Compile Include="SyntaxTreeTranslator\Translator.cs" />
+    <Compile Include="Utility\Tree.cs" />
     <Compile Include="Utility\Helpers.cs" />
+    <Compile Include="Utility\TreeNode.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -143,16 +135,6 @@
     <Compile Include="Generator\MythCreator.cs" />
     <Compile Include="Generator\ConfigValues.cs" />
     <Compile Include="Constants\FileNames.cs" />
-    <Compile Include="Parser\LexerDefinition\ILexer.cs" />
-    <Compile Include="Parser\LexerDefinition\Lexer.cs" />
-    <Compile Include="Parser\Tokens\Token.cs" />
-    <Compile Include="Parser\Tokens\TokenDefinition.cs" />
-    <Compile Include="Parser\Tokens\TokenPosition.cs" />
-    <Compile Include="Parser\MythCreationLexer.cs" />
-    <Compile Include="DataStructure\MythObjectData.cs" />
-    <Compile Include="Parser\MythObjectReader.cs" />
-    <Compile Include="Parser\SyntaxTree\Tree.cs" />
-    <Compile Include="Parser\SyntaxTree\TreeNode.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -161,9 +143,6 @@
   <ItemGroup>
     <Compile Include="MythActions\MythAction.cs" />
     <Compile Include="MythActions\General\Wait.cs" />
-    <Compile Include="MythObjectAttributes\MythObjectAttribute.cs" />
-    <Compile Include="MythObjectAttributes\PlaneSize.cs" />
-    <Compile Include="MythObjectAttributes\PlaneType.cs" />
     <Compile Include="MythObjects\ActionTakerMythObject.cs" />
     <Compile Include="MythObjects\BaseMythObject.cs" />
     <Compile Include="MythObjects\Deity.cs" />
@@ -191,13 +170,13 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.CivilizationEthos.datasource" />
     <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.Domain.datasource" />
     <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.PlaneElement.datasource" />
     <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.PlaneSize.datasource" />
     <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.PlaneType.datasource" />
     <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.SpeciesTrait.datasource" />
     <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.SpeciesType.datasource" />
-    <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.TraitCategories.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

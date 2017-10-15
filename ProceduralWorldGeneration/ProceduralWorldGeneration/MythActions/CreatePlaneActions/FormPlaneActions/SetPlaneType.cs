@@ -1,12 +1,9 @@
 ﻿using ProceduralWorldGeneration.DataStructure;
-using ProceduralWorldGeneration.MythObjectAttributes;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ProceduralWorldGeneration.MythObjects;
 using ProceduralWorldGeneration.Generator;
+using ProceduralWorldGeneration.Attributes;
+using ProceduralWorldGeneration.Main;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions
 {
@@ -24,17 +21,17 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
         {
             if (taker.CreatedPlane.Tag == Constants.SpecialTags.CORE_WORLD_TAG)
             {
-                taker.CreatedPlane.PlaneType = MythObjectData.searchPlaneType("material");
+                taker.CreatedPlane.PlaneType = Program.DataLoadHandler.SearchPlaneType("material");
                 return;
             }
 
             if (taker.CreatedPlane.Tag == Constants.SpecialTags.TRAVEL_DIMENSION_TAG)
             {
-                taker.CreatedPlane.PlaneType = MythObjectData.searchPlaneType("elemental");
+                taker.CreatedPlane.PlaneType = Program.DataLoadHandler.SearchPlaneType("elemental");
                 return;
             }
 
-            List<PlaneType> types = CreationMythState.MythObjectData.PlaneTypes;
+            List<PlaneType> types = Program.DataLoadHandler.PlaneTypes;
             int plane_type_count = types.Count;
             int[] spawn_weights = new int[plane_type_count];
             int total_spawn_weight = 0;

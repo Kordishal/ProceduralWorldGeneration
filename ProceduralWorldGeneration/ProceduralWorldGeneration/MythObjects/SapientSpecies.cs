@@ -1,10 +1,5 @@
-﻿using System;
+﻿using ProceduralWorldGeneration.Attributes;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProceduralWorldGeneration.DataStructure;
-using ProceduralWorldGeneration.MythObjectAttributes;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
@@ -22,7 +17,7 @@ namespace ProceduralWorldGeneration.MythObjects
                 if (_innate_power != value)
                 {
                     _innate_power = value;
-                    base.NotifyPropertyChanged("InnatePower");
+                    NotifyPropertyChanged("InnatePower");
                 }
             }
         }
@@ -38,7 +33,7 @@ namespace ProceduralWorldGeneration.MythObjects
                 if (_native_plane != value)
                 {
                     _native_plane = value;
-                    base.NotifyPropertyChanged("NativePlane");
+                    NotifyPropertyChanged("NativePlane");
                 }
             }
         }
@@ -54,7 +49,7 @@ namespace ProceduralWorldGeneration.MythObjects
                 if (_homeworld != value)
                 {
                     _homeworld = value;
-                    base.NotifyPropertyChanged("HomeWorld");
+                    NotifyPropertyChanged("HomeWorld");
                 }
             }
         }
@@ -71,7 +66,7 @@ namespace ProceduralWorldGeneration.MythObjects
                 if (_species_type != value)
                 {
                     _species_type = value;
-                    base.NotifyPropertyChanged("SpeciesType");
+                    NotifyPropertyChanged("SpeciesType");
                 }
             }
         }
@@ -88,7 +83,7 @@ namespace ProceduralWorldGeneration.MythObjects
                 if (_traits != value)
                 {
                     _traits = value;
-                    base.NotifyPropertyChanged("Traits");
+                    NotifyPropertyChanged("Traits");
                 }
             }
         }

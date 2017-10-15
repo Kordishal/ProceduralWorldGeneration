@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
-namespace ProceduralWorldGeneration.Parser.SyntaxTree
+namespace ProceduralWorldGeneration.Utility
 {
     /// <summary>
     /// Implementation for a generic tree class. Implemented with an interface to update the interface when nodes are changed.

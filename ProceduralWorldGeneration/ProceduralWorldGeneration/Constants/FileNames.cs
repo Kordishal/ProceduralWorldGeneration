@@ -11,8 +11,6 @@ namespace ProceduralWorldGeneration.Constants
     /// </summary>
     static class FileNames
     {
-        public const string DIRECTORY_PATH_MYTH_OBJECTS = @"C:\Users\Jonas Waeber\Documents\Projects\ProceduralWorldGeneration\myth_objects\";
-        public const string FILE_LIST = @"a_file_list.txt";
 
         public const string DIRECTORY_PATH_LOGS = @"C:\Users\Jonas Waeber\Documents\Projects\ProceduralWorldGeneration\logs\";
         public const string ACTION_LOG = @"action.log";

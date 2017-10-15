@@ -13,7 +13,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (!taker.CreatedPlane.PlaneType.hasDominantElement)
+            if (!taker.CreatedPlane.PlaneType.HasDominantElement)
                 return true;
             else
                 return false;

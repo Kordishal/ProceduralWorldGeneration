@@ -38,8 +38,8 @@ namespace ProceduralWorldGeneration.Attributes
             }
         }
 
-        private string _spawn_weight { get; set; }
-        public string SpawnWeight
+        private int _spawn_weight { get; set; }
+        public int SpawnWeight
         {
             get { return _spawn_weight; }
             set

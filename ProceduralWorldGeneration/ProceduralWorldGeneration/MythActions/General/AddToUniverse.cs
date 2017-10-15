@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProceduralWorldGeneration.DataStructure;
+﻿using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
-using ProceduralWorldGeneration.Parser.SyntaxTree;
 using ProceduralWorldGeneration.Generator;
 using ProceduralWorldGeneration.Output;
+using ProceduralWorldGeneration.Utility;
 
 namespace ProceduralWorldGeneration.MythActions.General
 {
@@ -36,7 +31,7 @@ namespace ProceduralWorldGeneration.MythActions.General
             }
                      
             taker.CurrentGoal = ActionGoal.None;
-            CreationMythLogger.updateActionLog(taker, true);
+            CreationMythLogger.UpdateActionLog(taker, true);
         }
 
         private void addPlaneToCreationTree(TreeNode<CreationTreeNode> current_node, CreationTreeNode node)

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProceduralWorldGeneration.Parser.SyntaxTree
+namespace ProceduralWorldGeneration.Utility
 {
     /// <summary>
     /// The implementation of the tree node for my tree implementation.

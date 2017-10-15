@@ -21,7 +21,7 @@ namespace ProceduralWorldGeneration.Main
 
         static public void StartCreationLoop()
         {
-            _creation_myth_generator.creationLoop();
+            _creation_myth_generator.UniverseCreation();
         }
 
         static public void Initialise(UserInterfaceData user)

@@ -2,16 +2,7 @@
 using ProceduralWorldGeneration.Grammar;
 using ProceduralWorldGeneration.MythObjects;
 using ProceduralWorldGeneration.Output;
-using ProceduralWorldGeneration.Parser;
-using ProceduralWorldGeneration.Parser.SyntaxTree;
-using ProceduralWorldGeneration.SyntaxTreeTranslator;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ProceduralWorldGeneration.Utility;
 
 namespace ProceduralWorldGeneration.Generator
 {
@@ -21,25 +12,16 @@ namespace ProceduralWorldGeneration.Generator
     public class MythCreator
     {
         private UserInterfaceData _user;
-        private MythCreationParser _parser;
-        private Translator _translator;
 
         // initialize all the important values, parse the myth files and translate them into myth object data.
         public void Initialise(UserInterfaceData user)
         {
             _user = user;
-
-            _parser = new MythCreationParser();
-            _parser.initialise();
-            _parser.parsing();
-
-            _translator = new Translator(_parser.SyntaxTreeFSM.SyntaxTree);
-            CreationMythState.MythObjectData = _translator.translate();
         }
 
 
         // Main generation loop
-        public void creationLoop()
+        public void UniverseCreation()
         {
             int _current_year = 0;
             int _end_year = 10000;
@@ -50,19 +32,19 @@ namespace ProceduralWorldGeneration.Generator
             // Generate the creation tree from the grammar rules.
             generateCreationTree();
             // Begin with the first primordial force
-            CreationMythState.PrimordialForces.Add(CreationMythState.MythObjectData.PrimordialForces[0]);
-            CreationMythState.ActionableMythObjects.Enqueue(CreationMythState.MythObjectData.PrimordialForces[0]);
+            CreationMythState.PrimordialForces.Add(new PrimordialForce() { Name = "Chaos", Creator = null});
+            CreationMythState.ActionableMythObjects.Enqueue(CreationMythState.PrimordialForces[0]);
             CreationMythState.MythObjects.Add(CreationMythState.PrimordialForces[0]);
 
             CreationMythState.CreationTree.TreeRoot.Children.First.Value.Value.MythObject = CreationMythState.PrimordialForces[0];
 
-            CreationMythState.CreationTree.traverseTree(printCreationTree);
+            CreationMythState.CreationTree.traverseTree(PrintCreationTree);
 
             // each tick is one year. Each myth object that can take actions can take one action per year at most.
             while (_current_year < _end_year)
             {
                 // LOg the current year
-                CreationMythLogger.updateLog(_current_year);
+                CreationMythLogger.UpdateLog(_current_year);
                 // go through action queue once.
                 counter = 0;
                 action_queue_count = CreationMythState.ActionableMythObjects.Count;
@@ -72,7 +54,7 @@ namespace ProceduralWorldGeneration.Generator
 
                     current_myth_object.takeAction(_current_year);
         
-                    CreationMythLogger.updateLog((BaseMythObject)current_myth_object, "UPDATE");
+                    CreationMythLogger.UpdateLog((BaseMythObject)current_myth_object, "UPDATE");
 
                     CreationMythState.ActionableMythObjects.Enqueue(current_myth_object);
                     counter = counter + 1;
@@ -83,7 +65,7 @@ namespace ProceduralWorldGeneration.Generator
             }
 
 
-            CreationMythLogger.updateLog("END OF CREATION");
+            CreationMythLogger.UpdateLog("END OF CREATION");
             CreationMythLogger.Write();
             CreationMythLogger.Clear();
             // Update the user interface data class.
@@ -322,9 +304,9 @@ namespace ProceduralWorldGeneration.Generator
             }
         }
 
-        private void printCreationTree(TreeNode<CreationTreeNode> current_node)
+        private void PrintCreationTree(TreeNode<CreationTreeNode> current_node)
         {
-            CreationMythLogger.updateTreeLog(current_node);
+            CreationMythLogger.UpdateTreeLog(current_node);
         }
     }
 

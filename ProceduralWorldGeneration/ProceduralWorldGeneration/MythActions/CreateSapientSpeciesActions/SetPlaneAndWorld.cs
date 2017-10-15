@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProceduralWorldGeneration.DataStructure;
+﻿using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
-using ProceduralWorldGeneration.Parser.SyntaxTree;
 using ProceduralWorldGeneration.Generator;
+using ProceduralWorldGeneration.Utility;
 
 namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
 {

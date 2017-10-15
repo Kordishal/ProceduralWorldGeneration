@@ -29,7 +29,7 @@ namespace ProceduralWorldGeneration.MythObjects
                 if (_spawn_weight != value)
                 {
                     _spawn_weight = value;
-                    base.NotifyPropertyChanged("SpawnWeight");
+                    NotifyPropertyChanged("SpawnWeight");
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace ProceduralWorldGeneration.MythObjects
                 if (_opposing != value)
                 {
                     _opposing = value;
-                    base.NotifyPropertyChanged("Opposing");
+                    NotifyPropertyChanged("Opposing");
                 }
             }
         }
@@ -63,7 +63,7 @@ namespace ProceduralWorldGeneration.MythObjects
 
             if (CurrentAction.getDuration() <= 0)
             {
-                CreationMythLogger.updateActionLog(this);
+                CreationMythLogger.UpdateActionLog(this);
                 CurrentAction.resetDuration();
                 determineNextAction();              
             }
@@ -86,7 +86,6 @@ namespace ProceduralWorldGeneration.MythObjects
             AddTransition(new SetCreator(), new SetPrimaryDomain());
 
             AddTransition(new SetPlaneType(), new SetFinitePlaneSize());
-            AddTransition(new SetPlaneType(), new SetInfinitePlaneSize());
             AddTransition(new SetPlaneType(), new SetNoPlaneSize());
 
             AddTransition(new SetFinitePlaneSize(), new SetPlaneElement());
@@ -94,9 +93,6 @@ namespace ProceduralWorldGeneration.MythObjects
 
             AddTransition(new SetNoPlaneSize(), new SetPlaneElement());
             AddTransition(new SetNoPlaneSize(), new SetNoPlaneElement());
-
-            AddTransition(new SetInfinitePlaneSize(), new SetPlaneElement());
-            AddTransition(new SetInfinitePlaneSize(), new SetNoPlaneElement());
 
             AddTransition(new SetPlaneElement(), new SetFirstConnection());
             AddTransition(new SetPlaneElement(), new EtherealPlaneConnection());

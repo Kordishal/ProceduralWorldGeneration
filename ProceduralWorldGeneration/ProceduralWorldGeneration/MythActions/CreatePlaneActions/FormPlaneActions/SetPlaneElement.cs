@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProceduralWorldGeneration.DataStructure;
+﻿using System.Collections.Generic;
 using ProceduralWorldGeneration.MythObjects;
-using ProceduralWorldGeneration.MythObjectAttributes;
 using ProceduralWorldGeneration.Generator;
-using ProceduralWorldGeneration.MythActions.CreatePlaneActions.ConnectPlaneActions;
 using ProceduralWorldGeneration.Constants;
+using ProceduralWorldGeneration.Main;
+using ProceduralWorldGeneration.Attributes;
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions
 {
@@ -16,7 +11,7 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (taker.CreatedPlane.PlaneType.hasDominantElement)
+            if (taker.CreatedPlane.PlaneType.HasDominantElement)
                 return true;
             else
                 return false;
@@ -26,11 +21,11 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
         {
             if (taker.CreatedPlane.Tag == SpecialTags.TRAVEL_DIMENSION_TAG)
             {
-                taker.CreatedPlane.PlaneElement = MythObjectData.searchElement("air");
+                taker.CreatedPlane.PlaneElement = Program.DataLoadHandler.SearchElement("air");
                 return;
             }
 
-            List<PlaneElement> elements = CreationMythState.MythObjectData.PlaneElements;
+            List<PlaneElement> elements = Program.DataLoadHandler.PlaneElements;
             int plane_element_count = elements.Count;
             int[] spawn_weights = new int[plane_element_count];
             int total_spawn_weight = 0;

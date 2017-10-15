@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.MythObjects;
 using ProceduralWorldGeneration.Generator;
+using ProceduralWorldGeneration.Main;
 
 namespace ProceduralWorldGeneration.MythActions.CreateDeityActions
 {
@@ -24,7 +25,7 @@ namespace ProceduralWorldGeneration.MythActions.CreateDeityActions
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            taker.CreadedDeity.Domains.Add(CreationMythState.MythObjectData.Domains[ConfigValues.Random.Next(CreationMythState.MythObjectData.Domains.Count)]);
+            taker.CreadedDeity.Domains.Add(Program.DataLoadHandler.Domains[ConfigValues.Random.Next(Program.DataLoadHandler.Domains.Count)]);
         }
     }
 }

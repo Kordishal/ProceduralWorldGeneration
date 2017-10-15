@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProceduralWorldGeneration.DataStructure;
+﻿using System.Collections.Generic;
 using ProceduralWorldGeneration.MythActions.CreatePlaneActions;
 using ProceduralWorldGeneration.MythActions.General;
-using ProceduralWorldGeneration.MythActions.CreateDeityActions;
+using ProceduralWorldGeneration.Attributes;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
     public class Deity : ActionTakerMythObject
     {
         // The first domain is always the primary domain
-        private List<string> _domains;
-        public List<string> Domains
+        private List<Domain> _domains;
+        public List<Domain> Domains
         {
             get
             {
@@ -26,14 +20,14 @@ namespace ProceduralWorldGeneration.MythObjects
                 if (_domains != value)
                 {
                     _domains = value;
-                    base.NotifyPropertyChanged("Domains");
+                    NotifyPropertyChanged("Domains");
                 }
             }
         }
 
         // The personality has a big impact on how a deity acts.
-        private string _personality;
-        public string Personality
+        private DeityPersonality _personality;
+        public DeityPersonality Personality
         {
             get
             {
@@ -44,7 +38,7 @@ namespace ProceduralWorldGeneration.MythObjects
                 if (_personality != value)
                 {
                     _personality = value;
-                    base.NotifyPropertyChanged("Personality");
+                    NotifyPropertyChanged("Personality");
                 }
             }
         }
@@ -62,7 +56,7 @@ namespace ProceduralWorldGeneration.MythObjects
                 if (_power != value)
                 {
                     _power = value;
-                    base.NotifyPropertyChanged("Power");
+                    NotifyPropertyChanged("Power");
                 }
             }
         }
@@ -70,7 +64,7 @@ namespace ProceduralWorldGeneration.MythObjects
 
         public Deity(string tag = Constants.SpecialTags.DEFAULT_TAG) : base(tag)
         {
-            _domains = new List<string>();
+            _domains = new List<Domain>();
         }
 
         public override void takeAction(int current_year)

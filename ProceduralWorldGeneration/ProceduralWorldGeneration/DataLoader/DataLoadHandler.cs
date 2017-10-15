@@ -15,6 +15,7 @@ namespace ProceduralWorldGeneration.DataLoader
         private string DataFileBasePath;
 
         private const string _domains = @"deity_attributes\domains.json";
+        private const string _personalities = @"deity_attributes\personalities.json";
 
         private const string _plane_elements = @"plane_attributes\plane_elements.json";
         private const string _plane_types = @"plane_attributes\plane_types.json";
@@ -35,6 +36,7 @@ namespace ProceduralWorldGeneration.DataLoader
         {
             Debug.Assert(Directory.Exists(path));
             Debug.Assert(File.Exists(path + _domains));
+            Debug.Assert(File.Exists(path + _personalities));
             Debug.Assert(File.Exists(path + _plane_elements));
             Debug.Assert(File.Exists(path + _plane_sizes));
             Debug.Assert(File.Exists(path + _plane_types));
@@ -43,15 +45,33 @@ namespace ProceduralWorldGeneration.DataLoader
         }
 
         public List<Domain> Domains { get; set; }
+        public List<DeityPersonality> Personalities { get; set; }
 
         public List<PlaneElement> PlaneElements { get; set; }
+
+        public PlaneElement SearchElement(string tag)
+        {
+            foreach (PlaneElement p in PlaneElements)
+                if (p.Tag == tag)
+                    return p;
+            return null;
+        }
+
         public List<PlaneSize> PlaneSizes { get; set; }
         public List<PlaneType> PlaneTypes { get; set; }
+
+        public PlaneType SearchPlaneType(string tag)
+        {
+            foreach (PlaneType p in PlaneTypes)
+                if (p.Tag == tag)
+                    return p;
+            return null;
+        }
 
         public List<SpeciesTrait> SpeciesTraits { get; set; }
         public List<SpeciesType> SpeciesTypes { get; set; }
 
-        public List<TraitCategories> TraitCategories { get; set; }
+        public List<TraitCategory> TraitCategories { get; set; }
 
         public List<CivilizationEthos> CivilizationEthos { get; set; }
 
@@ -59,6 +79,7 @@ namespace ProceduralWorldGeneration.DataLoader
         {
             // TODO: Add function to control whether the input is correct.
             Domains = ReadFile<Domain>(_domains);
+            Personalities = ReadFile<DeityPersonality>(_personalities);
 
             PlaneElements = ReadFile<PlaneElement>(_plane_elements);
             PlaneSizes = ReadFile<PlaneSize>(_plane_sizes);
@@ -71,7 +92,7 @@ namespace ProceduralWorldGeneration.DataLoader
 
             SpeciesTypes = ReadFile<SpeciesType>(_species_types);
 
-            TraitCategories = ReadFile<TraitCategories>(_traits_categories);
+            TraitCategories = ReadFile<TraitCategory>(_traits_categories);
 
             CivilizationEthos = ReadFile<CivilizationEthos>(_civilization_ethos);
 

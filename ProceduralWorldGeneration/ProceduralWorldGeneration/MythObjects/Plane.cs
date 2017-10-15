@@ -1,10 +1,5 @@
-﻿using ProceduralWorldGeneration.Generator;
-using ProceduralWorldGeneration.MythObjectAttributes;
-using System;
+﻿using ProceduralWorldGeneration.Attributes;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
@@ -22,7 +17,7 @@ namespace ProceduralWorldGeneration.MythObjects
                 if (_plane_type != value)
                 {
                     _plane_type = value;
-                    base.NotifyPropertyChanged("PlaneType");
+                    NotifyPropertyChanged("PlaneType");
                 }
             }
         }
@@ -39,7 +34,7 @@ namespace ProceduralWorldGeneration.MythObjects
                 if (_plane_size != value)
                 {
                     _plane_size = value;
-                    base.NotifyPropertyChanged("PlaneSize");
+                    NotifyPropertyChanged("PlaneSize");
                 }
             }
         }
@@ -56,7 +51,7 @@ namespace ProceduralWorldGeneration.MythObjects
                 if (_plane_element != value)
                 {
                     _plane_element = value;
-                    base.NotifyPropertyChanged("PlaneElement");
+                    NotifyPropertyChanged("PlaneElement");
                 }
             }
         }
@@ -73,20 +68,20 @@ namespace ProceduralWorldGeneration.MythObjects
                 if (_neighbour_planes != value)
                 {
                     _neighbour_planes = value;
-                    base.NotifyPropertyChanged("NeighbourPlanes");
+                    NotifyPropertyChanged("NeighbourPlanes");
                 }
             }
         }
 
-        public bool maxConnectionsReached()
+        public bool MaxConnectionsReached()
         {
-            if (_plane_size.MaxNeighbourPlanes == -1)
+            if (_plane_size.MaxNeighbours == -1)
                 return false;
             else
-                return _neighbour_planes.Count == _plane_size.MaxNeighbourPlanes;
+                return _neighbour_planes.Count == _plane_size.MaxNeighbours;
         }
 
-        public bool isNotConnectedTo(Plane plane)
+        public bool IsNotConnectedTo(Plane plane)
         {
             foreach (Plane p in _neighbour_planes)
                 if (p.Identifier == plane.Identifier)

@@ -12,7 +12,10 @@ namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActi
     {
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
-            if (taker.CreatedPlane.PlaneType.isAttachedTo != null)
+            if (taker.CreatedPlane.PlaneType == null)
+                return false;
+
+            if (taker.CreatedPlane.PlaneType.IsIntegrated != null)
                 return true;
             else
                 return false;

@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ProceduralWorldGeneration.MythObjects;
-using ProceduralWorldGeneration.DataStructure;
-using ProceduralWorldGeneration.MythObjectAttributes;
+using ProceduralWorldGeneration.Main;
+using ProceduralWorldGeneration.Attributes;
 
 namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
 {
@@ -14,9 +10,9 @@ namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
         public override bool checkPrecondition(ActionTakerMythObject taker)
         {
             int unique_categories = 0, traits_of_unique_categories = 0;
-            foreach (TraitCategory category in CreationMythState.MythObjectData.TraitCategories)
+            foreach (var category in Program.DataLoadHandler.TraitCategories)
             {
-                if (category.isUnique)
+                if (category.Unique)
                 {
                     unique_categories += 1;
                     foreach (SpeciesTrait trait in taker.CreatedSapientSpecies.Traits)

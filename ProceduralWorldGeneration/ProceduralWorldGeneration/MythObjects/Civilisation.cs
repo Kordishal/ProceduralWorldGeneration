@@ -4,16 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProceduralWorldGeneration.DataStructure;
-using ProceduralWorldGeneration.MythObjectAttributes;
+using ProceduralWorldGeneration.Attributes;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
     public class Civilisation : ActionTakerMythObject
     {
-
-
-        private List<CivilisationEthos> _ethos;
-        public List<CivilisationEthos> Ethos
+        private List<CivilizationEthos> _ethos;
+        public List<CivilizationEthos> Ethos
         {
             get
             {
@@ -24,12 +22,10 @@ namespace ProceduralWorldGeneration.MythObjects
                 if (_ethos != value)
                 {
                     _ethos = value;
-                    base.NotifyPropertyChanged("Ethos");
+                    NotifyPropertyChanged("Ethos");
                 }
             }
         }
-
-
 
         public override void takeAction(int current_year)
         {

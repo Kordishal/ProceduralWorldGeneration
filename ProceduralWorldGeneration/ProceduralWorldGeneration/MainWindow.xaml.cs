@@ -121,7 +121,7 @@ namespace ProceduralWorldGeneration
                 LabelOtherInformation.Content = "Deity Information";
 
                 textBlock_other1.Text = "Personality: ";
-                textBlock_other1_value.Text = deity.Personality;
+                textBlock_other1_value.Text = deity.Personality.Name;
                 textBlock_other2.Text = "Power: ";
                 textBlock_other2_value.Text = deity.Power.ToString();
 

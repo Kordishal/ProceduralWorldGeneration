@@ -1,19 +1,15 @@
-﻿using ProceduralWorldGeneration.DataStructure;
-using ProceduralWorldGeneration.MythObjectAttributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ProceduralWorldGeneration.Attributes;
+using ProceduralWorldGeneration.Main;
+
 
 namespace ProceduralWorldGeneration.MythActions.CreatePlaneActions.FormPlaneActions
 {
     abstract class SetPlaneSize : MythAction
     {
 
-        protected PlaneSize searchSize(string tag)
+        protected PlaneSize SearchSize(string tag)
         {
-            foreach (PlaneSize p in CreationMythState.MythObjectData.PlaneSizes)
+            foreach (PlaneSize p in Program.DataLoadHandler.PlaneSizes)
                 if (p.Tag == tag)
                     return p;
             return null;

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ProceduralWorldGeneration.MythObjects;
-using ProceduralWorldGeneration.MythObjectAttributes;
-using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.Generator;
+using ProceduralWorldGeneration.Main;
+using ProceduralWorldGeneration.Attributes;
 
 namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
 {
@@ -19,7 +15,7 @@ namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
 
         public override void Effect(ActionTakerMythObject taker)
         {
-            List<SpeciesType> types = CreationMythState.MythObjectData.SpeciesTypes;
+            List<SpeciesType> types = Program.DataLoadHandler.SpeciesTypes;
             int species_type_count = types.Count;
             int[] spawn_weights = new int[species_type_count];
             int total_spawn_weight = 0;
@@ -27,7 +23,7 @@ namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
             int count = 0;
             foreach (SpeciesType type in types)
             {
-                if (type.preferredPlaneType == taker.CreatedSapientSpecies.NativePlane.PlaneType.Tag)
+                if (type.PlaneType == taker.CreatedSapientSpecies.NativePlane.PlaneType.Tag)
                 {
                     spawn_weights[count] = type.SpawnWeight + 200;
                     total_spawn_weight = total_spawn_weight + spawn_weights[count];
@@ -53,13 +49,13 @@ namespace ProceduralWorldGeneration.MythActions.CreateSapientSpeciesActions
             {
                 current_weight += spawn_weights[i];
                 if (prev_weight <= chance && chance < current_weight)
-                    taker.CreatedSapientSpecies.SpeciesType = CreationMythState.MythObjectData.SpeciesTypes[i];
+                    taker.CreatedSapientSpecies.SpeciesType = Program.DataLoadHandler.SpeciesTypes[i];
                 prev_weight = current_weight;
             }
 
             for (int i = 0; i < species_type_count; i++)
             {
-                if (types[i].preferredPlaneType == taker.CreatedSapientSpecies.NativePlane.PlaneType.Tag)
+                if (types[i].PlaneType == taker.CreatedSapientSpecies.NativePlane.PlaneType.Tag)
                     types[i].SpawnWeight = spawn_weights[i] - 200;
 
                 if (types[i] == taker.CreatedSapientSpecies.SpeciesType)

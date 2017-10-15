@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.Generator;
 using ProceduralWorldGeneration.MythActions;
-using ProceduralWorldGeneration.Parser.SyntaxTree;
 using ProceduralWorldGeneration.Output;
 using ProceduralWorldGeneration.MythActions.General;
+using ProceduralWorldGeneration.Utility;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
@@ -105,7 +100,7 @@ namespace ProceduralWorldGeneration.MythObjects
             {
                 _current_goal = ActionGoal.None;
                 _action_fsm.Advance(new Wait());
-                CreationMythLogger.updateActionLog(this);
+                CreationMythLogger.UpdateActionLog(this);
                 return;
             }
 
@@ -119,13 +114,13 @@ namespace ProceduralWorldGeneration.MythObjects
                 switch (child.Value.Character)
                 {
                     case "p":
-                        CreationMythLogger.updateActionLog("Start the creation of a plane.");
+                        CreationMythLogger.UpdateActionLog("Start the creation of a plane.");
                         _current_goal = ActionGoal.CreatePlane;
                         child.Value.UnderConstruction = true;
                         child.Value.Creator = this;
                         return;
                     case "d":
-                        CreationMythLogger.updateActionLog("Start the creation of a deity.");
+                        CreationMythLogger.UpdateActionLog("Start the creation of a deity.");
                         _current_goal = ActionGoal.CreateDeity;
                         child.Value.UnderConstruction = true;
                         child.Value.Creator = this;
@@ -150,13 +145,13 @@ namespace ProceduralWorldGeneration.MythObjects
                                 switch (child_of_child.Value.Character)
                                 {
                                     case "w":
-                                        CreationMythLogger.updateActionLog("Start the creation of a world.");
+                                        CreationMythLogger.UpdateActionLog("Start the creation of a world.");
                                         _current_goal = ActionGoal.CreateWorld;
                                         child_of_child.Value.UnderConstruction = true;
                                         child.Value.Creator = this;
                                         return;
                                     case "a":
-                                        CreationMythLogger.updateActionLog("Start the creation of a sapient species.");
+                                        CreationMythLogger.UpdateActionLog("Start the creation of a sapient species.");
                                         _current_goal = ActionGoal.CreateSapientSpecies;
                                         child.Value.UnderConstruction = true;
                                         child.Value.Creator = this;

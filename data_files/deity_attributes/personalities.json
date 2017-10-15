@@ -1,0 +1,20 @@
+{
+    "Name": "Aggressive",
+    "Tag": "aggressive",
+    "SpawnWeight": 10
+};
+{
+    "Name": "Passive",
+    "Tag": "passive",
+    "SpawnWeight": 10
+};
+{
+    "Name": "Peaceful",
+    "Tag": "peaceful",
+    "SpawnWeight": 10
+};
+{
+    "Name": "Curious",
+    "Tag": "curious",
+    "SpawnWeight": 10
+};
