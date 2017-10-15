@@ -18,6 +18,10 @@ namespace ProceduralWorldGeneration.Output
         static private List<string> _action_log = new List<string>();
         static private List<string> _tree_log = new List<string>();
 
+
+        private const string _myth_creation_log_path = @"\myth_creation.log";
+        private const string _action_log_path = @"\action_log.log";
+        private const string _tree_log_path = @"\tree.log";
         private const string BaseLogDirectoryPath = @"C:\Users\jwaeb\Documents\Projects\UniverseGeneration\logs";
 
         public CreationMythLogger()
@@ -35,21 +39,21 @@ namespace ProceduralWorldGeneration.Output
 
         static public void Write()
         {
-            writer = new StreamWriter(BaseLogDirectoryPath + Constants.FileNames.MYTHCREATION_LOG);
+            writer = new StreamWriter(BaseLogDirectoryPath + _myth_creation_log_path);
             foreach (string s in _temp_log)
             {
                 writer.WriteLine(s);
             }         
             writer.Close();
 
-            writer = new StreamWriter(BaseLogDirectoryPath + Constants.FileNames.ACTION_LOG);
+            writer = new StreamWriter(BaseLogDirectoryPath + _action_log_path);
             foreach (string s in _action_log)
             {
                 writer.WriteLine(s);
             }
             writer.Close();
 
-            writer = new StreamWriter(BaseLogDirectoryPath + Constants.FileNames.CREATION_TREE_LOG);
+            writer = new StreamWriter(BaseLogDirectoryPath + _tree_log_path);
             foreach (string s in _tree_log)
             {
                 writer.WriteLine(s);
@@ -59,21 +63,21 @@ namespace ProceduralWorldGeneration.Output
 
         static public void AppendWrite()
         {
-            writer = new StreamWriter(BaseLogDirectoryPath + Constants.FileNames.MYTHCREATION_LOG, true);
+            writer = new StreamWriter(BaseLogDirectoryPath + _myth_creation_log_path, true);
             foreach (string s in _temp_log)
             {
                 writer.WriteLine(s);
             }
             writer.Close();
 
-            writer = new StreamWriter(BaseLogDirectoryPath + Constants.FileNames.ACTION_LOG, true);
+            writer = new StreamWriter(BaseLogDirectoryPath + _action_log_path, true);
             foreach (string s in _action_log)
             {
                 writer.WriteLine(s);
             }
             writer.Close();
 
-            writer = new StreamWriter(BaseLogDirectoryPath + Constants.FileNames.CREATION_TREE_LOG, true);
+            writer = new StreamWriter(BaseLogDirectoryPath + _tree_log_path, true);
             foreach (string s in _tree_log)
             {
                 writer.WriteLine(s);

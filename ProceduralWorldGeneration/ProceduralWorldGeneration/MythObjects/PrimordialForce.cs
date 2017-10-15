@@ -14,6 +14,7 @@ using ProceduralWorldGeneration.MythActions.CreateDeityActions;
 
 namespace ProceduralWorldGeneration.MythObjects
 {
+    [Serializable]
     public class PrimordialForce : ActionTakerMythObject
     {
 

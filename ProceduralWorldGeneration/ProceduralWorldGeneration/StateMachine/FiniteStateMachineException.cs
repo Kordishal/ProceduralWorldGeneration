@@ -10,6 +10,7 @@ namespace ProceduralWorldGeneration.StateMachine
     /// A custom exception for the FSM when encountering a invalid transition.
     /// Needs to be expanded to be useful.
     /// </summary>
+    [Serializable]
     class FiniteStateMachineException : Exception
     {
 

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProceduralWorldGeneration.Grammar
+namespace ProceduralWorldGeneration.GrammarDefinition
 {
     /// <summary>
     /// The Creation Myth Grammar is used to define the creation string.
@@ -112,7 +112,7 @@ namespace ProceduralWorldGeneration.Grammar
                 if (valid_rules.Count > 0)
                 {
                     rule = chooseRule(valid_rules, production_cycle);
-                    changed_characters.Add(rule.replaceSymbol(c));
+                    changed_characters.Add(rule.ReplaceSymbol(c));
                 }
                 else
                 {
@@ -132,7 +132,7 @@ namespace ProceduralWorldGeneration.Grammar
         {
             foreach (ProductionRule pr in _production_rules)
             {
-                if (pr.isValidProductionRule(input))
+                if (pr.IsValidProductionRule(input))
                 {
                     yield return pr;
                 }
@@ -148,7 +148,7 @@ namespace ProceduralWorldGeneration.Grammar
             // accumulate total weight
             foreach (ProductionRule pr in valid_rules)
             {
-                if (pr.isTerminalRule)
+                if (pr.IsTerminalRule)
                 {
                     pr.Weight = pr.Weight + (production_cycle / 10);
                 }

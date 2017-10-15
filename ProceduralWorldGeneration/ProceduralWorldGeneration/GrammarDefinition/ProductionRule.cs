@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProceduralWorldGeneration.Grammar
+﻿namespace ProceduralWorldGeneration.GrammarDefinition
 {
     /// <summary>
     /// The production rule defines the behaviour of the grammar. 
@@ -15,11 +9,11 @@ namespace ProceduralWorldGeneration.Grammar
         private char _initial_symbol { get; set; }
         private string _end_symbol { get; set; }
 
-        // Used to control how likely it is for a production rule to be chosen 
-        // when several valid are available.
+        // In the case that multiple rules can be chosen, the weight influences the random selection of the next rule.
         public int Weight { get; set; }
 
-        public bool isTerminalRule { get; set; }
+        // Determines whether this is a terminal rule. Terminal rules begin with a low weight, which increases as the production continues.
+        public bool IsTerminalRule { get; set; }
 
         /// <summary>
         /// Create a production rule.
@@ -33,10 +27,10 @@ namespace ProceduralWorldGeneration.Grammar
             _initial_symbol = init;
             _end_symbol = replace;
             Weight = weight;
-            isTerminalRule = is_terminal;
+            IsTerminalRule = is_terminal;
         }
 
-        public string replaceSymbol(char c)
+        public string ReplaceSymbol(char c)
         {
             if (c == _initial_symbol)
                 return _end_symbol;
@@ -45,7 +39,7 @@ namespace ProceduralWorldGeneration.Grammar
         }
 
 
-        public bool isValidProductionRule(char input)
+        public bool IsValidProductionRule(char input)
         {
             if (_initial_symbol == input)
                 return true;

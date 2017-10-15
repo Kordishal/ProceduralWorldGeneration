@@ -79,8 +79,10 @@
     <Compile Include="DataLoader\DataLoadHandler.cs" />
     <Compile Include="DataStructure\UserInterfaceData.cs" />
     <Compile Include="Effects\Effect.cs" />
-    <Compile Include="Grammar\MythCreationGrammar.cs" />
-    <Compile Include="Grammar\ProductionRule.cs" />
+    <Compile Include="Generator\GenerateCosmology.cs" />
+    <Compile Include="GrammarDefinition\Grammar.cs" />
+    <Compile Include="GrammarDefinition\MythCreationGrammar.cs" />
+    <Compile Include="GrammarDefinition\ProductionRule.cs" />
     <Compile Include="Main\Program.cs" />
     <Compile Include="MythActions\ActionGoal.cs" />
     <Compile Include="MythActions\CreateDeityActions\AddRandomDomain.cs" />
@@ -120,6 +122,7 @@
     <Compile Include="StateMachine\FiniteStateMachine.cs" />
     <Compile Include="StateMachine\FiniteStateMachineException.cs" />
     <Compile Include="StateMachine\StateTransition.cs" />
+    <Compile Include="Universe\Cosmology.cs" />
     <Compile Include="Utility\Tree.cs" />
     <Compile Include="Utility\Helpers.cs" />
     <Compile Include="Utility\TreeNode.cs" />
@@ -134,7 +137,6 @@
     <Compile Include="DataStructure\CreationMythState.cs" />
     <Compile Include="Generator\MythCreator.cs" />
     <Compile Include="Generator\ConfigValues.cs" />
-    <Compile Include="Constants\FileNames.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
