@@ -34,20 +34,24 @@ namespace ProceduralWorldGeneration
         public MainWindow()
         {
             InitializeComponent();
-            initialise();
+            Initialise();
         }
 
-        private void initialise()
+        private void Initialise()
         {
-            Program.config = new ConfigValues();
-            RandomSeedTextBox.Text = Program.config.RandomSeed;
+            Program.InitialiseData();
+            domainDataGrid.DataContext = Program.DataLoadHandler.Domains;
+            planeElementDataGrid.DataContext = Program.DataLoadHandler.PlaneElements;
+
+            Program.GeneratorConfigurations = new ConfigValues();
+            RandomSeedTextBox.Text = Program.GeneratorConfigurations.RandomSeed;
             _user_interface_data = new UserInterfaceData();
         }
 
         private void MythCreationButton_Click(object sender, RoutedEventArgs e)
         {
-            Program.initialise(_user_interface_data);
-            Program.startCreationLoop();
+            Program.Initialise(_user_interface_data);
+            Program.StartCreationLoop();
             ElementListView.DataContext = _user_interface_data;
             ElementListView.ItemsSource = _user_interface_data.MythObjects;
         }
@@ -118,6 +122,17 @@ namespace ProceduralWorldGeneration
                 listBox_other.ItemsSource = deity.Domains;
             }
              
+        }
+
+        private void MainWindow1_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource domainViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("domainViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // domainViewSource.Source = [generic data source]
+            System.Windows.Data.CollectionViewSource planeElementViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("planeElementViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // planeElementViewSource.Source = [generic data source]
         }
     }
 }

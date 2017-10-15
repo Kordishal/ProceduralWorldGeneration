@@ -56,36 +56,5 @@ finite_plane_sizes = {
 
 
 # The plane element is only set for elemental and ethereal planes. It determines what element is domaninat in this world. 
-plane_elements = {
-	earth = {
-		name = "Earth"
-		opposite = air
-		spawn_weight = 10
-	}
-	water = {
-		name = "Water"
-		opposite = fire
-		spawn_weight = 10
-	}
-	fire = {
-		name = "Fire"
-		opposite = water
-		spawn_weight = 10
-	}
-	air = {
-		name = "Air"
-		opposite = earth
-		spawn_weight = 10
-	}
-	light = {
-		name = "Light"
-		opposite = darkness
-		spawn_weight = 5
-	}
-	darkness = {
-		name = "Darkness"
-		opposite = light
-		spawn_weight = 5
-	}
-}
+
 

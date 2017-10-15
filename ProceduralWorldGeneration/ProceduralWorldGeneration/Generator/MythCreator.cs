@@ -25,7 +25,7 @@ namespace ProceduralWorldGeneration.Generator
         private Translator _translator;
 
         // initialize all the important values, parse the myth files and translate them into myth object data.
-        public void initialise(UserInterfaceData user)
+        public void Initialise(UserInterfaceData user)
         {
             _user = user;
 

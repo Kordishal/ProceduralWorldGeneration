@@ -1,10 +1,7 @@
-﻿using ProceduralWorldGeneration.DataStructure;
+﻿using ProceduralWorldGeneration.DataLoader;
+using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.Generator;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace ProceduralWorldGeneration.Main
 {
@@ -15,25 +12,34 @@ namespace ProceduralWorldGeneration.Main
     {
         static private MythCreator _creation_myth_generator;
 
+        static public DataLoadHandler DataLoadHandler { get; set; }
+
         /// <summary>
         /// Global config values for the application. Defined before first start.
         /// </summary>
-        static public ConfigValues config { get; set; }
+        static public ConfigValues GeneratorConfigurations { get; set; }
 
-        static public void startCreationLoop()
+        static public void StartCreationLoop()
         {
             _creation_myth_generator.creationLoop();
         }
 
-        static public void initialise(UserInterfaceData user)
+        static public void Initialise(UserInterfaceData user)
         {
             _creation_myth_generator = new MythCreator();
-            _creation_myth_generator.initialise(user);
+            _creation_myth_generator.Initialise(user);
+        }
+
+        static public void InitialiseData()
+        {
+            DataLoadHandler = new DataLoadHandler();
+            DataLoadHandler.ReadDomainFile();
+            DataLoadHandler.ReadPlaneElementFile();
         }
 
         static Program()
         {
-            config = new ConfigValues();
+            GeneratorConfigurations = new ConfigValues();
         }
     }
 }

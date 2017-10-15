@@ -1,0 +1,309 @@
+{
+    "Name": "Air",
+    "Tag": "air",
+    "Attributes": [
+        "air", "invisibility", "flight", "chaos"
+    ],
+    "OppositeAttributes": [
+        "earth", "order"
+    ]
+};
+{
+    "Name": "Earth",
+    "Tag": "earth",
+    "Attributes": [
+        "earth", "strength", "life", "mineral"
+    ],
+    "OppositeAttributes": [
+        "air", "decay"
+    ]
+};
+{
+    "Name": "Water",
+    "Tag": "water",
+    "Attributes": [
+        "water", "healing"
+    ],
+    "OppositeAttributes": [
+        "fire"
+    ]
+};
+{
+    "Name": "Fire",
+    "Tag": "fire",
+    "Attributes": [
+        "fire", "destruction"
+    ],
+    "OppositeAttributes": [
+        "water"
+    ]
+};
+{
+    "Name": "Animal",
+    "Tag": "animal",
+    "Attributes": [
+        "animal", "nature"
+    ],
+    "OppositeAttributes": [
+    ]
+};
+{
+    "Name": "Plant",
+    "Tag": "plant",
+    "Attributes": [
+        "plant", "nature", "water"
+    ],
+    "OppositeAttributes": [
+        "fire"
+    ]
+};
+{
+    "Name": "Artifice",
+    "Tag": "artifice",
+    "Attributes": [
+        "artifice"
+    ],
+    "OppositeAttributes": [
+        "nature"
+    ]
+};
+{
+    "Name": "Chaos",
+    "Tag": "chaos",
+    "Attributes": [
+        "chaos"
+    ],
+    "OppositeAttributes": [
+        "order"
+    ]
+};
+{
+    "Name": "Order",
+    "Tag": "order",
+    "Attributes": [
+        "order"
+    ],
+    "OppositeAttributes": [
+        "chaos"
+    ]
+};
+{
+    "Name": "Charm",
+    "Tag": "charm",
+    "Attributes": [
+        "charm"
+    ],
+    "OppositeAttributes": [
+        
+    ]
+};
+{
+    "Name": "Community",
+    "Tag": "community",
+    "Attributes": [
+        "society"
+    ],
+    "OppositeAttributes": [
+    
+    ]
+};
+{
+    "Name": "Creation",
+    "Tag": "creation",
+    "Attributes": [
+        "creation"
+    ],
+    "OppositeAttributes": [
+        "destruction"
+    ]
+};
+{
+    "Name": "Darkness",
+    "Tag": "darkness",
+    "Attributes": [
+        "darkness", "death", "decay"
+    ],
+    "OppositeAttributes": [
+        "light"
+    ]
+};
+{
+    "Name": "Light",
+    "Tag": "light",
+    "Attributes": [
+        "light", "healing", "life"
+    ],
+    "OppositeAttributes": [
+        "darkness"
+    ]
+};
+{
+    "Name": "Knowledge",
+    "Tag": "knowledge",
+    "Attributes": [
+        "knowledge"
+    ],
+    "OppositeAttributes": [
+
+    ]
+};
+{
+    "Name": "Luck",
+    "Tag": "luck",
+    "Attributes": [
+        "luck", "chaos"
+    ],
+    "OppositeAttributes": [
+    
+    ]
+};
+{
+    "Name": "War",
+    "Tag": "war",
+    "Attributes": [
+        "war", "destruction", "violence"
+    ],
+    "OppositeAttributes": [
+        "peace"
+    ]
+};
+{
+    "Name": "Peace",
+    "Tag": "peace",
+    "Attributes": [
+        "peace", "prosperity", "pacifism"
+    ],
+    "OppositeAttributes": [
+        "peace"
+    ]
+};
+{
+    "Name": "Healing",
+    "Tag": "healing",
+    "Attributes": [
+        "healing"
+    ],
+    "OppositeAttributes": [
+        "decay"
+    ]
+};
+{
+    "Name": "Madness",
+    "Tag": "madness",
+    "Attributes": [
+        "madness", "chaos"
+    ],
+    "OppositeAttributes": [
+        "order"
+    ]
+};
+{
+    "Name": "Magic",
+    "Tag": "magic",
+    "Attributes": [
+        "magic"
+    ],
+    "OppositeAttributes": [
+
+    ]
+};
+{
+    "Name": "Winter",
+    "Tag": "winter",
+    "Attributes": [
+        "winter", "cold", "snow"
+    ],
+    "OppositeAttributes": [
+        "summer", "heat"
+    ]
+};
+{
+    "Name": "Summer",
+    "Tag": "summer",
+    "Attributes": [
+        "summer", "heat", "storm"
+    ],
+    "OppositeAttributes": [
+        "winter", "cold", "snow"
+    ]
+};
+{
+    "Name": "Thunder",
+    "Tag": "thunder",
+    "Attributes": [
+        "thunder", "electricity", "storm"
+    ],
+    "OppositeAttributes": [
+        "water"
+    ]
+};
+{
+    "Name": "Strength",
+    "Tag": "strength",
+    "Attributes": [
+        "strength"
+    ],
+    "OppositeAttributes": [
+        
+    ]
+};
+{
+    "Name": "Protection",
+    "Tag": "protection",
+    "Attributes": [
+        "protection"
+    ],
+    "OppositeAttributes": [
+        "vulnerability"
+    ]
+};
+{
+    "Name": "Travel",
+    "Tag": "travel",
+    "Attributes": [
+        "travel", "exploration"
+    ],
+    "OppositeAttributes": [
+
+    ]
+};
+{
+    "Name": "Glory",
+    "Tag": "glory",
+    "Attributes": [
+        "glory", "battle", "violence"
+    ],
+    "OppositeAttributes": [
+
+    ]
+};
+{
+    "Name": "Spring",
+    "Tag": "spring",
+    "Attributes": [
+        "spring", "growth", "fertility"
+    ],
+    "OppositeAttributes": [
+        "fall"
+    ]
+};
+{
+    "Name": "Fall",
+    "Tag": "fall",
+    "Attributes": [
+        "fall", "decay", "harvest"
+    ],
+    "OppositeAttributes": [
+        "fall"
+    ]
+};
+{
+    "Name": "Fertility",
+    "Tag": "fertility",
+    "Attributes": [
+        "fertility", "growth"
+    ],
+    "OppositeAttributes": [
+        
+    ]
+};

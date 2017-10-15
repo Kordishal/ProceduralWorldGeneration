@@ -39,7 +39,7 @@ namespace ProceduralWorldGeneration.Grammar
             _non_terminals = new List<char>() {'X', 'F', 'P', 'W', 'D', 'S', 'A', 'E', 'C', 'N', 'M', 'L' };
             _production_rules = new List<ProductionRule>();
 
-            production_cycle_count = Program.config.ProductionCycleCount;
+            production_cycle_count = Program.GeneratorConfigurations.ProductionCycleCount;
             Result = _start_symbol.ToString();
         }
 

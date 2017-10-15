@@ -31,7 +31,7 @@ namespace ProceduralWorldGeneration.MythObjectAttributes
                 if (value != _name)
                 {
                     _name = value;
-                    this.NotifyPropertyChanged("Name");
+                    NotifyPropertyChanged("Name");
                 }
             }
         }

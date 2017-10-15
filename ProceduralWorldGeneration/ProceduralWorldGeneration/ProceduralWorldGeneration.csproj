@@ -65,7 +65,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Attributes\Attribute.cs" />
+    <Compile Include="Attributes\Domain.cs" />
+    <Compile Include="Attributes\PlaneElement.cs" />
     <Compile Include="Constants\SpecialTags.cs" />
+    <Compile Include="DataLoader\DataLoadHandler.cs" />
     <Compile Include="DataStructure\UserInterfaceData.cs" />
     <Compile Include="Effects\Effect.cs" />
     <Compile Include="Grammar\MythCreationGrammar.cs" />
@@ -120,9 +124,7 @@
     <Compile Include="StateMachine\FiniteStateMachineException.cs" />
     <Compile Include="StateMachine\StateTransition.cs" />
     <Compile Include="SyntaxTreeTranslator\Translator.cs" />
-    <Compile Include="Tests\MythCreationGrammar_Tests.cs" />
-    <Compile Include="Tests\MythCreator_Tests.cs" />
-    <Compile Include="Tests\ProductionRule_Tests.cs" />
+    <Compile Include="Utility\Helpers.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -183,6 +185,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.Domain.datasource" />
+    <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.PlaneElement.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -195,6 +199,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
