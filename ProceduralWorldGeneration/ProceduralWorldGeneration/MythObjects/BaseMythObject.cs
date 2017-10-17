@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProceduralWorldGeneration.Utility;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -10,6 +11,24 @@ namespace ProceduralWorldGeneration.MythObjects
     public class BaseMythObject : INotifyPropertyChanged
     {
         static int _identifier_seed = 0;
+
+
+        private string _name;
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if (value != _name)
+                {
+                    _name = value;
+                    NotifyPropertyChanged("Name");
+                }
+            }
+        }
 
         private string _tag;
         public string Tag
@@ -45,23 +64,6 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        private string _name;
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                if (value != _name)
-                {
-                    _name = value;
-                    NotifyPropertyChanged("Name");
-                }
-            }
-        }
-
         private BaseMythObject _creator;
         public BaseMythObject Creator
         {
@@ -78,6 +80,12 @@ namespace ProceduralWorldGeneration.MythObjects
                 }
             }
         }
+
+        public List<string> Attributes { get; set; }
+        public string AttributesDisplay { get { return Helpers.ListToString(Attributes); } set { } }
+
+        public List<string> OppositeAttributes { get; set; }
+        public string OppositeAttributesDisplay { get { return Helpers.ListToString(OppositeAttributes); } set { } }
 
         public BaseMythObject(string tag = Constants.SpecialTags.DEFAULT_TAG)
         {

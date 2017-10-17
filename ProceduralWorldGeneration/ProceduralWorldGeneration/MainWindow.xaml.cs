@@ -53,14 +53,20 @@ namespace ProceduralWorldGeneration
             Program.GeneratorConfigurations = new ConfigValues();
             RandomSeedTextBox.Text = Program.GeneratorConfigurations.RandomSeed;
             _user_interface_data = new UserInterfaceData();
+
+            debugMessagesTextBlock.DataContext = Program.Debugger;
         }
 
         private void MythCreationButton_Click(object sender, RoutedEventArgs e)
         {
             Program.Initialise(_user_interface_data);
             Program.StartCreationLoop();
-            ElementListView.DataContext = _user_interface_data;
-            ElementListView.ItemsSource = _user_interface_data.MythObjects;
+            //ElementListView.DataContext = _user_interface_data;
+            //ElementListView.ItemsSource = _user_interface_data.MythObjects;
+
+            deitiesListView.DataContext = Program.CosmologyGenerator.Cosmology.Deities;
+            planesListView.DataContext = Program.CosmologyGenerator.Cosmology.Planes;
+            primordialForcesListView.DataContext = Program.CosmologyGenerator.Cosmology.PrimordialForces;
         }
 
         private void ElementListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -136,7 +142,7 @@ namespace ProceduralWorldGeneration
 
             System.Windows.Data.CollectionViewSource domainViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("domainViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
-            // domainViewSource.Source = [generic data source]
+            //domainViewSource.Source = Program.DataLoadHandler.Domains;
             System.Windows.Data.CollectionViewSource planeElementViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("planeElementViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // planeElementViewSource.Source = [generic data source]
@@ -155,6 +161,12 @@ namespace ProceduralWorldGeneration
             System.Windows.Data.CollectionViewSource traitCategoriesViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("traitCategoriesViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // traitCategoriesViewSource.Source = [generic data source]
+            System.Windows.Data.CollectionViewSource cosmologyViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("cosmologyViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // cosmologyViewSource.Source = [generic data source]
+            System.Windows.Data.CollectionViewSource debugConsoleViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("debugConsoleViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // debugConsoleViewSource.Source = [generic data source]
         }
     }
 }

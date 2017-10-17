@@ -1,7 +1,0 @@
-primordial_forces = {
-	chaos = {
-		name = "Chaos"
-		spawn_weight = 20
-	}
-}
-

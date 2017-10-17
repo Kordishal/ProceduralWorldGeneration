@@ -1,0 +1,96 @@
+{
+    "Name": "Chaos",
+    "Tag": "chaos",
+    "SpawnWeight": 100,
+    "Attributes": [
+        "chaos"
+    ],
+    "OppositeAttributes": [
+        "order"
+    ],
+    "OpposingForce": "order"
+};
+{
+    "Name": "Order",
+    "Tag": "order",
+    "SpawnWeight": 100,
+    "Attributes": [
+        "order"
+    ],
+    "OppositeAttributes": [
+        "chaos"
+    ],
+    "OpposingForce": "chaos"
+};
+{
+    "Name": "Light",
+    "Tag": "light",
+    "SpawnWeight": 50,
+    "Attributes": [
+        "light", "life"
+    ],
+    "OppositeAttributes": [
+        "darkness", "death"
+    ],
+    "OpposingForce": "darkness"
+};
+{
+    "Name": "Darkness",
+    "Tag": "darkness",
+    "SpawnWeight": 50,
+    "Attributes": [
+        "darkness", "death"
+    ],
+    "OppositeAttributes": [
+        "light", "life"
+    ],
+    "OpposingForce": "light"
+};
+{
+    "Name": "Fire",
+    "Tag": "fire",
+    "SpawnWeight": 10,
+    "Attributes": [
+        "fire"
+    ],
+    "OppositeAttributes": [
+        "water"
+    ],
+    "OpposingForce": "water"
+};
+{
+    "Name": "Water",
+    "Tag": "water",
+    "SpawnWeight": 10,
+    "Attributes": [
+        "water"
+    ],
+    "OppositeAttributes": [
+        "fire"
+    ],
+    "OpposingForce": "fire"
+};
+{
+    "Name": "Earth",
+    "Tag": "earth",
+    "SpawnWeight": 10,
+    "Attributes": [
+        "earth"
+    ],
+    "OppositeAttributes": [
+        "air"
+    ],
+    "OpposingForce": "air"
+};
+{
+    "Name": "Air",
+    "Tag": "air",
+    "SpawnWeight": 10,
+    "Attributes": [
+        "air"
+    ],
+    "OppositeAttributes": [
+        "earth"
+    ],
+    "OpposingForce": "earth"
+};

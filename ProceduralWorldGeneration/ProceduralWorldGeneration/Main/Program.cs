@@ -1,6 +1,8 @@
 ﻿using ProceduralWorldGeneration.DataLoader;
 using ProceduralWorldGeneration.DataStructure;
 using ProceduralWorldGeneration.Generator;
+using ProceduralWorldGeneration.Utility;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace ProceduralWorldGeneration.Main
@@ -13,6 +15,8 @@ namespace ProceduralWorldGeneration.Main
         static private MythCreator _creation_myth_generator;
 
         static public DataLoadHandler DataLoadHandler { get; set; }
+        static public GenerateCosmology CosmologyGenerator { get; set; }
+        static public DebugConsole Debugger { get; set; }
 
         /// <summary>
         /// Global config values for the application. Defined before first start.
@@ -21,13 +25,16 @@ namespace ProceduralWorldGeneration.Main
 
         static public void StartCreationLoop()
         {
-            _creation_myth_generator.UniverseCreation();
+            CosmologyGenerator.GeneratePrimordialForces();
+            CosmologyGenerator.GenerateCreationString();
+            //_creation_myth_generator.UniverseCreation();
         }
 
         static public void Initialise(UserInterfaceData user)
         {
-            _creation_myth_generator = new MythCreator();
-            _creation_myth_generator.Initialise(user);
+            CosmologyGenerator = new GenerateCosmology(10000000);
+            //_creation_myth_generator = new MythCreator();
+            //_creation_myth_generator.Initialise(user);
         }
 
         static public void InitialiseData()
@@ -39,6 +46,7 @@ namespace ProceduralWorldGeneration.Main
         static Program()
         {
             GeneratorConfigurations = new ConfigValues();
+            Debugger = new DebugConsole { DebugMessagesList = new List<string> { "New Beginnings!\n" } };
         }
     }
 }

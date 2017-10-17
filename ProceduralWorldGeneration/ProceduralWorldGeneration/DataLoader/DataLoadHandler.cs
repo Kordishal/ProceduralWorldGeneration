@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using ProceduralWorldGeneration.Attributes;
 using System.IO;
 using System.Diagnostics;
+using ProceduralWorldGeneration.MythObjects;
 
 namespace ProceduralWorldGeneration.DataLoader
 {
@@ -31,6 +32,8 @@ namespace ProceduralWorldGeneration.DataLoader
         private const string _traits_categories = @"species_attributes\trait_categories.json";
 
         private const string _civilization_ethos = @"civilization_attributes\ethos.json";
+
+        private const string _primordial_forces = @"predefined_unverse_elements\primordial_forces.json";
 
         public DataLoadHandler(string path=@"C:\Users\jwaeb\Documents\Projects\UniverseGeneration\data_files\")
         {
@@ -75,6 +78,8 @@ namespace ProceduralWorldGeneration.DataLoader
 
         public List<CivilizationEthos> CivilizationEthos { get; set; }
 
+        public List<PrimordialForce> PrimordialForces { get; set; }
+
         public void ReadDataFiles()
         {
             // TODO: Add function to control whether the input is correct.
@@ -96,7 +101,7 @@ namespace ProceduralWorldGeneration.DataLoader
 
             CivilizationEthos = ReadFile<CivilizationEthos>(_civilization_ethos);
 
-
+            PrimordialForces = ReadFile<PrimordialForce>(_primordial_forces);
         }
 
         private List<T> ReadFile<T>(string path)

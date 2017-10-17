@@ -39,6 +39,26 @@ namespace ProceduralWorldGeneration.GrammarDefinition
             }
         }
 
+        public void RepeatUntilFullyTerminal()
+        {
+            int counter = 0;
+            while (TestTerminals())
+            {
+                Produce(counter);
+                counter += 1;
+            }
+        }
+
+        private bool TestTerminals()
+        {
+            foreach (char c in Result)
+            {
+                if (NonTerminals.Contains(c))
+                    return false;
+            }
+            return true;
+        }
+
         public void Produce(int production_cycle)
         {
             List<ProductionRule> valid_rules;

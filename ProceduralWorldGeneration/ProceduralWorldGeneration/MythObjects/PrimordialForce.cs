@@ -35,26 +35,21 @@ namespace ProceduralWorldGeneration.MythObjects
             }
         }
 
-        private string _opposing;
-        public string Opposing
+        private string _opposing_force;
+        public string OpposingForce
         {
             get
             {
-                return _opposing;
+                return _opposing_force;
             }
             set
             {
-                if (_opposing != value)
+                if (_opposing_force != value)
                 {
-                    _opposing = value;
-                    NotifyPropertyChanged("Opposing");
+                    _opposing_force = value;
+                    NotifyPropertyChanged("OpposingForce");
                 }
             }
-        }
-
-        public PrimordialForce(string tag = Constants.SpecialTags.DEFAULT_TAG) : base(tag)
-        {
-            
         }
 
         public override void takeAction(int current_year)

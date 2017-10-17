@@ -123,6 +123,7 @@
     <Compile Include="StateMachine\FiniteStateMachineException.cs" />
     <Compile Include="StateMachine\StateTransition.cs" />
     <Compile Include="Universe\Cosmology.cs" />
+    <Compile Include="Utility\DebugConsole.cs" />
     <Compile Include="Utility\Tree.cs" />
     <Compile Include="Utility\Helpers.cs" />
     <Compile Include="Utility\TreeNode.cs" />
@@ -173,12 +174,16 @@
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.CivilizationEthos.datasource" />
+    <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.DeityPersonality.datasource" />
     <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.Domain.datasource" />
     <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.PlaneElement.datasource" />
     <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.PlaneSize.datasource" />
     <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.PlaneType.datasource" />
     <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.SpeciesTrait.datasource" />
     <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.SpeciesType.datasource" />
+    <None Include="Properties\DataSources\ProceduralWorldGeneration.Attributes.TraitCategory.datasource" />
+    <None Include="Properties\DataSources\ProceduralWorldGeneration.Universe.Cosmology.datasource" />
+    <None Include="Properties\DataSources\ProceduralWorldGeneration.Utility.DebugConsole.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
